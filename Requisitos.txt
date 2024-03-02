@@ -1,0 +1,9 @@
+DATE OF LOVE
+	REQUISITOS
+		Chat de contato
+		Carrinho
+		Cadastro e login
+		Cátalogo
+		Disparo de emails com avisos
+		Escolha de Serviços(Quantidade de pessoas e espaço)
+		Avaliações de cliente
