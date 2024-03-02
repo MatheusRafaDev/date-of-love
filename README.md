@@ -1,7 +1,7 @@
 
 # Date Of Love
 
-## REQUISITOS
+## Requesitos
 
 - [ ] Chat de contato
 - [ ] Carrinho
