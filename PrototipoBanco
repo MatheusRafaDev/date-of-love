@@ -1,0 +1,51 @@
+Usuários/Cadastro/Login:
+
+id_usuario (chave primária)
+nome
+email
+senha
+Outros campos de perfil, como endereço, número de telefone, etc.
+Produtos/Serviços:
+
+id_produto (chave primária)
+nome
+descricao
+preco
+quantidade_disponivel
+categoria (por exemplo, decoração, buffet, fotografia, etc.)
+Carrinho:
+
+id_carrinho (chave primária)
+id_usuario (chave estrangeira referenciando a tabela de usuários)
+id_produto (chave estrangeira referenciando a tabela de produtos)
+quantidade
+preco_total
+Pedidos:
+
+id_pedido (chave primária)
+id_usuario (chave estrangeira referenciando a tabela de usuários)
+data_pedido
+status (por exemplo, pendente, processando, entregue, etc.)
+endereco_entrega
+preco_total
+Avaliações:
+
+id_avaliacao (chave primária)
+id_usuario (chave estrangeira referenciando a tabela de usuários)
+id_produto (chave estrangeira referenciando a tabela de produtos)
+comentario
+classificacao (por exemplo, de 1 a 5 estrelas)
+Contatos:
+
+id_contato (chave primária)
+nome
+email
+mensagem
+data_contato
+Emails Enviados:
+
+id_email (chave primária)
+id_usuario (chave estrangeira referenciando a tabela de usuários)
+assunto
+corpo
+data_envio
