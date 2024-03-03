@@ -1,0 +1,70 @@
+-- Criação da tabela Usuários/Cadastro/Login
+CREATE TABLE usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    endereco VARCHAR(255),
+    telefone VARCHAR(20)
+);
+
+-- Criação da tabela Serviços
+CREATE TABLE servicos (
+    id_servico INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    preco DECIMAL(10, 2) NOT NULL,
+    categoria VARCHAR(100)
+);
+
+-- Criação da tabela Carrinho
+CREATE TABLE carrinho (
+    id_carrinho INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_servico INT,
+    quantidade INT NOT NULL,
+    preco_total DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+    FOREIGN KEY (id_servico) REFERENCES servicos(id_servico)
+);
+
+-- Criação da tabela Pedidos
+CREATE TABLE pedidos (
+    id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(100) NOT NULL,
+    endereco_entrega VARCHAR(255),
+    preco_total DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
+);
+
+-- Criação da tabela Avaliações
+CREATE TABLE avaliacoes (
+    id_avaliacao INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_servico INT,
+    comentario TEXT,
+    classificacao INT NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+    FOREIGN KEY (id_servico) REFERENCES servicos(id_servico)
+);
+
+-- Criação da tabela Contatos
+CREATE TABLE contatos (
+    id_contato INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    email VARCHAR(255),
+    mensagem TEXT,
+    data_contato TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Criação da tabela Emails Enviados
+CREATE TABLE emails_enviados (
+    id_email INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    assunto VARCHAR(255),
+    corpo TEXT,
+    data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
+);
