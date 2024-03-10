@@ -3,7 +3,6 @@
 
 ## Requesitos principais
 
-- [ ] Chat de contato e envio de orçamento via chat
 - [ ] Carrinho
 - [ ] Cadastro e login
 - [ ] Catálogo
@@ -13,3 +12,4 @@
  ### Outras funcionalidade a parte
 
 - [ ] Disparo de emails com avisos
+- [ ]  Chat de contato e envio de orçamento via chat
