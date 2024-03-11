@@ -12,8 +12,9 @@
 
 - [ ] Disparo de emails com avisos
 - [ ]  Chat de contato e envio de orçamento via chat
-- [ ]  
-![Texto Alternativo](der.jpg)
+
+      
+![Diagrama DER](der.jpg)
 
 ## Tabela de Usuários (`tb_usuarios`)
 
