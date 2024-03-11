@@ -2,7 +2,7 @@
 
 ## Descrição:
 
-"Date Of Love" é uma plataforma online especializada na organização de festas de casamento, que visa simplificar o processo de planejamento e tornar cada momento memorável. Os requisitos principais do projeto incluem:
+Date Of Love é uma plataforma online especializada na organização de festas de casamento, que visa simplificar o processo de planejamento e tornar cada momento memorável. Os requisitos principais do projeto incluem:
 
 ### Requisitos Principais:
 
