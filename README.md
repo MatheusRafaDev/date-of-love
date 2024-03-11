@@ -1,17 +1,22 @@
-# Date Of Love
+# Projeto: Date Of Love - Organização de Festas de Casamento
 
-## Requesitos principais
+## Descrição:
 
-- [ ] Carrinho
-- [ ] Cadastro e login
-- [ ] Catálogo
-- [ ] Escolha de Serviços (Quantidade de pessoas e espaço)
-- [ ] Gerar orçamentos
+"Date Of Love" é uma plataforma online especializada na organização de festas de casamento, que visa simplificar o processo de planejamento e tornar cada momento memorável. Os requisitos principais do projeto incluem:
 
- ### Outras funcionalidade a parte
+### Requisitos Principais:
 
-- [ ] Disparo de emails com avisos
-- [ ]  Chat de contato e envio de orçamento via chat
+- [ ] **Carrinho:** Implementar um carrinho de compras para os usuários adicionarem serviços e produtos selecionados.
+- [ ] **Cadastro e Login:** Desenvolver sistemas de cadastro e login para os usuários acessarem suas informações e histórico de pedidos.
+- [ ] **Catálogo:** Criar um catálogo abrangente de serviços e produtos relacionados a festas de casamento para os usuários explorarem.
+- [ ] **Escolha de Serviços:** Permitir que os usuários selecionem serviços específicos, como decoração, buffet e música, além de personalizarem o número de convidados e o local do evento.
+- [ ] **Gerar Orçamentos:** Implementar um sistema que gere orçamentos detalhados com base nas seleções dos usuários.
+
+### Funcionalidades Adicionais:
+
+- [ ] **Disparo de Emails com Avisos:** Configurar um sistema para enviar automaticamente emails com lembretes e avisos importantes aos usuários sobre seus eventos agendados.
+- [ ] **Chat de Contato:** Integrar um chat de contato para que os usuários possam se comunicar diretamente com a equipe de suporte, esclarecer dúvidas e solicitar assistência personalizada durante o processo de planejamento do casamento.
+
 
 ### Diagrama DER
 
