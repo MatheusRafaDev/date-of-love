@@ -17,7 +17,7 @@
 
 ![Diagrama DER](der.jpg)
 
-### TABELAS DO DateOfLove
+### Tabelas do DateOfLove
 
 ## Tabela de Usuários (`tb_usuarios`)
 
