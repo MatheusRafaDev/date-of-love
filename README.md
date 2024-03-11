@@ -13,7 +13,7 @@
 - [ ] Disparo de emails com avisos
 - [ ]  Chat de contato e envio de orçamento via chat
 
-![Diagrama do Banco de Dados]([https://prnt.sc/GVaTQGkae5N6](https://imgur.com/a/85bLJth))
+![Diagrama do Banco de Dados](https://imgur.com/a/85bLJth](https://imgur.com/a/85bLJth))
 
 ## Tabela de Usuários (`tb_usuarios`)
 
