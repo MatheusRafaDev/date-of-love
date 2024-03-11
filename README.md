@@ -13,7 +13,7 @@
 - [ ] Disparo de emails com avisos
 - [ ]  Chat de contato e envio de orçamento via chat
 
-![Diagrama do Banco de Dados MER](https://imgur.com/a/85bLJth)
+![Diagrama do Banco de Dados MER](https://hackmd.io/_uploads/HJVXz-2TT.jpg)
 
 ## Tabela de Usuários (`tb_usuarios`)
 
