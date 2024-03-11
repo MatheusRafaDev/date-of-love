@@ -6,7 +6,7 @@
 - [ ] Cadastro e login
 - [ ] Catálogo
 - [ ] Escolha de Serviços (Quantidade de pessoas e espaço)
-
+- [ ] Gerar orçamentos
 
  ### Outras funcionalidade a parte
 
