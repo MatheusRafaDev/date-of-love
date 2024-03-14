@@ -10,7 +10,7 @@ CREATE TABLE tb_usuarios (
 );
 
 -- Tabela de Informações do Casamento
-CREATE TABLE tb_info_casamento (
+CREATE TABLE tb_casamento (
     id_casamento INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT,
     dt_casamento DATE,
@@ -34,6 +34,8 @@ CREATE TABLE tb_orcamentos (
     id_casamento INT,
     dt_orcamento DATE,
     ds_status VARCHAR(20),
+    ds_observacao_geral TEXT,
+    nm_orcador VARCHAR(100),
     FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario),
     FOREIGN KEY (id_casamento) REFERENCES tb_info_casamento(id_casamento)
 );
@@ -44,7 +46,8 @@ CREATE TABLE tb_detalhes_orcamento (
     id_orcamento INT,
     id_servico INT,
     nr_quantidade INT,
-    vl_preco DECIMAL(10, 2),
+    vl_preco_editavel DECIMAL(10, 2),
+    ds_observacao_servico TEXT,
     FOREIGN KEY (id_orcamento) REFERENCES tb_orcamentos(id_orcamento),
     FOREIGN KEY (id_servico) REFERENCES tb_servicos(id_servico)
 );

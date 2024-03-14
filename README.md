@@ -20,33 +20,41 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 
 ### Diagrama DER
 
-![Diagrama DER](der.jpg)
+![Diagrama DER](der2.jpg)
 
 ### Tabelas do DateOfLove
 
-## Tabela de Usuários (`tb_usuarios`)
+# DateOfLove - Sistema de Orçamentos para Casamentos
 
-| Coluna                | Tipo         | Descrição                                      |
-|-----------------------|--------------|------------------------------------------------|
-| id_usuario            | INT          | Chave primária autoincrementável               |
-| nm_noivo              | VARCHAR(100) | Nome do noivo                                  |
-| nm_noiva              | VARCHAR(100) | Nome da noiva                                  |
-| ds_email              | VARCHAR(100) | Endereço de e-mail do usuário                  |
-| ds_senha              | VARCHAR(100) | Senha do usuário (criptografada)               |
-| dt_cadastro           | DATE         | Data de cadastro do usuário                    |
-| nm_casal              | VARCHAR(200) | Nomes dos noivos concatenados                   |
+## Descrição
 
-## Tabela de Informações do Casamento (`tb_info_casamento`)
+O DateOfLove é um sistema de gestão de orçamentos para casamentos, projetado para ajudar casais a planejar seus casamentos de forma eficiente, mantendo controle sobre os serviços contratados e os custos envolvidos.
 
-| Coluna          | Tipo         | Descrição                                        |
-|-----------------|--------------|--------------------------------------------------|
-| id_casamento    | INT          | Chave primária autoincrementável                 |
-| id_usuario      | INT          | Chave estrangeira referenciando tb_usuarios       |
-| dt_casamento    | DATE         | Data do casamento                                |
-| ds_localidade   | VARCHAR(100) | Localidade do casamento                          |
-| nr_convidados   | INT          | Número de convidados para o casamento            |
+## Tabelas do Banco de Dados
 
-## Tabela de Serviços (`tb_servicos`)
+### Tabela de Usuários (`tb_usuarios`)
+
+| Coluna         | Tipo         | Descrição                                     |
+|----------------|--------------|-----------------------------------------------|
+| id_usuario     | INT          | Chave primária autoincrementável              |
+| nm_noivo       | VARCHAR(100) | Nome do noivo                                 |
+| nm_noiva       | VARCHAR(100) | Nome da noiva                                 |
+| ds_email       | VARCHAR(100) | Endereço de e-mail do usuário                 |
+| ds_senha       | VARCHAR(100) | Senha do usuário (criptografada)              |
+| dt_cadastro    | DATE         | Data de cadastro do usuário                   |
+| nm_casal       | VARCHAR(200) | Nomes dos noivos concatenados                  |
+
+### Tabela de Informações do Casamento (`tb_casamento`)
+
+| Coluna          | Tipo         | Descrição                                      |
+|-----------------|--------------|------------------------------------------------|
+| id_casamento    | INT          | Chave primária autoincrementável               |
+| id_usuario      | INT          | Chave estrangeira referenciando tb_usuarios    |
+| dt_casamento    | DATE         | Data do casamento                              |
+| ds_localidade   | VARCHAR(100) | Localidade do casamento                        |
+| nr_convidados   | INT          | Número de convidados para o casamento          |
+
+### Tabela de Serviços (`tb_servicos`)
 
 | Coluna        | Tipo         | Descrição                                      |
 |---------------|--------------|------------------------------------------------|
@@ -55,17 +63,19 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 | ds_servico    | TEXT         | Descrição do serviço                           |
 | vl_preco      | DECIMAL(10,2)| Preço do serviço                               |
 
-## Tabela de Orçamentos (`tb_orcamentos`)
+### Tabela de Orçamentos (`tb_orcamentos`)
 
-| Coluna         | Tipo         | Descrição                                          |
-|----------------|--------------|----------------------------------------------------|
-| id_orcamento   | INT          | Chave primária autoincrementável                   |
-| id_usuario     | INT          | Chave estrangeira referenciando tb_usuarios        |
-| id_casamento   | INT          | Chave estrangeira referenciando tb_info_casamento  |
-| dt_orcamento   | DATE         | Data do orçamento                                  |
+| Coluna         | Tipo         | Descrição                                         |
+|----------------|--------------|---------------------------------------------------|
+| id_orcamento   | INT          | Chave primária autoincrementável                  |
+| id_usuario     | INT          | Chave estrangeira referenciando tb_usuarios       |
+| id_casamento   | INT          | Chave estrangeira referenciando tb_info_casamento |
+| dt_orcamento   | DATE         | Data do orçamento                                 |
 | ds_status      | VARCHAR(20)  | Status do orçamento (por exemplo, pendente, aceito, rejeitado) |
+| ds_observacao_geral | TEXT   | Observação geral do orçamento                     |
+| nm_orcador     | VARCHAR(100) | Nome do responsável pelo orçamento               |
 
-## Tabela de Detalhes do Orçamento (`tb_detalhes_orcamento`)
+### Tabela de Detalhes do Orçamento (`tb_detalhes_orcamento`)
 
 | Coluna               | Tipo         | Descrição                                       |
 |----------------------|--------------|-------------------------------------------------|
@@ -73,4 +83,7 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 | id_orcamento         | INT          | Chave estrangeira referenciando tb_orcamentos    |
 | id_servico           | INT          | Chave estrangeira referenciando tb_servicos      |
 | nr_quantidade        | INT          | Quantidade do serviço incluída no orçamento     |
-| vl_preco             | DECIMAL(10,2)| Preço do serviço no momento do orçamento        |
+| vl_preco_editavel    | DECIMAL(10,2)| Preço editável do serviço no orçamento          |
+| ds_observacao_servico| TEXT         | Observação específica do serviço no orçamento   |
+
+
