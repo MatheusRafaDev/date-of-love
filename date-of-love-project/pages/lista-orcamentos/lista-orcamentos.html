@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizar Orçamentos - Date Of Love</title>
+    <link rel="stylesheet" href="/css/lista-orcamentos.css"> 
+</head>
+
+<body>
+    <main>
+        <h2>Orçamentos Solicitados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Orçado Por</th>
+                    <th>Data do Orçamento</th>
+                    <th>Número de Convidados</th>
+                    <th>Valor Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Exemplo de linha de orçamento -->
+                <tr>
+                    <td>1</td>
+                    <td>Fulano</td>
+                    <td>14/03/2024</td>
+                    <td>100</td>
+                    <td>R$ 5.000,00</td>
+                    <td><button onclick="visualizarDetalhes()">Visualizar Orçamento</button></td>
+                </tr>
+                <!-- Adicione mais linhas conforme necessário -->
+            </tbody>
+        </table>
+
+        <button onclick="location.href='incluir_orcamento.html'">Incluir Orçamento</button>
+    </main>
+
+</body>
+
+</html>
