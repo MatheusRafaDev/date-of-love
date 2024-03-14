@@ -10,7 +10,7 @@ CREATE TABLE tb_usuarios (
 );
 
 -- Tabela de Informações do Casamento
-CREATE TABLE tb_info_casamento (
+CREATE TABLE tb_casamento (
     id_casamento INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT,
     dt_casamento DATE,
