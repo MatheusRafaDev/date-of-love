@@ -86,4 +86,7 @@ O DateOfLove é um sistema de gestão de orçamentos para casamentos, projetado 
 | vl_preco_editavel    | DECIMAL(10,2)| Preço editável do serviço no orçamento          |
 | ds_observacao_servico| TEXT         | Observação específica do serviço no orçamento   |
 
+## Figma
+
+![Figma](https://www.figma.com/file/y73G9AIo4N6H5Y49imq0oc/Date-of-Love?type=design&node-id=219%3A5&mode=design&t=QFt8muZruoZMN9vT-1)
 
