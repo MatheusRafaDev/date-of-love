@@ -44,7 +44,7 @@ O DateOfLove é um sistema de gestão de orçamentos para casamentos, projetado 
 | dt_cadastro    | DATE         | Data de cadastro do usuário                   |
 | nm_casal       | VARCHAR(200) | Nomes dos noivos concatenados                  |
 
-### Tabela de Informações do Casamento (`tb_info_casamento`)
+### Tabela de Informações do Casamento (`tb_casamento`)
 
 | Coluna          | Tipo         | Descrição                                      |
 |-----------------|--------------|------------------------------------------------|
