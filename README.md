@@ -88,5 +88,5 @@ O DateOfLove é um sistema de gestão de orçamentos para casamentos, projetado 
 
 ## Figma
 
-![Figma](https://www.figma.com/file/y73G9AIo4N6H5Y49imq0oc/Date-of-Love?type=design&node-id=219%3A5&mode=design&t=QFt8muZruoZMN9vT-1)
+![Figma]<https://www.figma.com/file/y73G9AIo4N6H5Y49imq0oc/Date-of-Love?type=design&node-id=219%3A5&mode=design&t=QFt8muZruoZMN9vT-1>
 
