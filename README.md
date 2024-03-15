@@ -101,7 +101,7 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 
 ## Tela prototipação
 
-![Home](telas-img/home.png)
+![Home](/telas-img/home.png)
 ![Diagrama DER](der2.jpg)
 ![Diagrama DER](der2.jpg)
 ![Diagrama DER](der2.jpg)
