@@ -17,6 +17,21 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 - [ ] **Disparo de Emails com Avisos:** Configurar um sistema para enviar automaticamente emails com lembretes e avisos importantes aos usuários sobre seus eventos agendados.
 - [ ] **Chat de Contato:** Integrar um chat de contato para que os usuários possam se comunicar diretamente com a equipe de suporte, esclarecer dúvidas e solicitar assistência personalizada durante o processo de planejamento do casamento.
 
+## Telas e Funcionalidades:
+
+### Público (Usuário):
+1. **Home:** Página inicial com informações sobre o serviço, depoimentos de clientes etc.
+2. **Serviços:** Página mostrando todos os serviços oferecidos pela plataforma.
+3. **Login/Criar Conta:** Telas para login e registro de novos usuários.
+4. **Catálogo/Listagem de Serviços:** Página mostrando todos os serviços disponíveis para seleção.
+5. **Selecionar Serviços para Orçamento:** Página onde os usuários podem selecionar os serviços desejados.
+6. **Histórico de Orçamento:** Lista de todos os orçamentos solicitados pelo usuário.
+7. **Visualizar Orçamento:** Página para visualizar detalhes de um orçamento específico.
+8. **Perfil do Casal:** Página para gerenciar informações do perfil do casal, como nome, data de casamento, etc.
+
+### Administrador (ADM):
+1. **Orçamentos:** Página para visualizar todos os orçamentos solicitados pelos usuários e possibilidade de alterá-los.
+2. **Visualizar Orçamentos e Alterar:** Detalhes de um orçamento específico e opção para fazer alterações se necessário.
 
 ### Diagrama DER
 
