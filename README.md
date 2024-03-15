@@ -98,3 +98,10 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 
 ![Figma]<https://www.figma.com/file/y73G9AIo4N6H5Y49imq0oc/Date-of-Love?type=design&node-id=219%3A5&mode=design&t=QFt8muZruoZMN9vT-1>
 
+
+## Tela prototipação
+
+![Home](telas-img/home.png)
+![Diagrama DER](der2.jpg)
+![Diagrama DER](der2.jpg)
+![Diagrama DER](der2.jpg)
