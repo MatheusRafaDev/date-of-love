@@ -39,14 +39,6 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 
 ### Tabelas do DateOfLove
 
-# DateOfLove - Sistema de Orçamentos para Casamentos
-
-## Descrição
-
-O DateOfLove é um sistema de gestão de orçamentos para casamentos, projetado para ajudar casais a planejar seus casamentos de forma eficiente, mantendo controle sobre os serviços contratados e os custos envolvidos.
-
-## Tabelas do Banco de Dados
-
 ### Tabela de Usuários (`tb_usuarios`)
 
 | Coluna         | Tipo         | Descrição                                     |
