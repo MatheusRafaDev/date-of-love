@@ -33,11 +33,11 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 1. **Orçamentos:** Página para visualizar todos os orçamentos solicitados pelos usuários e possibilidade de alterá-los.
 2. **Visualizar Orçamentos e Alterar:** Detalhes de um orçamento específico e opção para fazer alterações se necessário.
 
-### Diagrama DER
+## Diagrama DER
 
 ![Diagrama DER](der2.jpg)
 
-### Tabelas do DateOfLove
+## Tabelas do DateOfLove
 
 ### Tabela de Usuários (`tb_usuarios`)
 
