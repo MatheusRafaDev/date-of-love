@@ -28,11 +28,12 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 6. **Histórico de Orçamento:** Lista de todos os orçamentos solicitados pelo usuário.
 7. **Visualizar Orçamento:** Página para visualizar detalhes de um orçamento específico.
 8. **Perfil do Casal:** Página para gerenciar informações do perfil do casal, como nome, data de casamento, etc.
+9 **Suporte/Dúvidas:** Página com opção para enviar e-mail para o suporte técnico.
 
 ### Administrador (ADM):
 1. **Orçamentos:** Página para visualizar todos os orçamentos solicitados pelos usuários e possibilidade de alterá-los.
 2. **Visualizar Orçamentos e Alterar:** Detalhes de um orçamento específico e opção para fazer alterações se necessário.
-3. **Suporte/Dúvidas:** Página com opção para enviar e-mail para o suporte técnico.
+
 
 ## Diagrama DER
 
