@@ -1,11 +1,12 @@
 -- Tabela de Usuários
-CREATE TABLE tb_usuarios (
+CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nm_noivo VARCHAR(100),
     nm_noiva VARCHAR(100),
-    ds_email VARCHAR(100),
-    ds_senha VARCHAR(100),
+    ds_email VARCHAR(255),
+    ds_senha VARCHAR(255),
     dt_cadastro DATE,
+    dt_casamento DATE,
     nm_noivos_concatenado VARCHAR(200)
 );
 
@@ -37,7 +38,7 @@ CREATE TABLE tb_orcamentos (
     ds_observacao_geral TEXT,
     nm_orcador VARCHAR(100),
     FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario),
-    FOREIGN KEY (id_casamento) REFERENCES tb_info_casamento(id_casamento)
+    FOREIGN KEY (id_casamento) REFERENCES tb_casamento(id_casamento)
 );
 
 -- Tabela de Detalhes do Orçamento
