@@ -1,5 +1,5 @@
 -- Tabela de Usuários
-CREATE TABLE usuarios (
+CREATE TABLE tb_usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nm_noivo VARCHAR(100),
     nm_noiva VARCHAR(100),
