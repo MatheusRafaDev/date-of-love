@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="/css/criar-conta.css"> 
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <title>Cadastro</title>
 </head>
 <body>
     
+    <script src="criar-conta.js"></script>
+
     <div class="container">
         <img src="/assets/images/logo.png" alt="logo" class="logo">
         <div class="dados">
@@ -31,9 +34,8 @@
             <input type="password" id="senha" name="senha" required><br>
             <label for="confirmar_senha">Confirme sua senha</label><br>
             <input type="password" id="confirmar_senha" name="confirmar_senha" required><br>
-            <button type="submit" class="cadastrar">CADASTRAR</button>
+            <button type="button" class="cadastrar" onclick="cadastrar()">CADASTRAR</button>
         </div>
     </div>
-    
 </body>
 </html>

@@ -54,7 +54,7 @@ input[type="number"] {
     border: 1px solid #ddd;
 }
 
-button[type="submit"] {
+.cadastrar {
     width: 150%;
     padding: 10px;
     margin-top: 10px;
@@ -64,6 +64,6 @@ button[type="submit"] {
     cursor: pointer;
 }
 
-button[type="submit"]:hover {
+.cadastrar:hover {
     background-color: #319afd;
 }
