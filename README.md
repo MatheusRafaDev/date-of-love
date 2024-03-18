@@ -6,7 +6,6 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 
 ### Requisitos Principais:
 
-- [ ] **Carrinho:** Implementar um carrinho de compras para os usuários adicionarem serviços e produtos selecionados.
 - [ ] **Cadastro e Login:** Desenvolver sistemas de cadastro e login para os usuários acessarem suas informações e histórico de pedidos.
 - [ ] **Catálogo:** Criar um catálogo abrangente de serviços e produtos relacionados a festas de casamento para os usuários explorarem.
 - [ ] **Escolha de Serviços:** Permitir que os usuários selecionem serviços específicos, como decoração, buffet e música, além de personalizarem o número de convidados e o local do evento.
