@@ -1,0 +1,51 @@
+nav {
+    background-color: #94CBFF;
+    padding: 10px 0;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+nav ul li a:hover {
+    color: #82B6E6; /* mudança de cor ao passar o mouse */
+}
+
+.duvida-box {
+    width: 100%; /* Largura da tela */
+    max-width: 1500px; /* Largura máxima */
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.duvida-box h2 {
+    margin-top: 0;
+    border: 1px solid #82B6E6; /* Adicionando borda no título */
+    padding-bottom: 10px; /* Espaçamento inferior */
+}
+
+.duvida-box input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.texto {
+    height: 300px;
+}
