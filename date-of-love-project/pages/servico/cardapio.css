@@ -2,46 +2,63 @@ nav {
     background-color: #94CBFF;
     padding: 10px 0;
 }
+
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     text-align: center;
 }
+
 nav ul li {
     display: inline;
     margin-right: 20px;
 }
+
 nav ul li a {
     color: #fff;
     text-decoration: none;
     font-size: 18px;
 }
+
 nav ul li a:hover {
-    color: #82B6E6; /* mudança de cor ao passar o mouse */
+    color: #82B6E6;
+    /* mudança de cor ao passar o mouse */
 }
-.servico-titulo{
 
-    padding:0px 20px;
-    background-color: #b2c9df;
-
-    border: 1px solid #ddd;
-    border-radius: 25px;
-
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.titulo-servico p{
+    margin-top: 100px;
     text-align: center;
 
+    font-size: 100px;
+    font-family: "Allison", cursive;
+    font-weight: 400;
+    font-style: normal;
+
 }
-.info-cardapio{
-    height: 400px;
-    padding: 10px;
+
+.servico-titulo p {
+    font-family: "Architects Daughter", cursive;
+    color: #999595;
+    font-size: 30px;
+}
+
+.servico-titulo {
+    padding: 0px 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.info-cardapio {
+    width: 400px;
+    height: 600px;
     box-sizing: border-box;
     margin-bottom: 20px;
-
     border: 1px solid #ddd;
     border-radius: 20px;
-
-
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -49,9 +66,25 @@ nav ul li a:hover {
 .cardapio {
     text-align: center;
     margin-top: 20px;
-    padding: 20px   ;
-
+    padding: 0px 300px;
     display: flex;
-    flex-wrap: wrap;    
+    flex-wrap: wrap;
     justify-content: space-around;
+}
+
+.texto-cardapio {
+    font-family: "Architects Daughter", cursive;
+    color: #999595;
+}
+
+
+.vector-section {
+    position: absolute;
+    left: 250px;
+    top: 300px;
+}
+
+.vector-image {
+    width: 350px;
+
 }
