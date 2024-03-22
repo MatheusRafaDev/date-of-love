@@ -1,0 +1,57 @@
+nav {
+    background-color: #94CBFF;
+    padding: 10px 0;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+nav ul li a:hover {
+    color: #82B6E6; /* mudança de cor ao passar o mouse */
+}
+.servico-titulo{
+
+    padding:0px 20px;
+    background-color: #b2c9df;
+
+    border: 1px solid #ddd;
+    border-radius: 25px;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+}
+.info-cardapio{
+    height: 400px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+
+    border: 1px solid #ddd;
+    border-radius: 20px;
+
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.cardapio {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px   ;
+
+    display: flex;
+    flex-wrap: wrap;    
+    justify-content: space-around;
+}
