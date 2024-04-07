@@ -36,7 +36,7 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 
 ## Diagrama DER
 
-![Diagrama DER](diagramas\der2.jpg)
+![Diagrama DER](diagramas/der2.jpg)
 
 ## Tabelas do DateOfLove
 
