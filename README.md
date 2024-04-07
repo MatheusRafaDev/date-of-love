@@ -106,7 +106,7 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 2. ![Login](telas/Login.png)
 3. ![Criar Conta](telas/Criar%20conta.png)
 4. ![Perfil](telas/Perfil.png)
-5. ![Ajuda](telas/Ajuda.png)
+5. ![Ajuda](telas/Ajuda%20Suporte.png)
 6. ![Serviços](telas/Serviços.png)
 7. ![Seleção de Serviços](telas/Seleção%20de%20serviços.png)
 8. ![Orçamento](telas/Orçamento.png)
