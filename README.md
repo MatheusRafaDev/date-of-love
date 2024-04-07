@@ -36,7 +36,7 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 
 ## Diagrama DER
 
-![Diagrama DER](der2.jpg)
+![Diagrama DER](diagramas\der2.jpg)
 
 ## Tabelas do DateOfLove
 
@@ -102,19 +102,19 @@ Date Of Love é uma plataforma online especializada na organização de festas d
 ## Tela prototipação
 
 ### Telas de Interface do Usuário:
-1. ![Página Inicial](telas-img/Home.png)
-2. ![Login](telas-img/Login.png)
-3. ![Criar Conta](telas-img/Criar%20conta.png)
-4. ![Perfil](telas-img/Perfil.png)
-5. ![Ajuda](telas-img/Ajuda.png)
-6. ![Serviços](telas-img/Serviços.png)
-7. ![Seleção de Serviços](telas-img/Seleção%20de%20serviços.png)
-8. ![Orçamento](telas-img/Orçamento.png)
-9. ![Visualizar Orçamento](telas-img/Visualizar%20Orçamento.png)
-10. ![Sobre Nós](telas-img/Sobre%20nós.png)
+1. ![Página Inicial](telas/Home.png)
+2. ![Login](telas/Login.png)
+3. ![Criar Conta](telas/Criar%20conta.png)
+4. ![Perfil](telas/Perfil.png)
+5. ![Ajuda](telas/Ajuda.png)
+6. ![Serviços](telas/Serviços.png)
+7. ![Seleção de Serviços](telas/Seleção%20de%20serviços.png)
+8. ![Orçamento](telas/Orçamento.png)
+9. ![Visualizar Orçamento](telas/Visualizar%20Orçamento.png)
+10. ![Sobre Nós](telas/Sobre%20nós.png)
 
 ### Telas de Administração (ADM):
-1. ![Orçamento - ADM](telas-img/Orçamento%20-%20ADM.png)
-2. ![Visualizar Orçamento - ADM](telas-img/Visualizar%20Orçamento%20-%20ADM.png)
+1. ![Orçamento - ADM](telas/Orçamento%20-%20ADM.png)
+2. ![Visualizar Orçamento - ADM](telas/Visualizar%20Orçamento%20-%20ADM.png)
 
 
