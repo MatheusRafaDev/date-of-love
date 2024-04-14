@@ -9,69 +9,180 @@
 html{
     scroll-behavior: smooth;
 }
-
-.container55 {
+.rodafoto img{
+    position: relative;
+    left: -430px; /* Move o botão 20 pixels para a esquerda */
+    top: -20px; /* Move o botão 20 pixels para cima */ 
+}
+.rodape p{
+    font-size: 15px; /* Tamanho da fonte */
+    position: relative;
+    left: 60px; /* Move o botão 20 pixels para a esquerda */
+    top: 45px; /* Move o botão 20 pixels para cima */ 
+}
+.rodape {
+    background-color: #000000; /* Cor de fundo do rodapé */
+    color: #fff; /* Cor do texto do rodapé */
+    text-align: center; /* Alinhamento do texto */
+    padding: 2px; /* Espaçamento interno */
+    bottom: 0; /* Alinha o rodapé no fundo */
+    left: 0; /* Alinha o rodapé à esquerda */
     
-    background-color: #000000;
-    margin: 0; /* Remova as margens padrão */
-    padding: 0; /* Remova o preenchimento padrão */
-    min-height: 40vh; /* Garante que o corpo tenha pelo menos 100% da altura da janela de visualização */
-    color: rgb(255, 255, 255); /* Cor do texto */
     
 }
 
-.container55 img {
-    
+.bn button02 {
+    background-color: #00bae9; /* Cor de fundo do botão */
+    border: none; /* Remove a borda */
+    color: white; /* Cor do texto */
+    padding: 9px 32px; /* Espaçamento interno (altura x largura) */
+    text-align: center; /* Alinhamento do texto */
+    text-decoration: none; /* Remove a decoração de texto padrão */
+    display: inline-block; /* Faz o botão comportar-se como um elemento de bloco */
     font-size: 20px; /* Tamanho da fonte */
-    color: rgb(255, 255, 255); /* Cor do texto */
+    margin: 4px 2px; /* Margem externa (topo x direita x baixo x esquerda) */
+    cursor: pointer; /* Altera o cursor para indicar que é clicável */
+    border-radius: 25px; /* Adiciona cantos arredondados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra */
     position: relative;
-        left: 420px; /* Move o botão 20 pixels para a esquerda */
-        top: -20px; /* Move o botão 20 pixels para cima */
+    left: 710px; /* Move o botão 20 pixels para a esquerda */
+    top: -400px; /* Move o botão 20 pixels para cima */ 
+} 
+
+.fimpagina p {
+    font-size: 25px; /* Tamanho da fonte */
+    margin: 100px; /* move o texto para baixo em 20 pixels */
+    position: relative;
+    left: 600px; /* Move o botão 20 pixels para a esquerda */
+    top: -880px; /* Move o botão 20 pixels para cima */ 
+    color: rgb(5, 5, 5); /* Cor do texto */
+
+}
+.fimpagina h1 {
+    font-size: 80px; /* Tamanho da fonte */
+    margin: 100px; /* move o texto para baixo em 20 pixels */
+    position: relative;
+    left: 600px; /* Move o botão 20 pixels para a esquerda */
+    top: -810px; /* Move o botão 20 pixels para cima */ 
+    color: rgb(255, 255, 255); /* Cor do texto */
+    background: linear-gradient(to right, #00ccff, #028dff); /* Degrade azul claro */
+    background-clip: text;
+    -webkit-text-fill-color: transparent; /* Faz com que o texto adote o degrade */
+    text-shadow: 2px 2px 4px rgba(60, 165, 252, 0.5); 
+}
+
+.casalfim img{
+    width: 830px; /* Defina a largura desejada */
+    height: auto; /* Isso manterá a proporção da imagem */
+
+    position: relative;
+    left: 55px; /* Move o botão 20 pixels para a esquerda */
+    top: 85px; /* Move o botão 20 pixels para cima */ 
+}
+
+.fimpagina {
+    background-color: rgb(255, 255, 255);
+    margin: 0; /* Remove as margens padrão do corpo */
+    padding: 0; /* Remove o preenchimento padrão do corpo */
+    height: 100vh; /* Define a altura do corpo para ocupar 100% da altura da janela do navegador */
+    width: 100%; /* Define a largura do corpo para ocupar 100% da largura da janela do navegador */
+    margin-top: -400px;
 }
 
 
-.logoflor img {
-    
-    color: rgb(255, 255, 255); /* Cor do texto */
+.Pola2 img{
+    width: 450px; /* Defina a largura desejada */
+    height: auto; /* Isso manterá a proporção da imagem */
+
     position: relative;
-    left: 350px; /* Move o botão 20 pixels para a esquerda */
+    left: 675px; /* Move o botão 20 pixels para a esquerda */
+    top: -448px; /* Move o botão 20 pixels para cima */ 
+}
+
+.Pola1 img{
+    width: 450px; /* Defina a largura desejada */
+    height: auto; /* Isso manterá a proporção da imagem */
+    position: relative;
+    left: 125px; /* Move o botão 20 pixels para a esquerda */
+    top: 80px; /* Move o botão 20 pixels para cima */ 
+}
+.fundopretocominfo2 {
+    background-color: rgb(0, 0, 0);
+    margin: 0; /* Remove as margens padrão do corpo */
+    padding: 0; /* Remove o preenchimento padrão do corpo */
+    height: 700px; /* Define a altura do corpo para ocupar 100% da altura da janela do navegador */
+
+    
+}
+
+.infosfundoimagem2 {
+    position: relative;
+    left: 150px; /* Move o botão 20 pixels para a esquerda */
+    top: -1083px; /* Move o botão 20 pixels para cima */ 
+}
+.infosfundoimagem1 {
+    position: relative;
+    left: 380px; /* Move o botão 20 pixels para a esquerda */
+    top: -60px; /* Move o botão 20 pixels para cima */ 
+}
+.infosfundoimagem {
+    position: relative;
+    left: 850px; /* Move o botão 20 pixels para a esquerda */
+    top: -250px; /* Move o botão 20 pixels para cima */ 
+}
+.infosfundo2 p {
+    color: white;
+    position: relative;
+    top: 180px; /* Move o botão 20 pixels para cima */ 
+    font-size: 18px; /* Tamanho da fonte */
+}
+.infosfundo2 h3 {
+    color: white;
+    position: relative;
+    left: 110px; /* Move o botão 20 pixels para a esquerda */
+    top: 140px; /* Move o botão 20 pixels para cima */ 
+    font-size: 45px; /* Tamanho da fonte */
+}
+.infosfundo p {
+    color: white;
+    position: relative;
+    top: 100px; /* Move o botão 20 pixels para cima */ 
+    font-size: 18px; /* Tamanho da fonte */
+}
+.infosfundo h2 {
+    margin-top: -400px;
+    color: white;
+    position: relative;
+    left: 110px; /* Move o botão 20 pixels para a esquerda */
+    top: 120px; /* Move o botão 20 pixels para cima */ 
+    font-size: 45px; /* Tamanho da fonte */
+}
+.fundopretocominfo {
+    background-color: black;
+    margin: 0; /* Remove as margens padrão do corpo */
+    padding: 0; /* Remove o preenchimento padrão do corpo */
+    height: 100vh; /* Define a altura do corpo para ocupar 100% da altura da janela do navegador */
+    width: 100%; /* Define a largura do corpo para ocupar 100% da largura da janela do navegador */
+    
+}
+.fundopretocominfo {
+    margin-top: -400px;
+}
+
+
+
+
+
+.textoemo{
+    position: relative;
+    left: 300px; /* Move o botão 20 pixels para a esquerda */
+    top: -370px; /* Move o botão 20 pixels para cima */ 
+}
+.partecasal{
+    position: relative;
+    left: 200px; /* Move o botão 20 pixels para a esquerda */
     top: -150px; /* Move o botão 20 pixels para cima */
 }
-
-.container55 p {
-    
-    font-size: 20px; /* Tamanho da fonte */
-    color: rgb(255, 255, 255); /* Cor do texto */
-    position: relative;
-        left: 80px; /* Move o botão 20 pixels para a esquerda */
-        top: -115x; /* Move o botão 20 pixels para cima */
-}
-.container55 p1 {
-    
-    font-size: 20px; /* Tamanho da fonte */
-    color: rgb(255, 255, 255); /* Cor do texto */
-    position: relative;
-        left: 80px; /* Move o botão 20 pixels para a esquerda */
-        top: 60px; /* Move o botão 20 pixels para cima */
-}
-
-.container55 h2 {
-    position: relative;
-    left: 80px; /* Move o botão 20 pixels para a esquerda */
-    top: 40px; /* Move o botão 20 pixels para cima */
-    font-size: 50px; /* Tamanho da fonte */
-}
-.container55 h3 {
-    position: relative;
-    left: 80px; /* Move o botão 20 pixels para a esquerda */
-    top: 40px; /* Move o botão 20 pixels para cima */
-    font-size: 50px; /* Tamanho da fonte */
-}
-
-
-
-
-
 
 
 .conteudo button01{
@@ -83,7 +194,7 @@ html{
     box-shadow: 2px 2px 4px rgba(0, 1, 1, 5.5); /*Sombra*/
     position: relative;
     margin: auto; /* centraliza o botão dentro do elemento pai */
-    left: 55px; /* Move o botão 20 pixels para a esquerda */
+    left: 70px; /* Move o botão 20 pixels para a esquerda */
     top: -60px; /* Move o botão 20 pixels para cima */
     font-size: 28px; /* Tamanho da fonte */ 
     margin: 60px 20px; /* Adiciona margem à direita de cada imagem para criar espaço entre elas */
@@ -201,28 +312,28 @@ html{
 
     .completo8 {
             position: relative;
-            left: 40px; /* Move o botão 20 pixels para a esquerda */
+            left: 60px; /* Move o botão 20 pixels para a esquerda */
             top: -88px; /* Move o botão 20 pixels para cima */    }
     .completo9 {
             position: relative;
-            left: 375px; /* Move o botão 20 pixels para a esquerda */
+            left: 390px; /* Move o botão 20 pixels para a esquerda */
             top: -111px; /* Move o botão 20 pixels para cima */}        
     .completo10  {
             position: relative;
-            left: 795px; /* Move o botão 20 pixels para a esquerda */
+            left: 805px; /* Move o botão 20 pixels para a esquerda */
             top: -133px; /* Move o botão 20 pixels para cima */}
     
-            .completo11 {
+        .completo11 {
                 position: relative;
-                left:px; /* Move o botão 20 pixels para a esquerda */
+                left: 15px; /* Move o botão 20 pixels para a esquerda */
                 top: -88px; /* Move o botão 20 pixels para cima */    }
         .completo12 {
                 position: relative;
-                left: 430px; /* Move o botão 20 pixels para a esquerda */
+                left: 442px; /* Move o botão 20 pixels para a esquerda */
                 top: -111px; /* Move o botão 20 pixels para cima */}        
         .completo13  {
                 position: relative;
-                left: 820px; /* Move o botão 20 pixels para a esquerda */
+                left: 830px; /* Move o botão 20 pixels para a esquerda */
                 top: -133px; /* Move o botão 20 pixels para cima */}
 
 
@@ -346,18 +457,32 @@ html{
 
 }
 
+.container2 img{
+    position: relative;
+    left: 700px; /* Move o botão 20 pixels para a esquerda */
+    top: 290px; /* Move o botão 20 pixels para cima */
+    margin-top: -800px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra */
+}
+
 .section img {
     margin-top: 255px; 
 }
 
+.logo img{
 
+    width: 400px; /* Define a largura da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    position: relative;
+    left: auto; /* Move o botão 20 pixels para a esquerda */
+    top: -180px; /* Move o botão 20 pixels para cima */
+    
+}
 .logo{
     margin: 1%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 1%; 
-    transform: translateY(-170px);
 }
 
 
