@@ -1,6 +1,6 @@
 <web-app>
 
-    <display-name>car-store</display-name>
+    <display-name>date-of-love</display-name>
 
     <listener>
       <listener-class>org.h2.server.web.DbStarter</listener-class>
@@ -16,6 +16,8 @@
       <servlet-name>H2Console</servlet-name>
       <url-pattern>/console/*</url-pattern>
     </servlet-mapping>
+
+
 
 </web-app>
 

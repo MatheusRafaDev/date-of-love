@@ -4,6 +4,7 @@ package br.com.dateoflove.dao;
 import br.com.dateoflove.model.Usuario;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,16 +13,17 @@ import java.util.List;
 
         public void criarUsuario(Usuario usuario) {
             try {
-                String SQL = "INSERT INTO tb_usuarios (nome_noivo, nome_noiva, ds_email, ds_senha, dt_cadastro, dt_casamento, nm_noivos_concatenado) " +
+                String SQL = "INSERT INTO tb_usuarios (nm_noivo, nm_noiva, ds_email, ds_senha, dt_cadastro, dt_casamento, nm_noivos_concatenado) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?)";
                 Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+
 
                 preparedStatement.setString(1, usuario.getNomeNoivo());
                 preparedStatement.setString(2, usuario.getNomeNoiva());
                 preparedStatement.setString(3, usuario.getEmail());
                 preparedStatement.setString(4, usuario.getSenha());
-                preparedStatement.setDate(5, new java.sql.Date(usuario.getDataCadastro().getTime()));
+                preparedStatement.setDate(5, java.sql.Date.valueOf(LocalDate.now()));
                 preparedStatement.setDate(6, new java.sql.Date(usuario.getDataCasamento().getTime()));
                 preparedStatement.setString(7, usuario.getNomesConcatenados());
 
