@@ -8,16 +8,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 @WebServlet("/criar-usuario")
 public class CriarUsuarioServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 
         String nomeNoivo = request.getParameter("nome_noivo");
         String nomeNoiva = request.getParameter("nome_noiva");
@@ -26,10 +28,16 @@ public class CriarUsuarioServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         String confirmarSenha = request.getParameter("confirmar_senha");
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        if (!senha.equals(confirmarSenha)) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "As senhas não coincidem");
+            return;
+        }
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date dataCasamento = null;
         try {
-            dataCasamento = sdf.parse(dataCasamentoStr);
+            dataCasamento = formatter.parse(dataCasamentoStr);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -39,6 +47,6 @@ public class CriarUsuarioServlet extends HttpServlet {
         UsuarioDao usuarioDao = new UsuarioDao();
         usuarioDao.criarUsuario(usuario);
 
-
+        resp.sendRedirect("/home.jsp");
     }
 }

@@ -1,17 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="/css/criar-conta.css">
-    <link rel="icon" type="image/x-icon" href="src/assets/images/favicon.ico">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/criar-conta.css">
+    <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
+    <title>Criar Conta</title>
 </head>
 <body>
 <div class="container">
-    <img src="src/assets/images/logo.png" alt="logo" class="logo"/>
+    <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
     <div class="dados">
-        <form action="/criar-usuario" method="POST">
+        <form action="${pageContext.request.contextPath}/criar-usuario" method="POST">
             <div class="conta">Crie sua conta</div><br>
             <label for="nome_noivo">Nome Completo do Noivo</label><br>
             <input type="text" id="nome_noivo" name="nome_noivo" required><br>
@@ -37,6 +39,3 @@
 </div>
 </body>
 </html>
-
-
-
