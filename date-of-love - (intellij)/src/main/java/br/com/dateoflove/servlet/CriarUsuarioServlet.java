@@ -42,6 +42,17 @@ public class CriarUsuarioServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
+        Date dataAtual = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dataAtual);
+        cal.add(Calendar.MONTH, 9);
+        Date dataNoveMesesDepois = cal.getTime();
+
+        if (!dataCasamento.after(dataNoveMesesDepois)) {
+            resp.getWriter().println("<script>alert('A data do casamento deve ser 9 meses à frente.');</script>");
+            return;
+        }
+
         Usuario usuario = new Usuario(0, nomeNoivo, nomeNoiva, email, senha, new Date(), dataCasamento, nomeNoivo + " & " + nomeNoiva);
 
         UsuarioDao usuarioDao = new UsuarioDao();

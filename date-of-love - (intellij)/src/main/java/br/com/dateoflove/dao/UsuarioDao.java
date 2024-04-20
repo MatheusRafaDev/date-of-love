@@ -90,7 +90,36 @@ import java.util.List;
             }
         }
 
-        
+        public Usuario buscarUsuarioPorEmail(String email) {
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            Usuario usuario = null;
+
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                String query = "SELECT * FROM tb_usuarios WHERE ds_email = ?";
+                stmt = conn.prepareStatement(query);
+                stmt.setString(1, email);
+                rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    usuario = new Usuario();
+                    usuario.setIdUsuario(rs.getInt("id_usuario"));
+                    usuario.setNomeNoivo(rs.getString("nm_noivo"));
+                    usuario.setNomeNoiva(rs.getString("nm_noiva"));
+                    usuario.setEmail(rs.getString("ds_email"));
+                    usuario.setSenha(rs.getString("ds_senha"));
+                    usuario.setDataCadastro(rs.getDate("dt_cadastro"));
+                    usuario.setDataCasamento(rs.getDate("dt_casamento"));
+                    usuario.setNomesConcatenados(rs.getString("nm_noivos_concatenado"));
+
+                    System.out.println("Email encontrado: " + usuario.getNomeNoiva());
+                }
+            } catch (SQLException e) {
+                System.out.println("Erro ao buscar usuário por email: " + e.getMessage());
+            }
+            return usuario;
+        }
     }
 
 

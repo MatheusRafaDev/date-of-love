@@ -12,6 +12,9 @@ public class Usuario {
     private Date dataCasamento;
     private String nomesConcatenados;
 
+    public Usuario() {
+        super();
+    }
 
     public Usuario(int idUsuario, String nomeNoivo, String nomeNoiva, String email, String senha, Date dataCadastro, Date dataCasamento, String nomesConcatenados) {
         this.idUsuario = idUsuario;
