@@ -23,6 +23,38 @@
     border-radius: 5px;
     font-size: 16px;
 }
+
+.titulo {
+    font-family: quicksand, sans-serif;
+    margin-left: 80px;
+    margin-bottom: -3%;
+}
+
 .texto {
+    font-family: quicksand, sans-serif;
     height: 300px;
+}
+
+.img-cabecalho {
+    width: 100%;
+    margin-bottom: -3%;
+}
+
+.card {
+    width: 90%;
+    margin: 50px auto;
+    
+}
+
+.card-header {
+    background-color: #94CBFF;
+    font-family: quicksand, sans-serif;
+}
+
+.btn {
+    margin-top: -5%;
+    margin-left: 75px;
+    background-color: #94CBFF;
+    padding-left: 5%;
+    padding-right: 5%;
 }
