@@ -1,60 +1,67 @@
-.duvida-box {
-    width: 100%; /* Largura da tela */
-    max-width: 1500px; /* Largura máxima */
-    margin: 50px auto;
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 20px;
-    border: 1px solid #cccccc;
+    background-color: #f0f0f0;
+}
+
+header img {
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+}
+
+nav {
+    display: flex;
+}
+
+nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+
+.duvida-box {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
 }
 
 .duvida-box h2 {
-    margin-top: 0;
-    background-color: #82B6E6;
-    padding-bottom: 10px; /* Espaçamento inferior */
-}
-
-.duvida-box input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.titulo {
-    font-family: quicksand, sans-serif;
-    margin-left: 80px;
-    margin-bottom: -3%;
+    margin-bottom: 10px;
 }
 
 .texto {
-    font-family: quicksand, sans-serif;
-    height: 300px;
-}
-
-.img-cabecalho {
     width: 100%;
-    margin-bottom: -3%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.card {
-    width: 90%;
-    margin: 50px auto;
-    
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.card-header {
-    background-color: #94CBFF;
-    font-family: quicksand, sans-serif;
+.btn-primary:hover {
+    background-color: #0056b3;
 }
 
-.btn {
-    margin-top: -5%;
-    margin-left: 75px;
-    background-color: #94CBFF;
-    padding-left: 5%;
-    padding-right: 5%;
-}

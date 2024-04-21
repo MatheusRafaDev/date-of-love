@@ -13,6 +13,7 @@
 
 <body>
     <div class="container">
+        <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
         <div class="dados">
             <div class="conta">Entre em sua conta</div><br>
 
