@@ -18,6 +18,9 @@
             <div class="conta">Entre em sua conta</div><br>
 
             <form action="${pageContext.request.contextPath}/login" method="POST">
+                <span>${requestScope.message}</span>
+                <span class="error-message">${requestScope.errorMessage}</span>
+
                 <div class="email">Seu email</div><br>
                 <input type="email" id="email" name="email" required><br>
 

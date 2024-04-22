@@ -9,14 +9,31 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ajuda.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <style>
+
+        * {
+            border: 0;
+            border: none;
+            margin: 0;
+        }
+
         header {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            padding: 20px;
+            padding: 5px;
+        }
+
+        .logo-navigation {
+            display: flex;
+            align-items: center;
             background-color: #D4EAFF;
-            border:0;
-            border:none;
+            padding-left: 3em;
+            padding-right: 3em;
+
+            padding-top: 5px;
+            padding-bottom:5px;
+
+            border-radius: 2em;
         }
 
         nav {
@@ -27,48 +44,74 @@
             margin-right: 15px;
             text-decoration: none;
             color: black;
+            font-family: 'Quicksand', sans-serif;
         }
 
-        .right-items {
+        .user-items {
             display: flex;
             align-items: center;
+            margin-left: 10em;
+
+            color: black;
+            text-decoration: none;
+            font-family: 'Quicksand', sans-serif;
         }
 
-        .right-items img {
+        .user-items img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
             margin-right: 10px;
+
+            margin-left: 15px;
+            margin-right: 15px;
         }
 
-        .right-items button {
-            padding: 10px 20px;
-            background-color: #94CBFF;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .logo {
+          width: 200px;
+          height: auto;
+          margin-bottom: 4px;
+
+
         }
+
+
+        .user-items a {
+            color: black;
+            text-decoration: none;
+            font-family: 'Quicksand', sans-serif;
+
+        }
+
     </style>
 
 </head>
 <body>
 
     <header>
+        <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
+        <div class="logo-navigation">
             <nav>
-                <a href="#">Home</a>
-                <a href="#">Catálogo</a>
-                <a href="#">Contato</a>
-                <a href="#">Sobre nós</a>
-                <a href="#">Orçamento</a>
+                <a href="/home.jsp">Home</a>
+                <a href="/catalogo.jsp">Catálogo</a>
+                <a href="/ajuda.jsp">Contato</a>
+                <a href="/sobre-nos.jsp">Sobre nós</a>
+                <a href="/orcamentos.jsp">Orçamento</a>
+
             </nav>
-            <div class="right-items">
-                <img src="" alt="Foto do Usuário">
-                <a href="sair">Sair</a>
+
+            <div class="user-items">
+                 <a class="nome" href="nome">Casal</a>
+                 <img src="" alt="Foto do Usuário">
+                 <a class="sair" href="sair">Sair</a>
             </div>
+
+        </div>
+
     </header>
 
-    <h1>Ajuda</h1>
+
+    <h2 class="ajuda">Ajuda</h2>
 
     <div class="duvida-box">
         <h2>Descreva sua dúvida</h2>

@@ -16,28 +16,25 @@ import java.io.IOException;
 public class LoginUsuarioServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("login.jsp").forward(req, resp);
+    }
 
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String email = req.getParameter("email");
+        String senha = req.getParameter("senha");
 
         UsuarioDao usuarioDao = new UsuarioDao();
         Usuario usuario = usuarioDao.buscarUsuarioPorEmail(email);
 
         if (usuario != null && usuario.getSenha().equals(senha)) {
-            Cookie cookie = new Cookie("usuarioId", String.valueOf(usuario.getIdUsuario()));
-
-            cookie.setPath("/");
-            cookie.setMaxAge(24 * 60 * 60);
-
-            resp.addCookie(cookie);
-
-
-            resp.sendRedirect("/home.jsp");
+            req.getSession().setAttribute("id", usuario.getIdUsuario());
+            resp.sendRedirect("/ajuda.jsp");
         } else {
-            resp.setContentType("text/html");
-            resp.getWriter().println("<script>alert('Credenciais inválidas. Por favor, tente novamente ');</script>");
-            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Credenciais inválidas. Por favor, tente novamente.");
+            req.setAttribute("errorMessage", "Usuário ou Senha inválidos!");
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
     }
 }
