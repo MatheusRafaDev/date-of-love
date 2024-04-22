@@ -1,16 +1,30 @@
 .titulo-servico p {
-    margin-top: 100px;
     text-align: center;
-    font-size: 100px;
+    font-size: 60px;
     font-family: "Allison", cursive;
     font-weight: 400;
     font-style: normal;
 }
 
+hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+
+.servico {
+    font-family: 'Quicksand', sans-serif;
+    margin-left: 2em;
+    padding-top: 1em;
+}
+
 .servico-titulo p {
     font-family: "Architects Daughter", cursive;
     color: #999595;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .servico-titulo {
@@ -22,9 +36,17 @@
     text-align: center;
 }
 
+
+.pratos {
+    width: 299px;
+    height: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 .info-cardapio {
-    width: 400px;
-    height: 600px;
+    width: 300px;
+    height:460px;
     box-sizing: border-box;
     margin-bottom: 20px;
     border: 1px solid #ddd;
@@ -33,16 +55,15 @@
     text-align: center;
 }
 
-.cardapio, .bolos, .doces, .bebidas ,.flores  {
+.cardapio, .bolos, .doces, .bebidas, .flores {
     text-align: center;
     margin-top: 20px;
-    padding: 0px 300px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    width: calc(100% - 400px);
+    margin: 0 auto;
 }
-
-
 
 .texto-cardapio {
     font-family: "Architects Daughter", cursive;
@@ -59,7 +80,7 @@
     width: 350px;
 }
 
-.selecionado {
-    border: 2px solid #007bff;
+section {
+    background-color: #F0F0F0;
 }
 

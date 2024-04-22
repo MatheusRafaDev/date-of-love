@@ -6,115 +6,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços</title>
-    <link rel="stylesheet" href="./css/cardapio.css">
+    <link rel="stylesheet" href="./css/servicos.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
+    <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Allison&family=Architects+Daughter&display=swap" rel="stylesheet">
-        <style>
 
-            * {
-                border: 0;
-                border: none;
-                margin: 0;
-            }
-
-            header {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                padding: 5px;
-            }
-
-            .logo-navigation {
-                display: flex;
-                align-items: center;
-                background-color: #D4EAFF;
-                padding-left: 3em;
-                padding-right: 3em;
-
-                padding-top: 5px;
-                padding-bottom:5px;
-
-                border-radius: 2em;
-            }
-
-            nav {
-                display: flex;
-            }
-
-            nav a {
-                margin-right: 15px;
-                text-decoration: none;
-                color: black;
-                font-family: 'Quicksand', sans-serif;
-            }
-
-            .user-items {
-                display: flex;
-                align-items: center;
-                margin-left: 10em;
-
-                color: black;
-                text-decoration: none;
-                font-family: 'Quicksand', sans-serif;
-            }
-
-            .user-items img {
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                margin-right: 10px;
-
-                margin-left: 15px;
-                margin-right: 15px;
-            }
-
-            .logo {
-              width: 200px;
-              height: auto;
-              margin-bottom: 4px;
-
-
-            }
-
-
-            .user-items a {
-                color: black;
-                text-decoration: none;
-                font-family: 'Quicksand', sans-serif;
-
-            }
-
-        </style>
 </head>
 
 <body>
     <header>
-            <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
-            <div class="logo-navigation">
-                <nav>
-                    <a href="/home.jsp">Home</a>
-                    <a href="/catalogo.jsp">Catálogo</a>
-                    <a href="/ajuda.jsp">Contato</a>
-                    <a href="/sobre-nos.jsp">Sobre nós</a>
-                    <a href="/orcamentos.jsp">Orçamento</a>
-
-                </nav>
-
-                <div class="user-items">
-                     <a class="nome" href="nome">Casal</a>
-                     <img src="" alt="Foto do Usuário">
-                     <a class="sair" href="sair">Sair</a>
-                </div>
-
+        <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
+        <div class="logo-navigation">
+            <nav>
+                <a href="/home.jsp">Home</a>
+                <a href="/servicos.jsp">Serviços</a>
+                <a href="/ajuda.jsp">Ajuda</a>
+                <a href="/sobre-nos.jsp">Sobre nós</a>
+                <a href="/orcamentos.jsp">Orçamento</a>
+            </nav>
+            <div class="user-items">
+                 <a class="nome" href="nome">Casal</a>
+                 <img src="" alt="Foto do Usuário">
+                 <a class="sair" href="sair">Sair</a>
             </div>
+        </div>
+    </header>
 
-        </header>
-    <div>
-        <h1>
-            Serviços
-        </h1>
-    </div>
+
+    <h2 class="servico"> Serviços</h2>
+    <hr>
 
     <section>
+
         <div class="titulo-servico">
             <p>
                 Cardapio
@@ -127,7 +51,7 @@
                     <div class="servico-titulo">
                         <p> Simples </p>
                     </div>
-                    <img src="../webapp/src/assets/images/image 3.png   " alt="Pratos" width="400" height="200">
+                    <img src="./src/assets/images/image 3.png" class="pratos">
                     <div class="texto-cardapio">
                         <p>
                             Entradas: <br>
@@ -150,7 +74,7 @@
                     <div class="servico-titulo">
                         <p> Completo </p>
                     </div>
-                    <img src="./src/assets/images/image 4.png" alt="Pratos" width="400" height="200">
+                    <img src="./src/assets/images/image 4.png" class="pratos">
                     <div class="texto-cardapio">
                         <p>
                             Entradas: <br>
@@ -187,7 +111,7 @@
                     <div class="servico-titulo">
                         <p> Simples </p>
                     </div>
-                    <img src="./src/assets/images/image 7.png" alt="Pratos" width="400" height="200">
+                    <img src="./src/assets/images/image 7.png" class="pratos">
                     <div class="texto-cardapio">
 
                         <p>
@@ -207,7 +131,7 @@
                     <div class="servico-titulo">
                         <p> Completo </p>
                     </div>
-                    <img src="./src/assets/images/image 8.png" alt="Pratos" width="400" height="200">
+                    <img src="./src/assets/images/image 8.png" class="pratos">
                     <div class="texto-cardapio">
                         <p>
                             Clássico Red Velvet com creme de queijo. As camadas de bolo Red Velvet são ricas,
@@ -233,7 +157,7 @@
                     <div class="servico-titulo">
                         <p> Simples </p>
                     </div>
-                    <img src="./src/assets/images/image 9.png" alt="Pratos" width="400" height="200">
+                    <img src="./src/assets/images/image 9.png" class="pratos">
                     <div class="texto-cardapio">
                         <p>
                             Doces: <br>
@@ -257,7 +181,7 @@
                     <div class="servico-titulo">
                         <p> Completo </p>
                     </div>
-                    <img src="./src/assets/images/image 10.png" alt="Pratos" width="400" height="200">
+                    <img src="./src/assets/images/image 10.png" class="pratos">
                     <div class="texto-cardapio">
                         <p>
                             Doces: <br>
@@ -292,7 +216,7 @@
                     <div class="servico-titulo">
                         <p> Simples </p>
                     </div>
-                    <img src="./src/assets/images/image 11.png" alt="Pratos" width="400" height="200">
+                    <img src="./src/assets/images/image 11.png" class="pratos">
                     <div class="texto-cardapio">
                         <p>
                             Não Alcoólicas:
@@ -318,7 +242,7 @@
                     <div class="servico-titulo">
                         <p> Completo </p>
                     </div>
-                    <img src="./src/assets/images/image 12.png" alt="Pratos" width="400" height="200">
+                    <img src="./src/assets/images/image 12.png" class="pratos">
                     <div class="texto-cardapio">
                         <p>
                             Não Alcoólicas:
@@ -355,7 +279,7 @@
                     <div class="servico-titulo">
                         <p> Simples </p>
                     </div>
-                    <img src="./src/assets/images/image 15.png" alt="Pratos" width="400" height="200">
+                    <img src="./src/assets/images/image 15.png" class="pratos">
                     <div class="texto-cardapio">
                         <p>
                             Buquê destaca-se pela elegância com flores da estação. 
@@ -376,7 +300,7 @@
                     <div class="servico-titulo">
                         <p> Completo </p>
                     </div>
-                    <img src="./src/assets/images/image 16.png" alt="Pratos" width="400" height="200">
+                    <img src="./src/assets/images/image 16.png" class="pratos">
                     <div class="texto-cardapio">
                         <p>
                             O buquê da noiva brilha com a elegância de flores da estação, refletindo simplicidade e sofisticação. 
@@ -389,102 +313,6 @@
 
     </section>
 
-    <script>
-        function mostrarSimples(section) {
-            var simples = document.querySelector('.' + section + ' .botao-simples');
-            var completo = document.querySelector('.' + section + ' .botao-completo');
-
-            simples.classList.add('selecionado');
-            completo.classList.remove('selecionado');
-            console.log("Simples selecionado");
-        }
-
-        function mostrarCompleto(section) {
-            var simples = document.querySelector('.' + section + ' .botao-simples');
-            var completo = document.querySelector('.' + section + ' .botao-completo');
-
-            completo.classList.add('selecionado');
-            simples.classList.remove('selecionado');
-            console.log("Completo selecionado");
-        }
-
-        function mostrarBoloSimples(section) {
-            var simples = document.querySelector('.' + section + ' .botao-simples');
-            var completo = document.querySelector('.' + section + ' .botao-completo');
-
-            simples.classList.add('selecionado');
-            completo.classList.remove('selecionado');
-            console.log("Simples selecionado");
-        }
-
-        function mostrarBoloCompleto(section) {
-            var simples = document.querySelector('.' + section + ' .botao-simples');
-            var completo = document.querySelector('.' + section + ' .botao-completo');
-
-            completo.classList.add('selecionado');
-            simples.classList.remove('selecionado');
-            console.log("Completo selecionado");
-        } 
-
-
-        function mostrarDoceSimples(section) {
-            var simples = document.querySelector('.' + section + ' .botao-simples');
-            var completo = document.querySelector('.' + section + ' .botao-completo');
-
-            simples.classList.add('selecionado');
-            completo.classList.remove('selecionado');
-            console.log("Simples selecionado");
-        }
-
-        function mostrarDoceCompleto(section) {
-            var simples = document.querySelector('.' + section + ' .botao-simples');
-            var completo = document.querySelector('.' + section + ' .botao-completo');
-
-            completo.classList.add('selecionado');
-            simples.classList.remove('selecionado');
-            console.log("Completo selecionado");
-        } 
-
-        
-        function mostrarBebidaSimples(section) {
-            var simples = document.querySelector('.' + section + ' .botao-simples');
-            var completo = document.querySelector('.' + section + ' .botao-completo');
-
-            simples.classList.add('selecionado');
-            completo.classList.remove('selecionado');
-            console.log("Simples selecionado");
-        }
-
-        function mostrarBebidaCompleto(section) {
-            var simples = document.querySelector('.' + section + ' .botao-simples');
-            var completo = document.querySelector('.' + section + ' .botao-completo');
-
-            completo.classList.add('selecionado');
-            simples.classList.remove('selecionado');
-            console.log("Completo selecionado");
-        } 
-
-        function mostrarFloresSimples(section) {
-            var simples = document.querySelector('.' + section + ' .botao-simples');
-            var completo = document.querySelector('.' + section + ' .botao-completo');
-
-            simples.classList.add('selecionado');
-            completo.classList.remove('selecionado');
-            console.log("Simples selecionado");
-        }
-
-        function mostrarFloresCompleto(section) {
-            var simples = document.querySelector('.' + section + ' .botao-simples');
-            var completo = document.querySelector('.' + section + ' .botao-completo');
-
-            completo.classList.add('selecionado');
-            simples.classList.remove('selecionado');
-            console.log("Completo selecionado");
-        } 
-
-
-        
-    </script>
 </body>
 
 </html>

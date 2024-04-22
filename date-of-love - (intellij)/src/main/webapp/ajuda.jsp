@@ -8,96 +8,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ajuda.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
-    <style>
-
-        * {
-            border: 0;
-            border: none;
-            margin: 0;
-        }
-
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 5px;
-        }
-
-        .logo-navigation {
-            display: flex;
-            align-items: center;
-            background-color: #D4EAFF;
-            padding-left: 3em;
-            padding-right: 3em;
-
-            padding-top: 5px;
-            padding-bottom:5px;
-
-            border-radius: 2em;
-        }
-
-        nav {
-            display: flex;
-        }
-
-        nav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: black;
-            font-family: 'Quicksand', sans-serif;
-        }
-
-        .user-items {
-            display: flex;
-            align-items: center;
-            margin-left: 10em;
-
-            color: black;
-            text-decoration: none;
-            font-family: 'Quicksand', sans-serif;
-        }
-
-        .user-items img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-
-            margin-left: 15px;
-            margin-right: 15px;
-        }
-
-        .logo {
-          width: 200px;
-          height: auto;
-          margin-bottom: 4px;
-
-
-        }
-
-
-        .user-items a {
-            color: black;
-            text-decoration: none;
-            font-family: 'Quicksand', sans-serif;
-
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="./css/header.css">
 </head>
 <body>
-
     <header>
         <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
         <div class="logo-navigation">
             <nav>
                 <a href="/home.jsp">Home</a>
-                <a href="/catalogo.jsp">Catálogo</a>
-                <a href="/ajuda.jsp">Contato</a>
+                <a href="/servicos.jsp">Serviços</a>
+                <a href="/ajuda.jsp">Ajuda</a>
                 <a href="/sobre-nos.jsp">Sobre nós</a>
                 <a href="/orcamentos.jsp">Orçamento</a>
-
             </nav>
 
             <div class="user-items">
@@ -109,7 +31,6 @@
         </div>
 
     </header>
-
 
     <h2 class="ajuda">Ajuda</h2>
 
