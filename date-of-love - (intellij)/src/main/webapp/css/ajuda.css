@@ -1,38 +1,8 @@
 
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #f0f0f0;
+* {
+border:0;
+border:none;
 }
-
-header img {
-    width: 50px; 
-    height: 50px; 
-    border-radius: 50%; 
-}
-
-nav {
-    display: flex;
-}
-
-nav a {
-    margin-right: 15px;
-    text-decoration: none;
-    color: #333;
-}
-
-
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 
 .duvida-box {
     margin-top: 20px;
@@ -53,7 +23,7 @@ button {
 }
 
 .btn-primary {
-    background-color: #007bff;
+    background-color: #007bff; /* Azul */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -62,6 +32,5 @@ button {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
 }
-
