@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -8,26 +7,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços</title>
     <link rel="stylesheet" href="./css/cardapio.css">
-    <link href="https://fonts.googleapis.com/css2?family=Allison&family=Architects+Daughter&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allison&family=Architects+Daughter&display=swap" rel="stylesheet">
+        <style>
+
+            * {
+                border: 0;
+                border: none;
+                margin: 0;
+            }
+
+            header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 5px;
+            }
+
+            .logo-navigation {
+                display: flex;
+                align-items: center;
+                background-color: #D4EAFF;
+                padding-left: 3em;
+                padding-right: 3em;
+
+                padding-top: 5px;
+                padding-bottom:5px;
+
+                border-radius: 2em;
+            }
+
+            nav {
+                display: flex;
+            }
+
+            nav a {
+                margin-right: 15px;
+                text-decoration: none;
+                color: black;
+                font-family: 'Quicksand', sans-serif;
+            }
+
+            .user-items {
+                display: flex;
+                align-items: center;
+                margin-left: 10em;
+
+                color: black;
+                text-decoration: none;
+                font-family: 'Quicksand', sans-serif;
+            }
+
+            .user-items img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin-right: 10px;
+
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+            .logo {
+              width: 200px;
+              height: auto;
+              margin-bottom: 4px;
+
+
+            }
+
+
+            .user-items a {
+                color: black;
+                text-decoration: none;
+                font-family: 'Quicksand', sans-serif;
+
+            }
+
+        </style>
 </head>
 
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Catálogo</a></li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#">Sobre Nós</a></li>
-                <li><a href="#">Orçamento</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#">NomeCasal</a></li>
-                <li><a href="#">Sair</a></li>
-            </ul>
-        </nav>
-    </header>
+            <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
+            <div class="logo-navigation">
+                <nav>
+                    <a href="/home.jsp">Home</a>
+                    <a href="/catalogo.jsp">Catálogo</a>
+                    <a href="/ajuda.jsp">Contato</a>
+                    <a href="/sobre-nos.jsp">Sobre nós</a>
+                    <a href="/orcamentos.jsp">Orçamento</a>
+
+                </nav>
+
+                <div class="user-items">
+                     <a class="nome" href="nome">Casal</a>
+                     <img src="" alt="Foto do Usuário">
+                     <a class="sair" href="sair">Sair</a>
+                </div>
+
+            </div>
+
+        </header>
     <div>
         <h1>
             Serviços
