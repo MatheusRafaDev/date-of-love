@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="br.com.dateoflove.model.Usuario" %>
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,9 +26,9 @@
                 <a href="/orcamentos.jsp">Orçamento</a>
             </nav>
             <div class="user-items">
-                 <a class="nome" href="nome">Casal</a>
-                 <img src="" alt="Foto do Usuário">
-                 <a class="sair" href="sair">Sair</a>
+                <a class="nome" href="nome"><%= usuario.getNomesConcatenados() %></a>
+                <img src="" alt="Foto do Usuário">
+                <a class="sair" href="sair">Sair</a>
             </div>
         </div>
     </header>
@@ -37,33 +41,30 @@
                         <div class="profile-info">
                             <div class="img-container">
                                 <img src="<%=request.getContextPath()%>/src/assets/images/casalDoAno.png" alt="Imagem do Casal" class="img-cabecalho">
-                                <div class="nomeCasal">Matheus e Ítalo</div>
-                                <div class="dataCasamento">Data do Casamento</div>
+                                <div class="nomeCasal"><%= usuario.getNomesConcatenados() %></div>
+                                <div class="dataCasamento">Data do Casamento: <%= new SimpleDateFormat("dd/MM/yyyy").format(usuario.getDataCasamento()) %></div>
                             </div>
                             <div class="details">
-
                                 <div class="form-group">
                                     <label for="nomeNoivo">Nome do Noivo:</label>
-                                    <input type="text" id="nomeNoivo" class="form-control" value="<%= request.getAttribute("nm_noivo") %>" readonly>
+                                    <input type="text" id="nomeNoivo" class="form-control" value="<%= usuario.getNomeNoivo() %>" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="nomeNoiva">Nome da Noiva:</label>
-                                    <input type="text" id="nomeNoiva" class="form-control" value="<%= request.getAttribute("nm_noiva") %>" readonly>
+                                    <input type="text" id="nomeNoiva" class="form-control" value="<%= usuario.getNomeNoiva() %>" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email:</label>
-                                    <input type="email" id="email" class="form-control" value="<%= request.getAttribute("ds_email") %>" readonly>
+                                    <input type="email" id="email" class="form-control" value="<%= usuario.getEmail() %>" readonly>
                                 </div>
-
                                 <button id="btnSalvar" class="btn-salvar">Salvar</button>
                             </div>
                         </div>
-
-
                     </div>
-
                 </div>
             </div>
+
+
             <div class="col-sm-6">
                 <div class="card orcamento">
                     <div class="card-body">

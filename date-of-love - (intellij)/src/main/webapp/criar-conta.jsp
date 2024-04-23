@@ -23,10 +23,21 @@
             <input type="text" id="nome_noiva" name="nome_noiva" required maxlength="100"><br>
 
             <label for="email">Seu email</label><br>
-            <input type="email" id="email" name="email" required maxlength="254"><br>
 
-            <label for="data_casamento">Data do Casamento</label><br>
-            <input type="date" id="data_casamento" name="data_casamento" required><br>
+            <div class="container2">
+                <input type="email" id="email" name="email" required maxlength="254">
+                <span>${requestScope.message}</span>
+                <span class="error-message">${requestScope.errorMessage1}</span>
+            </div>
+            <br>
+
+            <div class="container2">
+                <label for="data_casamento">Data do Casamento</label><br>
+                <input type="date" id="data_casamento" name="data_casamento" required>
+                    <span>${requestScope.message}</span>
+                    <span class="error-message">${requestScope.errorMessage3}</span>
+            </div>
+            <br>
 
             <label for="estilo_festa">Estilo da Festa</label><br>
             <input type="text" id="estilo_festa" name="estilo_festa" class="campo-grande" required><br>
@@ -42,7 +53,13 @@
             <input type="password" id="senha" name="senha" required maxlength="25"><br>
 
             <label for="confirmar_senha">Confirme sua senha</label><br>
-            <input type="password" id="confirmar_senha" name="confirmar_senha" required maxlength="25"><br>
+            <input type="password" id="confirmar_senha" name="confirmar_senha" required maxlength="25">
+
+            <div class="container2">
+                <span>${requestScope.message}</span>
+                <span class="error-message">${requestScope.errorMessage2}</span>
+            </div>
+            <br>
 
             <button type="submit" class="cadastrar">CADASTRAR</button>
         </form>

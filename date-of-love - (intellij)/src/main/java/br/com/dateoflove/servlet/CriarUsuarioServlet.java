@@ -19,22 +19,18 @@ import java.util.Date;
 public class CriarUsuarioServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String nomeNoivo = request.getParameter("nome_noivo");
-        String nomeNoiva = request.getParameter("nome_noiva");
-        String email = request.getParameter("email");
-        String dataCasamentoStr = request.getParameter("data_casamento");
-        String senha = request.getParameter("senha");
-        String confirmarSenha = request.getParameter("confirmar_senha");
+        String nomeNoivo = req.getParameter("nome_noivo");
+        String nomeNoiva = req.getParameter("nome_noiva");
+        String email = req.getParameter("email");
+        String dataCasamentoStr = req.getParameter("data_casamento");
+        String senha = req.getParameter("senha");
+        String confirmarSenha = req.getParameter("confirmar_senha");
 
-
-        if (!senha.equals(confirmarSenha)) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "As senhas não coincidem");
-            return;
-        }
-
+        UsuarioDao usuarioDao = new UsuarioDao();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
         Date dataCasamento = null;
         try {
             dataCasamento = formatter.parse(dataCasamentoStr);
@@ -48,14 +44,28 @@ public class CriarUsuarioServlet extends HttpServlet {
         cal.add(Calendar.MONTH, 9);
         Date dataNoveMesesDepois = cal.getTime();
 
-        if (!dataCasamento.after(dataNoveMesesDepois)) {
-            resp.getWriter().println("<script>alert('A data do casamento deve ser 9 meses à frente.');</script>");
+        if (usuarioDao.existeUsuarioPorEmail(email)) {
+            req.setAttribute("errorMessage1", "Este email já está em uso.");
+            req.getRequestDispatcher("criar-conta.jsp").forward(req, resp);
             return;
         }
 
+        if (!senha.equals(confirmarSenha)) {
+            req.setAttribute("errorMessage2", "As senhas não coincidemo");
+            req.getRequestDispatcher("criar-conta.jsp").forward(req, resp);
+            return;
+        }
+
+        if (!dataCasamento.after(dataNoveMesesDepois)) {
+            req.setAttribute("errorMessage3", "A data do casamento deve ser 9 meses à frente");
+            req.getRequestDispatcher("criar-conta.jsp").forward(req, resp);
+            return;
+        }
+
+
         Usuario usuario = new Usuario(0, nomeNoivo, nomeNoiva, email, senha, new Date(), dataCasamento, nomeNoivo + " & " + nomeNoiva);
 
-        UsuarioDao usuarioDao = new UsuarioDao();
+
         usuarioDao.criarUsuario(usuario);
 
         resp.sendRedirect("/home.jsp");

@@ -30,8 +30,8 @@ public class LoginUsuarioServlet extends HttpServlet {
         Usuario usuario = usuarioDao.buscarUsuarioPorEmail(email);
 
         if (usuario != null && usuario.getSenha().equals(senha)) {
-            req.getSession().setAttribute("id", usuario.getIdUsuario());
-            resp.sendRedirect("/ajuda.jsp");
+            req.getSession().setAttribute("usuario", usuario);
+            resp.sendRedirect("/perfil.jsp");
         } else {
             req.setAttribute("errorMessage", "Usuário ou Senha inválidos!");
             req.getRequestDispatcher("login.jsp").forward(req, resp);

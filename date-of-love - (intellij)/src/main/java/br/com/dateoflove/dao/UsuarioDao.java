@@ -120,6 +120,26 @@ import java.util.List;
             }
             return usuario;
         }
+
+        public boolean existeUsuarioPorEmail(String email) {
+            String sql = "SELECT COUNT(*) FROM tb_usuarios WHERE ds_email = ?";
+            PreparedStatement stmt = null;
+
+            try {
+
+                Connection conn = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                stmt = conn.prepareStatement(sql);
+                stmt.setString(1, email);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    return count > 0;
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("Erro ao verificar a existência do usuário por email", e);
+            }
+            return false;
+        }
     }
 
 
