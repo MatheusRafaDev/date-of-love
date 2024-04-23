@@ -7,8 +7,10 @@ CREATE TABLE tb_usuarios (
     ds_senha VARCHAR(255),
     dt_cadastro DATE,
     dt_casamento DATE,
-    nm_noivos_concatenado VARCHAR(200)
+    nm_noivos_concatenado VARCHAR(200),
+    imagem_path VARCHAR(255)
 );
+
 
 -- Tabela de Informações do Casamento
 CREATE TABLE tb_casamento (
