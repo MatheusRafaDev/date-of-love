@@ -86,6 +86,34 @@ public class OrcamentosDao {
         }
     }
 
+    public void atualizarOrcamento(Orcamentos orcamento) {
+        try {
+            String SQL = "UPDATE tb_orcamentos SET id_usuario = ?, id_casamento = ?, dt_orcamento = ?, ds_status = ?, ds_observacao = ?, nm_orcador = ? WHERE id_orcamento = ?";
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setInt(1, orcamento.getIdUsuario());
+            preparedStatement.setInt(2, orcamento.getIdCasamento());
+            preparedStatement.setDate(3, new java.sql.Date(orcamento.getDataOrcamento().getTime()));
+            preparedStatement.setString(4, orcamento.getStatus());
+            preparedStatement.setString(5, orcamento.getObservacao());
+            preparedStatement.setString(6, orcamento.getNomeOrcador());
+            preparedStatement.setInt(7, orcamento.getIdOrcamento());
+
+            int linhasAfetadas = preparedStatement.executeUpdate();
+
+            if (linhasAfetadas == 1) {
+                System.out.println("Orçamento atualizado com sucesso!");
+            } else {
+                System.out.println("Falha ao atualizar o orçamento.");
+            }
+
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Erro ao atualizar o orçamento: " + e.getMessage());
+        }
+    }
+
     public Orcamentos buscarOrcamentoPorUsuario(int idUsuario) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
