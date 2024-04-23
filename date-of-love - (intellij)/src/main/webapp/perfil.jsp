@@ -26,8 +26,8 @@
                 <a href="/orcamentos.jsp">Orçamento</a>
             </nav>
             <div class="user-items">
-                <a class="nome" href="nome"><%= usuario.getNomesConcatenados() %></a>
-                <img src="" alt="Foto do Usuário">
+                <a class="nome" href="/perfil.jsp"><%= usuario.getNomesConcatenados() %></a>
+                <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
                 <a class="sair" href="sair">Sair</a>
             </div>
         </div>
@@ -43,6 +43,7 @@
                                 <img src="<%=request.getContextPath()%>/src/assets/images/casalDoAno.png" alt="Imagem do Casal" class="img-cabecalho">
                                 <div class="nomeCasal"><%= usuario.getNomesConcatenados() %></div>
                                 <div class="dataCasamento">Data do Casamento: <%= new SimpleDateFormat("dd/MM/yyyy").format(usuario.getDataCasamento()) %></div>
+                                <div class="id"><%= usuario.getIdUsuario() %></div>
                             </div>
                             <div class="details">
                                 <div class="form-group">

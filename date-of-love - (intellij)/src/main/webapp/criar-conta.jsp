@@ -11,10 +11,10 @@
 </head>
 <body>
 <div class="container">
-    <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
+
     <div class="dados">
         <form action="${pageContext.request.contextPath}/criar-usuario" method="POST">
-            <div class="conta">Crie sua conta</div><br>
+            <div class="conta">Crie sua conta</div>
 
             <label for="nome_noivo">Nome Completo do Noivo</label><br>
             <input type="text" id="nome_noivo" name="nome_noivo" required maxlength="100"><br>
@@ -32,10 +32,12 @@
             <br>
 
             <div class="container2">
-                <label for="data_casamento">Data do Casamento</label><br>
+                <label for="data_casamento">Data do Casamento</label>
+                 <span>${requestScope.message}</span>
+                 <span class="error-message">${requestScope.errorMessage3}</span>
+                 <br>
                 <input type="date" id="data_casamento" name="data_casamento" required>
-                    <span>${requestScope.message}</span>
-                    <span class="error-message">${requestScope.errorMessage3}</span>
+
             </div>
             <br>
 

@@ -24,7 +24,7 @@
 
             <div class="user-items">
                  <a class="nome" href="nome">Casal</a>
-                 <img src="" alt="Foto do Usuário">
+                 <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
                  <a class="sair" href="sair">Sair</a>
             </div>
 
