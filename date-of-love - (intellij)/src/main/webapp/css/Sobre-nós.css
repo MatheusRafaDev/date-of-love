@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    background-color: #b1d9ff;
+    color: #fff;
+    padding: 15px;
+    margin: 0 300px;
+    border-radius: 25px; /* Define o raio de arredondamento */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 13px;
+    position: relative; /* Adiciona posicionamento relativo */
+    left: -100Px; /* Move a barra de navegação 50 pixels para a esquerda */
+
+    
+}
+
+nav ul li a {
+    color: #000000;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+.section, p {
+    text-align: left; /* Centraliza horizontalmente o texto */
+    position: relative; /* Necessário para usar left */
+    left: 335px; /* Distância da esquerda */
+}
+.section, h2 {
+    text-align: center; /* Centraliza horizontalmente o texto */
+    
+    position: relative; /* Necessário para usar left */
+    left: -260px; /* Distância da esquerda */
+    
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+footer p {
+    position: relative; /* Necessário para usar left */
+    left: 100px; /* Distância da esquerda */
+    text-align: center;
+    font-size: 10px; /* Define o tamanho da fonte como 20 pixels */
+    
+}
+
+
+.back {
+    width: auto;
+    height: 65px; /* Defina a altura desejada */
+    position: absolute;
+    top: auto; /* Distância do topo */
+    left: 25px; /* Distância da esquerda */
+    top: -10px; /* Mover 50 pixels para cima */
+}
+
+.logooficial {
+    width: 220px; /* Largura da imagem */
+    height: 90px; /* Altura da imagem */
+    position: relative; /* Necessário para usar left */
+    left: 540px; /* Distância da esquerda */
+}
+.CASAL h2 {
+    position: relative; /* Necessário para usar left */
+    left: 200px; /* Distância da esquerda */
+    margin-top: -30px; /* Subir a div para cima */
+    font-size: 11px; /* Diminuir o tamanho da fonte */
+    color: #000000; /* Define a cor da fonte para um tom de cinza escuro */
+}
+.CASAL img {
+    position: relative; /* Necessário para usar left */
+    left: 915px; /* Distância da esquerda */
+    margin-top: -36px; /* Subir a div para cima */
+    width: 50px; /* Defina a largura desejada */
+    height: auto; /* Mantém a proporção da imagem */
+}
+.CASAL h3 {
+    position: relative; /* Necessário para usar left */
+    left: 980px; /* Distância da esquerda */
+    margin-top: -41px; /* Subir a div para cima */
+    font-size: 15px; /* Diminuir o tamanho da fonte */
+    color: #000000; /* Define a cor da fonte para um tom de cinza escuro */
+}
+.CASAL h4 {
+    position: relative; /* Necessário para usar left */
+    left: 200px; /* Distância da esquerda */
+    margin-top: 30px; /* Subir a div para cima */
+    font-size: 10px; /* Diminuir o tamanho da fonte */
+    color: #000000; /* Define a cor da fonte para um tom de cinza escuro */
+    text-align: center; /* Centraliza horizontalmente o texto */
+
+}
+
+.brancologo, .img {
+    position: relative;
+    top: 55px; /* Move a imagem 20 pixels para baixo */ 
+    left: 400px; /* Distância da esquerda */
+    width: 130px; /* Defina a largura desejada */
+    height: auto; /* Mantém a proporção da imagem */
+}
