@@ -43,7 +43,7 @@
                                 <img src="<%=request.getContextPath()%>/src/assets/images/casalDoAno.png" alt="Imagem do Casal" class="img-cabecalho">
                                 <div class="nomeCasal"><%= usuario.getNomesConcatenados() %></div>
                                 <div class="dataCasamento">Data do Casamento: <%= new SimpleDateFormat("dd/MM/yyyy").format(usuario.getDataCasamento()) %></div>
-                                <div class="id"><%= usuario.getIdUsuario() %></div>
+                                <div class="id">Id: <%= usuario.getIdUsuario() %></div>
                             </div>
                             <div class="details">
                                 <div class="form-group">
