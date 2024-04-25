@@ -32,7 +32,13 @@ body {
 
 
 .dados {
-    margin-left: 150px;
+    margin-left: 20em;
+}
+
+
+label {
+    width: 300px;
+    display: inline-block;
 }
 
 
@@ -41,14 +47,14 @@ input[type="email"],
 input[type="password"],
 input[type="date"],
 input[type="number"] {
-    width: 100%;
+    width: 70%;
     padding: 5px;
     border: 1px solid #ddd;
 }
 
-/* Button Styles */
+
 .cadastrar {
-    width: 100%;
+    width: 70%;
     padding: 10px;
     background-color: #94CBFF;
     color: #fff;
@@ -62,17 +68,11 @@ input[type="number"] {
 }
 
 
-.container2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-
-span {
-    color: #319afd;
-}
 .error-message {
     color: red;
+}
+
+form {
+     width: 500px;
+     padding: 5px;
 }
