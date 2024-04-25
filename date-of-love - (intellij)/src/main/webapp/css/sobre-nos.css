@@ -1,0 +1,93 @@
+
+html {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+
+
+.back {
+    width: auto;
+    height: 65px; /* Defina a altura desejada */
+    position: absolute;
+    top: auto; /* Distância do topo */
+    left: 25px; /* Distância da esquerda */
+    top: -10px; /* Mover 50 pixels para cima */
+}
+
+.logooficial {
+    width: 220px; /* Largura da imagem */
+    height: 90px; /* Altura da imagem */
+    position: relative; /* Necessário para usar left */
+    left: 540px; /* Distância da esquerda */
+}
+
+
+
+.container, h2 {
+    width: 50%; /* largura da div */
+    margin: 0 auto; /* centralizar a div na página */
+}
+
+
+.texto {
+    text-align: justify; /* alinhar o texto justificado */
+}
+
+h2 {
+    margin-left: 12em;
+    margin-bottom: 2em;
+}
+
+
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 10px;
+    margin: 0;
+}
+
+.brancologo {
+    display: inline-block;
+    vertical-align: top;
+    position: relative; /* Necessário para usar left */
+    left: -10px; /* Distância da esquerda */
+    margin-top: -10px; /* Subir a div para cima */
+    width: 150px; /* Defina a largura desejada */
+    height: auto; /* Mantém a proporção da imagem */
+}
+.sob {
+    position: relative; /* Necessário para usar left */
+    left: 95px; /* Distância da esquerda */
+    top: 25px; /* Mover 50 pixels para cima */
+}
+
+
