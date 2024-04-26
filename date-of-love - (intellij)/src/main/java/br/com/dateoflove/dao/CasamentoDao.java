@@ -1,26 +1,26 @@
 package br.com.dateoflove.dao;
 
 
-import br.com.dateoflove.model.InfoCasamento;
+import br.com.dateoflove.model.Casamento;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class InfoCasamentoDao {
+public class CasamentoDao {
 
-    public void criarInfoCasamento(InfoCasamento infoCasamento) {
+    public void criarCasamento(Casamento casamento) {
         try {
-            String SQL = "INSERT INTO tb_info_casamento (id_usuario, dt_casamento, ds_localidade, nr_convidados) " +
+            String SQL = "INSERT INTO tb_casamento (id_usuario, dt_casamento, ds_localidade, nr_convidados) " +
                     "VALUES (?, ?, ?, ?)";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setInt(1, infoCasamento.getIdUsuario());
-            preparedStatement.setDate(2, new java.sql.Date(infoCasamento.getDataCasamento().getTime()));
-            preparedStatement.setString(3, infoCasamento.getLocalidade());
-            preparedStatement.setInt(4, infoCasamento.getNumeroConvidados());
+            preparedStatement.setInt(1, casamento.getIdUsuario());
+            preparedStatement.setDate(2, new java.sql.Date(casamento.getDataCasamento().getTime()));
+            preparedStatement.setString(3, casamento.getLocalidade());
+            preparedStatement.setInt(4, casamento.getNumeroConvidados());
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -28,7 +28,7 @@ public class InfoCasamentoDao {
                 ResultSet chavesGeradas = preparedStatement.getGeneratedKeys();
                 if (chavesGeradas.next()) {
                     int idInfoCasamento = chavesGeradas.getInt(1);
-                    infoCasamento.setIdCasamento(idInfoCasamento);
+                    casamento.setIdCasamento(idInfoCasamento);
                 }
                 System.out.println("Informações do casamento criadas com sucesso!");
             } else {
@@ -41,13 +41,13 @@ public class InfoCasamentoDao {
         }
     }
 
-    public List<InfoCasamento> encontrarTodosInfosCasamento() {
+    public List<Casamento> encontrarTodosCasamento() {
         try {
-            String SQL = "SELECT * FROM tb_info_casamento";
+            String SQL = "SELECT * FROM tb_casamento";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
-            List<InfoCasamento> infosCasamento = new ArrayList<>();
+            List<Casamento> infosCasamento = new ArrayList<>();
 
             while (resultSet.next()) {
                 int idCasamento = resultSet.getInt("id_casamento");
@@ -56,8 +56,8 @@ public class InfoCasamentoDao {
                 String localidade = resultSet.getString("ds_localidade");
                 int numeroConvidados = resultSet.getInt("nr_convidados");
 
-                InfoCasamento infoCasamento = new InfoCasamento(idCasamento, idUsuario, dataCasamento, localidade, numeroConvidados);
-                infosCasamento.add(infoCasamento);
+                Casamento casamento = new Casamento(idCasamento, idUsuario, dataCasamento, localidade, numeroConvidados);
+                Casamento.add(idCasamento);
             }
 
             System.out.println("Informações de casamento encontradas com sucesso!");
@@ -68,7 +68,7 @@ public class InfoCasamentoDao {
         return Collections.emptyList();
     }
 
-    public void deletarInfoCasamentoPorId(int idCasamento) {
+    public void deletarCasamentoPorId(int idCasamento) {
         try {
             String SQL = "DELETE FROM tb_info_casamento WHERE id_casamento = ?";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");

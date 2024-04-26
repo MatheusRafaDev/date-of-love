@@ -1,6 +1,6 @@
 package br.com.dateoflove.model;
 import java.util.Date;
-public class InfoCasamento {
+public class Casamento {
 
     private int idCasamento;
     private int idUsuario;
@@ -8,7 +8,7 @@ public class InfoCasamento {
     private String localidade;
     private int numeroConvidados;
 
-    public InfoCasamento(int idCasamento, int idUsuario, Date dataCasamento, String localidade, int numeroConvidados) {
+    public Casamento(int idCasamento, int idUsuario, Date dataCasamento, String localidade, int numeroConvidados) {
         this.idCasamento = idCasamento;
         this.idUsuario = idUsuario;
         this.dataCasamento = dataCasamento;
