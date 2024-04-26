@@ -37,6 +37,16 @@
     <h2 class="servico"> Serviços</h2>
     <hr>
 
+
+    <form action="/criar-servico" method="post"> 
+
+        <label for=""> teste produtos</label>
+        <input type="text" name="nome_produto" id="nome_produto">
+
+        <button></button>
+    </form>
+
+
     <section>
 
         <div class="titulo-servico">

@@ -11,7 +11,7 @@ public class ServicoDao {
 
     public void criarServico(Servico servico) {
         try {
-            String SQL = "INSERT INTO tb_servico (id_nome_produto, id_tipo_produto, id_descricao_produto, id_itens_produto) " +
+            String SQL = "INSERT INTO tb_servico (id_nome_produto, id_tipo_produto, id_descricao_produto, id_itens_produto, id_valor_produto) " +
                     "VALUES (?, ?, ?, ?)";
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
@@ -20,6 +20,7 @@ public class ServicoDao {
             preparedStatement.setString(2, servico.getIdTipoProduto());
             preparedStatement.setString(3, servico.getIdDescricaoProduto());
             preparedStatement.setArray(4, connection.createArrayOf("VARCHAR", servico.getIdItensProduto()));
+            preparedStatement.setDouble(5, servico.getIdValorProduto());
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -54,8 +55,9 @@ public class ServicoDao {
                 String idDescricaoProduto = resultSet.getString("id_descricao_produto");
                 Array idItensProdutoArray = resultSet.getArray("id_itens_produto");
                 String[] idItensProduto = (String[]) idItensProdutoArray.getArray();
+                Double idValorProduto = resultSet.getDouble("id_valor_produto");
 
-                Servico servico = new Servico(idNomeProduto, idTipoProduto, idDescricaoProduto, idItensProduto);
+                Servico servico = new Servico(idNomeProduto, idTipoProduto, idDescricaoProduto, idItensProduto, idValorProduto);
                 servicos.add(servico);
             }
 
