@@ -40,7 +40,7 @@
 
     <form action="/criar-servico" method="post"> 
 
-        <label for=""> teste produtos</label>
+        <label> teste produtos</label>
         <input type="text" name="nome_produto" id="nome_produto">
 
         <button></button>
