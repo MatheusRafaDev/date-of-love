@@ -35,7 +35,7 @@ CREATE TABLE tb_orcamentos (
     id_casamento INT,
     dt_orcamento DATE,
     ds_status VARCHAR(20),
-    ds_observacao_geral TEXT,
+    ds_observacao TEXT,
     nm_orcador VARCHAR(100),
     tg_completo BOOLEAN,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario),
