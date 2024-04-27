@@ -55,7 +55,7 @@ CREATE TABLE tb_detalhes_orcamento (
 );
 
 -- Inserindo os Serviços
-INSERT INTO tb_servicos (nm_servico, preco) VALUES 
+INSERT INTO tb_servicos (nm_servico, vl_preco) VALUES 
 ('Cardápio Completo', 1000.00),
 ('Flores e Decoração', 500.00),
 ('Bebidas', 300.00),
