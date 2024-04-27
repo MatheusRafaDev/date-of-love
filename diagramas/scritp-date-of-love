@@ -37,7 +37,6 @@ CREATE TABLE tb_orcamentos (
     ds_status VARCHAR(20),
     ds_observacao TEXT,
     nm_orcador VARCHAR(100),
-    tg_completo BOOLEAN,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario),
     FOREIGN KEY (id_casamento) REFERENCES tb_casamento(id_casamento)
 );
@@ -50,6 +49,7 @@ CREATE TABLE tb_detalhes_orcamento (
     nr_quantidade INT,
     vl_preco_editavel DECIMAL(10, 2),
     ds_observacao_servico TEXT,
+    tg_completo BOOLEAN,
     FOREIGN KEY (id_orcamento) REFERENCES tb_orcamentos(id_orcamento),
     FOREIGN KEY (id_servico) REFERENCES tb_servicos(id_servico)
 );
