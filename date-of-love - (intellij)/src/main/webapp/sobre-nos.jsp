@@ -1,35 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/main/webapp/css/sobre-nos.css">
-    <link rel="stylesheet" href="/src/main/webapp/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sobre-nos.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <title>Sobre nós</title>
     
 </head>
 
 <body>
     <header>
-        <img src="/src/main/webapp//src/assets/images/logo.png" alt="logo" class="logo"/>
-        <div class="logo-navigation">
-            <nav>
-                <a href="/home.jsp">Home</a>
-                <a href="/servicos.jsp">Serviços</a>
-                <a href="/ajuda.jsp">Ajuda</a>
-                <a href="/sobre-nos.jsp">Sobre nós</a>
-                <a href="/orcamentos.jsp">Orçamento</a>
-            </nav>
-
-            <div class="user-items">
-                 <a class="nome" href="nome">Casal</a>
-                 <img src="/src/main/webapp/src/assets/images/casal.png" alt="Foto do Usuário">
-                 <a class="sair" href="sair">Sair</a>
+            <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
+            <div class="logo-navigation">
+                <nav>
+                    <a href="/home.jsp">Home</a>
+                    <a href="/servicos.jsp">Serviços</a>
+                    <a href="/ajuda.jsp">Ajuda</a>
+                    <a href="/sobre-nos.jsp">Sobre nós</a>
+                </nav>
+                <div class="user-items">
+                    <a class="nome" href="/perfil.jsp"><%= usuario.getNomesConcatenados() %></a>
+                    <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
+                    <a class="sair" href="sair">Sair</a>
+                </div>
             </div>
-
-        </div>
-
     </header>
     
     
@@ -53,7 +50,7 @@
 
         
     <footer>
-        <img src="/src/main/webapp/src/assets/images/logobranco.png" alt="Logo" class="brancologo">
+        <img src="<%=request.getContextPath()%>/src/assets/images/logobranco.png" alt="Logo" class="brancologo">
         <p>&copy; 2024 Date Of Love. Todos os direitos reservados.<br>Desenvolvido por Alexandre Fidelis, Igor Alves, Matheus Rafael e Thiago Fernandes.
         </p>
     </footer>

@@ -9,8 +9,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" href="./css/perfil.css">
-    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
 </head>
@@ -23,7 +23,6 @@
                 <a href="/servicos.jsp">Serviços</a>
                 <a href="/ajuda.jsp">Ajuda</a>
                 <a href="/sobre-nos.jsp">Sobre nós</a>
-                <a href="/orcamentos.jsp">Orçamento</a>
             </nav>
             <div class="user-items">
                 <a class="nome" href="/perfil.jsp"><%= usuario.getNomesConcatenados() %></a>

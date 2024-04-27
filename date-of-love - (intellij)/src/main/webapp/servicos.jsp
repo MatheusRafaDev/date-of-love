@@ -23,7 +23,6 @@
                 <a href="/servicos.jsp">Serviços</a>
                 <a href="/ajuda.jsp">Ajuda</a>
                 <a href="/sobre-nos.jsp">Sobre nós</a>
-                <a href="/orcamentos.jsp">Orçamento</a>
             </nav>
             <div class="user-items">
                  <a class="nome" href="nome">Casal</a>
