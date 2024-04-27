@@ -25,7 +25,6 @@ CREATE TABLE tb_casamento (
 CREATE TABLE tb_servicos (
     id_servico INT AUTO_INCREMENT PRIMARY KEY,
     nm_servico VARCHAR(100),
-    ds_servico TEXT,
     vl_preco DECIMAL(10, 2)
 );
 
@@ -36,8 +35,9 @@ CREATE TABLE tb_orcamentos (
     id_casamento INT,
     dt_orcamento DATE,
     ds_status VARCHAR(20),
-    ds_observacao_geral TEXT,
+    ds_observacao TEXT,
     nm_orcador VARCHAR(100),
+    vl_total DECIMAL(10, 2),
     FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario),
     FOREIGN KEY (id_casamento) REFERENCES tb_casamento(id_casamento)
 );
@@ -50,6 +50,16 @@ CREATE TABLE tb_detalhes_orcamento (
     nr_quantidade INT,
     vl_preco_editavel DECIMAL(10, 2),
     ds_observacao_servico TEXT,
+    tg_completo BOOLEAN,
     FOREIGN KEY (id_orcamento) REFERENCES tb_orcamentos(id_orcamento),
     FOREIGN KEY (id_servico) REFERENCES tb_servicos(id_servico)
 );
+
+-- Inserindo os Serviços
+INSERT INTO tb_servicos (nm_servico, vl_preco) VALUES 
+('Cardápio Completo', 1000.00),
+('Flores e Decoração', 500.00),
+('Bebidas', 300.00),
+('Doces e Bem Casados', 400.00),
+('Bolos', 200.00);
+
