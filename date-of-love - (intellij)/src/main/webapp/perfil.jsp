@@ -82,19 +82,7 @@
                                 </thead>
                                     <tbody>
 
-                                        <c:forEach var="orcamento" items="${orcamentos}">
-                                            <tr>
-                                               <td>${orcamento.getIdOrcamento()}</td>
-                                               <td>${orcamento.getNomeOrcador()}</td>
-                                               <td>${orcamento.getValorTotal()}</td>
-                                               <td>${orcamento.getStatus()}</td>
-                                               <td>
-                                                   <form action="${pageContext.request.contextPath}/orcamento" method="get">
-                                                       <button type="submit" class="btn-visualizar">Visualizar</button>
-                                                   </form>
-                                               </td>
-                                           </tr>
-                                        </c:forEach>
+
                                     </tbody>
                             </table>
                         </div>

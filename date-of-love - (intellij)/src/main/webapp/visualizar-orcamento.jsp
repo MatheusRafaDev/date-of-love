@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/visualizar-orcamento2.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/visualizar-orcamento.css">
 
     <title>Visualizar Orçamento</title>
 </head>
