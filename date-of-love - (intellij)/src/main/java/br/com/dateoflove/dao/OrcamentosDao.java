@@ -12,8 +12,8 @@ public class OrcamentosDao {
 
     public void criarOrcamento(Orcamentos orcamento) {
         try {
-            String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, valor_total) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
@@ -23,6 +23,7 @@ public class OrcamentosDao {
             preparedStatement.setString(4, orcamento.getStatus());
             preparedStatement.setString(5, orcamento.getObservacao());
             preparedStatement.setString(6, orcamento.getNomeOrcador());
+            preparedStatement.setDouble(7, orcamento.getValorTotal()); // Define o valor total do orçamento
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -41,35 +42,6 @@ public class OrcamentosDao {
         } catch (Exception e) {
             System.out.println("Erro ao criar o orçamento: " + e.getMessage());
         }
-    }
-
-    public List<Orcamentos> encontrarTodosOrcamentos() {
-        try {
-            String SQL = "SELECT * FROM tb_orcamentos";
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            List<Orcamentos> orcamentos = new ArrayList<>();
-
-            while (resultSet.next()) {
-                int idOrcamento = resultSet.getInt("id_orcamento");
-                int idUsuario = resultSet.getInt("id_usuario");
-                int idCasamento = resultSet.getInt("id_casamento");
-                java.util.Date dataOrcamento = resultSet.getDate("dt_orcamento");
-                String status = resultSet.getString("ds_status");
-                String observacao = resultSet.getString("ds_observacao");
-                String nomeOrcador = resultSet.getString("nm_orcador");
-
-                Orcamentos orcamento = new Orcamentos(idOrcamento, idUsuario, idCasamento, dataOrcamento, status, observacao, nomeOrcador);
-                orcamentos.add(orcamento);
-            }
-
-            System.out.println("Orçamentos encontrados com sucesso!");
-            return orcamentos;
-        } catch (Exception e) {
-            System.out.println("Erro ao encontrar orçamentos: " + e.getMessage());
-        }
-        return Collections.emptyList();
     }
 
     public void deletarOrcamentoPorId(int idOrcamento) {
@@ -114,10 +86,10 @@ public class OrcamentosDao {
         }
     }
 
-    public Orcamentos buscarOrcamentoPorUsuario(int idUsuario) {
+    public List<Orcamentos> buscarOrcamentoPorUsuario(int idUsuario) {
+        List<Orcamentos> listaOrcamentos = new ArrayList<>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Orcamentos orcamento = null;
 
         try {
             Connection conn = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
@@ -126,8 +98,8 @@ public class OrcamentosDao {
             stmt.setInt(1, idUsuario);
             rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                orcamento = new Orcamentos();
+            while (rs.next()) {
+                Orcamentos orcamento = new Orcamentos();
                 orcamento.setIdOrcamento(rs.getInt("id_orcamento"));
                 orcamento.setIdUsuario(rs.getInt("id_usuario"));
                 orcamento.setIdCasamento(rs.getInt("id_casamento"));
@@ -135,13 +107,23 @@ public class OrcamentosDao {
                 orcamento.setStatus(rs.getString("ds_status"));
                 orcamento.setObservacao(rs.getString("ds_observacao"));
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
+                orcamento.setValorTotal(rs.getDouble("vl_total"));
+
+                listaOrcamentos.add(orcamento);
 
                 System.out.println("Orçamento encontrado: " + orcamento.getIdOrcamento());
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar orçamento por usuário: " + e.getMessage());
+            System.out.println("Erro ao buscar orçamentos por usuário: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+            } catch (SQLException e) {
+                System.out.println("Erro ao fechar recursos: " + e.getMessage());
+            }
         }
-        return orcamento;
+        return listaOrcamentos;
     }
 
     public boolean existeOrcamentoPorUsuario(int idUsuario) {
@@ -162,4 +144,43 @@ public class OrcamentosDao {
         }
         return false;
     }
+
+    public Orcamentos buscarOrcamentoPorId(int idOrcamento) {
+        Orcamentos orcamento = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            String query = "SELECT * FROM tb_orcamentos WHERE id_orcamento = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1, idOrcamento);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                orcamento = new Orcamentos();
+                orcamento.setIdOrcamento(rs.getInt("id_orcamento"));
+                orcamento.setIdUsuario(rs.getInt("id_usuario"));
+                orcamento.setIdCasamento(rs.getInt("id_casamento"));
+                orcamento.setDataOrcamento(rs.getDate("dt_orcamento"));
+                orcamento.setStatus(rs.getString("ds_status"));
+                orcamento.setObservacao(rs.getString("ds_observacao"));
+                orcamento.setNomeOrcador(rs.getString("nm_orcador"));
+                orcamento.setValorTotal(rs.getDouble("vl_total"));
+
+                System.out.println("Orçamento encontrado: " + orcamento.getIdOrcamento());
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar orçamento por ID: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+            } catch (SQLException e) {
+                System.out.println("Erro ao fechar recursos: " + e.getMessage());
+            }
+        }
+        return orcamento;
+    }
+
 }

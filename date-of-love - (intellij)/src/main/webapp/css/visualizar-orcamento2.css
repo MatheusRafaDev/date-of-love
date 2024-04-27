@@ -5,7 +5,6 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
 }
 
@@ -49,7 +48,7 @@ input[type="checkbox"] {
 
 input[type="text"],
 textarea {
-    width: calc(100% - 20px); /* Desconta o padding */
+    width: calc(100% - 20px);
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ddd;

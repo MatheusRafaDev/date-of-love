@@ -5,8 +5,9 @@
    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sobre-nos.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sobre-nos2.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <title>Sobre nós</title>
     
 </head>
@@ -22,7 +23,7 @@
                     <a href="/sobre-nos.jsp">Sobre nós</a>
                 </nav>
                 <div class="user-items">
-                    <a class="nome" href="/perfil.jsp"><%= usuario.getNomesConcatenados() %></a>
+                    <a class="nome" href="/perfil.jsp"></a>
                     <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
                     <a class="sair" href="sair">Sair</a>
                 </div>

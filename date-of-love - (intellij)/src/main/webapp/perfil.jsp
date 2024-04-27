@@ -41,6 +41,7 @@
                             <div class="img-container">
                                 <img src="<%=request.getContextPath()%>/src/assets/images/casalDoAno.png" alt="Imagem do Casal" class="img-cabecalho">
                                 <div class="nomeCasal"><%= usuario.getNomesConcatenados() %></div>
+
                                 <div class="dataCasamento">Data do Casamento: <%= new SimpleDateFormat("dd/MM/yyyy").format(usuario.getDataCasamento()) %></div>
                                 <div class="id">Id: <%= usuario.getIdUsuario() %></div>
                             </div>
@@ -64,31 +65,37 @@
                 </div>
             </div>
 
-
             <div class="col-sm-6">
                 <div class="card orcamento">
                     <div class="card-body">
-                        <h5 class="card-title titulo-tabela">Orçamento</h5>
+                        <h5 class="card-title titulo-tabela">Orçamentos</h5>
                         <div class="container text-center">
                             <table class="table">
                                 <thead class="table-secondary">
                                     <tr>
-                                        <th scope="col">ID</th>
+                                        <th scope="col">Id.Orçamento</th>
                                         <th scope="col">Orçado por</th>
-                                        <th scope="col">Nº Convidados</th>
-                                        <th scope="col">Orçamento</th>
-                                        <th scope="col">Visualizar</th>
+                                        <th scope="col">Valor total</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>123123</td>
-                                        <td>Tio Thif</td>
-                                        <td>100</td>
-                                        <td>R$50.000,00</td>
-                                        <td><a href="#" class="btn-visualizar">Visualizar</a></td>
-                                    </tr>
-                                </tbody>
+                                    <tbody>
+
+                                        <c:forEach var="orcamento" items="${orcamentos}">
+                                            <tr>
+                                               <td>${orcamento.getIdOrcamento()}</td>
+                                               <td>${orcamento.getNomeOrcador()}</td>
+                                               <td>${orcamento.getValorTotal()}</td>
+                                               <td>${orcamento.getStatus()}</td>
+                                               <td>
+                                                   <form action="${pageContext.request.contextPath}/orcamento" method="get">
+                                                       <button type="submit" class="btn-visualizar">Visualizar</button>
+                                                   </form>
+                                               </td>
+                                           </tr>
+                                        </c:forEach>
+                                    </tbody>
                             </table>
                         </div>
                     </div>

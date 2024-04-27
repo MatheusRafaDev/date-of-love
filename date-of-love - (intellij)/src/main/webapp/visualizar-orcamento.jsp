@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/visualizar-orcamento.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/visualizar-orcamento2.css">
 
     <title>Visualizar Orçamento</title>
 </head>
@@ -22,7 +22,7 @@
                 <a href="/sobre-nos.jsp">Sobre nós</a>
             </nav>
             <div class="user-items">
-                <a class="nome" href="/perfil.jsp"><%= usuario.getNomesConcatenados() %></a>
+                <a class="nome" href="/perfil.jsp"></a>
                 <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
                 <a class="sair" href="sair">Sair</a>
             </div>

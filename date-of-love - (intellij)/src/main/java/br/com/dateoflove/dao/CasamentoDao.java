@@ -57,7 +57,7 @@ public class CasamentoDao {
                 int numeroConvidados = resultSet.getInt("nr_convidados");
 
                 Casamento casamento = new Casamento(idCasamento, idUsuario, dataCasamento, localidade, numeroConvidados);
-                Casamento.add(idCasamento);
+                infosCasamento.add(casamento);
             }
 
             System.out.println("Informações de casamento encontradas com sucesso!");
