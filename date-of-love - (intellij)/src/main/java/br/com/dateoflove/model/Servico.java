@@ -1,61 +1,41 @@
 package br.com.dateoflove.model;
 
+
 public class Servico {
-    private String idNomeProduto;
-    private String idTipoProduto;
-    private String idDescricaoProduto;
-    private String[] idItensProduto;
-    private double idValorProduto;
 
-    // Construtor
-    public Servico(String idNomeProduto, String idTipoProduto, String idDescricaoProduto, String[] idItensProduto, Double idValorProduto2) {
-        this.idNomeProduto = idNomeProduto;
-        this.idTipoProduto = idTipoProduto;
-        this.idDescricaoProduto = idDescricaoProduto;
-        this.idItensProduto = idItensProduto;
-        this.idValorProduto = idValorProduto;
+    private int idServico;
+    private String nomeServico;
+    private double preco;
+
+    public Servico() {
     }
 
-
-    public String getIdNomeProduto() {
-        return idNomeProduto;
+    public Servico(String nomeServico, double preco) {
+        this.nomeServico = nomeServico;
+        this.preco = preco;
     }
 
-    public void setIdNomeProduto(String idNomeProduto) {
-        this.idNomeProduto = idNomeProduto;
+    public int getIdServico() {
+        return idServico;
     }
 
-    public String getIdTipoProduto() {
-        return idTipoProduto;
+    public void setIdServico(int idServico) {
+        this.idServico = idServico;
     }
 
-    public void setIdTipoProduto(String idTipoProduto) {
-        this.idTipoProduto = idTipoProduto;
+    public String getNomeServico() {
+        return nomeServico;
     }
 
-    public String getIdDescricaoProduto() {
-        return idDescricaoProduto;
+    public void setNomeServico(String nomeServico) {
+        this.nomeServico = nomeServico;
     }
 
-    public void setIdDescricaoProduto(String idDescricaoProduto) {
-        this.idDescricaoProduto = idDescricaoProduto;
+    public double getPreco() {
+        return preco;
     }
 
-    public String[] getIdItensProduto() {
-        return idItensProduto;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
-
-    public void setIdItensProduto(String[] idItensProduto) {
-        this.idItensProduto = idItensProduto;
-    }
-
-    public double getIdValorProduto() {
-        return idValorProduto;
-    }
-
-    public void setIdValorProduto(double idValorProduto) {
-        this.idValorProduto = idValorProduto;
-    }
-
-    
 }

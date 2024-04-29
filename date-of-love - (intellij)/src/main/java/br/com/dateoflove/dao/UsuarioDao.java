@@ -68,7 +68,6 @@ import java.util.List;
                     usuarios.add(usuario);
                 }
 
-                System.out.println("Usuários encontrados com sucesso!");
                 return usuarios;
             } catch (Exception e) {
                 System.out.println("Erro ao encontrar usuários: " + e.getMessage());
@@ -113,7 +112,6 @@ import java.util.List;
                     usuario.setDataCasamento(rs.getDate("dt_casamento"));
                     usuario.setNomesConcatenados(rs.getString("nm_noivos_concatenado"));
 
-                    System.out.println("Email encontrado: " + usuario.getNomeNoiva());
                 }
             } catch (SQLException e) {
                 System.out.println("Erro ao buscar usuário por email: " + e.getMessage());

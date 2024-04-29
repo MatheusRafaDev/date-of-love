@@ -110,17 +110,15 @@ public class OrcamentosDao {
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
 
                 listaOrcamentos.add(orcamento);
-
-                System.out.println("Orçamento encontrado: " + orcamento.getIdOrcamento());
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar orçamentos por usuário: " + e.getMessage());
+
         } finally {
             try {
                 if (rs != null) rs.close();
                 if (stmt != null) stmt.close();
             } catch (SQLException e) {
-                System.out.println("Erro ao fechar recursos: " + e.getMessage());
+
             }
         }
         return listaOrcamentos;
@@ -168,16 +166,14 @@ public class OrcamentosDao {
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
 
-                System.out.println("Orçamento encontrado: " + orcamento.getIdOrcamento());
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar orçamento por ID: " + e.getMessage());
+
         } finally {
             try {
                 if (rs != null) rs.close();
                 if (stmt != null) stmt.close();
             } catch (SQLException e) {
-                System.out.println("Erro ao fechar recursos: " + e.getMessage());
             }
         }
         return orcamento;

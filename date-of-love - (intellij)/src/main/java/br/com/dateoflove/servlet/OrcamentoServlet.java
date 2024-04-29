@@ -1,6 +1,10 @@
 package br.com.dateoflove.servlet;
 
+import br.com.dateoflove.dao.DetalheOrcamentoDao;
 import br.com.dateoflove.dao.OrcamentosDao;
+import br.com.dateoflove.dao.ServicoDao;
+
+import br.com.dateoflove.model.DetalheOrcamento;
 import br.com.dateoflove.model.Orcamentos;
 
 import javax.servlet.ServletException;
@@ -19,17 +23,22 @@ public class OrcamentoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println(2);
+        String idString = req.getParameter("id");
+        int id = Integer.parseInt(idString);
 
-        int idOrcamento = Integer.parseInt(req.getParameter("id"));
-        System.out.println(idOrcamento);
-
+        ServicoDao servicoDao = new ServicoDao();
+        DetalheOrcamentoDao detalheOrcamentoDao = new DetalheOrcamentoDao();
         OrcamentosDao orcamentoDao = new OrcamentosDao();
-        Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId(idOrcamento);
+
+        Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId(id);
+
+        List<DetalheOrcamento> detalheOrcamento = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento(id);
 
         req.setAttribute("orcamento", orcamento);
+        req.setAttribute("detalheorcamento", detalheOrcamento);
+        req.setAttribute("servicoDao", servicoDao);
 
-        req.getRequestDispatcher("visualizar-orcamento.jsp").forward(req, resp);
+        req.getRequestDispatcher("orcamento.jsp").forward(req, resp);
     }
 
 }

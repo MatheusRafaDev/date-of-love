@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="br.com.dateoflove.model.Usuario" %>
+<%@ page import="br.com.dateoflove.model.Orcamentos" %>
 <% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -81,8 +84,21 @@
                                     </tr>
                                 </thead>
                                     <tbody>
-
-
+                                        <form action="${pageContext.request.contextPath}/orcamento" method="GET">
+                                            <c:forEach var="orcamento" items="${listaOrcamentos}">
+                                                <tr>
+                                                    <form action="${pageContext.request.contextPath}/orcamento" method="GET">
+                                                        <td><input type="text" id="id" name="id" value="${orcamento.getIdOrcamento()}"></td>
+                                                        <td>${orcamento.getNomeOrcador()}</td>
+                                                        <td>${orcamento.getValorTotal()}</td>
+                                                        <td>${orcamento.getStatus()}</td>
+                                                        <td>
+                                                            <button type="submit" class="btn-visualizar">Visualizar</button>
+                                                        </td>
+                                                    </form>
+                                                </tr>
+                                            </c:forEach>
+                                        </form>
                                     </tbody>
                             </table>
                         </div>

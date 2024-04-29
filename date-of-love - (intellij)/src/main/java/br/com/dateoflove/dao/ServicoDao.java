@@ -9,85 +9,26 @@ import java.util.List;
 
 public class ServicoDao {
 
-    public void criarServico(Servico servico) {
+    public Servico encontrarServicoPorId(int id) {
+        Servico servico = null;
         try {
-            String SQL = "INSERT INTO tb_servico (id_nome_produto, id_tipo_produto, id_descricao_produto, id_itens_produto, id_valor_produto) " +
-                    "VALUES (?, ?, ?, ?)";
-            Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            String query = "SELECT * FROM tb_servicos WHERE id_servico = ?";
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
 
-            preparedStatement.setString(1, servico.getIdNomeProduto());
-            preparedStatement.setString(2, servico.getIdTipoProduto());
-            preparedStatement.setString(3, servico.getIdDescricaoProduto());
-            preparedStatement.setArray(4, connection.createArrayOf("VARCHAR", servico.getIdItensProduto()));
-            preparedStatement.setDouble(5, servico.getIdValorProduto());
-
-            int linhasAfetadas = preparedStatement.executeUpdate();
-
-            if (linhasAfetadas == 1) {
-                ResultSet chavesGeradas = preparedStatement.getGeneratedKeys();
-                if (chavesGeradas.next()) {
-                    String idServico = chavesGeradas.getString(1);
-                    servico.setIdNomeProduto(idServico);
-                }
-                System.out.println("Serviço criado com sucesso!");
-            } else {
-                System.out.println("Falha ao criar serviço.");
+            if (rs.next()) {
+                servico = new Servico();
+                servico.setIdServico(rs.getInt("id_servico"));
+                servico.setNomeServico(rs.getString("nm_servico"));
+                servico.setPreco(rs.getDouble("vl_preco"));
             }
-
-            connection.close();
-        } catch (Exception e) {
-            System.out.println("Erro ao criar serviço: " + e.getMessage());
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    }
-
-    public List<Servico> encontrarTodosServicos() {
-        try {
-            String SQL = "SELECT * FROM tb_servico";
-            Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            List<Servico> servicos = new ArrayList<>();
-
-            while (resultSet.next()) {
-                String idNomeProduto = resultSet.getString("id_nome_produto");
-                String idTipoProduto = resultSet.getString("id_tipo_produto");
-                String idDescricaoProduto = resultSet.getString("id_descricao_produto");
-                Array idItensProdutoArray = resultSet.getArray("id_itens_produto");
-                String[] idItensProduto = (String[]) idItensProdutoArray.getArray();
-                Double idValorProduto = resultSet.getDouble("id_valor_produto");
-
-                Servico servico = new Servico(idNomeProduto, idTipoProduto, idDescricaoProduto, idItensProduto, idValorProduto);
-                servicos.add(servico);
-            }
-
-            System.out.println("Serviços encontrados com sucesso!");
-            return servicos;
-        } catch (Exception e) {
-            System.out.println("Erro ao encontrar serviços: " + e.getMessage());
-        }
-        return Collections.emptyList();
-    }
-
-    public void deletarServicoPorId(String idNomeProduto) {
-        try {
-            String SQL = "DELETE FROM tb_servico WHERE id_nome_produto = ?";
-            Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setString(1, idNomeProduto);
-            preparedStatement.execute();
-            System.out.println("Serviço deletado com sucesso!");
-            connection.close();
-        } catch (Exception e) {
-            System.out.println("Falha ao deletar serviço: " + e.getMessage());
-        }
-    }
-
-    // Método para obter a conexão com o banco de dados
-    private Connection getConnection() throws SQLException {
-        String url = "jdbc:h2:~/test";
-        String user = "sa";
-        String password = "sa";
-        return DriverManager.getConnection(url, user, password);
+        return servico;
     }
 }

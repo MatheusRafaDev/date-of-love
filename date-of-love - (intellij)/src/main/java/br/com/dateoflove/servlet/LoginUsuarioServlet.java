@@ -35,14 +35,12 @@ public class LoginUsuarioServlet extends HttpServlet {
 
         if (usuario != null && usuario.getSenha().equals(senha)) {
 
+
             List<Orcamentos> listaOrcamentos = orcaementoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
-
-            System.out.println("teste");
-
             req.getSession().setAttribute("usuario", usuario);
-            req.setAttribute("orcamentos", listaOrcamentos);
+            req.setAttribute("listaOrcamentos", listaOrcamentos);
+            req.getRequestDispatcher("perfil.jsp").forward(req, resp);
 
-            req.getRequestDispatcher("/perfil.jsp").forward(req, resp);
 
         } else {
             req.setAttribute("errorMessage", "Usuário ou Senha inválidos!");

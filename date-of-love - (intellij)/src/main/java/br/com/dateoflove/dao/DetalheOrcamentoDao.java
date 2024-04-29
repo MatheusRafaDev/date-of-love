@@ -11,16 +11,17 @@ public class DetalheOrcamentoDao {
 
     public void criarDetalheOrcamento(DetalheOrcamento detalheOrcamento) {
         try {
-            String SQL = "INSERT INTO tb_detalhe_orcamento (id_orcamento, id_servico, quantidade, preco, observacao_servico) " +
-                    "VALUES (?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setInt(1, detalheOrcamento.getIdOrcamento());
             preparedStatement.setInt(2, detalheOrcamento.getIdServico());
             preparedStatement.setInt(3, detalheOrcamento.getQuantidade());
-            preparedStatement.setDouble(4, detalheOrcamento.getPreco());
+            preparedStatement.setDouble(4, detalheOrcamento.getPrecoEditavel());
             preparedStatement.setString(5, detalheOrcamento.getObservacaoServico());
+            preparedStatement.setBoolean(6, detalheOrcamento.isCompleto());
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -43,7 +44,7 @@ public class DetalheOrcamentoDao {
 
     public List<DetalheOrcamento> encontrarTodosDetalhesOrcamento() {
         try {
-            String SQL = "SELECT * FROM tb_detalhe_orcamento";
+            String SQL = "SELECT * FROM tb_detalhes_orcamento";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -53,11 +54,12 @@ public class DetalheOrcamentoDao {
                 int idDetalheOrcamento = resultSet.getInt("id_detalhe_orcamento");
                 int idOrcamento = resultSet.getInt("id_orcamento");
                 int idServico = resultSet.getInt("id_servico");
-                int quantidade = resultSet.getInt("quantidade");
-                double preco = resultSet.getDouble("preco");
-                String observacaoServico = resultSet.getString("observacao_servico");
+                int quantidade = resultSet.getInt("nr_quantidade");
+                double preco = resultSet.getDouble("vl_preco_editavel");
+                String observacaoServico = resultSet.getString("ds_observacao_servico");
+                boolean completo = resultSet.getBoolean("tg_completo");
 
-                DetalheOrcamento detalheOrcamento = new DetalheOrcamento(idDetalheOrcamento, idOrcamento, idServico, quantidade, preco, observacaoServico);
+                DetalheOrcamento detalheOrcamento = new DetalheOrcamento(idDetalheOrcamento, idOrcamento, idServico, quantidade, preco, observacaoServico, completo);
                 detalhesOrcamento.add(detalheOrcamento);
             }
 
@@ -71,7 +73,7 @@ public class DetalheOrcamentoDao {
 
     public void deletarDetalheOrcamentoPorId(int idDetalheOrcamento) {
         try {
-            String SQL = "DELETE FROM tb_detalhe_orcamento WHERE id_detalhe_orcamento = ?";
+            String SQL = "DELETE FROM tb_detalhes_orcamento WHERE id_detalhe_orcamento = ?";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idDetalheOrcamento);
@@ -82,4 +84,32 @@ public class DetalheOrcamentoDao {
             System.out.println("Falha ao deletar detalhe do orçamento: " + e.getMessage());
         }
     }
+
+    public List<DetalheOrcamento> encontrarDetalhesOrcamentoPorIdOrcamento(int idOrcamento) {
+        List<DetalheOrcamento> detalhesOrcamento = new ArrayList<>();
+        try {
+            String SQL = "SELECT * FROM tb_detalhes_orcamento WHERE id_orcamento = ?";
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, idOrcamento);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int idDetalheOrcamento = resultSet.getInt("id_detalhe_orcamento");
+                int idServico = resultSet.getInt("id_servico");
+                int quantidade = resultSet.getInt("nr_quantidade");
+                double preco = resultSet.getDouble("vl_preco_editavel");
+                String observacaoServico = resultSet.getString("ds_observacao_servico");
+                boolean completo = resultSet.getBoolean("tg_completo");
+
+                DetalheOrcamento detalheOrcamento = new DetalheOrcamento(idDetalheOrcamento, idOrcamento, idServico, quantidade, preco, observacaoServico, completo);
+                detalhesOrcamento.add(detalheOrcamento);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return detalhesOrcamento;
+    }
+
 }
