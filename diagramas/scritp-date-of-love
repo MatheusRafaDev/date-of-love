@@ -6,7 +6,6 @@ CREATE TABLE tb_usuarios (
     ds_email VARCHAR(255),
     ds_senha VARCHAR(255),
     dt_cadastro DATE,
-    dt_casamento DATE,
     nm_noivos_concatenado VARCHAR(200),
     imagem_path VARCHAR(255)
 );
@@ -16,6 +15,7 @@ CREATE TABLE tb_usuarios (
 CREATE TABLE tb_casamento (
     id_casamento INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT,
+    dt_casamento DATE,
     ds_localidade VARCHAR(100),
     nr_convidados INT,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario)
@@ -57,7 +57,7 @@ CREATE TABLE tb_detalhes_orcamento (
 
 -- Inserindo os Serviços
 INSERT INTO tb_servicos (nm_servico, vl_preco) VALUES 
-('Cardápio Completo', 1000.00),
+('Cardápio', 1000.00),
 ('Flores e Decoração', 500.00),
 ('Bebidas', 300.00),
 ('Doces e Bem Casados', 400.00),
