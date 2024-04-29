@@ -62,8 +62,7 @@ public class CriarUsuarioServlet extends HttpServlet {
             return;
         }
 
-
-        Usuario usuario = new Usuario(0, nomeNoivo, nomeNoiva, email, senha, new Date(), dataCasamento, nomeNoivo + " & " + nomeNoiva);
+        Usuario usuario = new Usuario(0, nomeNoivo, nomeNoiva, email, senha, new Date(),  nomeNoivo + " & " + nomeNoiva);
 
 
         usuarioDao.criarUsuario(usuario);

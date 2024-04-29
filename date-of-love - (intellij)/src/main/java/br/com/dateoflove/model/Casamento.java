@@ -1,7 +1,7 @@
 package br.com.dateoflove.model;
 import java.util.Date;
-public class Casamento {
 
+public class Casamento {
     private int idCasamento;
     private int idUsuario;
     private Date dataCasamento;
@@ -55,5 +55,4 @@ public class Casamento {
     public void setNumeroConvidados(int numeroConvidados) {
         this.numeroConvidados = numeroConvidados;
     }
-
 }

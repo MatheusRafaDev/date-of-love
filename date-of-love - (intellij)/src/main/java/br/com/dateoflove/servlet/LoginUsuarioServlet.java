@@ -1,7 +1,9 @@
 package br.com.dateoflove.servlet;
 
+import br.com.dateoflove.dao.CasamentoDao;
 import br.com.dateoflove.dao.OrcamentosDao;
 import br.com.dateoflove.dao.UsuarioDao;
+import br.com.dateoflove.model.Casamento;
 import br.com.dateoflove.model.Orcamentos;
 import br.com.dateoflove.model.Usuario;
 
@@ -31,16 +33,22 @@ public class LoginUsuarioServlet extends HttpServlet {
 
         UsuarioDao usuarioDao = new UsuarioDao();
         OrcamentosDao orcaementoDao = new OrcamentosDao();
+        CasamentoDao casamentoDao = new CasamentoDao();
+
         Usuario usuario = usuarioDao.buscarUsuarioPorEmail(email);
 
         if (usuario != null && usuario.getSenha().equals(senha)) {
 
-
             List<Orcamentos> listaOrcamentos = orcaementoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
+
+            Casamento casamento =  casamentoDao.encontrarCasamentoPorIdUsuario(usuario.getIdUsuario());
+
+
             req.getSession().setAttribute("usuario", usuario);
+            req.getSession().setAttribute("casamento", casamento);
+
             req.setAttribute("listaOrcamentos", listaOrcamentos);
             req.getRequestDispatcher("perfil.jsp").forward(req, resp);
-
 
         } else {
             req.setAttribute("errorMessage", "Usuário ou Senha inválidos!");

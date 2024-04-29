@@ -9,21 +9,19 @@ public class Usuario {
     private String email;
     private String senha;
     private Date dataCadastro;
-    private Date dataCasamento;
     private String nomesConcatenados;
 
     public Usuario() {
         super();
     }
 
-    public Usuario(int idUsuario, String nomeNoivo, String nomeNoiva, String email, String senha, Date dataCadastro, Date dataCasamento, String nomesConcatenados) {
+    public Usuario(int idUsuario, String nomeNoivo, String nomeNoiva, String email, String senha, Date dataCadastro, String nomesConcatenados) {
         this.idUsuario = idUsuario;
         this.nomeNoivo = nomeNoivo;
         this.nomeNoiva = nomeNoiva;
         this.email = email;
         this.senha = senha;
         this.dataCadastro = dataCadastro;
-        this.dataCasamento = dataCasamento;
         this.nomesConcatenados = nomesConcatenados;
     }
 
@@ -73,14 +71,6 @@ public class Usuario {
 
     public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
-    }
-
-    public Date getDataCasamento() {
-        return dataCasamento;
-    }
-
-    public void setDataCasamento(Date dataCasamento) {
-        this.dataCasamento = dataCasamento;
     }
 
     public String getNomesConcatenados() {

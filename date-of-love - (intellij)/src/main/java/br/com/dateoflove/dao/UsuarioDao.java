@@ -13,7 +13,7 @@ import java.util.List;
 
         public void criarUsuario(Usuario usuario) {
             try {
-                String SQL = "INSERT INTO tb_usuarios (nm_noivo, nm_noiva, ds_email, ds_senha, dt_cadastro, dt_casamento, nm_noivos_concatenado) " +
+                String SQL = "INSERT INTO tb_usuarios (nm_noivo, nm_noiva, ds_email, ds_senha, dt_cadastro, nm_noivos_concatenado) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?)";
                 Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
@@ -24,8 +24,7 @@ import java.util.List;
                 preparedStatement.setString(3, usuario.getEmail());
                 preparedStatement.setString(4, usuario.getSenha());
                 preparedStatement.setDate(5, java.sql.Date.valueOf(LocalDate.now()));
-                preparedStatement.setDate(6, new java.sql.Date(usuario.getDataCasamento().getTime()));
-                preparedStatement.setString(7, usuario.getNomesConcatenados());
+                preparedStatement.setString(6, usuario.getNomesConcatenados());
 
                 int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -61,10 +60,9 @@ import java.util.List;
                     String email = resultSet.getString("ds_email");
                     String senha = resultSet.getString("ds_senha");
                     java.util.Date dataCadastro = resultSet.getDate("dt_cadastro");
-                    java.util.Date dataCasamento = resultSet.getDate("dt_casamento");
                     String nomesConcatenados = resultSet.getString("nm_noivos_concatenado");
 
-                    Usuario usuario = new Usuario(idUsuario, nomeNoivo, nomeNoiva, email, senha, dataCadastro, dataCasamento, nomesConcatenados);
+                    Usuario usuario = new Usuario(idUsuario, nomeNoivo, nomeNoiva, email, senha, dataCadastro, nomesConcatenados);
                     usuarios.add(usuario);
                 }
 
@@ -109,7 +107,6 @@ import java.util.List;
                     usuario.setEmail(rs.getString("ds_email"));
                     usuario.setSenha(rs.getString("ds_senha"));
                     usuario.setDataCadastro(rs.getDate("dt_cadastro"));
-                    usuario.setDataCasamento(rs.getDate("dt_casamento"));
                     usuario.setNomesConcatenados(rs.getString("nm_noivos_concatenado"));
 
                 }

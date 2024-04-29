@@ -144,4 +144,6 @@ label {
     text-align: center;
 }
 
-
+.table-wrapper {
+    overflow-x: auto;
+}

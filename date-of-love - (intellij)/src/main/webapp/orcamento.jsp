@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="br.com.dateoflove.model.Usuario" %>
+
+<%
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+%>
 
 <%@ page import="br.com.dateoflove.model.DetalheOrcamento" %>
 
@@ -22,21 +27,21 @@
 
 <body>
     <header>
-        <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
-        <div class="logo-navigation">
-            <nav>
-                <a href="/home.jsp">Home</a>
-                <a href="/servicos.jsp">Serviços</a>
-                <a href="/ajuda.jsp">Ajuda</a>
-                <a href="/sobre-nos.jsp">Sobre nós</a>
-            </nav>
-            <div class="user-items">
-                <a class="nome" href="/perfil.jsp"></a>
-                <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
-                <a class="sair" href="sair">Sair</a>
+            <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
+            <div class="logo-navigation">
+                <nav>
+                    <a href="/home.jsp">Home</a>
+                    <a href="/servicos.jsp">Serviços</a>
+                    <a href="/ajuda.jsp">Ajuda</a>
+                    <a href="/sobre-nos.jsp">Sobre nós</a>
+                </nav>
+                <div class="user-items">
+                    <a class="nome" href="/perfil.jsp"><%= usuario.getNomesConcatenados() %></a>
+                    <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
+                    <a class="sair" href="sair">Sair</a>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
     <div class="budget-container">
         <h3>Orçamento</h3>

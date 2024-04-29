@@ -41,45 +41,31 @@ public class CasamentoDao {
         }
     }
 
-    public List<Casamento> encontrarTodosCasamento() {
+    public Casamento encontrarCasamentoPorIdUsuario(int idUsuario) {
         try {
-            String SQL = "SELECT * FROM tb_casamento";
+            String SQL = "SELECT * FROM tb_casamento WHERE id_usuario = ?";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, idUsuario);
             ResultSet resultSet = preparedStatement.executeQuery();
-            List<Casamento> infosCasamento = new ArrayList<>();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 int idCasamento = resultSet.getInt("id_casamento");
-                int idUsuario = resultSet.getInt("id_usuario");
                 Date dataCasamento = resultSet.getDate("dt_casamento");
                 String localidade = resultSet.getString("ds_localidade");
                 int numeroConvidados = resultSet.getInt("nr_convidados");
 
                 Casamento casamento = new Casamento(idCasamento, idUsuario, dataCasamento, localidade, numeroConvidados);
-                infosCasamento.add(casamento);
+
+                return casamento;
+            } else {
+
             }
-
-            System.out.println("Informações de casamento encontradas com sucesso!");
-            return infosCasamento;
         } catch (Exception e) {
-            System.out.println("Erro ao encontrar informações de casamento: " + e.getMessage());
+            System.out.println("Erro ao encontrar casamento por ID de usuário: " + e.getMessage());
         }
-        return Collections.emptyList();
+        return null;
     }
 
-    public void deletarCasamentoPorId(int idCasamento) {
-        try {
-            String SQL = "DELETE FROM tb_info_casamento WHERE id_casamento = ?";
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setInt(1, idCasamento);
-            preparedStatement.execute();
-            System.out.println("Informações de casamento deletadas com sucesso!");
-            connection.close();
-        } catch (Exception e) {
-            System.out.println("Falha ao deletar informações de casamento: " + e.getMessage());
-        }
-    }
 }
 

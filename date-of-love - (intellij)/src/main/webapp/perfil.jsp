@@ -3,8 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="br.com.dateoflove.model.Usuario" %>
 <%@ page import="br.com.dateoflove.model.Orcamentos" %>
-<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+<%@ page import="br.com.dateoflove.model.Casamento" %>
 
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+<% Casamento casamento = (Casamento) session.getAttribute("casamento"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,10 +44,9 @@
                     <div class="card-body">
                         <div class="profile-info">
                             <div class="img-container">
-                                <img src="<%=request.getContextPath()%>/src/assets/images/casalDoAno.png" alt="Imagem do Casal" class="img-cabecalho">
+                                <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Imagem do Casal" class="img-cabecalho">
                                 <div class="nomeCasal"><%= usuario.getNomesConcatenados() %></div>
-
-                                <div class="dataCasamento">Data do Casamento: <%= new SimpleDateFormat("dd/MM/yyyy").format(usuario.getDataCasamento()) %></div>
+                                <div class="dataCasamento">Data do Casamento: <%= new SimpleDateFormat("dd/MM/yyyy").format(casamento.getDataCasamento()) %></div>
                                 <div class="id">Id: <%= usuario.getIdUsuario() %></div>
                             </div>
                             <div class="details">
@@ -73,34 +74,34 @@
                     <div class="card-body">
                         <h5 class="card-title titulo-tabela">Orçamentos</h5>
                         <div class="container text-center">
-                            <table class="table">
-                                <thead class="table-secondary">
-                                    <tr>
-                                        <th scope="col">Id.Orçamento</th>
-                                        <th scope="col">Orçado por</th>
-                                        <th scope="col">Valor total</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
+                            <div class="table-wrapper">
+                                <table class="table">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <th scope="col">Id.Orçamento</th>
+                                            <th scope="col">Orçado por</th>
+                                            <th scope="col">Valor total</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Ação</th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
-                                        <form action="${pageContext.request.contextPath}/orcamento" method="GET">
-                                            <c:forEach var="orcamento" items="${listaOrcamentos}">
-                                                <tr>
-                                                    <form action="${pageContext.request.contextPath}/orcamento" method="GET">
-                                                        <td><input type="text" id="id" name="id" value="${orcamento.getIdOrcamento()}"></td>
-                                                        <td>${orcamento.getNomeOrcador()}</td>
-                                                        <td>${orcamento.getValorTotal()}</td>
-                                                        <td>${orcamento.getStatus()}</td>
-                                                        <td>
-                                                            <button type="submit" class="btn-visualizar">Visualizar</button>
-                                                        </td>
-                                                    </form>
-                                                </tr>
-                                            </c:forEach>
-                                        </form>
+                                        <c:forEach var="orcamento" items="${listaOrcamentos}">
+                                            <tr>
+                                                <form action="${pageContext.request.contextPath}/orcamento" method="GET">
+                                                    <td><input type="text" id="id" name="id" value="${orcamento.getIdOrcamento()}"></td>
+                                                    <td>${orcamento.getNomeOrcador()}</td>
+                                                    <td>${orcamento.getValorTotal()}</td>
+                                                    <td>${orcamento.getStatus()}</td>
+                                                    <td>
+                                                        <button type="submit" class="btn-visualizar">Visualizar</button>
+                                                    </td>
+                                                </form>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
-                            </table>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
