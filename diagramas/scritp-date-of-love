@@ -6,7 +6,6 @@ CREATE TABLE tb_usuarios (
     ds_email VARCHAR(255),
     ds_senha VARCHAR(255),
     dt_cadastro DATE,
-    dt_casamento DATE,
     nm_noivos_concatenado VARCHAR(200),
     imagem_path VARCHAR(255)
 );
@@ -16,6 +15,7 @@ CREATE TABLE tb_usuarios (
 CREATE TABLE tb_casamento (
     id_casamento INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT,
+    dt_casamento DATE,
     ds_localidade VARCHAR(100),
     nr_convidados INT,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario)
