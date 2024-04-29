@@ -7,13 +7,15 @@ public class Casamento {
     private Date dataCasamento;
     private String localidade;
     private int numeroConvidados;
+    private String estiloFesta; // Adicionando o campo estiloFesta
 
-    public Casamento(int idCasamento, int idUsuario, Date dataCasamento, String localidade, int numeroConvidados) {
+    public Casamento(int idCasamento, int idUsuario, Date dataCasamento, String localidade, int numeroConvidados, String estiloFesta) {
         this.idCasamento = idCasamento;
         this.idUsuario = idUsuario;
         this.dataCasamento = dataCasamento;
         this.localidade = localidade;
         this.numeroConvidados = numeroConvidados;
+        this.estiloFesta = estiloFesta; // Inicializando o campo estiloFesta
     }
 
     public int getIdCasamento() {
@@ -54,5 +56,13 @@ public class Casamento {
 
     public void setNumeroConvidados(int numeroConvidados) {
         this.numeroConvidados = numeroConvidados;
+    }
+
+    public String getEstiloFesta() {
+        return estiloFesta;
+    }
+
+    public void setEstiloFesta(String estiloFesta) {
+        this.estiloFesta = estiloFesta;
     }
 }

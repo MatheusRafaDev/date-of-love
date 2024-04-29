@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import="br.com.dateoflove.model.Usuario" %>
+<%@ page import="br.com.dateoflove.model.Casamento" %>
+
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+<% Casamento casamento = (Casamento) session.getAttribute("casamento"); %>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -23,13 +30,12 @@
                     <a href="/sobre-nos.jsp">Sobre nós</a>
                 </nav>
                 <div class="user-items">
-                    <a class="nome" href="/perfil.jsp"></a>
+                    <a class="nome" href="/perfil.jsp"><%= usuario.getNomesConcatenados() %></a>
                     <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
                     <a class="sair" href="sair">Sair</a>
                 </div>
             </div>
-    </header>
-    
+         </header>
     
     <div class="sob">
         <h2>Sobre nós</h2>

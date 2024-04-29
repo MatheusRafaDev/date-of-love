@@ -1,6 +1,8 @@
 package br.com.dateoflove.servlet;
 
 import br.com.dateoflove.dao.UsuarioDao;
+import br.com.dateoflove.dao.CasamentoDao;
+import br.com.dateoflove.model.Casamento;
 import br.com.dateoflove.model.Usuario;
 
 import javax.servlet.ServletException;
@@ -24,12 +26,18 @@ public class CriarUsuarioServlet extends HttpServlet {
         String nomeNoivo = req.getParameter("nome_noivo");
         String nomeNoiva = req.getParameter("nome_noiva");
         String email = req.getParameter("email");
-        String dataCasamentoStr = req.getParameter("data_casamento");
         String senha = req.getParameter("senha");
         String confirmarSenha = req.getParameter("confirmar_senha");
-
         UsuarioDao usuarioDao = new UsuarioDao();
+        CasamentoDao casamentoDao = new CasamentoDao();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+
+        int Convidados = Integer.parseInt(req.getParameter("num_convidados"));
+        String dataCasamentoStr = req.getParameter("data_casamento");
+        String local = req.getParameter("localizacao");
+        String estilo = req.getParameter("estilo_festa");
+
 
         Date dataCasamento = null;
         try {
@@ -63,9 +71,10 @@ public class CriarUsuarioServlet extends HttpServlet {
         }
 
         Usuario usuario = new Usuario(0, nomeNoivo, nomeNoiva, email, senha, new Date(),  nomeNoivo + " & " + nomeNoiva);
+        usuario = usuarioDao.criarUsuario(usuario);
 
+        casamentoDao.criarCasamento(new Casamento(0, usuario.getIdUsuario(), dataCasamento, local, Convidados, estilo));
 
-        usuarioDao.criarUsuario(usuario);
 
         resp.sendRedirect("/home.jsp");
     }

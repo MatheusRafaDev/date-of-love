@@ -11,13 +11,12 @@ import java.util.List;
 
     public class UsuarioDao {
 
-        public void criarUsuario(Usuario usuario) {
+        public Usuario criarUsuario(Usuario usuario) {
             try {
                 String SQL = "INSERT INTO tb_usuarios (nm_noivo, nm_noiva, ds_email, ds_senha, dt_cadastro, nm_noivos_concatenado) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                        "VALUES (?, ?, ?, ?, ?, ?)";
                 Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-
 
                 preparedStatement.setString(1, usuario.getNomeNoivo());
                 preparedStatement.setString(2, usuario.getNomeNoiva());
@@ -33,8 +32,10 @@ import java.util.List;
                     if (chavesGeradas.next()) {
                         int idUsuario = chavesGeradas.getInt(1);
                         usuario.setIdUsuario(idUsuario);
+                        System.out.println("Usuário criado com sucesso!");
+                    } else {
+                        System.out.println("Falha ao obter o ID do usuário.");
                     }
-                    System.out.println("Usuário criado com sucesso!");
                 } else {
                     System.out.println("Falha ao criar o usuário.");
                 }
@@ -43,6 +44,8 @@ import java.util.List;
             } catch (Exception e) {
                 System.out.println("Erro ao criar o usuário: " + e.getMessage());
             }
+
+            return usuario;
         }
 
         public List<Usuario> encontrarTodosUsuarios() {
