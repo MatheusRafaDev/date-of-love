@@ -18,6 +18,7 @@ CREATE TABLE tb_casamento (
     dt_casamento DATE,
     ds_localidade VARCHAR(100),
     nr_convidados INT,
+    ds_estilo_festa VARCHAR(50), -- Adicionando a coluna estilo_festa
     FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario)
 );
 
