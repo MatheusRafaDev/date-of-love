@@ -7,7 +7,7 @@ public class Casamento {
     private Date dataCasamento;
     private String localidade;
     private int numeroConvidados;
-    private String estiloFesta; // Adicionando o campo estiloFesta
+    private String estiloFesta;
 
     public Casamento(int idCasamento, int idUsuario, Date dataCasamento, String localidade, int numeroConvidados, String estiloFesta) {
         this.idCasamento = idCasamento;
@@ -15,7 +15,11 @@ public class Casamento {
         this.dataCasamento = dataCasamento;
         this.localidade = localidade;
         this.numeroConvidados = numeroConvidados;
-        this.estiloFesta = estiloFesta; // Inicializando o campo estiloFesta
+        this.estiloFesta = estiloFesta;
+    }
+
+    public Casamento(){
+        super();
     }
 
     public int getIdCasamento() {

@@ -138,6 +138,83 @@ import java.util.List;
             }
             return false;
         }
+
+        public void atualizarUsuario(Usuario usuario) {
+            try {
+                Usuario usuarioAntigo = buscarUsuarioPorId(usuario.getIdUsuario());
+                if (usuarioAntigo == null) {
+                    System.out.println("Usuário não encontrado para atualização.");
+                    return;
+                }
+
+                // Comparar os valores antigos com os novos e atualizar apenas os campos diferentes
+                if (!usuario.getNomeNoivo().equals(usuarioAntigo.getNomeNoivo())) {
+                    usuarioAntigo.setNomeNoivo(usuario.getNomeNoivo());
+                }
+                if (!usuario.getNomeNoiva().equals(usuarioAntigo.getNomeNoiva())) {
+                    usuarioAntigo.setNomeNoiva(usuario.getNomeNoiva());
+                }
+                if (!usuario.getEmail().equals(usuarioAntigo.getEmail())) {
+                    usuarioAntigo.setEmail(usuario.getEmail());
+                }
+                if (!usuario.getSenha().equals(usuarioAntigo.getSenha())) {
+                    usuarioAntigo.setSenha(usuario.getSenha());
+                }
+                if (!usuario.getNomesConcatenados().equals(usuarioAntigo.getNomesConcatenados())) {
+                    usuarioAntigo.setNomesConcatenados(usuario.getNomesConcatenados());
+                }
+
+                // Agora atualizamos os campos no banco de dados
+                String SQL = "UPDATE tb_usuarios SET nm_noivo = ?, nm_noiva = ?, ds_email = ?, ds_senha = ?, nm_noivos_concatenado = ? WHERE id_usuario = ?";
+                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+                preparedStatement.setString(1, usuarioAntigo.getNomeNoivo());
+                preparedStatement.setString(2, usuarioAntigo.getNomeNoiva());
+                preparedStatement.setString(3, usuarioAntigo.getEmail());
+                preparedStatement.setString(4, usuarioAntigo.getSenha());
+                preparedStatement.setString(5, usuarioAntigo.getNomesConcatenados());
+                preparedStatement.setInt(6, usuarioAntigo.getIdUsuario());
+
+                int linhasAfetadas = preparedStatement.executeUpdate();
+
+                if (linhasAfetadas == 1) {
+                    System.out.println("Usuário atualizado com sucesso!");
+                } else {
+                    System.out.println("Falha ao atualizar o usuário.");
+                }
+
+                connection.close();
+            } catch (SQLException e) {
+                System.out.println("Erro ao atualizar o usuário: " + e.getMessage());
+            }
+        }
+
+        public Usuario buscarUsuarioPorId(int idUsuario) {
+            Usuario usuario = null;
+            try {
+                String SQL = "SELECT * FROM tb_usuarios WHERE id_usuario = ?";
+                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+                preparedStatement.setInt(1, idUsuario);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    String nomeNoivo = resultSet.getString("nm_noivo");
+                    String nomeNoiva = resultSet.getString("nm_noiva");
+                    String email = resultSet.getString("ds_email");
+                    String senha = resultSet.getString("ds_senha");
+                    java.util.Date dataCadastro = resultSet.getDate("dt_cadastro");
+                    String nomesConcatenados = resultSet.getString("nm_noivos_concatenado");
+
+                    usuario = new Usuario(idUsuario, nomeNoivo, nomeNoiva, email, senha, dataCadastro, nomesConcatenados);
+                }
+                connection.close();
+            } catch (SQLException e) {
+                System.out.println("Erro ao buscar usuário por ID: " + e.getMessage());
+            }
+            return usuario;
+        }
+
     }
 
 

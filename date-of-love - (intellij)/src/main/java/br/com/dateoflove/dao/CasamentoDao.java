@@ -69,5 +69,48 @@ public class CasamentoDao {
             return null;
         }
 
+        public void atualizarCasamento(Casamento casamento) {
+            try {
+                Casamento casamentoAntigo =  encontrarCasamentoPorIdUsuario(casamento.getIdUsuario());
+                if (casamentoAntigo == null) {
+                    System.out.println("Casamento não encontrado para atualização.");
+                    return;
+                }
+
+                if (!casamento.getDataCasamento().equals(casamentoAntigo.getDataCasamento())) {
+                    casamentoAntigo.setDataCasamento(casamento.getDataCasamento());
+                }
+                if (!casamento.getLocalidade().equals(casamentoAntigo.getLocalidade())) {
+                    casamentoAntigo.setLocalidade(casamento.getLocalidade());
+                }
+                if (casamento.getNumeroConvidados() != casamentoAntigo.getNumeroConvidados()) {
+                    casamentoAntigo.setNumeroConvidados(casamento.getNumeroConvidados());
+                }
+                if (!casamento.getEstiloFesta().equals(casamentoAntigo.getEstiloFesta())) {
+                    casamentoAntigo.setEstiloFesta(casamento.getEstiloFesta());
+                }
+
+                String SQL = "UPDATE tb_casamento SET dt_casamento = ?, ds_localidade = ?, nr_convidados = ?, ds_estilo_festa = ? WHERE id_casamento = ?";
+                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+                preparedStatement.setDate(1, new java.sql.Date(casamentoAntigo.getDataCasamento().getTime()));
+                preparedStatement.setString(2, casamentoAntigo.getLocalidade());
+                preparedStatement.setInt(3, casamentoAntigo.getNumeroConvidados());
+                preparedStatement.setString(4, casamentoAntigo.getEstiloFesta());
+                preparedStatement.setInt(5, casamentoAntigo.getIdCasamento());
+
+                int linhasAfetadas = preparedStatement.executeUpdate();
+
+                if (linhasAfetadas == 1) {
+                    System.out.println("Casamento atualizado com sucesso!");
+                } else {
+                    System.out.println("Falha ao atualizar o casamento.");
+                }
+
+                connection.close();
+            } catch (SQLException e) {
+                System.out.println("Erro ao atualizar o casamento: " + e.getMessage());
+            }
+        }
 }
 

@@ -78,4 +78,55 @@ public class CriarUsuarioServlet extends HttpServlet {
 
         resp.sendRedirect("/home.jsp");
     }
+
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idUsuario = Integer.parseInt(req.getParameter("id_usuario"));
+        String nomeNoivo = req.getParameter("nome_noivo");
+        String nomeNoiva = req.getParameter("nome_noiva");
+        String email = req.getParameter("email");
+        String dataCasamentoStr = req.getParameter("data_casamento");
+        String localizacao = req.getParameter("localizacao");
+        int numConvidados = Integer.parseInt(req.getParameter("num_convidados"));
+        String estiloFesta = req.getParameter("estilo_festa");
+
+        if (dataCasamentoStr == null || dataCasamentoStr.isEmpty()) {
+            req.setAttribute("errorMessage", "A data do casamento é obrigatória.");
+            req.getRequestDispatcher("/perfil.jsp").forward(req, resp);
+            return;
+        }
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date dataCasamento = null;
+        try {
+            dataCasamento = formatter.parse(dataCasamentoStr);
+        } catch (ParseException e) {
+            req.setAttribute("errorMessage", "Formato de data inválido.");
+            req.getRequestDispatcher("/perfil.jsp").forward(req, resp);
+            return;
+        }
+
+
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(idUsuario);
+        usuario.setNomeNoivo(nomeNoivo);
+        usuario.setNomeNoiva(nomeNoiva);
+        usuario.setEmail(email);
+        UsuarioDao usuarioDao = new UsuarioDao();
+        usuarioDao.atualizarUsuario(usuario);
+
+
+        Casamento casamento = new Casamento();
+        CasamentoDao casamentoDao = new CasamentoDao();
+
+        casamento.setLocalidade(localizacao);
+        casamento.setNumeroConvidados(numConvidados);
+        casamento.setEstiloFesta(estiloFesta);
+
+        casamentoDao.atualizarCasamento(casamento);
+
+        resp.sendRedirect( "/perfil.jsp");
+    }
+
 }
