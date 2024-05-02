@@ -1,0 +1,110 @@
+
+body, form {
+    margin: 3px;
+    text-align: center;
+    
+   
+   
+    
+}
+.checklist {
+    margin-bottom: 60px; 
+    
+    
+}
+   
+    
+    
+
+.checklist label {
+    display: block; 
+    margin-bottom: -15px; 
+    text-align:left;
+    
+}
+
+
+.checklist input[type="radio"] {
+    vertical-align: middle; 
+    
+    
+}
+
+.checklist {
+    display: inline-block; /* Exibe as divs lado a lado */
+    width: 25%; /* Define a largura de cada div */
+    margin-right: 2px; /* Espaçamento entre as divs */
+    vertical-align: top; /* Alinha as divs no topo */
+    white-space: nowrap;
+    text-align:left;
+    transform: translateX(120px); /* Move o elemento 50px para a direita */
+    
+}
+
+/* Estilos para o conteúdo das divs checklist */
+.checklist h2 {
+    font-size: 20px; /* Tamanho da fonte para os títulos */
+    margin-bottom: 30px; /* Espaçamento abaixo dos títulos */
+    position: relative; /* Estabelece um contexto de posicionamento */
+    width: 500px;
+    
+}
+
+.checklist form label {
+    font-size: 15px; /* Tamanho da fonte para os labels */
+    
+    
+}
+h1 {
+    margin-bottom: 100px; /* Espaçamento abaixo dos títulos */
+    
+}
+
+
+
+
+
+#verDetalhesBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#detalhesContainer {
+    margin-top: 1px;
+}
+
+.observacoes {
+    margin-top: 100px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 1px;
+}
+
+.observacoes h2 {
+    color: #333;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+#observacoesInput {
+    width: 100%;
+    padding: 1px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+}
+#verDetalhesBtn1 {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transform: translateX(700px); /* Move o elemento 50px para a direita */
+}
