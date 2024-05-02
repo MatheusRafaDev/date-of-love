@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil2.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
@@ -29,16 +29,13 @@
                 <a href="/ajuda.jsp">Ajuda</a>
                 <a href="/sobre-nos.jsp">Sobre nós</a>
             </nav>
-
             <form action="${pageContext.request.contextPath}/perfil" method="GET">
-
                 <div class="user-items">
                     <input type="text" id="id" name="id" value="${usuario.getIdUsuario()}" style="display: none;">
                     <button type="submit" class="nomeCasal"><%= usuario.getNomesConcatenados() %></button>
                     <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
                     <a class="sair" href="sair">Sair</a>
                 </div>
-
             </form>
 
 

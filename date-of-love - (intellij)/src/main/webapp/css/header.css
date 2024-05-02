@@ -68,3 +68,11 @@ nav a {
     text-decoration: none;
     font-family: 'Quicksand', sans-serif;
 }
+
+.nomeCasal button {
+    color: black;
+    text-decoration: none;
+    font-family: 'Quicksand', sans-serif;
+    background-color: #D4EAFF;
+    font-size: 16px;
+}
