@@ -32,14 +32,14 @@ public class LoginUsuarioServlet extends HttpServlet {
         String senha = req.getParameter("senha");
 
         UsuarioDao usuarioDao = new UsuarioDao();
-        OrcamentosDao orcaementoDao = new OrcamentosDao();
+        OrcamentosDao orcamentoDao = new OrcamentosDao();
         CasamentoDao casamentoDao = new CasamentoDao();
 
         Usuario usuario = usuarioDao.buscarUsuarioPorEmail(email);
 
         if (usuario != null && usuario.getSenha().equals(senha)) {
 
-            List<Orcamentos> listaOrcamentos = orcaementoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
+            List<Orcamentos> listaOrcamentos = orcamentoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
 
             Casamento casamento =  casamentoDao.encontrarCasamentoPorIdUsuario(usuario.getIdUsuario());
 

@@ -27,7 +27,7 @@
     font-family: 'Quicksand', sans-serif;
 }
 
-.label {
+.form-group label {
     font-size: 14px;
     font-family: 'Quicksand', sans-serif;
 }
@@ -54,9 +54,7 @@
     margin-bottom: 5px;
 }
 
-.form-group label {
-    font-weight: bold;
-}
+
 
 #email {
     width: 70%;
@@ -70,9 +68,6 @@
     font-family: 'Quicksand', sans-serif;
 }
 
-label {
-    font-family: 'Quicksand', sans-serif;
-}
 
 
 .card.orcamento {
@@ -136,6 +131,8 @@ label {
     transition: background-color 0.3s;
 }
 
+
+
 .btn-salvar:hover {
     background-color: #0056b3;
 }
@@ -153,3 +150,4 @@ label {
 .table-wrapper {
     overflow-x: auto;
 }
+

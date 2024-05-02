@@ -29,11 +29,19 @@
                 <a href="/ajuda.jsp">Ajuda</a>
                 <a href="/sobre-nos.jsp">Sobre nós</a>
             </nav>
-            <div class="user-items">
-                <a class="nome" href="/perfil.jsp"><%= usuario.getNomesConcatenados() %></a>
-                <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
-                <a class="sair" href="sair">Sair</a>
-            </div>
+
+            <form action="${pageContext.request.contextPath}/perfil" method="GET">
+
+                <div class="user-items">
+                    <input type="text" id="id" name="id" value="${usuario.getIdUsuario()}" style="display: none;">
+                    <button type="submit" class="nomeCasal"><%= usuario.getNomesConcatenados() %></button>
+                    <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
+                    <a class="sair" href="sair">Sair</a>
+                </div>
+
+            </form>
+
+
         </div>
     </header>
 
@@ -45,7 +53,7 @@
                         <div class="profile-info">
                             <div class="img-container">
                                 <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Imagem do Casal" class="img-cabecalho">
-                                <div class="nomeCasal"><%= usuario.getNomesConcatenados() %></div>
+                                <div class="nomeCasal" ><%= usuario.getNomesConcatenados() %></div>
                                 <div class="id">Id: <%= usuario.getIdUsuario() %></div>
                             </div>
 
