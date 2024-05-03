@@ -48,11 +48,11 @@ public class LoginUsuarioServlet extends HttpServlet {
             req.getSession().setAttribute("casamento", casamento);
 
             req.setAttribute("listaOrcamentos", listaOrcamentos);
-            req.getRequestDispatcher("perfil.jsp").forward(req, resp);
+            req.getRequestDispatcher("/perfil.jsp").forward(req, resp);
 
         } else {
             req.setAttribute("errorMessage", "Usuário ou Senha inválidos!");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
         }
     }
 }
