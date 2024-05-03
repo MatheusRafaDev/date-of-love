@@ -1,7 +1,9 @@
 package br.com.dateoflove.dao;
 
 
+import br.com.dateoflove.config.PollConfig;
 import br.com.dateoflove.model.Casamento;
+import org.apache.commons.pool2.impl.BaseObjectPoolConfig;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +16,9 @@ public class CasamentoDao {
             try {
                 String SQL = "INSERT INTO tb_casamento (id_usuario, dt_casamento, ds_localidade, nr_convidados, ds_estilo_festa) " +
                         "VALUES (?, ?, ?, ?, ?)";
-                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+
+                Connection connection = PollConfig.getConnection();
+
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
                 preparedStatement.setInt(1, casamento.getIdUsuario());
@@ -45,7 +49,7 @@ public class CasamentoDao {
         public Casamento encontrarCasamentoPorIdUsuario(int idUsuario) {
             try {
                 String SQL = "SELECT * FROM tb_casamento WHERE id_usuario = ?";
-                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                Connection connection = PollConfig.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL);
                 preparedStatement.setInt(1, idUsuario);
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -91,7 +95,7 @@ public class CasamentoDao {
                 }
 
                 String SQL = "UPDATE tb_casamento SET dt_casamento = ?, ds_localidade = ?, nr_convidados = ?, ds_estilo_festa = ? WHERE id_casamento = ?";
-                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                Connection connection = PollConfig.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL);
                 preparedStatement.setDate(1, new java.sql.Date(casamentoAntigo.getDataCasamento().getTime()));
                 preparedStatement.setString(2, casamentoAntigo.getLocalidade());

@@ -41,6 +41,12 @@
           <scope>compile</scope>
       </dependency>
 
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-dbcp2</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>date-of-love</finalName>
