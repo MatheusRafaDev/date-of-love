@@ -34,11 +34,14 @@ public class OrcamentoServlet extends HttpServlet {
 
         List<DetalheOrcamento> detalheOrcamento = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento(id);
 
-        req.setAttribute("orcamento", orcamento);
-        req.setAttribute("detalheorcamento", detalheOrcamento);
-        req.setAttribute("servicoDao", servicoDao);
 
-        req.getRequestDispatcher("orcamento.jsp").forward(req, resp);
+        req.getSession().setAttribute("orcamento", orcamento);
+        req.getSession().setAttribute("detalheorcamento", detalheOrcamento);
+        req.getSession().setAttribute("servicoDao", servicoDao);
+
+        //req.getRequestDispatcher("orcamento.jsp").forward(req, resp);
+
+        resp.sendRedirect(req.getContextPath() + "/orcamento.jsp");
     }
 
 }

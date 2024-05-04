@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="br.com.dateoflove.model.Usuario" %>
+<%@ page import="br.com.dateoflove.model.Casamento" %>
 <%@ page import="br.com.dateoflove.model.DetalheOrcamento" %>
 <%@ page import="br.com.dateoflove.dao.ServicoDao" %>
 <%@ page import="br.com.dateoflove.model.Servico" %>
