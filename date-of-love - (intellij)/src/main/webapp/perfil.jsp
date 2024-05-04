@@ -6,8 +6,15 @@
 <%@ page import="br.com.dateoflove.model.Casamento" %>
 <%@ page import="java.util.List" %>
 
-<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
-<% Casamento casamento = (Casamento) session.getAttribute("casamento"); %>
+<%
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    if (usuario == null) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+    }
+
+    Casamento casamento = (Casamento) session.getAttribute("casamento");
+%>
+
 
 <!DOCTYPE html>
 <html lang="en">

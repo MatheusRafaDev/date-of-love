@@ -34,7 +34,9 @@
                         <input type="text" id="id" name="id" value="${usuario.getIdUsuario()}" style="display: none;">
                         <button type="submit" class="nomeCasal"><%= usuario.getNomesConcatenados() %></button>
                         <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
-                        <a class="sair" href="sair">Sair</a>
+                        <form action="${pageContext.request.contextPath}/sair" method="GET">
+                           <button type="submit" class="sair">Sair</button>
+                        </form>
                     </div>
                 </form>
             </div>

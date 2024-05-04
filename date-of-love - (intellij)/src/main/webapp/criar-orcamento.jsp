@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ page import="br.com.dateoflove.model.Usuario" %>
-<% Usuario usuario = (Usuario) session.getAttribute("usuario");%>
+<%@ page import="br.com.dateoflove.model.Casamento" %>
+
+<%
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    if (usuario == null) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+    }
+
+    Casamento casamento = (Casamento) session.getAttribute("casamento");
+%>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,7 +40,9 @@
                         <input type="text" id="id" name="id" value="${usuario.getIdUsuario()}" style="display: none;">
                         <button type="submit" class="nomeCasal"><%= usuario.getNomesConcatenados() %></button>
                         <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
-                        <a class="sair" href="sair">Sair</a>
+                        <form action="${pageContext.request.contextPath}/sair" method="GET">
+                             <button type="submit" class="sair">Sair</button>
+                        </form>
                     </div>
                 </form>
             </div>
