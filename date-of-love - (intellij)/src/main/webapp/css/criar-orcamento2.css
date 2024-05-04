@@ -1,0 +1,61 @@
+/* Estilos para o conteúdo da página sem o cabeçalho */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para a tabela de checklist */
+.checklist-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.checklist-table caption {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.checklist-table th, .checklist-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.checklist-table th {
+    background-color: #f2f2f2;
+}
+
+/* Estilo para os botões */
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para o campo de observações */
+.observacoes {
+    margin-top: 20px;
+}
+
+.observacoes h2 {
+    margin-bottom: 10px;
+}
+
+#observacoesInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

@@ -49,8 +49,6 @@
                     <a class="sair" href="sair">Sair</a>
                 </div>
             </form>
-
-
         </div>
     </header>
 
@@ -139,6 +137,13 @@
                                                 </form>
                                             </tr>
                                         </c:forEach>
+
+                                        <tr>
+                                            <td colspan="5">
+                                                <button type="button" class="btn-criar" onclick="window.location.href='/criar-orcamento.jsp'">Criar Novo Orçamento</button>
+                                            </td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>

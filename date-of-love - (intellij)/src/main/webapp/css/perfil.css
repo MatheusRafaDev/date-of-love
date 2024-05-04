@@ -132,8 +132,24 @@
 }
 
 
+.btn-criar {
+    background-color: #94CBFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    transition: background-color 0.3s;
+}
+
 
 .btn-salvar:hover {
+    background-color: #0056b3;
+}
+
+
+.btn-criar:hover {
     background-color: #0056b3;
 }
 
