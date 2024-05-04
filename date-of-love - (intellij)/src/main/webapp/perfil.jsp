@@ -62,7 +62,7 @@
                         <div class="profile-info">
                             <div class="img-container">
                                 <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Imagem do Casal" class="img-cabecalho">
-                                <div class="nomeCasal" ><%= usuario.getNomesConcatenados() %></div>
+                                <div class="nomeCasal2" ><%= usuario.getNomesConcatenados() %></div>
                                 <div class="id">Id: <%= usuario.getIdUsuario() %></div>
                             </div>
 
