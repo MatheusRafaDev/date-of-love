@@ -28,8 +28,9 @@ public class VisualizarOrcamentoServlet extends HttpServlet {
         OrcamentosDao orcamentoDao = new OrcamentosDao();
         List<Orcamentos> listaOrcamentos = orcamentoDao.buscarOrcamentoPorUsuario(id);
 
-        req.setAttribute("listaOrcamentos", listaOrcamentos);
-        req.getRequestDispatcher("perfil.jsp").forward(req, resp);
+        req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
+        resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
+        //req.getRequestDispatcher("perfil.jsp").forward(req, resp);
 
     }
 }

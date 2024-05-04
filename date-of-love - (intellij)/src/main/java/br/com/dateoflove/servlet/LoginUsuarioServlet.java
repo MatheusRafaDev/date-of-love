@@ -43,12 +43,13 @@ public class LoginUsuarioServlet extends HttpServlet {
 
             Casamento casamento =  casamentoDao.encontrarCasamentoPorIdUsuario(usuario.getIdUsuario());
 
-
             req.getSession().setAttribute("usuario", usuario);
             req.getSession().setAttribute("casamento", casamento);
+            req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
 
-            req.setAttribute("listaOrcamentos", listaOrcamentos);
-            req.getRequestDispatcher("/perfil.jsp").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
+
+            //req.getRequestDispatcher("/perfil.jsp").forward(req, resp);
 
         } else {
             req.setAttribute("errorMessage", "Usuário ou Senha inválidos!");

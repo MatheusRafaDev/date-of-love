@@ -4,6 +4,7 @@
 <%@ page import="br.com.dateoflove.model.Usuario" %>
 <%@ page import="br.com.dateoflove.model.Orcamentos" %>
 <%@ page import="br.com.dateoflove.model.Casamento" %>
+<%@ page import="java.util.List" %>
 
 <% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
 <% Casamento casamento = (Casamento) session.getAttribute("casamento"); %>
@@ -32,7 +33,11 @@
             <form action="${pageContext.request.contextPath}/perfil" method="GET">
                 <div class="user-items">
                     <input type="text" id="id" name="id" value="${usuario.getIdUsuario()}" style="display: none;">
-                    <button type="submit" class="nomeCasal"><%= usuario.getNomesConcatenados() %></button>
+
+                    <button type="submit" class="nomeCasal">
+                        <%= usuario.getNomesConcatenados() %>
+                    </button>
+
                     <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
                     <a class="sair" href="sair">Sair</a>
                 </div>
@@ -89,7 +94,7 @@
                                                <input type="text" id="estilo_festa" name="estilo_festa" class="form-control" value="<%= casamento.getEstiloFesta() %>">
                                          </div>
 
-                                    <button type="submit" id="btnSalvar" class="btn-salvar">Salvar</button>
+                                    <button type="submit" id="btnSalvar" class="btn-salvar" style="display: none;">Salvar</button>
                                 </form>
                             </div>
                         </div>
