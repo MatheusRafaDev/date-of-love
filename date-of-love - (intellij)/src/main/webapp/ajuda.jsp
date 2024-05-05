@@ -33,8 +33,10 @@
 
     <div class="duvida-box">
         <h2>Descreva sua dúvida</h2>
-        <input class="texto" type="text" placeholder="Digite sua dúvida aqui...">
-        <button type="button" class="btn btn-primary btn-sm">Enviar</button>
+        <form action="${pageContext.request.contextPath}/enviarDuvida" method="post">
+            <input class="texto" type="text" name="duvida" placeholder="Digite sua dúvida aqui...">
+            <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+        </form>
     </div>
 
     <div class="perguntas">
