@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="br.com.dateoflove.model.Usuario" %>
 <%@ page import="br.com.dateoflove.model.Casamento" %>
 
@@ -45,128 +45,114 @@
        </div>
    </header>
 
-    <h1>Checklist</h1>
+    <div class="card">
+        <h3>Checklist</h3>
+        <form action="${pageContext.request.contextPath}/criar-orcamento" method="POST">
+            <table class="checklist-table">
+                <tr>
+                    <th>Serviço</th>
+                    <th>Opções</th>
+                </tr>
+                <tr>
+                    <td>Cardápio</td>
+                    <td>
+                        <form id="menuForm1">
+                            <select name="servico1">
+                                <option value="simples">Simples</option>
+                                <option value="completo">Completo</option>
+                            </select>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Flores e Decoração</td>
+                    <td>
+                        <form id="menuForm2">
+                            <select name="servico2">
+                                <option value="simples">Simples</option>
+                                <option value="completo">Completo</option>
+                            </select>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Bebidas</td>
+                    <td>
+                        <form id="menuForm3">
+                            <select name="servico3">
+                                <option value="simples">Simples</option>
+                                <option value="completo">Completo</option>
+                            </select>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Doces e Bem-casados</td>
+                   <td>
+                       <form id="menuForm4">
+                           <select name="servico4">
+                                <option value="simples">Simples</option>
+                                <option value="completo">Completo</option>
+                            </select>
+                       </form>
+                   </td>
+                </tr>
+                <tr>
+                    <td>Bolo Cenográfico e Bolo de corte</td>
+                    <td>
+                        <form id="menuForm5">
+                            <select name="servico5">
+                                <option value="simples">Simples</option>
+                                <option value="completo">Completo</option>
+                            </select>
+                        </form>
+                    </td>
+                </tr>
 
-    <table class="checklist-table">
-        <caption>Serviços</caption>
-        <tr>
-            <th>Serviço</th>
-            <th>Opções</th>
-        </tr>
-        <tr>
-            <td>Cardápio</td>
-            <td>
-                <form id="menuForm1">
-                    <label>
-                        <input type="radio" name="menu1" value="simples" checked>
-                        Simples
-                    </label>
-                    <label>
-                        <input type="radio" name="menu1" value="completo">
-                        Completo
-                    </label>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>Flores e Decoração</td>
-            <td>
-                <form id="menuForm2">
-                    <label>
-                        <input type="radio" name="menu2" value="simples" checked>
-                        Simples
-                    </label>
-                    <label>
-                        <input type="radio" name="menu2" value="completo">
-                        Completo
-                    </label>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>Bebidas</td>
-            <td>
-                <form id="menuForm3">
-                    <label>
-                        <input type="radio" name="menu3" value="simples" checked>
-                        Simples
-                    </label>
-                    <label>
-                        <input type="radio" name="menu3" value="completo">
-                        Completo
-                    </label>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>Doces e Bem-casados</td>
-            <td>
-                <form id="menuForm4">
-                    <label>
-                        <input type="radio" name="menu4" value="simples" checked>
-                        Simples
-                    </label>
-                    <label>
-                        <input type="radio" name="menu4" value="completo">
-                        Completo
-                    </label>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>Bolo Cenográfico e Bolo de corte</td>
-            <td>
-                <form id="menuForm5">
-                    <label>
-                        <input type="radio" name="menu5" value="simples" checked>
-                        Simples
-                    </label>
-                    <label>
-                        <input type="radio" name="menu5" value="completo">
-                        Completo
-                    </label>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>Espaço com Mobiliário</td>
-            <td>
-                <form id="menuForm6">
-                    <label>
-                        <input type="checkbox" name="menu6" checked disabled>
-                        Incluso no Pacote
-                    </label>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>Coordenação do Dia</td>
-            <td>
-                <form id="menuForm7">
-                    <label>
-                        <input type="checkbox" name="menu7" checked disabled>
-                        Incluso no Pacote
-                    </label>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>DJ</td>
-            <td>
-                <form id="menuForm8">
-                    <label>
-                        <input type="checkbox" name="menu8" checked disabled>
-                        Incluso no Pacote
-                    </label>
-                </form>
-            </td>
-        </tr>
-    </table>
+                </table>
 
-     <div class="observacao">
-            <label for="observacao">Observação:</label>
-            <textarea id="observacao" name="observacao" rows="4" cols="50"></textarea>
-     </div>
+                <h3>Ja incluso no Pacote</h3>
+                <table class="checklist-table">
+                <tr>
+                    <td>Espaço com Mobiliário</td>
+                    <td>
+                        <form id="menuForm6">
+                            <label>
+                                <input type="checkbox" name="menu6" checked disabled>
+                                Incluso no Pacote
+                            </label>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Coordenação do Dia</td>
+                    <td>
+                        <form id="menuForm7">
+                            <label>
+                                <input type="checkbox" name="menu7" checked disabled>
+                                Incluso no Pacote
+                            </label>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DJ</td>
+                    <td>
+                        <form id="menuForm8">
+                            <label>
+                                <input type="checkbox" name="menu8" checked disabled>
+                                Incluso no Pacote
+                            </label>
+                        </form>
+                    </td>
+                </tr>
+            </table>
 
+            <h3>Observações Gerais</h3>
+            <textarea rows="7" cols="50"></textarea>
+
+            <button type="submit" class="criar-button">Criar Orçamento</button>
+         </form>
+    </div>
 </body>
 </html>
