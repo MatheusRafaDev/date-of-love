@@ -10,9 +10,9 @@ import java.util.List;
 
 public class OrcamentosDao {
 
-    public void criarOrcamento(Orcamentos orcamento) {
+    public Orcamentos criarOrcamento(Orcamentos orcamento) {
         try {
-            String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, valor_total) " +
+            String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, vl_total) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
@@ -23,7 +23,7 @@ public class OrcamentosDao {
             preparedStatement.setString(4, orcamento.getStatus());
             preparedStatement.setString(5, orcamento.getObservacao());
             preparedStatement.setString(6, orcamento.getNomeOrcador());
-            preparedStatement.setDouble(7, orcamento.getValorTotal()); // Define o valor total do orçamento
+            preparedStatement.setDouble(7, orcamento.getValorTotal());
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -32,8 +32,10 @@ public class OrcamentosDao {
                 if (chavesGeradas.next()) {
                     int idOrcamento = chavesGeradas.getInt(1);
                     orcamento.setIdOrcamento(idOrcamento);
+                    System.out.println("Orçamento criado com sucesso! ID: " + idOrcamento);
+                } else {
+                    System.out.println("Falha ao obter o ID do orçamento criado.");
                 }
-                System.out.println("Orçamento criado com sucesso!");
             } else {
                 System.out.println("Falha ao criar o orçamento.");
             }
@@ -42,6 +44,8 @@ public class OrcamentosDao {
         } catch (Exception e) {
             System.out.println("Erro ao criar o orçamento: " + e.getMessage());
         }
+
+        return orcamento;
     }
 
     public void deletarOrcamentoPorId(int idOrcamento) {

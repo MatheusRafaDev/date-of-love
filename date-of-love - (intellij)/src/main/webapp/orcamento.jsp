@@ -3,12 +3,16 @@
 <%@ page import="br.com.dateoflove.model.Usuario" %>
 <%@ page import="br.com.dateoflove.model.Casamento" %>
 <%@ page import="br.com.dateoflove.model.DetalheOrcamento" %>
+<%@ page import="br.com.dateoflove.model.Orcamentos" %>
+
 <%@ page import="br.com.dateoflove.dao.ServicoDao" %>
 <%@ page import="br.com.dateoflove.model.Servico" %>
 <% ServicoDao servicoDao = new ServicoDao();%>
 
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
+    Orcamentos orcamento = (Orcamentos) session.getAttribute("orcamento");
+
     if (usuario == null) {
         response.sendRedirect(request.getContextPath() + "/login.jsp");
     }
@@ -31,26 +35,28 @@
 
 <body>
     <header>
-            <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
-            <div class="logo-navigation">
-                <nav>
-                    <a href="/home.jsp">Home</a>
-                    <a href="/servicos.jsp">Serviços</a>
-                    <a href="/ajuda.jsp">Ajuda</a>
-                    <a href="/sobre-nos.jsp">Sobre nós</a>
-                </nav>
-                <form action="${pageContext.request.contextPath}/perfil" method="GET">
-                    <div class="user-items">
-                        <input type="text" id="id" name="id" value="${usuario.getIdUsuario()}" style="display: none;">
-                        <button type="submit" class="nomeCasal"><%= usuario.getNomesConcatenados() %></button>
-                        <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
-                        <form action="${pageContext.request.contextPath}/sair" method="GET">
-                             <button type="submit" class="sair">Sair</button>
-                        </form>
-                    </div>
-                </form>
-            </div>
-        </header>
+        <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
+        <div class="logo-navigation">
+            <nav>
+                <a href="/home.jsp">Home</a>
+                <a href="/servicos.jsp">Serviços</a>
+                <a href="/ajuda.jsp">Ajuda</a>
+                <a href="/sobre-nos.jsp">Sobre nós</a>
+            </nav>
+            <form action="${pageContext.request.contextPath}/perfil" method="GET">
+                <div class="user-items">
+                    <input type="text" id="id" name="id" value="${usuario.getIdUsuario()}" style="display: none;">
+
+                    <button type="submit" class="nomeCasal">
+                        <%= usuario.getNomesConcatenados() %>
+                    </button>
+
+                    <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
+                    <a class="sair" href="sair">Sair</a>
+                </div>
+            </form>
+        </div>
+    </header>
 
     <div class="budget-container">
         <h3>Orçamento</h3>
@@ -84,23 +90,23 @@
             </tr>
             <tr>
                 <td>DJ</td>
-                <td><input type="text" value=""></td>
-                <td>R$ 2000</td>
+                <td></td>
+                <td>R$ 0</td>
             </tr>
             <tr>
                 <td>Coordenação do Dia</td>
-                <td><input type="text" value=""></td>
-                <td>R$ 1500</td>
+                <td></td>
+                <td>R$ 0</td>
             </tr>
             <tr>
                 <td>Espaço</td>
-                <td><input type="text" value=""></td>
-                <td>R$ 3000</td>
+                <td></td>
+                <td>R$ 0</td>
             </tr>
         </table>
 
         <h3>Observações Gerais</h3>
-        <textarea rows="7" cols="50"></textarea>
+        <p><%= orcamento.getObservacao() %></p>
     </div>
 
 </body>
