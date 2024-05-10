@@ -1,4 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="br.com.dateoflove.model.Usuario" %>
+<%@ page import="br.com.dateoflove.model.Casamento" %>
+
+<%
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    if (usuario == null) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+    }
+
+    Casamento casamento = (Casamento) session.getAttribute("casamento");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,28 +18,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajuda</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="/src/main/webapp/css/ajuda.css">
-    <link rel="icon" type="image/x-icon" href="/src/main/webapp/src/assets/images/favicon.ico">
-    <link rel="stylesheet" href="/src/main/webapp/css/header.css">
-    <link rel="stylesheet" href="/src/main/webapp/css/AjudaFAQ.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ajuda.css">
+    <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/AjudaFAQ.css">
 </head>
 <body>
-     <header>
-        <img src="/src/main/webapp/src/assets/images/logo.png" alt="logo" class="logo"/>
-        <div class="logo-navigation">
-            <nav>
-                <a href="/home.jsp">Home</a>
-                <a href="/servicos.jsp">Serviços</a>
-                <a href="/ajuda.jsp">Ajuda</a>
-                <a href="/sobre-nos.jsp">Sobre nós</a>
-            </nav>
-            <div class="user-items">
-                <a class="nome" href="/perfil.jsp"><%= usuario.getNomesConcatenados() %></a>
-                <img src="/src/main/webapp/src/assets/images/casal.png" alt="Foto do Usuário">
-                <a class="sair" href="sair">Sair</a>
-            </div>
-        </div>
-     </header>
+    <%@ include file="/componente/header.jsp" %>
 
     <h2 class="ajuda">Ajuda</h2>
 

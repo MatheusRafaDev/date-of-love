@@ -40,29 +40,7 @@
 </head>
 
 <body>
-<header>
-    <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
-    <div class="logo-navigation">
-        <nav>
-            <a href="/home.jsp">Home</a>
-            <a href="/servicos.jsp">Serviços</a>
-            <a href="/ajuda.jsp">Ajuda</a>
-            <a href="/sobre-nos.jsp">Sobre nós</a>
-        </nav>
-        <form action="${pageContext.request.contextPath}/perfil" method="GET">
-            <div class="user-items">
-                <input type="text" id="id" name="id" value="${usuario.getIdUsuario()}" style="display: none;">
-
-                <button type="submit" class="nomeCasal">
-                    <%= usuario.getNomesConcatenados() %>
-                </button>
-
-                <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
-                <a class="sair" href="sair">Sair</a>
-            </div>
-        </form>
-    </div>
-</header>
+<%@ include file="/componente/header.jsp" %>
 
 <div class="budget-container">
     <h3>Orçamento</h3>

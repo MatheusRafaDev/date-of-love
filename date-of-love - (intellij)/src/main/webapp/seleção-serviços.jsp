@@ -14,22 +14,7 @@
 </head>
 
 <body>
-    <header>
-            <img src="/src/main/webapp/src/assets/images/logo.png" alt="logo" class="logo"/>
-            <div class="logo-navigation">
-                <nav>
-                    <a href="/home.jsp">Home</a>
-                    <a href="/servicos.jsp">Serviços</a>
-                    <a href="/ajuda.jsp">Ajuda</a>
-                    <a href="/sobre-nos.jsp">Sobre nós</a>
-                </nav>
-                <div class="user-items">
-                    <a class="nome" href="/perfil.jsp"></a>
-                    <img src="/src/main/webapp/src/assets/images/casal.png" alt="Foto do Usuário">
-                    <a class="sair" href="sair">Sair</a>
-                </div>
-            </div>
-    </header>
+    <%@ include file="/componente/header.jsp" %>
 
     <body>
       <h1>Checklist</h1>

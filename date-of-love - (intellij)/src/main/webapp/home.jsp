@@ -1,5 +1,3 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ page import="br.com.dateoflove.model.Usuario" %>
@@ -13,37 +11,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/slide.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/slide.js">
-    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slide.js">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Allison&family=Architects+Daughter&display=swap" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
-<header>
-    <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
-    <div class="logo-navigation">
-        <nav>
-            <a href="home.jsp">Home</a>
-            <a href="servicos.jsp">Serviços</a>
-            <a href="ajuda.jsp">Ajuda</a>
-            <a href="sobre-nos.jsp">Sobre nós</a>
-        </nav>
-        <form action="${pageContext.request.contextPath}/perfil" method="GET">
-            <div class="user-items">
-                <input type="text" id="id" name="id" value="${usuario.getIdUsuario()}" style="display: none;">
-                <button type="submit" class="nomeCasal"><%= usuario.getNomesConcatenados() %></button>
-                <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
-            </div>
-        </form>
-        <form action="${pageContext.request.contextPath}/sair" method="GET">
-            <button type="submit" class="sair">Sair</button>
-        </form>
-    </div>
-</header>
+
+<%@ include file="/componente/header.jsp" %>
 
 <section class="slider">
     <div class="slider-content">

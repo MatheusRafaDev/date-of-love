@@ -77,7 +77,7 @@ nav a {
     font-size: 16px;
 }
 
-.nomeCasal {
+.nomeCasal,.sair {
     color: black;
     text-decoration: none;
     font-family: 'Quicksand', sans-serif;
