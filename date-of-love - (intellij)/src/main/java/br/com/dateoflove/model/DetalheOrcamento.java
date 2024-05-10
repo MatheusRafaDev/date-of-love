@@ -77,4 +77,9 @@ public class DetalheOrcamento {
     public void setCompleto(boolean completo) {
         this.completo = completo;
     }
+
+    // Método para verificar se o detalhe do orçamento é editável
+    public boolean isEditavel() {
+        return !completo;
+    }
 }

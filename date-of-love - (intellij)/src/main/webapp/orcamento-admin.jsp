@@ -1,15 +1,44 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: alexandre.fsilva49
-  Date: 03/05/2024
-  Time: 19:38
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="br.com.dateoflove.model.Usuario" %>
+<%@ page import="br.com.dateoflove.model.Casamento" %>
+<%@ page import="br.com.dateoflove.model.DetalheOrcamento" %>
+<%@ page import="br.com.dateoflove.model.Orcamentos" %>
+
+<%@ page import="br.com.dateoflove.dao.ServicoDao" %>
+<%@ page import="br.com.dateoflove.model.Servico" %>
+<% ServicoDao servicoDao = new ServicoDao();%>
+
+<%
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    Orcamentos orcamento = (Orcamentos) session.getAttribute("orcamento");
+
+    if (usuario == null) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+    }
+
+    Casamento casamento = (Casamento) session.getAttribute("casamento");
+%>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=,"https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
+    <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/orcamento.css">
+
+    <style>
+        .editavel-ativo {
+            background-color: #f0f0f0; /* Cor de fundo para destacar campos editáveis */
+        }
+    </style>
+
+    <title>Visualizar Orçamento</title>
 </head>
+
 <body>
 <header>
     <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
@@ -23,11 +52,13 @@
         <form action="${pageContext.request.contextPath}/perfil" method="GET">
             <div class="user-items">
                 <input type="text" id="id" name="id" value="${usuario.getIdUsuario()}" style="display: none;">
-                <button type="submit" class="nomeCasal"><%= usuario.getNomesConcatenados() %></button>
+
+                <button type="submit" class="nomeCasal">
+                    <%= usuario.getNomesConcatenados() %>
+                </button>
+
                 <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
-                <form action="${pageContext.request.contextPath}/sair" method="GET">
-                    <button type="submit" class="sair">Sair</button>
-                </form>
+                <a class="sair" href="sair">Sair</a>
             </div>
         </form>
     </div>
@@ -36,28 +67,31 @@
 <div class="budget-container">
     <h3>Orçamento</h3>
     <h3>Serviços</h3>
-    <table>
-        <tr>
-            <th>Serviço</th>
-            <th>Pacote Simples</th>
-            <th>Pacote Completo</th>
-            <th>Observações</th>
-            <th>Valor</th>
-        </tr>
-        <c:forEach var="detalhe" items="${detalheorcamento}">
-            <c:set var="servico" value="${servicoDao.encontrarServicoPorId(detalhe.idServico)}" />
+    <form id="formOrcamento" method="POST" action="${pageContext.request.contextPath}/orcamento.jsp">
+        <table>
             <tr>
-                <td><c:out value="${servico.getNomeServico()}" /></td>
-                <td><input type="radio" name="" value="simples" ${!detalhe.isCompleto() ? "checked" : ""} disabled></td>
-                <td><input type="radio" name="" value="completo" ${detalhe.isCompleto() ? "checked" : ""} disabled></td>
-                <td>${detalhe.getObservacaoServico()}</td>
-                <td>R$ ${detalhe.getPrecoEditavel()}</td>
-                <td><input type="text" id="observacao_${detalhe.id}" value="${detalhe.getObservacaoServico()}"></td>
-                <td>R$ <input type="text" id="preco_${detalhe.id}" value="${detalhe.getPrecoEditavel()}"></td>
-
+                <th>Serviço</th>
+                <th>Pacote Simples</th>
+                <th>Pacote Completo</th>
+                <th>Observações</th>
+                <th>Valor</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach var="detalhe" items="${detalheorcamento}" varStatus="status">
+                <c:set var="servico" value="${servicoDao.encontrarServicoPorId(detalhe.idServico)}" />
+                <tr class="editavel">
+                    <td><c:out value="${servico.getNomeServico()}" /></td>
+
+                    <td><input type="radio" name="pacote_${status.index}" value="simples" ${!detalhe.isCompleto() ? "checked" : ""} ${detalhe.isEditavel() ? "" : "disabled"}></td>
+                    <td><input type="radio" name="pacote_${status.index}" value="completo" ${detalhe.isCompleto() ? "checked" : ""} ${detalhe.isEditavel() ? "" : "disabled"}></td>
+                    <td><input type="text" name="observacao_${status.index}" value="${detalhe.getObservacaoServico()}" ${detalhe.isEditavel() ? "" : "disabled"}></td>
+                    <td><input type="text" name="preco_${status.index}" value="${detalhe.getPrecoEditavel()}" ${detalhe.isEditavel() ? "" : "disabled"}></td>
+                    <input type="hidden" class="idServico" name="idServico_${status.index}" value="${detalhe.idServico}" />
+                </tr>
+            </c:forEach>
+        </table>
+
+        <button id="btnConfirmar" type="submit" style="display: none;">Confirmar Alterações</button>
+    </form>
 
     <h3>Outros Serviços Já Inclusos</h3>
     <table>
@@ -68,51 +102,41 @@
         </tr>
         <tr>
             <td>DJ</td>
-            <td><input type="text" value=""></td>
-            <td>R$ 2000</td>
+            <td></td>
+            <td>R$ 0</td>
         </tr>
         <tr>
             <td>Coordenação do Dia</td>
-            <td><input type="text" value=""></td>
-            <td>R$ 1500</td>
+            <td></td>
+            <td>R$ 0</td>
         </tr>
         <tr>
             <td>Espaço</td>
-            <td><input type="text" value=""></td>
-            <td>R$ 3000</td>
+            <td></td>
+            <td>R$ 0</td>
         </tr>
     </table>
 
     <h3>Observações Gerais</h3>
-    <textarea rows="7" cols="50"></textarea>
-</div>
-<div class="botao-orcamento-admin">
-    <button class="botao-editar-orcamento"><a> Editar Orçamento</a> </button>
-    <button class="botao-editar-orcamento"><a> Visualizar Orçamento</a> </button>
+    <p><%= orcamento.getObservacao() %></p>
 </div>
 
-<button onclick="salvarEdicoes()">Salvar Alterações</button>
+</div>
 
-</body>
-</html>
+<button id="btnEditar" onclick="habilitarEdicao()">Editar Orçamento</button>
 
-<script !src="">
-
-    function salvarEdicoes() {
-        var detalhesEditados = [];
-        var detalhes = ${detalheorcamento};
-
-        detalhes.forEach(function(detalhe) {
-            var id = detalhe.id;
-            var observacao = document.getElementById("observacao_" + id).value;
-            var preco = document.getElementById("preco_" + id).value;
-
-            detalhesEditados.push({
-                id: id,
-                observacao: observacao,
-                preco: preco
-            });
+<script>
+    function habilitarEdicao() {
+        document.querySelectorAll('input[type="radio"], input[type="text"]').forEach(function(input) {
+            input.disabled = false;
         });
 
+        document.querySelectorAll('.editavel').forEach(function(row) {
+            row.classList.add('editavel-ativo');
+        });
+
+        document.getElementById('btnConfirmar').style.display = 'inline-block';
     }
 </script>
+</body>
+</html>
