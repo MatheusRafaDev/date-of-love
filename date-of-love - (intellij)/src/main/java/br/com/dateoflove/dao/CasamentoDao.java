@@ -12,41 +12,44 @@ import java.util.List;
 
 public class CasamentoDao {
 
-        public void criarCasamento(Casamento casamento) {
-            try {
-                String SQL = "INSERT INTO tb_casamento (id_usuario, dt_casamento, ds_localidade, nr_convidados, ds_estilo_festa) " +
-                        "VALUES (?, ?, ?, ?, ?)";
+    public Casamento criarCasamento(Casamento casamento) {
+        try {
+            String SQL = "INSERT INTO tb_casamento (id_usuario, dt_casamento, ds_localidade, nr_convidados, ds_estilo_festa) " +
+                    "VALUES (?, ?, ?, ?, ?)";
 
-                Connection connection = PollConfig.getConnection();
+            Connection connection = PollConfig.getConnection();
 
-                PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
-                preparedStatement.setInt(1, casamento.getIdUsuario());
-                preparedStatement.setDate(2, new java.sql.Date(casamento.getDataCasamento().getTime()));
-                preparedStatement.setString(3, casamento.getLocalidade());
-                preparedStatement.setInt(4, casamento.getNumeroConvidados());
-                preparedStatement.setString(5, casamento.getEstiloFesta());
+            preparedStatement.setInt(1, casamento.getIdUsuario());
+            preparedStatement.setDate(2, new java.sql.Date(casamento.getDataCasamento().getTime()));
+            preparedStatement.setString(3, casamento.getLocalidade());
+            preparedStatement.setInt(4, casamento.getNumeroConvidados());
+            preparedStatement.setString(5, casamento.getEstiloFesta());
 
-                int linhasAfetadas = preparedStatement.executeUpdate();
+            int linhasAfetadas = preparedStatement.executeUpdate();
 
-                if (linhasAfetadas == 1) {
-                    ResultSet chavesGeradas = preparedStatement.getGeneratedKeys();
-                    if (chavesGeradas.next()) {
-                        int idInfoCasamento = chavesGeradas.getInt(1);
-                        casamento.setIdCasamento(idInfoCasamento);
-                    }
-                    System.out.println("Informações do casamento criadas com sucesso!");
-                } else {
-                    System.out.println("Falha ao criar informações do casamento.");
+            if (linhasAfetadas == 1) {
+                ResultSet chavesGeradas = preparedStatement.getGeneratedKeys();
+                if (chavesGeradas.next()) {
+                    int idInfoCasamento = chavesGeradas.getInt(1);
+                    casamento.setIdCasamento(idInfoCasamento);
                 }
-
-                connection.close();
-            } catch (Exception e) {
-                System.out.println("Erro ao criar informações do casamento: " + e.getMessage());
+                System.out.println("Informações do casamento criadas com sucesso!");
+            } else {
+                System.out.println("Falha ao criar informações do casamento.");
             }
-        }
 
-        public Casamento encontrarCasamentoPorIdUsuario(int idUsuario) {
+            connection.close();
+
+            return casamento; // Retorna o objeto Casamento após a inserção no banco de dados
+        } catch (Exception e) {
+            System.out.println("Erro ao criar informações do casamento: " + e.getMessage());
+            return null; // Retorna null em caso de erro
+        }
+    }
+
+    public Casamento encontrarCasamentoPorIdUsuario(int idUsuario) {
             try {
                 String SQL = "SELECT * FROM tb_casamento WHERE id_usuario = ?";
                 Connection connection = PollConfig.getConnection();

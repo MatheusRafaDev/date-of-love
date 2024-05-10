@@ -69,7 +69,9 @@
 }
 
 
-
+.nomeCasal2 {
+    font-family: 'Quicksand', sans-serif;
+}
 .card.orcamento {
     border-radius: 5px;
     margin-top: 30px;

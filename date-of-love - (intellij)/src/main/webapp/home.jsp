@@ -6,6 +6,9 @@
 <% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
 <% Casamento casamento = (Casamento) session.getAttribute("casamento"); %>
 
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

@@ -1,8 +1,10 @@
 package br.com.dateoflove.servlet;
 
+import br.com.dateoflove.dao.OrcamentosDao;
 import br.com.dateoflove.dao.UsuarioDao;
 import br.com.dateoflove.dao.CasamentoDao;
 import br.com.dateoflove.model.Casamento;
+import br.com.dateoflove.model.Orcamentos;
 import br.com.dateoflove.model.Usuario;
 
 import javax.servlet.ServletException;
@@ -16,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @WebServlet("/criar-usuario")
 public class CriarUsuarioServlet extends HttpServlet {
@@ -73,9 +76,19 @@ public class CriarUsuarioServlet extends HttpServlet {
         Usuario usuario = new Usuario(0, nomeNoivo, nomeNoiva, email, senha, new Date(),  nomeNoivo + " & " + nomeNoiva);
         usuario = usuarioDao.criarUsuario(usuario);
 
-        casamentoDao.criarCasamento(new Casamento(0, usuario.getIdUsuario(), dataCasamento, local, Convidados, estilo));
+        usuario = usuarioDao.buscarUsuarioPorEmail(email);
+
+        Casamento casamento = new Casamento();
+        OrcamentosDao orcamentoDao = new OrcamentosDao();
+        casamento = casamentoDao.criarCasamento(new Casamento(0, usuario.getIdUsuario(), dataCasamento, local, Convidados, estilo));
+        List<Orcamentos> listaOrcamentos = orcamentoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
+
+        req.getSession().setAttribute("usuario", usuario);
+        req.getSession().setAttribute("casamento", casamento);
+        req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
 
 
-        resp.sendRedirect("/home.jsp");
+        //resp.sendRedirect(req.getContextPath() + "/home.jsp");
+        req.getRequestDispatcher("/home.jsp").forward(req, resp);
     }
 }

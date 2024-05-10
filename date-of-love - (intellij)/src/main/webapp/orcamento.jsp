@@ -64,24 +64,40 @@
             <tr>
                 <th>Serviço</th>
                 <th>Observações</th>
-                <th>Valor</th>
+                <th>Pacote</th>
             </tr>
             <tr>
                 <td>DJ</td>
-                <td></td>
-                <td>R$ 0</td>
+                <td>DJ com seleção de músicas personalizada de acordo com o estilo desejado.</td>
+                <td>
+                        <label>
+                            <input type="checkbox" name="menu6" checked disabled>
+                            Incluso no Pacote
+                        </label>
+                </td>
             </tr>
             <tr>
                 <td>Coordenação do Dia</td>
-                <td></td>
-                <td>R$ 0</td>
+                <td>Profissional para coordenar todos os detalhes no dia do evento.</td>
+                 <td>
+                        <label>
+                            <input type="checkbox" name="menu6" checked disabled>
+                            Incluso no Pacote
+                        </label>
+                </td>
             </tr>
             <tr>
                 <td>Espaço</td>
-                <td></td>
-                <td>R$ 0</td>
+                <td>Espaço amplo e bem decorado para a realização da cerimônia e recepção.</td>
+                 <td>
+                        <label>
+                            <input type="checkbox" name="menu6" checked disabled>
+                            Incluso no Pacote
+                        </label>
+                </td>
             </tr>
         </table>
+
 
         <h3>Observações Gerais</h3>
         <p><%= orcamento.getObservacao() %></p>

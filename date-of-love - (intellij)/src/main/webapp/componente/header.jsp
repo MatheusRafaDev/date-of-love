@@ -1,4 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import="br.com.dateoflove.model.Usuario" %>
+<%@ page import="br.com.dateoflove.model.Orcamentos" %>
+<%@ page import="br.com.dateoflove.model.Casamento" %>
+
 
 <head>
     <meta charset="UTF-8">
