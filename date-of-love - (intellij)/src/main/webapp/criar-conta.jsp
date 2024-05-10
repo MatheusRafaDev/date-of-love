@@ -58,6 +58,7 @@
 
             <button type="submit" class="cadastrar">CADASTRAR</button>
         </form>
+        <a href="login.jsp">Já tem uma conta? Faça login aqui</a>
     </div>
 </div>
 </body>

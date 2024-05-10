@@ -40,7 +40,6 @@
 </head>
 
 <body>
-<%@ include file="/componente/header.jsp" %>
 
 <div class="budget-container">
     <h3>Orçamento</h3>
@@ -96,7 +95,7 @@
     </table>
 
     <h3>Observações Gerais</h3>
-    <p><%= orcamento.getObservacao() %></p>
+   
 </div>
 
 </div>

@@ -23,7 +23,7 @@
             </div>
         </form>
         <form action="${pageContext.request.contextPath}/sair" method="GET">
-            <button type="submit" class="sair">Sair</button>
+            <button type="submit" class="nomeCasal">Sair</button>
         </form>
     </div>
 </header>

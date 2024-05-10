@@ -1,4 +1,11 @@
 
+
+a {
+    color: black;
+    text-decoration: none;
+    font-family: 'Quicksand', sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
