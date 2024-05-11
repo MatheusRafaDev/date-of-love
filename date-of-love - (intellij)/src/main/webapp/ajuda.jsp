@@ -5,12 +5,9 @@
 
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
-    if (usuario == null) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
-    }
-
     Casamento casamento = (Casamento) session.getAttribute("casamento");
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
