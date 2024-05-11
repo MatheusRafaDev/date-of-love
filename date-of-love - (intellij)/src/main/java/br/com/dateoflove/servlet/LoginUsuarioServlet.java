@@ -47,7 +47,7 @@ public class LoginUsuarioServlet extends HttpServlet {
             req.getSession().setAttribute("casamento", casamento);
             req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
 
-            resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
+            resp.sendRedirect(req.getContextPath() + "/home.jsp");
 
             //req.getRequestDispatcher("/perfil.jsp").forward(req, resp);
 

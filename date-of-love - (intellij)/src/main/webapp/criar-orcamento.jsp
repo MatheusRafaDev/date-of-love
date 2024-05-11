@@ -93,8 +93,8 @@
                  </tr>
 
                 <tr>
-                    <td>Espaço com Mobiliário</td>
-                    <td> DJ com seleção de músicas personalizada de acordo com o estilo desejado.</td>
+                    <td>DJ</td>
+                    <td>DJ com seleção de músicas personalizada de acordo com o estilo desejado.</td>
                     <td>
                             <label>
                                 <input type="checkbox" name="servico6" checked disabled>
@@ -113,7 +113,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>DJ</td>
+                    <td>Espaço com Mobiliário</td>
                     <td>Espaço amplo e bem decorado para a realização da cerimônia e recepção.</td>
                     <td>
                         <label>

@@ -6,6 +6,7 @@ public class Servico {
     private int idServico;
     private String nomeServico;
     private double preco;
+    private String observacao;
 
     public Servico() {
     }
@@ -38,4 +39,14 @@ public class Servico {
     public void setPreco(double preco) {
         this.preco = preco;
     }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+
 }

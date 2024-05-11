@@ -7,14 +7,13 @@
 <% Casamento casamento = (Casamento) session.getAttribute("casamento"); %>
 
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slide.js">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/js/home.js">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">

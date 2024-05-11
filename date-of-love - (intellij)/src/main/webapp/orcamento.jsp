@@ -37,7 +37,7 @@
     <%@ include file="/componente/header.jsp" %>
 
     <div class="budget-container">
-        <h3>Orçamento</h3>
+        <h3>Orçamento - ${orcamento.getIdOrcamento()}</h3>
         <h3>Serviços</h3>
         <table>
             <tr>

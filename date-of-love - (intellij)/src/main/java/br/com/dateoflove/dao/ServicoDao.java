@@ -28,6 +28,7 @@ public class ServicoDao {
                     servico.setIdServico(rs.getInt("id_servico"));
                     servico.setNomeServico(rs.getString("nm_servico"));
                     servico.setPreco(rs.getDouble("vl_preco"));
+                    servico.setObservacao(rs.getString("ds_servico"));
                 }
             }
         } catch (SQLException e) {
@@ -49,6 +50,7 @@ public class ServicoDao {
                 servico.setIdServico(rs.getInt("id_servico"));
                 servico.setNomeServico(rs.getString("nm_servico"));
                 servico.setPreco(rs.getDouble("vl_preco"));
+                servico.setObservacao(rs.getString("ds_servico"));
                 servicos.add(servico);
             }
         } catch (SQLException e) {

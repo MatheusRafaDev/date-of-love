@@ -2,10 +2,8 @@ package br.com.dateoflove.servlet;
 
 import br.com.dateoflove.dao.DetalheOrcamentoDao;
 import br.com.dateoflove.dao.OrcamentosDao;
-import br.com.dateoflove.model.Casamento;
-import br.com.dateoflove.model.DetalheOrcamento;
-import br.com.dateoflove.model.Orcamentos;
-import br.com.dateoflove.model.Usuario;
+import br.com.dateoflove.dao.ServicoDao;
+import br.com.dateoflove.model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,7 +47,6 @@ public class CriarOrcamentoServlet extends HttpServlet {
 
         Orcamentos orcamento = new Orcamentos();
         OrcamentosDao orcamentosDao = new OrcamentosDao();
-
 
         orcamento.setIdCasamento(casamento.getIdCasamento());
         orcamento.setIdUsuario(usuario.getIdUsuario());
@@ -108,31 +105,37 @@ public class CriarOrcamentoServlet extends HttpServlet {
         detalheOrcamento.setCompleto(bolos);
         detalheOrcamento.setIncluso(false);
 
+        Servico servico = new Servico();
+        ServicoDao servicoDao = new ServicoDao();
+
         detalheOrcamentoDAO.criarDetalheOrcamento(detalheOrcamento);
+        servico  = servicoDao.encontrarServicoPorId(6);
 
         detalheOrcamento.setIdOrcamento(orcamento.getIdOrcamento());
         detalheOrcamento.setIdServico(6);
         detalheOrcamento.setQuantidade(1);
         detalheOrcamento.setPrecoEditavel(0);
-        detalheOrcamento.setObservacaoServico("Profissional para coordenar todos os detalhes no dia do evento.");
+        detalheOrcamento.setObservacaoServico(servico.getObservacao());
         detalheOrcamento.setIncluso(true);
 
         detalheOrcamentoDAO.criarDetalheOrcamento(detalheOrcamento);
+        servico  = servicoDao.encontrarServicoPorId(7);
 
         detalheOrcamento.setIdOrcamento(orcamento.getIdOrcamento());
         detalheOrcamento.setIdServico(7);
         detalheOrcamento.setQuantidade(1);
         detalheOrcamento.setPrecoEditavel(0);
-        detalheOrcamento.setObservacaoServico("Profissional para coordenar todos os detalhes no dia do evento.");
+        detalheOrcamento.setObservacaoServico(servico.getObservacao());
         detalheOrcamento.setIncluso(true);
 
         detalheOrcamentoDAO.criarDetalheOrcamento(detalheOrcamento);
+        servico  = servicoDao.encontrarServicoPorId(8);
 
         detalheOrcamento.setIdOrcamento(orcamento.getIdOrcamento());
         detalheOrcamento.setIdServico(8);
         detalheOrcamento.setQuantidade(1);
         detalheOrcamento.setPrecoEditavel(0);
-        detalheOrcamento.setObservacaoServico("Espaço amplo e bem decorado para a realização da cerimônia e recepção.");
+        detalheOrcamento.setObservacaoServico(servico.getObservacao());
         detalheOrcamento.setIncluso(true);
 
         detalheOrcamentoDAO.criarDetalheOrcamento(detalheOrcamento);
