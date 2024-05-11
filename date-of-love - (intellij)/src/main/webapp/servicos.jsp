@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços</title>
     <link rel="stylesheet" href="./css/servicos.css">
-    <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Allison&family=Architects+Daughter&display=swap" rel="stylesheet">

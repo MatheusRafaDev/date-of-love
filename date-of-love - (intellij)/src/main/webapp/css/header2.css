@@ -91,7 +91,7 @@ nav a {
     font-size: 16px;
 }
 
-.login button {
+.login {
     color: black;
     text-decoration: none;
     font-family: 'Quicksand', sans-serif;
@@ -101,10 +101,7 @@ nav a {
     padding: 8px 18px;
     border-radius: 10px;
     border: none;
-}
-
-.login button:hover {
-    background-color: #75b0e0;
+    margin-left: 15px;
 }
 
 .login:hover {
