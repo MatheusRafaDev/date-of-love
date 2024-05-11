@@ -40,6 +40,7 @@ CREATE TABLE tb_orcamentos (
     ds_observacao TEXT,
     nm_orcador VARCHAR(100),
     vl_total DECIMAL(10, 2),
+    tg_aprovado BOOLEAN,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario),
     FOREIGN KEY (id_casamento) REFERENCES tb_casamento(id_casamento)
 );
