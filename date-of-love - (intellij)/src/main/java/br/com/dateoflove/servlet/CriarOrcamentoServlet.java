@@ -34,6 +34,10 @@ public class CriarOrcamentoServlet extends HttpServlet {
         String servico4 = req.getParameter("servico4");
         String servico5 = req.getParameter("servico5");
 
+        String servico6 = req.getParameter("servico6");
+        String servico7 = req.getParameter("servico7");
+        String servico8 = req.getParameter("servico8");
+
         boolean cardapio = servico1 != null && servico1.equals("simples");
         boolean flores = servico2 != null && servico2.equals("simples");
         boolean bebidas = servico3 != null && servico3.equals("simples");
@@ -62,6 +66,7 @@ public class CriarOrcamentoServlet extends HttpServlet {
         detalheOrcamento.setPrecoEditavel(0);
         detalheOrcamento.setObservacaoServico("");
         detalheOrcamento.setCompleto(cardapio);
+        detalheOrcamento.setIncluso(false);
 
         detalheOrcamentoDAO.criarDetalheOrcamento(detalheOrcamento);
 
@@ -71,6 +76,7 @@ public class CriarOrcamentoServlet extends HttpServlet {
         detalheOrcamento.setPrecoEditavel(0);
         detalheOrcamento.setObservacaoServico("");
         detalheOrcamento.setCompleto(flores);
+        detalheOrcamento.setIncluso(false);
 
         detalheOrcamentoDAO.criarDetalheOrcamento(detalheOrcamento);
 
@@ -80,6 +86,7 @@ public class CriarOrcamentoServlet extends HttpServlet {
         detalheOrcamento.setPrecoEditavel(0);
         detalheOrcamento.setObservacaoServico("");
         detalheOrcamento.setCompleto(bebidas);
+        detalheOrcamento.setIncluso(false);
 
         detalheOrcamentoDAO.criarDetalheOrcamento(detalheOrcamento);
 
@@ -89,6 +96,7 @@ public class CriarOrcamentoServlet extends HttpServlet {
         detalheOrcamento.setPrecoEditavel(0);
         detalheOrcamento.setObservacaoServico("");
         detalheOrcamento.setCompleto(doces);
+        detalheOrcamento.setIncluso(false);
 
         detalheOrcamentoDAO.criarDetalheOrcamento(detalheOrcamento);
 
@@ -98,8 +106,37 @@ public class CriarOrcamentoServlet extends HttpServlet {
         detalheOrcamento.setPrecoEditavel(0);
         detalheOrcamento.setObservacaoServico("");
         detalheOrcamento.setCompleto(bolos);
+        detalheOrcamento.setIncluso(false);
 
         detalheOrcamentoDAO.criarDetalheOrcamento(detalheOrcamento);
+
+        detalheOrcamento.setIdOrcamento(orcamento.getIdOrcamento());
+        detalheOrcamento.setIdServico(6);
+        detalheOrcamento.setQuantidade(1);
+        detalheOrcamento.setPrecoEditavel(0);
+        detalheOrcamento.setObservacaoServico("Profissional para coordenar todos os detalhes no dia do evento.");
+        detalheOrcamento.setIncluso(true);
+
+        detalheOrcamentoDAO.criarDetalheOrcamento(detalheOrcamento);
+
+        detalheOrcamento.setIdOrcamento(orcamento.getIdOrcamento());
+        detalheOrcamento.setIdServico(7);
+        detalheOrcamento.setQuantidade(1);
+        detalheOrcamento.setPrecoEditavel(0);
+        detalheOrcamento.setObservacaoServico("Profissional para coordenar todos os detalhes no dia do evento.");
+        detalheOrcamento.setIncluso(true);
+
+        detalheOrcamentoDAO.criarDetalheOrcamento(detalheOrcamento);
+
+        detalheOrcamento.setIdOrcamento(orcamento.getIdOrcamento());
+        detalheOrcamento.setIdServico(8);
+        detalheOrcamento.setQuantidade(1);
+        detalheOrcamento.setPrecoEditavel(0);
+        detalheOrcamento.setObservacaoServico("Espaço amplo e bem decorado para a realização da cerimônia e recepção.");
+        detalheOrcamento.setIncluso(true);
+
+        detalheOrcamentoDAO.criarDetalheOrcamento(detalheOrcamento);
+
 
         OrcamentosDao orcamentoDao = new OrcamentosDao();
         List<Orcamentos> listaOrcamentos = orcamentoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());

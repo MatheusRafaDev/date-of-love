@@ -11,8 +11,8 @@ public class DetalheOrcamentoDao {
 
     public void criarDetalheOrcamento(DetalheOrcamento detalheOrcamento) {
         try {
-            String SQL = "INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo,tg_incluso) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
@@ -22,6 +22,7 @@ public class DetalheOrcamentoDao {
             preparedStatement.setDouble(4, detalheOrcamento.getPrecoEditavel());
             preparedStatement.setString(5, detalheOrcamento.getObservacaoServico());
             preparedStatement.setBoolean(6, detalheOrcamento.isCompleto());
+            preparedStatement.setBoolean(7, detalheOrcamento.isIncluso());
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -44,7 +45,7 @@ public class DetalheOrcamentoDao {
 
     public List<DetalheOrcamento> encontrarTodosDetalhesOrcamento() {
         try {
-            String SQL = "SELECT * FROM tb_detalhes_orcamento";
+            String SQL = "SELECT * FROM tb_detalhes_orcamento ";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -58,8 +59,9 @@ public class DetalheOrcamentoDao {
                 double preco = resultSet.getDouble("vl_preco_editavel");
                 String observacaoServico = resultSet.getString("ds_observacao_servico");
                 boolean completo = resultSet.getBoolean("tg_completo");
+                boolean incluso = resultSet.getBoolean("tg_incluso");
 
-                DetalheOrcamento detalheOrcamento = new DetalheOrcamento(idDetalheOrcamento, idOrcamento, idServico, quantidade, preco, observacaoServico, completo);
+                DetalheOrcamento detalheOrcamento = new DetalheOrcamento(idDetalheOrcamento, idOrcamento, idServico, quantidade, preco, observacaoServico, completo,incluso);
                 detalhesOrcamento.add(detalheOrcamento);
             }
 
@@ -88,7 +90,7 @@ public class DetalheOrcamentoDao {
     public List<DetalheOrcamento> encontrarDetalhesOrcamentoPorIdOrcamento(int idOrcamento) {
         List<DetalheOrcamento> detalhesOrcamento = new ArrayList<>();
         try {
-            String SQL = "SELECT * FROM tb_detalhes_orcamento WHERE id_orcamento = ?";
+            String SQL = "SELECT * FROM tb_detalhes_orcamento WHERE id_orcamento = ? AND TG_INCLUSO = FALSE";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idOrcamento);
@@ -101,8 +103,37 @@ public class DetalheOrcamentoDao {
                 double preco = resultSet.getDouble("vl_preco_editavel");
                 String observacaoServico = resultSet.getString("ds_observacao_servico");
                 boolean completo = resultSet.getBoolean("tg_completo");
+                boolean incluso = resultSet.getBoolean("tg_incluso");
 
-                DetalheOrcamento detalheOrcamento = new DetalheOrcamento(idDetalheOrcamento, idOrcamento, idServico, quantidade, preco, observacaoServico, completo);
+                DetalheOrcamento detalheOrcamento = new DetalheOrcamento(idDetalheOrcamento, idOrcamento, idServico, quantidade, preco, observacaoServico, completo,incluso);
+                detalhesOrcamento.add(detalheOrcamento);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return detalhesOrcamento;
+    }
+
+    public List<DetalheOrcamento> encontrarDetalhesOrcamentoPorIdOrcamento2(int idOrcamento) {
+        List<DetalheOrcamento> detalhesOrcamento = new ArrayList<>();
+        try {
+            String SQL = "SELECT * FROM tb_detalhes_orcamento WHERE id_orcamento = ? AND TG_INCLUSO = TRUE";
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, idOrcamento);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int idDetalheOrcamento = resultSet.getInt("id_detalhe_orcamento");
+                int idServico = resultSet.getInt("id_servico");
+                int quantidade = resultSet.getInt("nr_quantidade");
+                double preco = resultSet.getDouble("vl_preco_editavel");
+                String observacaoServico = resultSet.getString("ds_observacao_servico");
+                boolean completo = resultSet.getBoolean("tg_completo");
+                boolean incluso = resultSet.getBoolean("tg_incluso");
+
+                DetalheOrcamento detalheOrcamento = new DetalheOrcamento(idDetalheOrcamento, idOrcamento, idServico, quantidade, preco, observacaoServico, completo,incluso);
                 detalhesOrcamento.add(detalheOrcamento);
             }
 

@@ -60,42 +60,30 @@
         </table>
 
         <h3>Outros Serviços Já Inclusos</h3>
-        <table>
-            <tr>
-                <th>Serviço</th>
-                <th>Observações</th>
-                <th>Pacote</th>
-            </tr>
-            <tr>
-                <td>DJ</td>
-                <td>DJ com seleção de músicas personalizada de acordo com o estilo desejado.</td>
-                <td>
-                        <label>
-                            <input type="checkbox" name="menu6" checked disabled>
-                            Incluso no Pacote
-                        </label>
-                </td>
-            </tr>
-            <tr>
-                <td>Coordenação do Dia</td>
-                <td>Profissional para coordenar todos os detalhes no dia do evento.</td>
-                 <td>
-                        <label>
-                            <input type="checkbox" name="menu6" checked disabled>
-                            Incluso no Pacote
-                        </label>
-                </td>
-            </tr>
-            <tr>
-                <td>Espaço</td>
-                <td>Espaço amplo e bem decorado para a realização da cerimônia e recepção.</td>
-                 <td>
-                        <label>
-                            <input type="checkbox" name="menu6" checked disabled>
-                            Incluso no Pacote
-                        </label>
-                </td>
-            </tr>
+            <table>
+
+                <tr>
+                    <th>Serviço</th>
+                    <th>Observações</th>
+                    <th>Pacote</th>
+                    <th>Valor</th>
+                </tr>
+
+                <c:forEach var="detalhe2" items="${detalheorcamento2}">
+                     <c:set var="servico" value="${servicoDao.encontrarServicoPorId(detalhe2.idServico)}" />
+                     <tr>
+                         <td><c:out value="${servico.getNomeServico()}" /></td>
+                         <td>${detalhe2.getObservacaoServico()}</td>
+                         <td>
+                            <label>
+                                <input type="checkbox" name="menu6" checked disabled>
+                                Incluso no Pacote
+                            </label>
+                            </td>
+                            <td>R$ ${detalhe2.getPrecoEditavel()}</td>
+                    </tr>
+
+                </c:forEach>
         </table>
 
 

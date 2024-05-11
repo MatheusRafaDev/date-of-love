@@ -8,11 +8,12 @@ public class DetalheOrcamento {
     private double precoEditavel;
     private String observacaoServico;
     private boolean completo;
+    private boolean incluso;
 
     public DetalheOrcamento() {
     }
 
-    public DetalheOrcamento(int idDetalheOrcamento, int idOrcamento, int idServico, int quantidade, double precoEditavel, String observacaoServico, boolean completo) {
+    public DetalheOrcamento(int idDetalheOrcamento, int idOrcamento, int idServico, int quantidade, double precoEditavel, String observacaoServico, boolean completo,boolean incluso) {
         this.idDetalheOrcamento = idDetalheOrcamento;
         this.idOrcamento = idOrcamento;
         this.idServico = idServico;
@@ -20,6 +21,7 @@ public class DetalheOrcamento {
         this.precoEditavel = precoEditavel;
         this.observacaoServico = observacaoServico;
         this.completo = completo;
+        this.incluso = incluso;
     }
 
     public int getIdDetalheOrcamento() {
@@ -78,7 +80,14 @@ public class DetalheOrcamento {
         this.completo = completo;
     }
 
-    // Método para verificar se o detalhe do orçamento é editável
+    public boolean isIncluso() {
+        return incluso;
+    }
+
+    public void setIncluso(boolean incluso) {
+        this.incluso = incluso;
+    }
+
     public boolean isEditavel() {
         return !completo;
     }

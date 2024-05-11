@@ -84,29 +84,39 @@
 
                 <h3>Ja incluso no Pacote</h3>
                 <table class="checklist-table">
+
+                 <tr>
+                    <th>Serviço</th>
+                    <th>Descrição</th>
+                    <th>Opções</th>
+                 </tr>
+
                 <tr>
                     <td>Espaço com Mobiliário</td>
+                    <td> DJ com seleção de músicas personalizada de acordo com o estilo desejado.</td>
                     <td>
                             <label>
-                                <input type="checkbox" name="menu6" checked disabled>
+                                <input type="checkbox" name="servico6" checked disabled>
                                 Incluso no Pacote
                             </label>
                     </td>
                 </tr>
                 <tr>
                     <td>Coordenação do Dia</td>
+                    <td>Profissional para coordenar todos os detalhes no dia do evento.</td>
                     <td>
                         <label>
-                            <input type="checkbox" name="menu7" checked disabled>
+                            <input type="checkbox" name="servico7" checked disabled>
                             Incluso no Pacote
                         </label>
                     </td>
                 </tr>
                 <tr>
                     <td>DJ</td>
+                    <td>Espaço amplo e bem decorado para a realização da cerimônia e recepção.</td>
                     <td>
                         <label>
-                            <input type="checkbox" name="menu8" checked disabled>
+                            <input type="checkbox" name="servico8" checked disabled>
                             Incluso no Pacote
                         </label>
                     </td>
@@ -119,7 +129,7 @@
             <button type="submit" class="criar-button">Criar Orçamento</button>
          </form>
 
-         <button class="detalhes" href="/servicos.jsp" >Detalhes</button>
+         <a class="detalhes" href="/servicos.jsp" >Detalhes</a>
     </div>
 </body>
 </html>
