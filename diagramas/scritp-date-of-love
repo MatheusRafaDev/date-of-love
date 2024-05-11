@@ -52,6 +52,7 @@ CREATE TABLE tb_detalhes_orcamento (
     vl_preco_editavel DECIMAL(10, 2),
     ds_observacao_servico TEXT,
     tg_completo BOOLEAN,
+    tg_incluso BOOLEAN,
     FOREIGN KEY (id_orcamento) REFERENCES tb_orcamentos(id_orcamento),
     FOREIGN KEY (id_servico) REFERENCES tb_servicos(id_servico)
 );
@@ -62,5 +63,7 @@ INSERT INTO tb_servicos (nm_servico, vl_preco) VALUES
 ('Flores e Decoração', 500.00),
 ('Bebidas', 300.00),
 ('Doces e Bem Casados', 400.00),
-('Bolos', 200.00);
-
+('Bolos', 200.00),
+('DJ', 200.00),
+('Coordenação do Dia', 500.00),
+('Espaço', 2500.00);
