@@ -66,3 +66,40 @@ INSERT INTO tb_servicos (nm_servico, ds_servico, vl_preco) VALUES
 ('DJ', 'Serviço de DJ para animar a festa de casamento.', 800.00),
 ('Coordenação do Dia', 'Coordenação do dia do casamento para garantir que tudo ocorra conforme o planejado.', 500.00),
 ('Espaço', 'Locação de espaço para realização da cerimônia e festa de casamento.', 2500.00);
+
+-- ALEXANDRE QUE FEZ ABAIXO
+
+-- Inserindo os Usuarios
+
+INSERT INTO tb_usuarios (nm_noivo, nm_noiva, ds_email, ds_senha, dt_cadastro, nm_noivos_concatenado, imagem_path)
+VALUES
+('João', 'Maria', 'joao.maria@example.com', '1234', '2024-01-15', '', ''),
+('Pedro', 'Ana', 'pedro.ana@example.com', '1234', '2024-02-20', '', '');
+
+-- Inserindo as Ibnformação Casamentos
+INSERT INTO tb_casamento (id_usuario, dt_casamento, ds_localidade, nr_convidados, ds_estilo_festa)
+VALUES
+((SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'João' AND nm_noiva = 'Maria' LIMIT 1), '2024-07-20', 'Praia', 100, 'Descontraído'),
+((SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'Pedro' AND nm_noiva = 'Ana' LIMIT 1), '2024-09-10', 'Campo', 150, 'Rústico');
+
+-- Inserindo os Orçamentos
+INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, vl_total, tg_aprovado)
+VALUES
+((SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'João' AND nm_noiva = 'Maria' LIMIT 1),
+(SELECT id_casamento FROM tb_casamento WHERE id_usuario = (SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'João' AND nm_noiva = 'Maria' LIMIT 1) LIMIT 1),
+'2024-05-12', 'Pendente', 'Sem observações', 'Xande', 2500.00, false),
+((SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'Pedro' AND nm_noiva = 'Ana' LIMIT 1),
+(SELECT id_casamento FROM tb_casamento WHERE id_usuario = (SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'Pedro' AND nm_noiva = 'Ana' LIMIT 1) LIMIT 1),
+'2024-05-13', 'Pendente', 'Sem observações', 'Ttheu', 1800.00, false);
+
+-- Inserindo os Detalhes orçamento
+INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso)
+VALUES
+((SELECT MAX(id_orcamento) FROM tb_orcamentos WHERE id_usuario = (SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'João' AND nm_noiva = 'Maria' LIMIT 1)),
+1, 1, 1000.00, 'Cardápio personalizado', false, true),
+((SELECT MAX(id_orcamento) FROM tb_orcamentos WHERE id_usuario = (SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'João' AND nm_noiva = 'Maria' LIMIT 1)),
+2, 1, 1500.00, 'Decoração floral', false, true),
+((SELECT MAX(id_orcamento) FROM tb_orcamentos WHERE id_usuario = (SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'Pedro' AND nm_noiva = 'Ana' LIMIT 1)),
+1, 1, 1000.00, 'Cardápio personalizado', false, true),
+((SELECT MAX(id_orcamento) FROM tb_orcamentos WHERE id_usuario = (SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'Pedro' AND nm_noiva = 'Ana' LIMIT 1)),
+6, 1, 800.00, 'Serviço de DJ', false, true);
