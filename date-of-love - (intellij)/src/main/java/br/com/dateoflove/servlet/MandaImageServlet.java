@@ -1,5 +1,6 @@
 package br.com.dateoflove.servlet;
 
+import br.com.dateoflove.dao.UsuarioDao;
 import br.com.dateoflove.model.Usuario;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -16,25 +17,22 @@ import java.io.File;
 import java.util.Map;
 import java.util.Date;
 
-@WebServlet("/manda-imagem")
+@WebServlet("/mandar-imagem")
 public class MandaImageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        System.out.println("teste");
-
         Map<String, String> parameters = uploadImage(req);
 
         String ImagePath = parameters.get("image");
-        String idString = req.getParameter("id_usuario");
-
-        System.out.println(ImagePath);
-        System.out.println( idString);
+        String idString = parameters.get("id_usuario");
 
         int idUsuario = Integer.parseInt(idString);
 
         Usuario usuario = new Usuario(idUsuario, ImagePath);
+
+        new UsuarioDao().atualizarImagePath(usuario);
 
         resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
     }

@@ -1,6 +1,7 @@
 package br.com.dateoflove.dao;
 
 
+import br.com.dateoflove.config.PollConfig;
 import br.com.dateoflove.funcao.Email;
 import br.com.dateoflove.model.Usuario;
 
@@ -218,6 +219,31 @@ import java.util.List;
                 connection.close();
             } catch (SQLException e) {
                 System.out.println("Erro ao buscar usuário por ID: " + e.getMessage());
+            }
+            return usuario;
+        }
+
+        public Usuario atualizarImagePath(Usuario usuario) {
+            try {
+                String SQL = "UPDATE tb_usuarios SET imagem_path = ? WHERE id_usuario = ?";
+                Connection connection = PollConfig.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+                preparedStatement.setString(1, usuario.getImagem());
+                preparedStatement.setInt(2, usuario.getIdUsuario());
+
+                int linhasAfetadas = preparedStatement.executeUpdate();
+
+                if (linhasAfetadas == 1) {
+                    System.out.println("Image path atualizado com sucesso para o usuário com ID: " + usuario.getIdUsuario());
+                    usuario.setImagem(usuario.getImagem());
+                } else {
+                    System.out.println("Falha ao atualizar o image path para o usuário com ID: " + usuario.getIdUsuario());
+                }
+
+                connection.close();
+            } catch (Exception e) {
+                System.out.println("Erro ao atualizar o image path: " + e.getMessage());
             }
             return usuario;
         }

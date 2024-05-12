@@ -16,8 +16,11 @@
 
 .img-cabecalho {
     width: 100px;
-    border-radius: 30px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
 }
+
 
 .id,
 .nomeCasal2

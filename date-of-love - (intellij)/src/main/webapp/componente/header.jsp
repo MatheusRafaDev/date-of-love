@@ -8,6 +8,12 @@
     Usuario usuario2 = (Usuario) session.getAttribute("usuario");
 %>
 
+<%
+    String imagemPath = usuario2.getImagem();
+    String defaultImagePath = request.getContextPath() + "/src/assets/images/casal.png";
+    String finalImagePath = (imagemPath != null && !imagemPath.isEmpty()) ? request.getContextPath() + imagemPath : defaultImagePath;
+%>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,8 +36,7 @@
                 <div class="user-items">
                     <input type="text" id="id" name="id" value="${usuario.getIdUsuario()}" style="display: none;">
                     <button type="submit" class="nomeCasal"><%= usuario2.getNomesConcatenados() %></button>
-                    <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Foto do Usuário">
-                </div>
+                    <img src="<%= finalImagePath %>" alt="Foto do Usuário">  </div>
             </form>
             <form action="${pageContext.request.contextPath}/sair" method="GET">
                 <button type="submit" class="nomeCasal">Sair</button>

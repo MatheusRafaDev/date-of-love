@@ -13,8 +13,11 @@
     }
 
     Casamento casamento = (Casamento) session.getAttribute("casamento");
-%>
 
+    String imagemPath2 = usuario.getImagem();
+    String defaultImagePath2 = request.getContextPath() + "/src/assets/images/casal.png";
+    String finalImagePath2 = (imagemPath2 != null && !imagemPath2.isEmpty()) ? request.getContextPath() + imagemPath2 : defaultImagePath2;
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,19 +40,19 @@
                     <div class="card-body">
                         <div class="profile-info">
                             <div class="img-container">
-                                <img src="<%=request.getContextPath()%>/src/assets/images/casal.png" alt="Imagem do Casal" class="img-cabecalho">
+                                <img src="<%= finalImagePath2 %>" alt="Imagem do Casal" class="img-cabecalho">
                                 <div class="nomeCasal2" ><%= usuario.getNomesConcatenados() %></div>
 
                                 <div class="id">Id: <%= usuario.getIdUsuario() %></div>
 
-                                <form action="/mandar-imagem" method="post" enctype="multipart/form-data">
+                                <form action="${pageContext.request.contextPath}/mandar-imagem" method="post" enctype="multipart/form-data">
                                     <div>
+                                        <input style="display: none;" name="id_usuario" id="id_usuario" value="<%= usuario.getIdUsuario() %>">
                                         <label for="image"></label>
                                         <input type="file"name="image" id="image">
                                         <button type="submit" id="btnSalvar" class="btn-salvar">Salvar</button>
                                     </div>
 
-                                    <input style="display: none;" name="id_usuario" id="id_usuario" value="<%= usuario.getIdUsuario() %>">
 
                                 </form>
                             </div>
