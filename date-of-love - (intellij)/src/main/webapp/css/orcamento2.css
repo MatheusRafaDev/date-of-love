@@ -21,6 +21,7 @@ h3 {
     margin-top: 20px;
     margin-bottom: 10px;
     font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
 }
 
 table {
@@ -58,3 +59,39 @@ textarea {
 textarea {
     resize: vertical;
 }
+
+.budget-container2 {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.budget-container2 h4 {
+    margin: 0;
+    color: #343a40;
+    font-size: 18px;
+}
+
+
+.aprovar {
+    background-color: #D4EAFF;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.aprovar:hover {
+    background-color: #0056b3;
+    color: white;
+}
+

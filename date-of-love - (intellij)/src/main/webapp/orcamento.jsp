@@ -28,7 +28,7 @@
     <link rel="stylesheet" href=,"https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/orcamento.css">
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/orcamento2.css">
     <title>Visualizar Orçamento</title>
 </head>
 
@@ -36,7 +36,13 @@
     <%@ include file="/componente/header.jsp" %>
 
     <div class="budget-container">
-        <h3>Orçamento - ${orcamento.getIdOrcamento()}</h3>
+        <div class="budget-container2">
+            <h4>Orçamento - ${orcamento.getIdOrcamento()}</h4>
+            <h4>Valor Total: R$ ${orcamento.getValorTotal()}</h4>
+            <h4>Orçador: ${orcamento.getNomeOrcador()}</h4>
+            <h4>Status: ${orcamento.getStatus()}</h4>
+        </div>
+
         <h3>Serviços</h3>
         <table>
             <tr>
@@ -59,36 +65,33 @@
         </table>
 
         <h3>Outros Serviços Já Inclusos</h3>
-            <table>
-
+        <table>
+            <tr>
+                <th>Serviço</th>
+                <th>Observações</th>
+                <th>Valor</th>
+            </tr>
+            <c:forEach var="detalhe2" items="${detalheorcamento2}">
+                <c:set var="servico" value="${servicoDao.encontrarServicoPorId(detalhe2.idServico)}" />
                 <tr>
-                    <th>Serviço</th>
-                    <th>Observações</th>
-                    <th>Pacote</th>
-                    <th>Valor</th>
+                    <td><c:out value="${servico.getNomeServico()}" /></td>
+                    <td>${detalhe2.getObservacaoServico()}</td>
+                    <td>R$ ${detalhe2.getPrecoEditavel()}</td>
                 </tr>
-
-                <c:forEach var="detalhe2" items="${detalheorcamento2}">
-                     <c:set var="servico" value="${servicoDao.encontrarServicoPorId(detalhe2.idServico)}" />
-                     <tr>
-                         <td><c:out value="${servico.getNomeServico()}" /></td>
-                         <td>${detalhe2.getObservacaoServico()}</td>
-                         <td>
-                            <label>
-                                <input type="checkbox" name="menu6" checked disabled>
-                                Incluso no Pacote
-                            </label>
-                            </td>
-                            <td>R$ ${detalhe2.getPrecoEditavel()}</td>
-                    </tr>
-
-                </c:forEach>
+            </c:forEach>
         </table>
-
 
         <h3>Observações Gerais</h3>
         <p><%= orcamento.getObservacao() %></p>
-    </div>
 
+        <c:if test="${!orcamento.getAprovado() && orcamento.getStatus().equals('Esperando Aprovação')}">
+           <form action="aprovar-orcamento" method="POST">
+              <input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}">
+              <input type="hidden" id="idUsuario" name="idUsuario" value="${usuario.getIdUsuario()}">
+              <button type="submit" class="aprovar">Aprovar Orçamento</button>
+           </form>
+       </c:if>
+
+    </div>
 </body>
 </html>

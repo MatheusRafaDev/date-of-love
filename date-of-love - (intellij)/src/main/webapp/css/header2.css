@@ -102,6 +102,8 @@ nav a {
     border-radius: 10px;
     border: none;
     margin-left: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .login:hover {

@@ -114,7 +114,7 @@ public class CriarOrcamentoServlet extends HttpServlet {
         detalheOrcamento.setIdOrcamento(orcamento.getIdOrcamento());
         detalheOrcamento.setIdServico(6);
         detalheOrcamento.setQuantidade(1);
-        detalheOrcamento.setPrecoEditavel(0);
+        detalheOrcamento.setPrecoEditavel(servico.getPreco());
         detalheOrcamento.setObservacaoServico(servico.getObservacao());
         detalheOrcamento.setIncluso(true);
 
@@ -124,7 +124,7 @@ public class CriarOrcamentoServlet extends HttpServlet {
         detalheOrcamento.setIdOrcamento(orcamento.getIdOrcamento());
         detalheOrcamento.setIdServico(7);
         detalheOrcamento.setQuantidade(1);
-        detalheOrcamento.setPrecoEditavel(0);
+        detalheOrcamento.setPrecoEditavel(servico.getPreco());
         detalheOrcamento.setObservacaoServico(servico.getObservacao());
         detalheOrcamento.setIncluso(true);
 
@@ -134,7 +134,7 @@ public class CriarOrcamentoServlet extends HttpServlet {
         detalheOrcamento.setIdOrcamento(orcamento.getIdOrcamento());
         detalheOrcamento.setIdServico(8);
         detalheOrcamento.setQuantidade(1);
-        detalheOrcamento.setPrecoEditavel(0);
+        detalheOrcamento.setPrecoEditavel(servico.getPreco());
         detalheOrcamento.setObservacaoServico(servico.getObservacao());
         detalheOrcamento.setIncluso(true);
 

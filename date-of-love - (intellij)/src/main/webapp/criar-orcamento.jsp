@@ -18,6 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/criar-orcamento.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <title>Criar Orçamento</title>
@@ -123,13 +124,15 @@
                 </tr>
             </table>
 
+            <a class="detalhes" href="/servicos.jsp" >Detalhes</a>
+
             <h3>Observações Gerais</h3>
             <textarea rows="7" cols="50" name="observacao"></textarea>
 
             <button type="submit" class="criar-button">Criar Orçamento</button>
          </form>
 
-         <a class="detalhes" href="/servicos.jsp" >Detalhes</a>
+
     </div>
 </body>
 </html>

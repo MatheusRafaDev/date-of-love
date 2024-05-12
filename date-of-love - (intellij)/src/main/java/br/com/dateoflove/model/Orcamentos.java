@@ -11,12 +11,13 @@ public class Orcamentos {
     private String observacao;
     private String nomeOrcador;
     private double valorTotal;
+    private boolean Aprovado;
 
     public Orcamentos() {
         super();
     }
 
-    public Orcamentos(int idOrcamento, int idUsuario, int idCasamento, Date dataOrcamento, String status, String observacao, String nomeOrcador, double valorTotal) {
+    public Orcamentos(int idOrcamento, int idUsuario, int idCasamento, Date dataOrcamento, String status, String observacao, String nomeOrcador, double valorTotal,boolean Aprovado) {
         this.idOrcamento = idOrcamento;
         this.idUsuario = idUsuario;
         this.idCasamento = idCasamento;
@@ -25,6 +26,7 @@ public class Orcamentos {
         this.observacao = observacao;
         this.nomeOrcador = nomeOrcador;
         this.valorTotal = valorTotal;
+        this.Aprovado = Aprovado;
     }
 
 
@@ -91,5 +93,13 @@ public class Orcamentos {
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public boolean getAprovado() {
+        return Aprovado;
+    }
+
+    public void setAprovado(boolean Aprovador) {
+        this.Aprovado = Aprovado;
     }
 }

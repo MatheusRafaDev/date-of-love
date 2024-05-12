@@ -16,7 +16,7 @@
     <title>Ajuda</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ajuda.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/AjudaFAQ.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ajudaFAQ.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
 
 </head>
@@ -70,9 +70,6 @@
 
     </div>
 
-
-
-    
         <script>
             function toggleAnswer(element) {
                 const answer = element.nextElementSibling;

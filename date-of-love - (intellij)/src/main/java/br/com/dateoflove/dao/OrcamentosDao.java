@@ -1,6 +1,8 @@
 package br.com.dateoflove.dao;
 
 import br.com.dateoflove.model.Orcamentos;
+import br.com.dateoflove.funcao.Email;
+import br.com.dateoflove.model.Usuario;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -8,12 +10,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 public class OrcamentosDao {
 
     public Orcamentos criarOrcamento(Orcamentos orcamento) {
         try {
-            String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, vl_total) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, vl_total, tg_aprovado ) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
@@ -24,6 +27,7 @@ public class OrcamentosDao {
             preparedStatement.setString(5, orcamento.getObservacao());
             preparedStatement.setString(6, orcamento.getNomeOrcador());
             preparedStatement.setDouble(7, orcamento.getValorTotal());
+            preparedStatement.setBoolean(8, false);
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -32,6 +36,14 @@ public class OrcamentosDao {
                 if (chavesGeradas.next()) {
                     int idOrcamento = chavesGeradas.getInt(1);
                     orcamento.setIdOrcamento(idOrcamento);
+
+                    UsuarioDao usuarioDao = new UsuarioDao();
+                    Usuario usuario =  usuarioDao.buscarUsuarioPorId(orcamento.getIdUsuario());
+
+                    Email email = new Email("","",usuario.getEmail(),"","","");
+
+                    email.enviarOrcamentoPendente(orcamento,usuario);
+
                     System.out.println("Orçamento criado com sucesso! ID: " + idOrcamento);
                 } else {
                     System.out.println("Falha ao obter o ID do orçamento criado.");
@@ -112,7 +124,7 @@ public class OrcamentosDao {
                 orcamento.setObservacao(rs.getString("ds_observacao"));
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
-
+                orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
                 listaOrcamentos.add(orcamento);
             }
         } catch (SQLException e) {
@@ -169,6 +181,7 @@ public class OrcamentosDao {
                 orcamento.setObservacao(rs.getString("ds_observacao"));
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
+                orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
 
             }
         } catch (SQLException e) {
@@ -183,4 +196,35 @@ public class OrcamentosDao {
         return orcamento;
     }
 
+    public void aprovarOrcamento(int idOrcamento,int IdUsuario) {
+        try {
+            String SQL = "UPDATE tb_orcamentos SET tg_aprovado = true,ds_status ='Aprovado' WHERE id_orcamento = ?";
+
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, idOrcamento);
+
+            UsuarioDao usuarioDao = new UsuarioDao();
+            OrcamentosDao orcamentoDao = new OrcamentosDao();
+
+            System.out.println("teste");
+            System.out.println(IdUsuario);
+
+            Usuario usuario =  usuarioDao.buscarUsuarioPorId(IdUsuario);
+            Orcamentos orcamentos = orcamentoDao.buscarOrcamentoPorId(idOrcamento);
+
+            Email email = new Email("","",usuario.getEmail(),"","","");
+            email.enviarOrcamentoAprovado(orcamentos,usuario);
+
+            int linhasAfetadas = preparedStatement.executeUpdate();
+            if (linhasAfetadas == 1) {
+                System.out.println("Orçamento aprovado com sucesso!");
+            } else {
+                System.out.println("Falha ao aprovar o orçamento.");
+            }
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("Erro ao aprovar o orçamento: " + e.getMessage());
+        }
+    }
 }

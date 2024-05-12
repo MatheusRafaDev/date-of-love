@@ -1,6 +1,7 @@
 package br.com.dateoflove.dao;
 
 
+import br.com.dateoflove.funcao.Email;
 import br.com.dateoflove.model.Usuario;
 
 import java.sql.*;
@@ -27,11 +28,17 @@ import java.util.List;
 
                 int linhasAfetadas = preparedStatement.executeUpdate();
 
+
+
                 if (linhasAfetadas == 1) {
                     ResultSet chavesGeradas = preparedStatement.getGeneratedKeys();
                     if (chavesGeradas.next()) {
                         int idUsuario = chavesGeradas.getInt(1);
                         usuario.setIdUsuario(idUsuario);
+
+                        Email email = new Email("","",usuario.getEmail(),"","","");
+                        email.enviarBoasVindas(usuario);
+
                         System.out.println("Usuário criado com sucesso!");
                     } else {
                         System.out.println("Falha ao obter o ID do usuário.");
@@ -191,6 +198,8 @@ import java.util.List;
 
         public Usuario buscarUsuarioPorId(int idUsuario) {
             Usuario usuario = null;
+
+
             try {
                 String SQL = "SELECT * FROM tb_usuarios WHERE id_usuario = ?";
                 Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
