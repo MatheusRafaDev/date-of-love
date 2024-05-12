@@ -15,7 +15,7 @@ public class OrcamentosDao {
 
     public Orcamentos criarOrcamento(Orcamentos orcamento) {
         try {
-            String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, vl_total, tg_aprovado ) " +
+            String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, vl_total, tg_aprovado, ds_observacao_orcador ) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
@@ -28,6 +28,7 @@ public class OrcamentosDao {
             preparedStatement.setString(6, orcamento.getNomeOrcador());
             preparedStatement.setDouble(7, orcamento.getValorTotal());
             preparedStatement.setBoolean(8, false);
+            preparedStatement.setString(9, orcamento.getObservacaoOrcador());
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -115,6 +116,7 @@ public class OrcamentosDao {
                 orcamento.setDataOrcamento(rs.getDate("dt_orcamento"));
                 orcamento.setStatus(rs.getString("ds_status"));
                 orcamento.setObservacao(rs.getString("ds_observacao"));
+                orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
                 orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
@@ -172,6 +174,7 @@ public class OrcamentosDao {
                 orcamento.setDataOrcamento(rs.getDate("dt_orcamento"));
                 orcamento.setStatus(rs.getString("ds_status"));
                 orcamento.setObservacao(rs.getString("ds_observacao"));
+                orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
                 orcamento.setAprovado(rs.getBoolean("tg_aprovado"));

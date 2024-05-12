@@ -35,7 +35,7 @@ public class CriarUsuarioServlet extends HttpServlet {
         UsuarioDao usuarioDao = new UsuarioDao();
         CasamentoDao casamentoDao = new CasamentoDao();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
+        String imagem = req.getParameter("");
 
         int Convidados = Integer.parseInt(req.getParameter("num_convidados"));
         String dataCasamentoStr = req.getParameter("data_casamento");
@@ -74,7 +74,7 @@ public class CriarUsuarioServlet extends HttpServlet {
             return;
         }
 
-        Usuario usuario = new Usuario(0, nomeNoivo, nomeNoiva, email, senha, new Date(),  nomeNoivo + " & " + nomeNoiva);
+        Usuario usuario = new Usuario(0, nomeNoivo, nomeNoiva, email, senha, new Date(),  nomeNoivo + " & " + nomeNoiva,imagem);
         usuario = usuarioDao.criarUsuario(usuario);
 
         usuario = usuarioDao.buscarUsuarioPorEmail(email);

@@ -68,8 +68,9 @@ import java.util.List;
                     String senha = resultSet.getString("ds_senha");
                     java.util.Date dataCadastro = resultSet.getDate("dt_cadastro");
                     String nomesConcatenados = resultSet.getString("nm_noivos_concatenado");
+                    String imagem = resultSet.getString("imagem_path");
 
-                    Usuario usuario = new Usuario(idUsuario, nomeNoivo, nomeNoiva, email, senha, dataCadastro, nomesConcatenados);
+                    Usuario usuario = new Usuario(idUsuario, nomeNoivo, nomeNoiva, email, senha, dataCadastro, nomesConcatenados,imagem);
                     usuarios.add(usuario);
                 }
 
@@ -115,7 +116,7 @@ import java.util.List;
                     usuario.setSenha(rs.getString("ds_senha"));
                     usuario.setDataCadastro(rs.getDate("dt_cadastro"));
                     usuario.setNomesConcatenados(rs.getString("nm_noivos_concatenado"));
-
+                    usuario.setImagem(rs.getString("imagem_path"));
                 }
             } catch (SQLException e) {
                 System.out.println("Erro ao buscar usuário por email: " + e.getMessage());
@@ -211,7 +212,8 @@ import java.util.List;
                     java.util.Date dataCadastro = resultSet.getDate("dt_cadastro");
                     String nomesConcatenados = resultSet.getString("nm_noivos_concatenado");
 
-                    usuario = new Usuario(idUsuario, nomeNoivo, nomeNoiva, email, senha, dataCadastro, nomesConcatenados);
+                    String imagem = resultSet.getString("image_path");
+                    usuario = new Usuario(idUsuario, nomeNoivo, nomeNoiva, email, senha, dataCadastro, nomesConcatenados,imagem);
                 }
                 connection.close();
             } catch (SQLException e) {
