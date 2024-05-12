@@ -212,7 +212,7 @@ import java.util.List;
                     java.util.Date dataCadastro = resultSet.getDate("dt_cadastro");
                     String nomesConcatenados = resultSet.getString("nm_noivos_concatenado");
 
-                    String imagem = resultSet.getString("image_path");
+                    String imagem = resultSet.getString("imagem_path");
                     usuario = new Usuario(idUsuario, nomeNoivo, nomeNoiva, email, senha, dataCadastro, nomesConcatenados,imagem);
                 }
                 connection.close();

@@ -27,6 +27,11 @@ public class Usuario {
         this.imagem = imagem;
     }
 
+    public Usuario(int idUsuario,String imagem) {
+        this.idUsuario = idUsuario;
+        this.imagem = imagem;
+    }
+
 
     public int getIdUsuario() {
         return idUsuario;
