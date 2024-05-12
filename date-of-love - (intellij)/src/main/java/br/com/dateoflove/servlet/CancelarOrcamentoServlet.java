@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/aprovar-orcamento")
-public class AprovarOrcamentoServlet extends HttpServlet {
+@WebServlet("/cancelar")
+public class CancelarOrcamentoServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idOrcamentoStr = req.getParameter("idOrcamento");
@@ -27,13 +28,12 @@ public class AprovarOrcamentoServlet extends HttpServlet {
             int idUsuario = Integer.parseInt(idUsuarioStr);
 
             OrcamentosDao orcamentosDao = new OrcamentosDao();
-            orcamentosDao.aprovarOrcamento(idOrcamento,idUsuario);
+            orcamentosDao.CancelarOrcamento(idOrcamento,idUsuario);
 
             UsuarioDao usuarioDao = new UsuarioDao();
 
             Usuario usuario =  usuarioDao.buscarUsuarioPorId(idUsuario);
             Orcamentos orcamentos = orcamentosDao.buscarOrcamentoPorId(idOrcamento);
-
 
             Email email = new Email("","",usuario.getEmail(),"","","");
 
@@ -42,7 +42,7 @@ public class AprovarOrcamentoServlet extends HttpServlet {
 
             resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
 
-            email.enviarOrcamentoAprovado(orcamentos,usuario);
+            email.enviarOrcamentoCancelado(orcamentos,usuario);
         } else {
             resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
         }

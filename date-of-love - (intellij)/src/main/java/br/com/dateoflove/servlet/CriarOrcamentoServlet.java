@@ -152,8 +152,6 @@ public class CriarOrcamentoServlet extends HttpServlet {
 
         Email email = new Email("","",usuario.getEmail(),"","","");
 
-
-
         resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
 
         email.enviarOrcamentoPendente(orcamento,usuario);

@@ -15,8 +15,8 @@ public class OrcamentosDao {
 
     public Orcamentos criarOrcamento(Orcamentos orcamento) {
         try {
-            String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, vl_total, tg_aprovado, ds_observacao_orcador ) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, vl_total, tg_aprovado, ds_observacao_orcador,tg_cancelado ) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
@@ -29,6 +29,7 @@ public class OrcamentosDao {
             preparedStatement.setDouble(7, orcamento.getValorTotal());
             preparedStatement.setBoolean(8, false);
             preparedStatement.setString(9, orcamento.getObservacaoOrcador());
+            preparedStatement.setBoolean(10, false);
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -120,6 +121,7 @@ public class OrcamentosDao {
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
                 orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
+                orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
                 listaOrcamentos.add(orcamento);
             }
         } catch (SQLException e) {
@@ -178,6 +180,7 @@ public class OrcamentosDao {
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
                 orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
+                orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
 
             }
         } catch (SQLException e) {
@@ -210,6 +213,27 @@ public class OrcamentosDao {
             connection.close();
         } catch (SQLException e) {
             System.out.println("Erro ao aprovar o orçamento: " + e.getMessage());
+        }
+    }
+
+    public void CancelarOrcamento(int idOrcamento,int idUsuario) {
+        try {
+
+            String SQL = "UPDATE tb_orcamentos SET tg_cancelado = true,ds_status ='Cancelado' WHERE id_orcamento = ?";
+
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, idOrcamento);
+
+            int linhasAfetadas = preparedStatement.executeUpdate();
+            if (linhasAfetadas == 1) {
+                System.out.println("Orçamento cancelado com sucesso!");
+            } else {
+                System.out.println("Falha ao cancelar o orçamento.");
+            }
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("Erro ao cancelar o orçamento: " + e.getMessage());
         }
     }
 }

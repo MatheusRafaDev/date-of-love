@@ -114,6 +114,7 @@
                                             <th scope="col">Valor total</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Ação</th>
+                                            <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -128,6 +129,16 @@
                                                         <button type="submit" class="btn-visualizar">Visualizar</button>
                                                     </td>
                                                 </form>
+
+                                                <c:if test="${orcamento.getStatus().equals('Pendente') || orcamento.getStatus().equals('Esperando Aprovação')}">
+                                                    <form action="${pageContext.request.contextPath}/cancelar" method="POST">
+                                                        <td>
+                                                            <input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}">
+                                                            <input type="hidden" id="idUsuario" name="idUsuario" value="${usuario.getIdUsuario()}">
+                                                            <button type="submit" class="btn-visualizar">Cancelar</button>
+                                                        </td>
+                                                    </form>
+                                                </c:if>
                                             </tr>
                                         </c:forEach>
 

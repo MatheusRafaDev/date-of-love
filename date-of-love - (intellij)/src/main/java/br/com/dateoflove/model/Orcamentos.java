@@ -14,11 +14,13 @@ public class Orcamentos {
     private double valorTotal;
     private boolean Aprovado;
 
+    private boolean Cancelado;
+
     public Orcamentos() {
         super();
     }
 
-    public Orcamentos(int idOrcamento, int idUsuario, int idCasamento, Date dataOrcamento, String status, String observacao, String nomeOrcador, double valorTotal,boolean Aprovado,String observacaoOrcador) {
+    public Orcamentos(int idOrcamento, int idUsuario, int idCasamento, Date dataOrcamento, String status, String observacao, String nomeOrcador, double valorTotal,boolean Aprovado,String observacaoOrcador,boolean Cancelado) {
         this.idOrcamento = idOrcamento;
         this.idUsuario = idUsuario;
         this.idCasamento = idCasamento;
@@ -29,6 +31,7 @@ public class Orcamentos {
         this.nomeOrcador = nomeOrcador;
         this.valorTotal = valorTotal;
         this.Aprovado = Aprovado;
+        this.Cancelado= Cancelado;
     }
 
 
@@ -112,4 +115,13 @@ public class Orcamentos {
     public void setObservacaoOrcador(String observacaoOrcador) {
         this.observacaoOrcador = observacaoOrcador;
     }
+
+    public boolean isCancelado() {
+        return Cancelado;
+    }
+
+    public void setCancelado(boolean cancelado) {
+        Cancelado = cancelado;
+    }
+
 }

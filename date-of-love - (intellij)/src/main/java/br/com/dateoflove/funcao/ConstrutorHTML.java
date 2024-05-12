@@ -115,4 +115,34 @@ public class ConstrutorHTML {
         return emailBody;
     }
 
+    public static String criarConteudoHTMLOrcamentoCancelado(Orcamentos orcamento, Usuario usuario) {
+
+        String emailBody = "<!DOCTYPE html>\n"
+                + "<html lang=\"pt-br\">\n"
+                + "<head>\n"
+                + "    <meta charset=\"UTF-8\">\n"
+                + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                + "    <title>Orçamento de Casamento Cancelado - DateOfLove</title>\n"
+                + "</head>\n"
+                + "<body style=\"margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 600px; width: 600px; background-color: #f4f4f4; color: #333; font-family: Arial, sans-serif;\">\n"
+                + "<div style=\"text-align: center; padding: 20px;\">\n"
+                + "    <h2>Orçamento de Casamento Cancelado - DateOfLove</h2>\n"
+                + "\n"
+                + "    <p>Olá " + usuario.getNomesConcatenados() + ",</p>\n"
+                + "\n"
+                + "    <p>Infelizmente, seu orçamento de casamento foi cancelado.</p>\n"
+                + "\n"
+                + "    <p>Se precisar de mais informações ou desejar discutir este assunto, não hesite em nos contatar.</p>\n"
+                + "\n"
+                + "    <p>Atenciosamente,<br>\n"
+                + "    DateOfLove<br>\n"
+                + "\n"
+                + "    <p style=\"color: #333; font-size: 12px;\">&copy; 2024 DateOfLove. Todos os direitos reservados.</p>\n"
+                + "</div>\n"
+                + "</body>\n"
+                + "</html>";
+
+        return emailBody;
+    }
+
 }

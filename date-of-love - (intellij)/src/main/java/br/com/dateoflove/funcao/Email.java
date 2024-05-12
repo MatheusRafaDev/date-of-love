@@ -91,4 +91,14 @@ public class Email {
         Email email = new Email(fromEmail, password, toEmail, emailSubject, emailBody, emailType);
         email.enviarEmail();
     }
+
+    public void enviarOrcamentoCancelado(Orcamentos orcamento, Usuario usuario) {
+        this.emailSubject = "Orçamento cancelado";
+        this.emailType = "html";
+
+        String emailBody = ConstrutorHTML.criarConteudoHTMLOrcamentoCancelado(orcamento, usuario);
+
+        Email email = new Email(fromEmail, password, toEmail, emailSubject, emailBody, emailType);
+        email.enviarEmail();
+    }
 }
