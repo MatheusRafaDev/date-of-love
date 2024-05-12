@@ -1,6 +1,10 @@
 package br.com.dateoflove.servlet;
 
 import br.com.dateoflove.dao.OrcamentosDao;
+import br.com.dateoflove.dao.UsuarioDao;
+import br.com.dateoflove.funcao.Email;
+import br.com.dateoflove.model.Orcamentos;
+import br.com.dateoflove.model.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +28,18 @@ public class AprovarOrcamentoServlet extends HttpServlet {
             OrcamentosDao orcamentosDao = new OrcamentosDao();
             orcamentosDao.aprovarOrcamento(idOrcamento,idUsuario);
 
+            UsuarioDao usuarioDao = new UsuarioDao();
+            OrcamentosDao orcamentoDao = new OrcamentosDao();
+
+            Usuario usuario =  usuarioDao.buscarUsuarioPorId(idUsuario);
+            Orcamentos orcamentos = orcamentoDao.buscarOrcamentoPorId(idOrcamento);
+
+            Email email = new Email("","",usuario.getEmail(),"","","");
+
+
             resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
+
+            email.enviarOrcamentoAprovado(orcamentos,usuario);
         } else {
             resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
         }

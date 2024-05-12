@@ -36,9 +36,6 @@ import java.util.List;
                         int idUsuario = chavesGeradas.getInt(1);
                         usuario.setIdUsuario(idUsuario);
 
-                        Email email = new Email("","",usuario.getEmail(),"","","");
-                        email.enviarBoasVindas(usuario);
-
                         System.out.println("Usuário criado com sucesso!");
                     } else {
                         System.out.println("Falha ao obter o ID do usuário.");

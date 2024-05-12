@@ -3,6 +3,8 @@ package br.com.dateoflove.servlet;
 import br.com.dateoflove.dao.DetalheOrcamentoDao;
 import br.com.dateoflove.dao.OrcamentosDao;
 import br.com.dateoflove.dao.ServicoDao;
+import br.com.dateoflove.dao.UsuarioDao;
+import br.com.dateoflove.funcao.Email;
 import br.com.dateoflove.model.*;
 
 import javax.servlet.ServletException;
@@ -145,7 +147,16 @@ public class CriarOrcamentoServlet extends HttpServlet {
         List<Orcamentos> listaOrcamentos = orcamentoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
         req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
 
+        UsuarioDao usuarioDao = new UsuarioDao();
+        usuarioDao.buscarUsuarioPorId(orcamento.getIdUsuario());
+
+        Email email = new Email("","",usuario.getEmail(),"","","");
+
+
+
         resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
+
+        email.enviarOrcamentoPendente(orcamento,usuario);
     }
 
 }

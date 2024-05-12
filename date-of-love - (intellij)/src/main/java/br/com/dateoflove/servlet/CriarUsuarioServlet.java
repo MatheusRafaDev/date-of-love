@@ -3,6 +3,7 @@ package br.com.dateoflove.servlet;
 import br.com.dateoflove.dao.OrcamentosDao;
 import br.com.dateoflove.dao.UsuarioDao;
 import br.com.dateoflove.dao.CasamentoDao;
+import br.com.dateoflove.funcao.Email;
 import br.com.dateoflove.model.Casamento;
 import br.com.dateoflove.model.Orcamentos;
 import br.com.dateoflove.model.Usuario;
@@ -88,7 +89,11 @@ public class CriarUsuarioServlet extends HttpServlet {
         req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
 
 
+        Email email2 = new Email("","",usuario.getEmail(),"","","");
+
+
         //resp.sendRedirect(req.getContextPath() + "/home.jsp");
         req.getRequestDispatcher("/home.jsp").forward(req, resp);
+        email2.enviarBoasVindas(usuario);
     }
 }

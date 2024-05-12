@@ -37,13 +37,6 @@ public class OrcamentosDao {
                     int idOrcamento = chavesGeradas.getInt(1);
                     orcamento.setIdOrcamento(idOrcamento);
 
-                    UsuarioDao usuarioDao = new UsuarioDao();
-                    Usuario usuario =  usuarioDao.buscarUsuarioPorId(orcamento.getIdUsuario());
-
-                    Email email = new Email("","",usuario.getEmail(),"","","");
-
-                    email.enviarOrcamentoPendente(orcamento,usuario);
-
                     System.out.println("Orçamento criado com sucesso! ID: " + idOrcamento);
                 } else {
                     System.out.println("Falha ao obter o ID do orçamento criado.");
@@ -204,15 +197,6 @@ public class OrcamentosDao {
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idOrcamento);
-
-            UsuarioDao usuarioDao = new UsuarioDao();
-            OrcamentosDao orcamentoDao = new OrcamentosDao();
-
-            Usuario usuario =  usuarioDao.buscarUsuarioPorId(idUsuario);
-            Orcamentos orcamentos = orcamentoDao.buscarOrcamentoPorId(idOrcamento);
-
-            Email email = new Email("","",usuario.getEmail(),"","","");
-            email.enviarOrcamentoAprovado(orcamentos,usuario);
 
             int linhasAfetadas = preparedStatement.executeUpdate();
             if (linhasAfetadas == 1) {
