@@ -22,7 +22,8 @@ public class AprovarOrcamentoServlet extends HttpServlet {
             int idUsuario = Integer.parseInt(idUsuarioStr);
 
             OrcamentosDao orcamentosDao = new OrcamentosDao();
-            orcamentosDao.aprovarOrcamento(idUsuario,idOrcamento);
+            orcamentosDao.aprovarOrcamento(idOrcamento,idUsuario);
+
             resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
         } else {
             resp.sendRedirect(req.getContextPath() + "/perfil.jsp");

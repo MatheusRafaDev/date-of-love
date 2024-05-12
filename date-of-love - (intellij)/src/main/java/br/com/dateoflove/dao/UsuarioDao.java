@@ -154,7 +154,6 @@ import java.util.List;
                     return;
                 }
 
-                // Comparar os valores antigos com os novos e atualizar apenas os campos diferentes
                 if (!usuario.getNomeNoivo().equals(usuarioAntigo.getNomeNoivo())) {
                     usuarioAntigo.setNomeNoivo(usuario.getNomeNoivo());
                 }
@@ -199,7 +198,6 @@ import java.util.List;
         public Usuario buscarUsuarioPorId(int idUsuario) {
             Usuario usuario = null;
 
-
             try {
                 String SQL = "SELECT * FROM tb_usuarios WHERE id_usuario = ?";
                 Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
@@ -208,6 +206,7 @@ import java.util.List;
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {
+
                     String nomeNoivo = resultSet.getString("nm_noivo");
                     String nomeNoiva = resultSet.getString("nm_noiva");
                     String email = resultSet.getString("ds_email");

@@ -42,10 +42,10 @@ public class CasamentoDao {
 
             connection.close();
 
-            return casamento; // Retorna o objeto Casamento após a inserção no banco de dados
+            return casamento;
         } catch (Exception e) {
             System.out.println("Erro ao criar informações do casamento: " + e.getMessage());
-            return null; // Retorna null em caso de erro
+            return null;
         }
     }
 

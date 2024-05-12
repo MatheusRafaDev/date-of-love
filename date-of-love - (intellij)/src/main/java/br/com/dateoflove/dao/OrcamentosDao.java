@@ -196,8 +196,9 @@ public class OrcamentosDao {
         return orcamento;
     }
 
-    public void aprovarOrcamento(int idOrcamento,int IdUsuario) {
+    public void aprovarOrcamento(int idOrcamento,int idUsuario) {
         try {
+
             String SQL = "UPDATE tb_orcamentos SET tg_aprovado = true,ds_status ='Aprovado' WHERE id_orcamento = ?";
 
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
@@ -207,10 +208,7 @@ public class OrcamentosDao {
             UsuarioDao usuarioDao = new UsuarioDao();
             OrcamentosDao orcamentoDao = new OrcamentosDao();
 
-            System.out.println("teste");
-            System.out.println(IdUsuario);
-
-            Usuario usuario =  usuarioDao.buscarUsuarioPorId(IdUsuario);
+            Usuario usuario =  usuarioDao.buscarUsuarioPorId(idUsuario);
             Orcamentos orcamentos = orcamentoDao.buscarOrcamentoPorId(idOrcamento);
 
             Email email = new Email("","",usuario.getEmail(),"","","");
