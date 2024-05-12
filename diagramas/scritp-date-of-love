@@ -18,8 +18,7 @@ CREATE TABLE tb_casamento (
     dt_casamento DATE,
     ds_localidade VARCHAR(100),
     nr_convidados INT,
-    ds_estilo_festa VARCHAR(50), -- Adicionando a coluna estilo_festa
-    FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario)
+    ds_estilo_festa VARCHAR(50)
 );
 
 -- Tabela de Serviços
@@ -42,8 +41,7 @@ CREATE TABLE tb_orcamentos (
     nm_orcador VARCHAR(100),
     vl_total DECIMAL(10, 2),
     tg_aprovado BOOLEAN,
-    FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario),
-    FOREIGN KEY (id_casamento) REFERENCES tb_casamento(id_casamento)
+    tg_cancelado BOOLEAN
 );
 
 -- Tabela de Detalhes do Orçamento
@@ -55,9 +53,7 @@ CREATE TABLE tb_detalhes_orcamento (
     vl_preco_editavel DECIMAL(10, 2),
     ds_observacao_servico TEXT,
     tg_completo BOOLEAN,
-    tg_incluso BOOLEAN,
-    FOREIGN KEY (id_orcamento) REFERENCES tb_orcamentos(id_orcamento),
-    FOREIGN KEY (id_servico) REFERENCES tb_servicos(id_servico)
+    tg_incluso BOOLEAN
 );
 
 -- Inserindo os Serviços
