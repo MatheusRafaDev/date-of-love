@@ -38,6 +38,7 @@ CREATE TABLE tb_orcamentos (
     dt_orcamento DATE,
     ds_status VARCHAR(20),
     ds_observacao TEXT,
+    ds_observacao_orcador TEXT,
     nm_orcador VARCHAR(100),
     vl_total DECIMAL(10, 2),
     tg_aprovado BOOLEAN,
