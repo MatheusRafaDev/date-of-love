@@ -16,7 +16,19 @@
 
     String imagemPath2 = usuario.getImagem();
     String defaultImagePath2 = request.getContextPath() + "/src/assets/images/casal.png";
-    String finalImagePath2 = (imagemPath2 != null && !imagemPath2.isEmpty()) ? request.getContextPath() + imagemPath2 : defaultImagePath2;
+    String finalImagePath2;
+
+    if (imagemPath2 != null && !imagemPath2.isEmpty()) {
+        java.io.File file = new java.io.File(getServletContext().getRealPath(imagemPath2));
+        if (file.exists()) {
+            finalImagePath2 = request.getContextPath() + imagemPath2;
+        } else {
+            finalImagePath2 = defaultImagePath2;
+        }
+    } else {
+        finalImagePath2 = defaultImagePath2;
+    }
+
 %>
 
 <!DOCTYPE html>
@@ -26,7 +38,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil2.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
 </head>
 <body>
@@ -46,15 +58,14 @@
                                 <div class="id">Id: <%= usuario.getIdUsuario() %></div>
 
                                 <form action="${pageContext.request.contextPath}/mandar-imagem" method="post" enctype="multipart/form-data">
-                                    <div>
-                                        <input style="display: none;" name="id_usuario" id="id_usuario" value="<%= usuario.getIdUsuario() %>">
-                                        <label for="image"></label>
-                                        <input type="file"name="image" id="image">
-                                        <button type="submit" id="btnSalvar" class="btn-salvar">Salvar</button>
-                                    </div>
-
-
+                                       <div class="form-container2">
+                                           <input style="display: none;" name="id_usuario" id="id_usuario" value="<%= usuario.getIdUsuario() %>">
+                                           <label for="image">Escolha uma imagem</label>
+                                           <input type="file"name="image" id="image">
+                                           <button type="submit" id="btnSalvar" class="btn-salvar2">Salvar</button>
+                                       </div>
                                 </form>
+
                             </div>
 
                             <div class="details">

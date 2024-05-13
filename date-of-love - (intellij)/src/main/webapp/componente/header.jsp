@@ -11,8 +11,21 @@
 <%
     String imagemPath = usuario2.getImagem();
     String defaultImagePath = request.getContextPath() + "/src/assets/images/casal.png";
-    String finalImagePath = (imagemPath != null && !imagemPath.isEmpty()) ? request.getContextPath() + imagemPath : defaultImagePath;
+    String finalImagePath;
+
+    if (imagemPath != null && !imagemPath.isEmpty()) {
+        // Verifica se o arquivo de imagem existe
+        java.io.File file = new java.io.File(getServletContext().getRealPath(imagemPath));
+        if (file.exists()) {
+            finalImagePath = request.getContextPath() + imagemPath;
+        } else {
+            finalImagePath = defaultImagePath;
+        }
+    } else {
+        finalImagePath = defaultImagePath;
+    }
 %>
+
 
 <head>
     <meta charset="UTF-8">
@@ -36,7 +49,8 @@
                 <div class="user-items">
                     <input type="text" id="id" name="id" value="${usuario.getIdUsuario()}" style="display: none;">
                     <button type="submit" class="nomeCasal"><%= usuario2.getNomesConcatenados() %></button>
-                    <img src="<%= finalImagePath %>" alt="Foto do Usuário">  </div>
+                    <img src="<%= finalImagePath %>" alt="Foto do Usuário">
+                </div>
             </form>
             <form action="${pageContext.request.contextPath}/sair" method="GET">
                 <button type="submit" class="nomeCasal">Sair</button>
