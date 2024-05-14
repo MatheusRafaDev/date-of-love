@@ -12,7 +12,7 @@ header {
     padding: 5px;
     margin-bottom: 150px;
     font-weight: bold; /* Peso da fonte */
-    font-size: 20px; /* Tamanho da fonte */
+    font-size: 14px; /* Tamanho da fonte */
 
     
 }
@@ -62,10 +62,10 @@ nav a {
 }
 
 .logo {
-  width: 200px;
+  width: 150px;
   height: auto;
-  margin-bottom: 4px;
-  margin-bottom: 60px;
+ 
+  margin-bottom: 50px;
 }
 
 .user-items a {
@@ -90,6 +90,6 @@ nav a {
     font-size: 16px;
 }
 .logo {
-    width: 360px; /* Set the desired width */
+    width: 280px; /* Set the desired width */
     height: auto; /* Let the height scale proportionally */
 }

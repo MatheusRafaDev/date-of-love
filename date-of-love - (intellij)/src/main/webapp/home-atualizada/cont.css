@@ -2,22 +2,27 @@ html {
    
     overflow-x: hidden; /* Impede a rolagem horizontal */
 }
-
-
+.container21{ 
+    position: relative;
+    left: -200px; /* Move o botão 20 pixels para a esquerda */
+    top: -60px; /* Move o botão 20 pixels para cima */
+    text-align: center; /* Centraliza conteúdo dentro do .container2 */
+}
 .container2{ 
     max-width: 1080px;
     margin: auto 0; /* Margem superior de 230px, centraliza horizontalmente */
     text-align: center; /* Centraliza conteúdo dentro do .container2 */
     
-
 }
 
 .container2 img{
     position: relative;
-    left: 700px; /* Move o botão 20 pixels para a esquerda */
-    top: 290px; /* Move o botão 20 pixels para cima */
+    left: 440px; /* Move o botão 20 pixels para a esquerda */
+    top: 195px; /* Move o botão 20 pixels para cima */
     margin-top: -800px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra */
+    max-width: 40%; /* Ajusta a largura da imagem para 50% do seu tamanho original */
+    height: auto; /* Mantém a proporção da imagem */
 }
 .botaoquem {
     
@@ -76,6 +81,9 @@ html {
     font-weight: bold; /* Peso da fonte */
     margin-top: 50px; /* Move o botão para cima em relação ao parágrafo */
     vertical-align: top; /* Alinha o botão mais para cima */
+    position: relative;
+    left: -70px; /* Move o botão 20 pixels para a esquerda */
+    top: -10px; /* Move o botão 20 pixels para cima */
 }
 .fotos, .fotos1 {
     display: flex;
@@ -107,7 +115,7 @@ html {
 }
 
 .boxestru img {
-    width: 450px;
+    width: 300px;
     text-align: center;
     margin: 50px;
 }
@@ -131,14 +139,14 @@ html {
 
 .textoemo{
     position: relative;
-    left: 300px; /* Move o botão 20 pixels para a esquerda */
-    top: -150px; /* Move o botão 20 pixels para cima */ 
+    left:240px; /* Move o botão 20 pixels para a esquerda */
+    top: -160px; /* Move o botão 20 pixels para cima */ 
     
 }
 
 .partecasal img {
     position: relative;
-    left: -160px; /* Move o botão 20 pixels para a esquerda */
+    left: -190px; /* Move o botão 20 pixels para a esquerda */
     top: 200px; /* Move o botão 20 pixels para cima */
 
 
@@ -147,7 +155,7 @@ html {
     background-color: black;
     margin: 0; /* Remove as margens padrão do corpo */
     padding: 0; /* Remove o preenchimento padrão do corpo */
-    height: 100vh; /* Define a altura do corpo para ocupar 100% da altura da janela do navegador */
+    height: 200vh; /* Define a altura do corpo para ocupar 100% da altura da janela do navegador */
     width: 100%; /* Define a largura do corpo para ocupar 100% da largura da janela do navegador */
     
 }
@@ -156,23 +164,23 @@ html {
     color: rgb(255, 255, 255);
     position: relative;
     position: relative;
-    left: 325px; /* Move o botão 20 pixels para a esquerda */
+    left: 250px; /* Move o botão 20 pixels para a esquerda */
     top: -300px; /* Move o botão 20 pixels para cima */ 
-    font-size: 25px; /* Tamanho da fonte */
+    font-size: 20px; /* Tamanho da fonte */
 }
 .fundopretocominfo p1 {
     color: rgb(255, 255, 255);
     position: relative;
     position: relative;
-    left: 325px; /* Move o botão 20 pixels para a esquerda */
+    left: 250px; /* Move o botão 20 pixels para a esquerda */
     top: -640px; /* Move o botão 20 pixels para cima */ 
-    font-size: 25px; /* Tamanho da fonte */
+    font-size: 20px; /* Tamanho da fonte */
 }
 .fundopretocominfo h2 {
     margin-top: 400px;
     color: rgb(255, 255, 255);
     position: relative;
-    left: 325px; /* Move o botão 20 pixels para a esquerda */
+    left: 250px; /* Move o botão 20 pixels para a esquerda */
     top: -300px; /* Move o botão 20 pixels para cima */ 
     font-size: 45px; /* Tamanho da fonte */
 }
@@ -180,40 +188,55 @@ html {
     margin-top: 400px;
     color: rgb(255, 255, 255);
     position: relative;
-    left: 325px; /* Move o botão 20 pixels para a esquerda */
+    left: 250px; /* Move o botão 20 pixels para a esquerda */
     top: -670px; /* Move o botão 20 pixels para cima */ 
     font-size: 45px; /* Tamanho da fonte */
 }
 
+
+
+.backpng {
+    position: relative;
+    left: -550px; /* Move o botão 20 pixels para a esquerda */
+    top: -1390px; /* Move o botão 20 pixels para cima */ 
+    max-width: 20%; /* Ajusta a largura da imagem para 50% do seu tamanho original */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+
+
+
+
 .infosfundoimagem {
     position: relative;
-    left: 1200px; /* Move o botão 20 pixels para a esquerda */
-    top: -1150px; /* Move o botão 20 pixels para cima */ 
+    left: 500px; /* Move o botão 20 pixels para a esquerda */
+    top: -1050px; /* Move o botão 20 pixels para cima */ 
 }
 
 .fundopretocominfo2 {
-    position: relative;
-    left: -130px; /* Move o botão 20 pixels para a esquerda */
-    top: 350px; /* Move o botão 20 pixels para cima */ 
+    max-width: 90%; /* Ajusta a largura da imagem para 50% do seu tamanho original */
+    height: auto; /* Mantém a proporção da imagem */
+
+    margin-top: -840px;
 }
 
 .Gastroimagens {
     display: flex; /* Ativa o flexbox */
-    
 }
 
 .pola1, .pola2 {
-    margin-right: 72px; /* Adiciona um espaçamento entre as imagens (opcional) */
+    margin-right: 60px; /* Adiciona um espaçamento entre as imagens (opcional) */
     display: flex; /* Ativa o flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    position: relative;
+    left: 25px; /* Move o botão 20 pixels para a esquerda */
 }
 
-.pola1 img, .pola2 img {
-    max-width: 100%; /* Garante que as imagens não ultrapassem o tamanho da div */
+.pola1 img , .pola2 img {
+    max-width: 80%; /* Garante que as imagens não ultrapassem o tamanho da div */
     height: auto; /* Mantém a proporção da imagem */
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3); /* Adiciona sombra às imagens */
-    border: 1px solid #333; /* Borda sólida de 3px com cor cinza escuro (#333) */
-    padding: 10px; /* Espaçamento interno para a borda */
-    
+    border: 1px solid #000000; /* Borda sólida de 3px com cor cinza escuro (#333) */    
 }
 
 
@@ -222,8 +245,8 @@ html {
     font-size: 25px; /* Tamanho da fonte */
     margin: 100px; /* move o texto para baixo em 20 pixels */
     position: relative;
-    left: 650px; /* Move o botão 20 pixels para a esquerda */
-    top: -600px; /* Move o botão 20 pixels para cima */ 
+    left: 500px; /* Move o botão 20 pixels para a esquerda */
+    top: -550px; /* Move o botão 20 pixels para cima */ 
     color: rgb(5, 5, 5); /* Cor do texto */
 
 }
@@ -231,8 +254,8 @@ html {
     font-size: 80px; /* Tamanho da fonte */
     margin: 100px; /* move o texto para baixo em 20 pixels */
     position: relative;
-    left: 650px; /* Move o botão 20 pixels para a esquerda */
-    top: -530px; /* Move o botão 20 pixels para cima */ 
+    left: 500px; /* Move o botão 20 pixels para a esquerda */
+    top: -450px; /* Move o botão 20 pixels para cima */ 
     color: rgb(255, 255, 255); /* Cor do texto */
     background: linear-gradient(to right, #00ccff, #028dff); /* Degrade azul claro */
     background-clip: text;
@@ -242,7 +265,7 @@ html {
 }
 
 .casalfim img{
-    width: 830px; /* Defina a largura desejada */
+    width: 700px; /* Defina a largura desejada */
     height: auto; /* Isso manterá a proporção da imagem */
 
     position: relative;
@@ -266,7 +289,7 @@ html {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra */
     position: relative;
     left: 750px; /* Move o botão 20 pixels para a esquerda */
-    top: -660px; /* Move o botão 20 pixels para cima */ 
+    top: -670px; /* Move o botão 20 pixels para cima */ 
 } 
 
 
@@ -286,5 +309,5 @@ html {
     color: #ffffff; /* Cor do texto do rodapé */
     text-align: center; /* Alinhamento do texto */
     padding: 20px; /* Espaçamento interno do rodapé */
-    width: 100%; /* Ocupa toda a largura */
+  
 }
