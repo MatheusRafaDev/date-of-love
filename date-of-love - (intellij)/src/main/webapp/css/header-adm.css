@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.logo-navigation {
+    display: flex;
+    align-items: center;
+    background-color: #D4EAFF;
+    padding: 10px 6em;
+    border-radius: 2em;
+}
+
+nav a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 4px;
+}

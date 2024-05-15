@@ -38,7 +38,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil2.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
 </head>
 <body>

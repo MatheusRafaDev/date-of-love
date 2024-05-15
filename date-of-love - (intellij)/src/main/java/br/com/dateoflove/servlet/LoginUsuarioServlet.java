@@ -35,7 +35,15 @@ public class LoginUsuarioServlet extends HttpServlet {
         OrcamentosDao orcamentoDao = new OrcamentosDao();
         CasamentoDao casamentoDao = new CasamentoDao();
 
+        if (email.equals("admin@email.com") && senha.equals("1234")){
+            resp.sendRedirect(req.getContextPath() + "/adm/admin.jsp");
+        }
+
+
         Usuario usuario = usuarioDao.buscarUsuarioPorEmail(email);
+
+
+
 
         if (usuario != null && usuario.getSenha().equals(senha)) {
 

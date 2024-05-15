@@ -60,5 +60,22 @@ public class ServicoDao {
 
         return servicos;
     }
+
+    public void atualizarServico(Servico servico) {
+        String query = "UPDATE tb_servicos SET nm_servico = ?, ds_servico = ?, vl_preco = ? WHERE id_servico = ?";
+
+        try (Connection connection = PollConfig.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setString(1, servico.getNomeServico());
+            ps.setString(2, servico.getObservacao());
+            ps.setDouble(3, servico.getPreco());
+            ps.setInt(4, servico.getIdServico());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
 }
 
