@@ -130,3 +130,45 @@ INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_p
 (4, 6, 1, 800.00, 'DJ com música boho.', FALSE, TRUE),
 (4, 7, 1, 500.00, 'Coordenação boho.', FALSE, TRUE),
 (4, 8, 1, 2500.00, 'Locação boho.', FALSE, TRUE);
+
+
+UPDATE tb_orcamentos
+SET vl_total = (
+    SELECT SUM(vl_preco_editavel * nr_quantidade)
+    FROM tb_detalhes_orcamento
+    WHERE id_orcamento = 1
+)
+WHERE id_orcamento = 1;
+
+UPDATE tb_orcamentos
+SET vl_total = (
+    SELECT SUM(vl_preco_editavel * nr_quantidade)
+    FROM tb_detalhes_orcamento
+    WHERE id_orcamento = 2
+)
+WHERE id_orcamento = 2;
+
+
+UPDATE tb_orcamentos
+SET vl_total = (
+    SELECT SUM(vl_preco_editavel * nr_quantidade)
+    FROM tb_detalhes_orcamento
+    WHERE id_orcamento = 3
+)
+WHERE id_orcamento = 3;
+
+
+
+UPDATE tb_orcamentos
+SET vl_total = (
+    SELECT SUM(vl_preco_editavel * nr_quantidade)
+    FROM tb_detalhes_orcamento
+    WHERE id_orcamento = 4
+)
+WHERE id_orcamento = 4;
+
+
+
+
+
+
