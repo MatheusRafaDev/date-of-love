@@ -42,6 +42,9 @@
             <h4>Status: ${orcamento.getStatus()}</h4>
         </div>
 
+        <h3>Observações do orçador</h3>
+        <p><%= orcamento.getObservacaoOrcador() %></p>
+
         <h3>Serviços</h3>
         <table>
             <tr>
@@ -68,14 +71,14 @@
             <tr>
                 <th>Serviço</th>
                 <th>Observações</th>
-                <th>Valor</th>
+
             </tr>
             <c:forEach var="detalhe2" items="${detalheorcamento2}">
                 <c:set var="servico" value="${servicoDao.encontrarServicoPorId(detalhe2.idServico)}" />
                 <tr>
                     <td><c:out value="${servico.getNomeServico()}" /></td>
                     <td>${detalhe2.getObservacaoServico()}</td>
-                    <td>R$ ${detalhe2.getPrecoEditavel()}</td>
+
                 </tr>
             </c:forEach>
         </table>

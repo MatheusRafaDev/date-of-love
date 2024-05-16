@@ -1,62 +1,54 @@
-
 body {
     font-family: 'Quicksand', sans-serif;
     margin: 0;
     padding: 0;
 }
 
-.texto{
-     font-family: 'Quicksand', sans-serif;
-     margin-top: 25px;
-     margin-bottom: 25px;
-     margin-left: 12em;
+.texto {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 24px;
+    margin-left: 1em;
+    color: #333;
+}
+
+
+.servicos-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
 }
 
 .servico-item {
-
-    margin: 0 auto 10px;
-    max-width: 600px;
+    background-color: #fff;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #fff;
     box-sizing: border-box;
     text-align: left;
     font-family: 'Quicksand', sans-serif;
 }
 
 .servico-item label {
-    font-weight: bold;
-     font-family: 'Quicksand', sans-serif;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .servico-item input[type="text"],
-.servico-item textarea {
- font-family: 'Quicksand', sans-serif;
-    width: calc(100% - 20px);
+.servico-item textarea,
+.servico-item input[type="number"] {
+    font-family: 'Quicksand', sans-serif;
+    width: calc(100% - 16px);
     padding: 8px;
     margin-top: 6px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
-
-.servico-item input[type="number"],
-.servico-item textarea {
- font-family: 'Quicksand', sans-serif;
-    width: calc(100% - 20px);
-    padding: 8px;
-    margin-top: 6px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-
 
 .servico-item input[type="submit"] {
     background-color: #D4EAFF;
-     font-family: 'Quicksand', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 12px;
     color: black;
     padding: 12px 20px;
     border: none;

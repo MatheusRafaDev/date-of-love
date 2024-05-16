@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Perfis</title>
+        <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-perfils.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
 </head>
@@ -23,7 +25,7 @@
                 <th>Nome Noiva</th>
                 <th>Email</th>
                 <th>Data de Cadastro</th>
-                <th>Imagem</th>
+                <th>Acão</th>
             </tr>
         </thead>
         <tbody>
@@ -35,8 +37,9 @@
                     <td>${usuario.getEmail()}</td>
                     <td>${usuario.getDataCadastro()}</td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/perfil" method="get">
+                        <form action="${pageContext.request.contextPath}/carregar-usuario-unico" method="get">
                             <input type="hidden" name="idUsuario" value="${usuario.getIdUsuario()}">
+                            <input type="hidden" name="email" value="${usuario.getEmail()}">
                             <button type="submit" class="botao">Ver Perfil</button>
                         </form>
                     </td>

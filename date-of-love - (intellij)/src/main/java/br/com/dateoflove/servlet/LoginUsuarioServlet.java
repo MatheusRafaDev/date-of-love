@@ -2,9 +2,11 @@ package br.com.dateoflove.servlet;
 
 import br.com.dateoflove.dao.CasamentoDao;
 import br.com.dateoflove.dao.OrcamentosDao;
+import br.com.dateoflove.dao.ServicoDao;
 import br.com.dateoflove.dao.UsuarioDao;
 import br.com.dateoflove.model.Casamento;
 import br.com.dateoflove.model.Orcamentos;
+import br.com.dateoflove.model.Servico;
 import br.com.dateoflove.model.Usuario;
 
 import javax.servlet.ServletException;
@@ -36,7 +38,11 @@ public class LoginUsuarioServlet extends HttpServlet {
 
         try {
             if ("admin@email.com".equals(email) && "1234".equals(senha)) {
-                resp.sendRedirect(req.getContextPath() + "/adm/adm-servicos.jsp");
+                ServicoDao servicoDao = new ServicoDao();
+                List<Servico> servico = servicoDao.listarServicos();
+                req.getSession().setAttribute("servico", servico);
+
+                req.getRequestDispatcher( "/carregar-servico");
                 return;
             }
 
