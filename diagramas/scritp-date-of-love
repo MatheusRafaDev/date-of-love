@@ -67,39 +67,66 @@ INSERT INTO tb_servicos (nm_servico, ds_servico, vl_preco) VALUES
 ('Coordenação do Dia', 'Coordenação do dia do casamento para garantir que tudo ocorra conforme o planejado.', 500.00),
 ('Espaço', 'Locação de espaço para realização da cerimônia e festa de casamento.', 2500.00);
 
--- ALEXANDRE QUE FEZ ABAIXO
+
+
 
 -- Inserindo os Usuarios
 
-INSERT INTO tb_usuarios (nm_noivo, nm_noiva, ds_email, ds_senha, dt_cadastro, nm_noivos_concatenado, imagem_path)
-VALUES
-('João', 'Maria', 'joao.maria@example.com', '1234', '2024-01-15', '', ''),
-('Pedro', 'Ana', 'pedro.ana@example.com', '1234', '2024-02-20', '', '');
+INSERT INTO tb_usuarios (nm_noivo, nm_noiva, ds_email, ds_senha, dt_cadastro, nm_noivos_concatenado, imagem_path) VALUES
+('Igor Santos', 'Camila Almeida', 'igor.camila@example.com', 'senha789', '2024-03-15', 'Igor e Camila', '/images/igor_camila.jpg'),
+('Matheus Oliveira', 'Juliana Costa', 'matheus.juliana@example.com', 'senha012', '2024-04-18', 'Matheus e Juliana', '/images/matheus_juliana.jpg'),
+('Thiago Ribeiro', 'Patrícia Silva', 'thiago.patricia@example.com', 'senha345', '2024-05-20', 'Thiago e Patrícia', '/images/thiago_patricia.jpg'),
+('Alexandre Souza', 'Fernanda Lima', 'alexandre.fernanda@example.com', 'senha678', '2024-06-22', 'Alexandre e Fernanda', '/images/alexandre_fernanda.jpg');
 
--- Inserindo as Ibnformação Casamentos
-INSERT INTO tb_casamento (id_usuario, dt_casamento, ds_localidade, nr_convidados, ds_estilo_festa)
-VALUES
-((SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'João' AND nm_noiva = 'Maria' LIMIT 1), '2024-07-20', 'Praia', 100, 'Descontraído'),
-((SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'Pedro' AND nm_noiva = 'Ana' LIMIT 1), '2024-09-10', 'Campo', 150, 'Rústico');
+INSERT INTO tb_casamento (id_usuario, dt_casamento, ds_localidade, nr_convidados, ds_estilo_festa) VALUES
+(1, '2024-09-05', 'Belo Horizonte', 120, 'Moderno'),
+(2, '2024-10-10', 'Curitiba', 180, 'Tradicional'),
+(3, '2024-11-15', 'Florianópolis', 200, 'Praia'),
+(4, '2024-12-20', 'Porto Alegre', 150, 'Boho');
 
--- Inserindo os Orçamentos
-INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, vl_total, tg_aprovado)
-VALUES
-((SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'João' AND nm_noiva = 'Maria' LIMIT 1),
-(SELECT id_casamento FROM tb_casamento WHERE id_usuario = (SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'João' AND nm_noiva = 'Maria' LIMIT 1) LIMIT 1),
-'2024-05-12', 'Pendente', 'Sem observações', 'Xande', 2500.00, false),
-((SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'Pedro' AND nm_noiva = 'Ana' LIMIT 1),
-(SELECT id_casamento FROM tb_casamento WHERE id_usuario = (SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'Pedro' AND nm_noiva = 'Ana' LIMIT 1) LIMIT 1),
-'2024-05-13', 'Pendente', 'Sem observações', 'Ttheu', 1800.00, false);
+INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, ds_observacao_orcador, nm_orcador, vl_total, tg_aprovado, tg_cancelado) VALUES
+(1, 1, '2024-07-01', 'Pendente', 'Primeiro orçamento.', 'Observação do orçador 1', 'Orçador 1', 0.00, FALSE, FALSE),
+(2, 2, '2024-07-10', 'Aprovado', 'Orçamento aprovado sem alterações.', 'Observação do orçador 2', 'Orçador 2', 0.00, TRUE, FALSE),
+(3, 3, '2024-07-20', 'Esperando Aprovação', 'Cliente solicitou ajustes.', 'Observação do orçador 3', 'Orçador 3', 0.00, FALSE, FALSE),
+(4, 4, '2024-07-30', 'Cancelado', 'Orçamento cancelado pelo cliente.', 'Observação do orçador 4', 'Orçador 4', 0.00, FALSE, TRUE);
 
--- Inserindo os Detalhes orçamento
-INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso)
-VALUES
-((SELECT MAX(id_orcamento) FROM tb_orcamentos WHERE id_usuario = (SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'João' AND nm_noiva = 'Maria' LIMIT 1)),
-1, 1, 1000.00, 'Cardápio personalizado', false, true),
-((SELECT MAX(id_orcamento) FROM tb_orcamentos WHERE id_usuario = (SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'João' AND nm_noiva = 'Maria' LIMIT 1)),
-2, 1, 1500.00, 'Decoração floral', false, true),
-((SELECT MAX(id_orcamento) FROM tb_orcamentos WHERE id_usuario = (SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'Pedro' AND nm_noiva = 'Ana' LIMIT 1)),
-1, 1, 1000.00, 'Cardápio personalizado', false, true),
-((SELECT MAX(id_orcamento) FROM tb_orcamentos WHERE id_usuario = (SELECT id_usuario FROM tb_usuarios WHERE nm_noivo = 'Pedro' AND nm_noiva = 'Ana' LIMIT 1)),
-6, 1, 800.00, 'Serviço de DJ', false, true);
+
+INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso) VALUES
+(1, 1, 1, 1000.00, 'Cardápio básico.', FALSE, TRUE),
+(1, 2, 1, 1500.00, 'Decoração moderna.', FALSE, TRUE),
+(1, 3, 1, 3000.00, 'Bebidas diversas.', FALSE, TRUE),
+(1, 4, 1, 1000.00, 'Doces variados.', FALSE, TRUE),
+(1, 5, 1, 500.00, 'Bolo personalizado.', FALSE, TRUE),
+(1, 6, 1, 800.00, 'DJ para festa.', FALSE, TRUE),
+(1, 7, 1, 500.00, 'Coordenação do dia.', FALSE, TRUE),
+(1, 8, 1, 2500.00, 'Locação do espaço.', FALSE, TRUE);
+
+INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso) VALUES
+(2, 1, 1, 1000.00, 'Cardápio tradicional.', FALSE, TRUE),
+(2, 2, 1, 1500.00, 'Decoração clássica.', FALSE, TRUE),
+(2, 3, 1, 3000.00, 'Bebidas selecionadas.', FALSE, TRUE),
+(2, 4, 1, 1000.00, 'Doces gourmet.', FALSE, TRUE),
+(2, 5, 1, 500.00, 'Bolo de 3 andares.', FALSE, TRUE),
+(2, 6, 1, 800.00, 'DJ especializado.', FALSE, TRUE),
+(2, 7, 1, 500.00, 'Coordenação completa.', FALSE, TRUE),
+(2, 8, 1, 2500.00, 'Espaço tradicional.', FALSE, TRUE);
+
+INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso) VALUES
+(3, 1, 1, 1000.00, 'Cardápio praiano.', FALSE, TRUE),
+(3, 2, 1, 1500.00, 'Decoração temática.', FALSE, TRUE),
+(3, 3, 1, 3000.00, 'Bebidas tropicais.', FALSE, TRUE),
+(3, 4, 1, 1000.00, 'Doces exóticos.', FALSE, TRUE),
+(3, 5, 1, 500.00, 'Bolo tropical.', FALSE, TRUE),
+(3, 6, 1, 800.00, 'DJ com música praiana.', FALSE, TRUE),
+(3, 7, 1, 500.00, 'Coordenação específica.', FALSE, TRUE),
+(3, 8, 1, 2500.00, 'Locação à beira-mar.', FALSE, TRUE);
+
+INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso) VALUES
+(4, 1, 1, 1000.00, 'Cardápio boho.', FALSE, TRUE),
+(4, 2, 1, 1500.00, 'Decoração boho.', FALSE, TRUE),
+(4, 3, 1, 3000.00, 'Bebidas variadas.', FALSE, TRUE),
+(4, 4, 1, 1000.00, 'Doces artesanais.', FALSE, TRUE),
+(4, 5, 1, 500.00, 'Bolo rústico.', FALSE, TRUE),
+(4, 6, 1, 800.00, 'DJ com música boho.', FALSE, TRUE),
+(4, 7, 1, 500.00, 'Coordenação boho.', FALSE, TRUE),
+(4, 8, 1, 2500.00, 'Locação boho.', FALSE, TRUE);
