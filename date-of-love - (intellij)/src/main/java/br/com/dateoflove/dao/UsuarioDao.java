@@ -30,7 +30,6 @@ import java.util.List;
                 int linhasAfetadas = preparedStatement.executeUpdate();
 
 
-
                 if (linhasAfetadas == 1) {
                     ResultSet chavesGeradas = preparedStatement.getGeneratedKeys();
                     if (chavesGeradas.next()) {
@@ -51,35 +50,6 @@ import java.util.List;
             }
 
             return usuario;
-        }
-
-        public List<Usuario> encontrarTodosUsuarios() {
-            try {
-                String SQL = "SELECT * FROM tb_usuarios";
-                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-                PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-                ResultSet resultSet = preparedStatement.executeQuery();
-                List<Usuario> usuarios = new ArrayList<>();
-
-                while (resultSet.next()) {
-                    int idUsuario = resultSet.getInt("id_usuario");
-                    String nomeNoivo = resultSet.getString("nome_noivo");
-                    String nomeNoiva = resultSet.getString("nome_noiva");
-                    String email = resultSet.getString("ds_email");
-                    String senha = resultSet.getString("ds_senha");
-                    java.util.Date dataCadastro = resultSet.getDate("dt_cadastro");
-                    String nomesConcatenados = resultSet.getString("nm_noivos_concatenado");
-                    String imagem = resultSet.getString("imagem_path");
-
-                    Usuario usuario = new Usuario(idUsuario, nomeNoivo, nomeNoiva, email, senha, dataCadastro, nomesConcatenados,imagem);
-                    usuarios.add(usuario);
-                }
-
-                return usuarios;
-            } catch (Exception e) {
-                System.out.println("Erro ao encontrar usuários: " + e.getMessage());
-            }
-            return Collections.emptyList();
         }
 
         public void deletarUsuarioPorId(int idUsuario) {
@@ -214,7 +184,7 @@ import java.util.List;
                     String nomesConcatenados = resultSet.getString("nm_noivos_concatenado");
 
                     String imagem = resultSet.getString("imagem_path");
-                    usuario = new Usuario(idUsuario, nomeNoivo, nomeNoiva, email, senha, dataCadastro, nomesConcatenados,imagem);
+                    usuario = new Usuario(idUsuario, nomeNoivo, nomeNoiva, email, senha, dataCadastro, nomesConcatenados, imagem);
                 }
                 connection.close();
             } catch (SQLException e) {
@@ -248,6 +218,34 @@ import java.util.List;
             return usuario;
         }
 
+        public List<Usuario> encontrarTodosUsuarios() {
+            List<Usuario> usuarios = new ArrayList<>();
+            try {
+                String SQL = "SELECT * FROM tb_usuarios";
+                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    int idUsuario = resultSet.getInt("id_usuario");
+                    String nomeNoivo = resultSet.getString("nm_noivo");
+                    String nomeNoiva = resultSet.getString("nm_noiva");
+                    String email = resultSet.getString("ds_email");
+                    String senha = resultSet.getString("ds_senha");
+                    java.util.Date dataCadastro = resultSet.getDate("dt_cadastro");
+                    String nomesConcatenados = resultSet.getString("nm_noivos_concatenado");
+                    String imagem = resultSet.getString("imagem_path");
+
+                    Usuario usuario = new Usuario(idUsuario, nomeNoivo, nomeNoiva, email, senha, dataCadastro, nomesConcatenados, imagem);
+                    usuarios.add(usuario);
+                }
+
+                connection.close();
+            } catch (Exception e) {
+                System.out.println("Erro ao encontrar usuários: " + e.getMessage());
+            }
+            return usuarios;
+        }
     }
 
 

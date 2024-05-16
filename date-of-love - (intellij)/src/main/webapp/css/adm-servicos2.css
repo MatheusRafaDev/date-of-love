@@ -1,22 +1,27 @@
 
+body {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-h2 {
+.texto{
      font-family: 'Quicksand', sans-serif;
      margin-top: 25px;
      margin-bottom: 25px;
-     margin-left: 7em;
+     margin-left: 12em;
 }
 
 .servico-item {
 
-    margin: 0 auto 40px; /* Margem automática para centralizar verticalmente */
-    max-width: 900px; /* Largura máxima para evitar que o bloco fique muito largo */
-    padding: 20px; /* Adiciona espaçamento interno */
+    margin: 0 auto 10px;
+    max-width: 600px;
+    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
-    box-sizing: border-box; /* Inclui padding e border na largura total */
-    text-align: left; /* Alinha o texto à esquerda */
+    box-sizing: border-box;
+    text-align: left;
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -28,7 +33,7 @@ h2 {
 .servico-item input[type="text"],
 .servico-item textarea {
  font-family: 'Quicksand', sans-serif;
-    width: calc(100% - 16px); /* Ajusta a largura para levar em conta a borda */
+    width: calc(100% - 20px);
     padding: 8px;
     margin-top: 6px;
     border: 1px solid #ccc;
@@ -39,7 +44,7 @@ h2 {
 .servico-item input[type="number"],
 .servico-item textarea {
  font-family: 'Quicksand', sans-serif;
-    width: calc(100% - 16px); /* Ajusta a largura para levar em conta a borda */
+    width: calc(100% - 20px);
     padding: 8px;
     margin-top: 6px;
     border: 1px solid #ccc;
@@ -61,6 +66,6 @@ h2 {
 
 .servico-item input[type="submit"]:hover {
     background-color: #75b0e0;
-     font-family: 'Quicksand', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     color: white;
 }
