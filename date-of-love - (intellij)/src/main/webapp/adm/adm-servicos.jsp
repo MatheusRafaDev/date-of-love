@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-servicos.css">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-servicos2.css">
      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <title>Editar Serviço</title>
 </head>
@@ -16,7 +16,7 @@
 <body>
     <%@ include file="/componente/adm-header.jsp" %>
 
-    <h2>Editar Serviço</h2>
+    <h2 class="texto">Editar Serviço</h2>
     <form action="${pageContext.request.contextPath}/editar-servico" method="post">
         <c:forEach var="servico" items="${servico}">
             <div class="servico-item">
