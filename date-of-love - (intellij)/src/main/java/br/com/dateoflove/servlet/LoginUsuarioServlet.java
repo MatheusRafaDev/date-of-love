@@ -9,7 +9,6 @@ import br.com.dateoflove.model.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,33 +34,32 @@ public class LoginUsuarioServlet extends HttpServlet {
         OrcamentosDao orcamentoDao = new OrcamentosDao();
         CasamentoDao casamentoDao = new CasamentoDao();
 
-        if (email.equals("admin@email.com") && senha.equals("1234")){
-            resp.sendRedirect(req.getContextPath() + "/adm/admin.jsp");
-        }
+        try {
+            if ("admin@email.com".equals(email) && "1234".equals(senha)) {
+                resp.sendRedirect(req.getContextPath() + "/adm/adm-servicos.jsp");
+                return;
+            }
 
+            Usuario usuario = usuarioDao.buscarUsuarioPorEmail(email);
 
-        Usuario usuario = usuarioDao.buscarUsuarioPorEmail(email);
+            if (usuario != null && usuario.getSenha().equals(senha)) {
+                List<Orcamentos> listaOrcamentos = orcamentoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
+                Casamento casamento = casamentoDao.encontrarCasamentoPorIdUsuario(usuario.getIdUsuario());
 
+                req.getSession().setAttribute("usuario", usuario);
+                req.getSession().setAttribute("casamento", casamento);
+                req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
 
-
-
-        if (usuario != null && usuario.getSenha().equals(senha)) {
-
-            List<Orcamentos> listaOrcamentos = orcamentoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
-
-            Casamento casamento =  casamentoDao.encontrarCasamentoPorIdUsuario(usuario.getIdUsuario());
-
-            req.getSession().setAttribute("usuario", usuario);
-            req.getSession().setAttribute("casamento", casamento);
-            req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
-
-            resp.sendRedirect(req.getContextPath() + "/home.jsp");
-
-            //req.getRequestDispatcher("/perfil.jsp").forward(req, resp);
-
-        } else {
-            req.setAttribute("errorMessage", "Usuário ou Senha inválidos!");
-            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+                resp.sendRedirect(req.getContextPath() + "/home.jsp");
+                return; // Make sure to exit the method after redirect
+            } else {
+                req.setAttribute("errorMessage", "Usuário ou Senha inválidos!");
+                req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle exception and optionally forward to an error page
+            resp.sendRedirect(req.getContextPath() + "/error.jsp");
         }
     }
 }

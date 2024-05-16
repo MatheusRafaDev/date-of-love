@@ -1,6 +1,6 @@
 
 
-h1 {
+h2 {
      font-family: 'Quicksand', sans-serif;
      margin-top: 25px;
      margin-bottom: 25px;
@@ -35,6 +35,19 @@ h1 {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+.servico-item input[type="number"],
+.servico-item textarea {
+ font-family: 'Quicksand', sans-serif;
+    width: calc(100% - 16px); /* Ajusta a largura para levar em conta a borda */
+    padding: 8px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
 
 .servico-item input[type="submit"] {
     background-color: #D4EAFF;
