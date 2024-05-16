@@ -8,8 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-servicos2.css">
-     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-servicos2.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <title>Editar Serviço</title>
 </head>
 
@@ -17,7 +17,7 @@
     <%@ include file="/componente/adm-header.jsp" %>
 
     <h2 class="texto">Editar Serviço</h2>
-    <form action="${pageContext.request.contextPath}/editar-servico" method="post">
+    <form action="${pageContext.request.contextPath}/editar-servico" method="post" class="servicos-container">
         <c:forEach var="servico" items="${servico}">
             <div class="servico-item">
                 <input type="hidden" name="id_servico" value="${servico.getIdServico()}">
@@ -25,7 +25,8 @@
                 <input type="text" id="nm_servico" name="nm_servico" value="${servico.getNomeServico()}"><br>
                 <label for="ds_servico">Descrição do Serviço:</label><br>
                 <textarea id="ds_servico" name="ds_servico">${servico.getObservacao()}</textarea><br>
-                <input type="number" id="vl_preco" name="vl_preco" value="${servico.getPreco()}" step="0.01"><br><br>
+                <label for="ds_valor">Valor:</label><br>
+                <input type="number" id="vl_preco" name="vl_preco" value="${servico.getPreco()}" step="0.01"><br>
                 <input type="submit" value="Salvar">
             </div>
         </c:forEach>

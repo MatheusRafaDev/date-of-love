@@ -24,7 +24,6 @@
      <%@ include file="/componente/header.jsp" %>
 
     <h2 class="servico"> Serviços</h2>
-    <hr>
     <section>
 
         <div class="titulo-servico">

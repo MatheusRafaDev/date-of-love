@@ -23,7 +23,7 @@
                 <th>Nome Noiva</th>
                 <th>Email</th>
                 <th>Data de Cadastro</th>
-                <th>Imagem</th>
+                <th>Acão</th>
             </tr>
         </thead>
         <tbody>
@@ -35,8 +35,9 @@
                     <td>${usuario.getEmail()}</td>
                     <td>${usuario.getDataCadastro()}</td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/perfil" method="get">
+                        <form action="${pageContext.request.contextPath}/carregar-usuario-unico" method="get">
                             <input type="hidden" name="idUsuario" value="${usuario.getIdUsuario()}">
+                            <input type="hidden" name="email" value="${usuario.getEmail()}">
                             <button type="submit" class="botao">Ver Perfil</button>
                         </form>
                     </td>
