@@ -74,9 +74,10 @@ INSERT INTO tb_servicos (nm_servico, ds_servico, vl_preco) VALUES
 
 INSERT INTO tb_usuarios (nm_noivo, nm_noiva, ds_email, ds_senha, dt_cadastro, nm_noivos_concatenado, imagem_path) VALUES
 ('Igor Santos', 'Camila Almeida', 'igor.camila@example.com', 'senha789', '2024-03-15', 'Igor e Camila', '/images/igor_camila.jpg'),
-('Matheus Oliveira', 'Juliana Costa', 'matheus.juliana@example.com', 'senha012', '2024-04-18', 'Matheus e Juliana', '/images/matheus_juliana.jpg'),
+('Matheus Oliveira', 'Juliana Costa', 'matheus.nayssa@example.com', 'senha012', '2024-04-18', 'Matheus e Nayssa', '/images/matheus_juliana.jpg'),
 ('Thiago Ribeiro', 'Patrícia Silva', 'thiago.patricia@example.com', 'senha345', '2024-05-20', 'Thiago e Patrícia', '/images/thiago_patricia.jpg'),
 ('Alexandre Souza', 'Fernanda Lima', 'alexandre.fernanda@example.com', 'senha678', '2024-06-22', 'Alexandre e Fernanda', '/images/alexandre_fernanda.jpg');
+
 
 INSERT INTO tb_casamento (id_usuario, dt_casamento, ds_localidade, nr_convidados, ds_estilo_festa) VALUES
 (1, '2024-09-05', 'Belo Horizonte', 120, 'Moderno'),
@@ -84,11 +85,12 @@ INSERT INTO tb_casamento (id_usuario, dt_casamento, ds_localidade, nr_convidados
 (3, '2024-11-15', 'Florianópolis', 200, 'Praia'),
 (4, '2024-12-20', 'Porto Alegre', 150, 'Boho');
 
+
 INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, ds_observacao_orcador, nm_orcador, vl_total, tg_aprovado, tg_cancelado) VALUES
-(1, 1, '2024-07-01', 'Pendente', 'Primeiro orçamento.', 'Observação do orçador 1', 'Orçador 1', 0.00, FALSE, FALSE),
-(2, 2, '2024-07-10', 'Aprovado', 'Orçamento aprovado sem alterações.', 'Observação do orçador 2', 'Orçador 2', 0.00, TRUE, FALSE),
-(3, 3, '2024-07-20', 'Esperando Aprovação', 'Cliente solicitou ajustes.', 'Observação do orçador 3', 'Orçador 3', 0.00, FALSE, FALSE),
-(4, 4, '2024-07-30', 'Cancelado', 'Orçamento cancelado pelo cliente.', 'Observação do orçador 4', 'Orçador 4', 0.00, FALSE, TRUE);
+(1, 1, '2024-07-01', 'Pendente', 'Primeiro orçamento.', 'Observação do orçador 1', 'Carlos', 0.00, FALSE, FALSE),
+(2, 2, '2024-07-10', 'Aprovado', 'Orçamento aprovado sem alterações.', 'Observação do orçador 2', 'Roberto', 0.00, TRUE, FALSE),
+(3, 3, '2024-07-20', 'Esperando Aprovação', 'Cliente solicitou ajustes.', 'Observação do orçador 3', 'Italo', 0.00, FALSE, FALSE),
+(4, 4, '2024-07-30', 'Cancelado', 'Orçamento cancelado pelo cliente.', 'Observação do orçador 4', 'Guilherme', 0.00, FALSE, TRUE);
 
 
 INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso) VALUES
@@ -101,6 +103,7 @@ INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_p
 (1, 7, 1, 500.00, 'Coordenação do dia.', FALSE, TRUE),
 (1, 8, 1, 2500.00, 'Locação do espaço.', FALSE, TRUE);
 
+
 INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso) VALUES
 (2, 1, 1, 1000.00, 'Cardápio tradicional.', FALSE, TRUE),
 (2, 2, 1, 1500.00, 'Decoração clássica.', FALSE, TRUE),
@@ -110,6 +113,8 @@ INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_p
 (2, 6, 1, 800.00, 'DJ especializado.', FALSE, TRUE),
 (2, 7, 1, 500.00, 'Coordenação completa.', FALSE, TRUE),
 (2, 8, 1, 2500.00, 'Espaço tradicional.', FALSE, TRUE);
+
+
 
 INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso) VALUES
 (3, 1, 1, 1000.00, 'Cardápio praiano.', FALSE, TRUE),
@@ -121,6 +126,7 @@ INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_p
 (3, 7, 1, 500.00, 'Coordenação específica.', FALSE, TRUE),
 (3, 8, 1, 2500.00, 'Locação à beira-mar.', FALSE, TRUE);
 
+
 INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso) VALUES
 (4, 1, 1, 1000.00, 'Cardápio boho.', FALSE, TRUE),
 (4, 2, 1, 1500.00, 'Decoração boho.', FALSE, TRUE),
@@ -130,6 +136,7 @@ INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_p
 (4, 6, 1, 800.00, 'DJ com música boho.', FALSE, TRUE),
 (4, 7, 1, 500.00, 'Coordenação boho.', FALSE, TRUE),
 (4, 8, 1, 2500.00, 'Locação boho.', FALSE, TRUE);
+
 
 
 UPDATE tb_orcamentos
