@@ -19,9 +19,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home/home-cont.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home/home-slide.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home/home-style.css">
-        <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
-
-
+    <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <title>Date Of Love</title>
 
 </head>
