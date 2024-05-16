@@ -12,10 +12,6 @@ body {
     color: black;
 }
 
-.dados {
-    margin-left: 150px;
-}
-
 .container {
     position: relative;
     background-image: url("/src/assets/images/background-2.png");
@@ -29,7 +25,6 @@ body {
     overflow: hidden;
 }
 
-
 .logo {
     width: 180px;
     height: auto;
@@ -37,24 +32,17 @@ body {
     margin-bottom: 10px;
 }
 
-.email,.senha {
-    font-size: 18px;
-}
-
 .conta {
     font-size: 22px;
 }
 
-
-input[type="email"],
-input[type="password"] {
+input[type="email"], input[type="password"] {
     width: 150%;
-    padding: 10px;
+    padding: 100px;
     border: 1px solid #ddd;
 }
 
-
-.entrar,.criar {
+.redefinir {
     width: 150%;
     padding: 10px;
     margin-bottom: 10px;
@@ -64,27 +52,20 @@ input[type="password"] {
     cursor: pointer;
 }
 
-.criar:hover,
-.entrar:hover {
+.redefinir:hover {
     background-color: #319afd;
 }
 
 .erro-msg {
     color:red;
 }
-.esqueci-senha a {
+
+.esqueci-senha a, .voltar a {
     color: black;
     text-decoration: none;
     font-size: 18px;
 }
 
-.esqueci-senha a:hover {
+.esqueci-senha a:hover, .voltar a:hover {
     text-decoration: underline;
-}
-
-footer {
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }

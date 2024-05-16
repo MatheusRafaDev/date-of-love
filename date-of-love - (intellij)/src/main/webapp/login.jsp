@@ -28,7 +28,7 @@
                 <input type="password" id="senha" name="senha" required><br>
                 <p id="erro-msg" class="erro-msg"></p>
 
-                <p class="esqueci-senha"><a class="esqueci" href="#">Esqueceu a senha?</a></p>
+                <p class="esqueci-senha"><a class="esqueci" href="${pageContext.request.contextPath}/redefinirSenha.jsp">Esqueceu a senha?</a></p>
 
                 <button type="submit" class="entrar">ENTRAR</button>
             </form>
@@ -40,8 +40,14 @@
                 CRIAR CONTA
             </button>
         </div>
+
+        <footer>
+            <p>© 2024 Date of Love. Criado com ❤️ por Thiago, Matheus, Alexandre e Igor.</p>
+            <p>Todos os direitos reservados.</p>
+        </footer>
     </div>
     <script src="${pageContext.request.contextPath}/login.js"></script>
+
 
 </body>
 
