@@ -3,13 +3,7 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
-<<<<<<< Updated upstream
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/home.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/orcamento-admin.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
-=======
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/redefinirSenha.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
->>>>>>> Stashed changes
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/servicos.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>
     </option>
   </component>
