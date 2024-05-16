@@ -74,7 +74,7 @@ INSERT INTO tb_servicos (nm_servico, ds_servico, vl_preco) VALUES
 
 INSERT INTO tb_usuarios (nm_noivo, nm_noiva, ds_email, ds_senha, dt_cadastro, nm_noivos_concatenado, imagem_path) VALUES
 ('Igor Santos', 'Camila Almeida', 'igor.camila@example.com', 'senha789', '2024-03-15', 'Igor e Camila', '/images/igor_camila.jpg'),
-('Matheus Oliveira', 'Juliana Costa', 'matheus.nayssa@example.com', 'senha012', '2024-04-18', 'Matheus e Nayssa', '/images/matheus_juliana.jpg'),
+('Matheus', 'Nayssa', 'matheus.nayssa@example.com', 'senha012', '2024-04-18', 'Matheus e Nayssa', '/images/matheus_juliana.jpg'),
 ('Thiago Ribeiro', 'Patrícia Silva', 'thiago.patricia@example.com', 'senha345', '2024-05-20', 'Thiago e Patrícia', '/images/thiago_patricia.jpg'),
 ('Alexandre Souza', 'Fernanda Lima', 'alexandre.fernanda@example.com', 'senha678', '2024-06-22', 'Alexandre e Fernanda', '/images/alexandre_fernanda.jpg');
 
