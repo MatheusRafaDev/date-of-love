@@ -40,11 +40,6 @@
                 CRIAR CONTA
             </button>
         </div>
-
-        <footer>
-            <p>© 2024 Date of Love. Criado com ❤️ por Thiago, Matheus, Alexandre e Igor.</p>
-            <p>Todos os direitos reservados.</p>
-        </footer>
     </div>
     <script src="${pageContext.request.contextPath}/login.js"></script>
 
