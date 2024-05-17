@@ -9,7 +9,8 @@
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if (usuario == null) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        response.sendRedirect("/login");
+        return;
     }
 
     Casamento casamento = (Casamento) session.getAttribute("casamento");
@@ -59,7 +60,7 @@
 
                                 <form action="${pageContext.request.contextPath}/mandar-imagem" method="post" enctype="multipart/form-data">
                                        <div class="form-container2">
-                                           <input style="display: none;" name="id_usuario" id="id_usuario" value="<%= usuario.getIdUsuario() %>">
+                                           <input style="display: none;" name="id" id="id" value="<%= usuario.getIdUsuario() %>">
                                            <label for="image">Escolha uma imagem</label>
                                            <input type="file"name="image" id="image">
                                            <button type="submit" id="btnSalvar" class="btn-salvar2">Salvar</button>

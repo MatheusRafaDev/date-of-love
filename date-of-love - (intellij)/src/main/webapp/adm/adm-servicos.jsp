@@ -1,7 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="br.com.dateoflove.model.Usuario" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="br.com.dateoflove.dao.ServicoDao" %>
 <%@ page import="br.com.dateoflove.model.Servico" %>
+
+<%
+   Usuario usuario2 = (Usuario) session.getAttribute("usuario2");
+   if (usuario2 == null || !usuario2.getEmail().equals("adm")) {
+      response.sendRedirect("/login");
+      return;
+   }
+%>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -9,8 +19,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-servicos2.css">
-        <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
-
+    <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <title>Editar Serviço</title>
 </head>

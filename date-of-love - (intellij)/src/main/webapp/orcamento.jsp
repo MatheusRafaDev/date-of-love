@@ -10,11 +10,12 @@
 <% ServicoDao servicoDao = new ServicoDao();%>
 
 <%
-    Usuario usuario = (Usuario) session.getAttribute("usuario");
     Orcamentos orcamento = (Orcamentos) session.getAttribute("orcamento");
 
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
     if (usuario == null) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        response.sendRedirect("/login");
+        return;
     }
 
     Casamento casamento = (Casamento) session.getAttribute("casamento");

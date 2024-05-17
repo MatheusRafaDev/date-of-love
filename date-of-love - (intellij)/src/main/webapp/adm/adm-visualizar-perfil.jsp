@@ -7,10 +7,16 @@
 <%@ page import="java.util.List" %>
 
 <%
+
+  Usuario usuario2 = (Usuario) session.getAttribute("usuario2");
+  if (usuario2 == null || !usuario2.getEmail().equals("adm")) {
+     response.sendRedirect("/login");
+     return;
+  }
+
+
+
     Usuario usuario = (Usuario) session.getAttribute("usuario");
-    if (usuario == null) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
-    }
 
     Casamento casamento = (Casamento) session.getAttribute("casamento");
 

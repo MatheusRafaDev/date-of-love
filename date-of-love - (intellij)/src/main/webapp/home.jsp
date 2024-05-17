@@ -26,7 +26,7 @@
 <body>
    <%@ include file="/componente/header.jsp" %>
 
-<header>
+<div class="header">
     <section class="slider">
         <div class="slider-content">
             <input type="radio" name="btn-radio" id="radio1">
@@ -61,7 +61,7 @@
             </div>
         </div>
     </section>
-</header>
+</div>
 
 <section id="base">
     <div class="container2"><img src="<%=request.getContextPath()%>/src/assets/images-home/casal2.png" alt="imagemcasal" class="casal2"> </div>
@@ -73,7 +73,8 @@
         <p>e tornar momentos especiais em memórias inesquecíveis.</p>
         <p>São mais de 13 anos no mercado de eventos e uma equipe </p>
         <p>apaixonada por oferecer serviços de excelência, criatividade e inovação.</p>
-        <button class="botaoquem">Nossa História </button>
+        <button class="botaoquem" onclick="window.location.href='<%=request.getContextPath()%>/sobre-nos.jsp'">Nossa História</button>
+
     </div>
 
     <div class="container3">
@@ -253,7 +254,6 @@
 </div>
 
 </div>
-<div class="bn"><button02>SAIBA MAIS</button02></div>
 
 </section>
 

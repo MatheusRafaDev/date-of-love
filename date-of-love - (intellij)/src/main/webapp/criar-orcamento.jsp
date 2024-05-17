@@ -7,7 +7,8 @@
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if (usuario == null) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        response.sendRedirect("/login");
+        return;
     }
 
     Casamento casamento = (Casamento) session.getAttribute("casamento");

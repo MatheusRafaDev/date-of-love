@@ -39,10 +39,15 @@ public class LoginUsuarioServlet extends HttpServlet {
         try {
             if ("admin@email.com".equals(email) && "1234".equals(senha)) {
                 ServicoDao servicoDao = new ServicoDao();
+                Usuario usuario = new Usuario();
+
+                usuario.setEmail("adm");
+
                 List<Servico> servico = servicoDao.listarServicos();
                 req.getSession().setAttribute("servico", servico);
+                req.getSession().setAttribute("usuario2", usuario);
 
-                req.getRequestDispatcher( "/carregar-servico");
+                resp.sendRedirect( "/carregar-servico");
                 return;
             }
 
@@ -57,7 +62,7 @@ public class LoginUsuarioServlet extends HttpServlet {
                 req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
 
                 resp.sendRedirect(req.getContextPath() + "/home.jsp");
-                return; // Make sure to exit the method after redirect
+                return;
             } else {
                 req.setAttribute("errorMessage", "Usuário ou Senha inválidos!");
                 req.getRequestDispatcher("/login.jsp").forward(req, resp);
