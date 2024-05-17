@@ -3,6 +3,7 @@ package br.com.dateoflove.dao;
 import br.com.dateoflove.model.Orcamentos;
 import br.com.dateoflove.funcao.Email;
 import br.com.dateoflove.model.Usuario;
+import br.com.dateoflove.config.PoolConfig;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -103,7 +104,7 @@ public class OrcamentosDao {
         ResultSet rs = null;
 
         try {
-            Connection conn = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PollConfig.getConnection();
             String query = "SELECT * FROM tb_orcamentos WHERE id_usuario = ?";
             stmt = conn.prepareStatement(query);
             stmt.setInt(1, idUsuario);
@@ -142,7 +143,7 @@ public class OrcamentosDao {
         PreparedStatement stmt = null;
 
         try {
-            Connection conn = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PollConfig.getConnection();
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, idUsuario);
             ResultSet rs = stmt.executeQuery();
@@ -162,7 +163,7 @@ public class OrcamentosDao {
         ResultSet rs = null;
 
         try {
-            Connection conn = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PollConfig.getConnection();
             String query = "SELECT * FROM tb_orcamentos WHERE id_orcamento = ?";
             stmt = conn.prepareStatement(query);
             stmt.setInt(1, idOrcamento);

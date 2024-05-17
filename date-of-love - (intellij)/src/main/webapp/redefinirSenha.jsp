@@ -21,7 +21,7 @@
         <input type="email" id="email" name="email" required><br>
 
         <div class="senha">Nova Senha</div>
-        <input type="password" name="password" required><br>
+        <input type="password" name="novaSenha" required><br>
         <button type="submit" class="redefinir">Redefinir Senha</button>
     </form>
 
