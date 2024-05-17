@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import br.com.dateoflove.config.PollConfig;
+import br.com.dateoflove.config.PoolConfig;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +19,7 @@ public class ServicoDao {
         Servico servico = null;
         String query = "SELECT * FROM tb_servicos WHERE id_servico = ?";
 
-        try (Connection connection = PollConfig.getConnection();
+        try (Connection connection = PoolConfig.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
@@ -42,7 +42,7 @@ public class ServicoDao {
         List<Servico> servicos = new ArrayList<>();
         String query = "SELECT * FROM tb_servicos";
 
-        try (Connection connection = PollConfig.getConnection();
+        try (Connection connection = PoolConfig.getConnection();
              PreparedStatement ps = connection.prepareStatement(query);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
@@ -64,7 +64,7 @@ public class ServicoDao {
     public void atualizarServico(Servico servico) {
         String query = "UPDATE tb_servicos SET nm_servico = ?, ds_servico = ?, vl_preco = ? WHERE id_servico = ?";
 
-        try (Connection connection = PollConfig.getConnection();
+        try (Connection connection = PoolConfig.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, servico.getNomeServico());
             ps.setString(2, servico.getObservacao());

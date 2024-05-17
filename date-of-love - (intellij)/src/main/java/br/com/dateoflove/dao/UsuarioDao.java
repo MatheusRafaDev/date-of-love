@@ -1,7 +1,7 @@
 package br.com.dateoflove.dao;
 
 
-import br.com.dateoflove.config.PollConfig;
+import br.com.dateoflove.config.PoolConfig;
 import br.com.dateoflove.funcao.Email;
 import br.com.dateoflove.model.Usuario;
 
@@ -17,7 +17,7 @@ import java.util.List;
             try {
                 String SQL = "INSERT INTO tb_usuarios (nm_noivo, nm_noiva, ds_email, ds_senha, dt_cadastro, nm_noivos_concatenado) " +
                         "VALUES (?, ?, ?, ?, ?, ?)";
-                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                Connection connection = PoolConfig.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
                 preparedStatement.setString(1, usuario.getNomeNoivo());
@@ -55,7 +55,7 @@ import java.util.List;
         public void deletarUsuarioPorId(int idUsuario) {
             try {
                 String SQL = "DELETE FROM tb_usuarios WHERE id_usuario = ?";
-                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                Connection connection = PoolConfig.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL);
                 preparedStatement.setInt(1, idUsuario);
                 preparedStatement.execute();
@@ -141,7 +141,7 @@ import java.util.List;
 
                 // Agora atualizamos os campos no banco de dados
                 String SQL = "UPDATE tb_usuarios SET nm_noivo = ?, nm_noiva = ?, ds_email = ?, ds_senha = ?, nm_noivos_concatenado = ? WHERE id_usuario = ?";
-                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                Connection connection = PoolConfig.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL);
                 preparedStatement.setString(1, usuarioAntigo.getNomeNoivo());
                 preparedStatement.setString(2, usuarioAntigo.getNomeNoiva());
@@ -169,7 +169,7 @@ import java.util.List;
 
             try {
                 String SQL = "SELECT * FROM tb_usuarios WHERE id_usuario = ?";
-                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                Connection connection = PoolConfig.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL);
                 preparedStatement.setInt(1, idUsuario);
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -196,7 +196,7 @@ import java.util.List;
         public Usuario atualizarImagePath(Usuario usuario) {
             try {
                 String SQL = "UPDATE tb_usuarios SET imagem_path = ? WHERE id_usuario = ?";
-                Connection connection = PollConfig.getConnection();
+                Connection connection = PoolConfig.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
                 preparedStatement.setString(1, usuario.getImagem());
@@ -222,7 +222,7 @@ import java.util.List;
             List<Usuario> usuarios = new ArrayList<>();
             try {
                 String SQL = "SELECT * FROM tb_usuarios";
-                Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                Connection connection = PoolConfig.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SQL);
                 ResultSet resultSet = preparedStatement.executeQuery();
 

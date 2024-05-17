@@ -17,7 +17,7 @@ public class OrcamentosDao {
         try {
             String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, vl_total, tg_aprovado, ds_observacao_orcador,tg_cancelado ) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setInt(1, orcamento.getIdUsuario());
@@ -58,7 +58,7 @@ public class OrcamentosDao {
     public void deletarOrcamentoPorId(int idOrcamento) {
         try {
             String SQL = "DELETE FROM tb_orcamentos WHERE id_orcamento = ?";
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idOrcamento);
             preparedStatement.execute();
@@ -72,7 +72,7 @@ public class OrcamentosDao {
     public void atualizarOrcamento(Orcamentos orcamento) {
         try {
             String SQL = "UPDATE tb_orcamentos SET id_usuario = ?, id_casamento = ?, dt_orcamento = ?, ds_status = ?, ds_observacao = ?, nm_orcador = ? WHERE id_orcamento = ?";
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
             preparedStatement.setInt(1, orcamento.getIdUsuario());
@@ -200,7 +200,7 @@ public class OrcamentosDao {
 
             String SQL = "UPDATE tb_orcamentos SET tg_aprovado = true,ds_status ='Aprovado' WHERE id_orcamento = ?";
 
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idOrcamento);
 
@@ -221,7 +221,7 @@ public class OrcamentosDao {
 
             String SQL = "UPDATE tb_orcamentos SET tg_cancelado = true,ds_status ='Cancelado' WHERE id_orcamento = ?";
 
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idOrcamento);
 

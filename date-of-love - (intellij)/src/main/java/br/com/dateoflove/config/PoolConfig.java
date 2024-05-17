@@ -5,11 +5,11 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class PollConfig {
+public class PoolConfig {
 
     private static BasicDataSource dataSource;
 
-    private PollConfig() {
+    private PoolConfig() {
         getDataSource();
     }
 

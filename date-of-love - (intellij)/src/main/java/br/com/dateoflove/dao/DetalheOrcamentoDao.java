@@ -1,5 +1,6 @@
 package br.com.dateoflove.dao;
 
+import br.com.dateoflove.config.PoolConfig;
 import br.com.dateoflove.model.DetalheOrcamento;
 
 import java.sql.*;
@@ -13,7 +14,7 @@ public class DetalheOrcamentoDao {
         try {
             String SQL = "INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo,tg_incluso) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setInt(1, detalheOrcamento.getIdOrcamento());
@@ -46,7 +47,7 @@ public class DetalheOrcamentoDao {
     public List<DetalheOrcamento> encontrarTodosDetalhesOrcamento() {
         try {
             String SQL = "SELECT * FROM tb_detalhes_orcamento ";
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
             List<DetalheOrcamento> detalhesOrcamento = new ArrayList<>();
@@ -76,7 +77,7 @@ public class DetalheOrcamentoDao {
     public void deletarDetalheOrcamentoPorId(int idDetalheOrcamento) {
         try {
             String SQL = "DELETE FROM tb_detalhes_orcamento WHERE id_detalhe_orcamento = ?";
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idDetalheOrcamento);
             preparedStatement.execute();
@@ -91,7 +92,7 @@ public class DetalheOrcamentoDao {
         List<DetalheOrcamento> detalhesOrcamento = new ArrayList<>();
         try {
             String SQL = "SELECT * FROM tb_detalhes_orcamento WHERE id_orcamento = ? AND TG_INCLUSO = FALSE";
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idOrcamento);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -119,7 +120,7 @@ public class DetalheOrcamentoDao {
         List<DetalheOrcamento> detalhesOrcamento = new ArrayList<>();
         try {
             String SQL = "SELECT * FROM tb_detalhes_orcamento WHERE id_orcamento = ? AND TG_INCLUSO = TRUE";
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idOrcamento);
             ResultSet resultSet = preparedStatement.executeQuery();
