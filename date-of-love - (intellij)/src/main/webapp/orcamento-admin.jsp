@@ -2,7 +2,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="br.com.dateoflove.model.Usuario" %>
-<%@ page import="br.com.dateoflove.model.Orcamento" %>
+<%@ page import="br.com.dateoflove.model.Orcamentos" %>
 <%@ page import="br.com.dateoflove.model.Casamento" %>
 <%@ page import="java.util.List" %>
 
@@ -51,6 +51,7 @@
                                 <thead class="table-secondary">
                                 <tr>
                                     <th scope="col">Id.Orçamento</th>
+                                    <th scope="col">Casal</th>
                                     <th scope="col">Orçado por</th>
                                     <th scope="col">Valor Orçado</th>
                                     <th scope="col">Status</th>
@@ -62,15 +63,16 @@
                                     <tr>
                                         <form action="${pageContext.request.contextPath}/orcamento" method="GET">
                                             <td>${orcamento.getIdOrcamento()}</td>
+                                            <td>${usuario.getNomesConcatenados()}</td>
                                             <td>${orcamento.getNomeOrcador()}</td>
-                                            <td>${orcamento.getValorOrçado()}</td>
+                                            <td>${orcamento.getValorTotal()}</td>
                                             <td>${orcamento.getStatus()}</td>
                                             <td>
-                                                <button type="submit" class="btn-visualizar" onclick="window.location.href='/detalhe-orcamento-adm.jsp?id=${orcamento.getIdOrcamento()}">Editar</button>
+                                                <button type="button" class="btn-visualizar" onclick="window.location.href='/detalhe-orcamento-adm.jsp?id=${orcamento.getIdOrcamento()}'; return false;">Editar</button>
                                             </td>
                                         </form>
 
-                                        <c:if test="${orcamento.getStatus().equals('Pendente') || orcamento.getStatus().equals('Esperando Aprovação')}">
+                                        <c:if test="${orcamento.status == 'Pendente' || orcamento.status == 'Esperando Aprovação'}">
                                             <form action="${pageContext.request.contextPath}/cancelar" method="POST">
                                                 <td>
                                                     <input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}">

@@ -104,9 +104,9 @@ public class OrcamentosDao {
         ResultSet rs = null;
 
         try {
-            Connection connection = PollConfig.getConnection();
+            Connection connection = PoolConfig.getConnection();
             String query = "SELECT * FROM tb_orcamentos WHERE id_usuario = ?";
-            stmt = conn.prepareStatement(query);
+            stmt = connection.prepareStatement(query);
             stmt.setInt(1, idUsuario);
             rs = stmt.executeQuery();
 
@@ -143,8 +143,8 @@ public class OrcamentosDao {
         PreparedStatement stmt = null;
 
         try {
-            Connection connection = PollConfig.getConnection();
-            stmt = conn.prepareStatement(sql);
+            Connection connection = PoolConfig.getConnection();
+            stmt = connection.prepareStatement(sql);
             stmt.setInt(1, idUsuario);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -163,9 +163,9 @@ public class OrcamentosDao {
         ResultSet rs = null;
 
         try {
-            Connection connection = PollConfig.getConnection();
+            Connection connection = PoolConfig.getConnection();
             String query = "SELECT * FROM tb_orcamentos WHERE id_orcamento = ?";
-            stmt = conn.prepareStatement(query);
+            stmt = connection.prepareStatement(query);
             stmt.setInt(1, idOrcamento);
             rs = stmt.executeQuery();
 

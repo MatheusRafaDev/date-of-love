@@ -17,9 +17,9 @@ public class PoolConfig {
 
         if (dataSource == null) {
             dataSource = new BasicDataSource();
-            dataSource.setUrl("jdbc:h2:~/test");
-            dataSource.setUsername("sa");
-            dataSource.setPassword("sa");
+            dataSource.setUrl("date-of-love.mysql.database.azure.com");
+            dataSource.setUsername("dateoflove");
+            dataSource.setPassword("Matheus123@");
             dataSource.setMinIdle(5);
             dataSource.setMaxIdle(10);
             dataSource.setMaxTotal(50);

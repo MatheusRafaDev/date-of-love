@@ -12,15 +12,15 @@ public class Orcamentos {
     private String observacaoOrcador;
     private String nomeOrcador;
     private double valorTotal;
-    private boolean Aprovado;
-
-    private boolean Cancelado;
+    private boolean aprovado;
+    private Double valorOrcado;
+    private boolean cancelado;
 
     public Orcamentos() {
         super();
     }
 
-    public Orcamentos(int idOrcamento, int idUsuario, int idCasamento, Date dataOrcamento, String status, String observacao, String nomeOrcador, double valorTotal,boolean Aprovado,String observacaoOrcador,boolean Cancelado) {
+    public Orcamentos(int idOrcamento, int idUsuario, int idCasamento, Date dataOrcamento, String status, String observacao, String nomeOrcador, double valorTotal, boolean aprovado, String observacaoOrcador, boolean cancelado) {
         this.idOrcamento = idOrcamento;
         this.idUsuario = idUsuario;
         this.idCasamento = idCasamento;
@@ -30,11 +30,18 @@ public class Orcamentos {
         this.observacaoOrcador = observacaoOrcador;
         this.nomeOrcador = nomeOrcador;
         this.valorTotal = valorTotal;
-        this.Aprovado = Aprovado;
-        this.Cancelado= Cancelado;
+        this.aprovado = aprovado;
+        this.valorOrcado = 0.0; // Inicializando valorOrcado
+        this.cancelado = cancelado;
     }
 
+    public Double getValorOrcado() {
+        return valorOrcado;
+    }
 
+    public void setValorOrcado(Double valorOrcado) {
+        this.valorOrcado = valorOrcado;
+    }
 
     public int getIdOrcamento() {
         return idOrcamento;
@@ -100,12 +107,12 @@ public class Orcamentos {
         this.valorTotal = valorTotal;
     }
 
-    public boolean getAprovado() {
-        return Aprovado;
+    public boolean isAprovado() {
+        return aprovado;
     }
 
-    public void setAprovado(boolean Aprovador) {
-        this.Aprovado = Aprovado;
+    public void setAprovado(boolean aprovado) {
+        this.aprovado = aprovado;
     }
 
     public String getObservacaoOrcador() {
@@ -117,11 +124,10 @@ public class Orcamentos {
     }
 
     public boolean isCancelado() {
-        return Cancelado;
+        return cancelado;
     }
 
     public void setCancelado(boolean cancelado) {
-        Cancelado = cancelado;
+        this.cancelado = cancelado;
     }
-
 }
