@@ -15,9 +15,9 @@ import java.io.IOException;
 @WebServlet("/atualizar-orcamento")
 public class AtualizarOrcamentoServlet extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Receber os dados da requisição
             StringBuilder stringBuilder = new StringBuilder();
             try (BufferedReader reader = request.getReader()) {
                 String line;
@@ -26,18 +26,15 @@ public class AtualizarOrcamentoServlet extends HttpServlet {
                 }
             }
 
-            // Extrair os dados do objeto JSON
             JSONObject requestData = new JSONObject(stringBuilder.toString());
             int idOrcamento = requestData.optInt("idOrcamento");
             double novoValorService1 = requestData.optDouble("novoValorService1");
 
-            // Validação dos dados
             if (idOrcamento <= 0 || Double.isNaN(novoValorService1)) {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 return;
             }
 
-            // Atualizar o orçamento no banco de dados usando o DAO OrcamentosDao
             OrcamentosDao orcamentosDao = new OrcamentosDao();
             Orcamentos orcamento = orcamentosDao.buscarOrcamentoPorId(idOrcamento);
             if (orcamento == null) {
@@ -47,7 +44,7 @@ public class AtualizarOrcamentoServlet extends HttpServlet {
             orcamento.setValorTotal(novoValorService1);
             orcamentosDao.atualizarOrcamento(orcamento);
 
-            // Enviar uma resposta de confirmação para o frontend
+
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("{\"message\": \"Orçamento atualizado com sucesso!\"}");

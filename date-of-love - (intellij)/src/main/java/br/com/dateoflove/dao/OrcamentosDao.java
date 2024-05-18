@@ -164,9 +164,9 @@ public class OrcamentosDao {
         ResultSet rs = null;
 
         try {
-            Connection connection = PollConfig.getConnection();
+            Connection connection = PoolConfig.getConnection();
             String query = "SELECT * FROM tb_orcamentos WHERE id_orcamento = ?";
-            stmt = conn.prepareStatement(query);
+            stmt = connection .prepareStatement(query);
             stmt.setInt(1, idOrcamento);
             rs = stmt.executeQuery();
 
