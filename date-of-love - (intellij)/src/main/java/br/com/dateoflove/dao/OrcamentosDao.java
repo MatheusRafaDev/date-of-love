@@ -4,6 +4,7 @@ import br.com.dateoflove.model.Orcamentos;
 import br.com.dateoflove.funcao.Email;
 import br.com.dateoflove.model.Usuario;
 import br.com.dateoflove.config.PoolConfig;
+import com.sun.jndi.ldap.pool.Pool;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -163,9 +164,9 @@ public class OrcamentosDao {
         ResultSet rs = null;
 
         try {
-            Connection connection = PoolConfig.getConnection();
+            Connection connection = PollConfig.getConnection();
             String query = "SELECT * FROM tb_orcamentos WHERE id_orcamento = ?";
-            stmt = connection.prepareStatement(query);
+            stmt = conn.prepareStatement(query);
             stmt.setInt(1, idOrcamento);
             rs = stmt.executeQuery();
 

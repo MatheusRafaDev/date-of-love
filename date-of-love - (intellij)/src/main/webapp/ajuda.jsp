@@ -27,11 +27,14 @@
 
     <div class="duvida-box">
         <h2>Descreva sua dúvida</h2>
+
         <form action="${pageContext.request.contextPath}/enviarDuvida" method="post">
+            <input class="email" type="text" name="text" placeholder="Digite seu email aqui...">
             <input class="texto" type="text" name="duvida" placeholder="Digite sua dúvida aqui...">
             <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
         </form>
     </div>
+
 
     <div class="perguntas">
         <h2>PERGUNTAS FREQUENTES</h2>

@@ -21,7 +21,7 @@
     font-family: 'Quicksand', sans-serif;
 }
 
-.texto {
+.texto, .email {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
