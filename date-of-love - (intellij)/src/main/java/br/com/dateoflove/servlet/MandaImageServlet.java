@@ -26,13 +26,15 @@ public class MandaImageServlet extends HttpServlet {
         Map<String, String> parameters = uploadImage(req);
 
         String ImagePath = parameters.get("image");
-        String idString = parameters.get("id_usuario");
+        String idString = parameters.get("id");
 
         int idUsuario = Integer.parseInt(idString);
 
         Usuario usuario = new Usuario(idUsuario, ImagePath);
 
         new UsuarioDao().atualizarImagePath(usuario);
+
+
 
         resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
     }

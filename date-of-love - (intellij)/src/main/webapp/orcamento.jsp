@@ -87,7 +87,7 @@
         <h3>Observações Gerais</h3>
         <p><%= orcamento.getObservacao() %></p>
 
-        <c:if test="${!orcamento.getAprovado() && orcamento.getStatus().equals('Esperando Aprovação')}">
+        <c:if test="${!orcamento.isAprovado() && orcamento.getStatus().equals('Esperando Aprovação')}">
            <form action="aprovar-orcamento" method="POST">
               <input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}">
               <input type="hidden" id="idUsuario" name="idUsuario" value="${usuario.getIdUsuario()}">
