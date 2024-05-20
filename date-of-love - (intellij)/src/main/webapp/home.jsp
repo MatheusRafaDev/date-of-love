@@ -161,7 +161,7 @@
     </div>
 
     <div class="boxestru">
-        <img src="<%=request.getContextPath()%>/src/assets/images-home/Salão Principal.png"/>
+        <img src="<%=request.getContextPath()%>/src/assets/images-home/salao Principal.png"/>
         <h1>Salão Principal</h1>
         <p>com pé direito de 5 metros<br>
             (capacidade para 350 pessoas sentadas)</p>
