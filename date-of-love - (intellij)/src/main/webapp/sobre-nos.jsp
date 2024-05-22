@@ -41,10 +41,6 @@
         </div>
 
         
-    <footer>
-        <img src="<%=request.getContextPath()%>/src/assets/images/logobranco.png" alt="Logo" class="brancologo">
-        <p>&copy; 2024 Date Of Love. Todos os direitos reservados.<br>Desenvolvido por Alexandre Fidelis, Igor Alves, Matheus Rafael e Thiago Fernandes.
-        </p>
-    </footer>
+    <%@ include file="/componente/footer.jsp" %>
 </body>
 </html>

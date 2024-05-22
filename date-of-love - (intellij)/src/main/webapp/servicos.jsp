@@ -300,6 +300,7 @@
 
     </section>
 
+    <%@ include file="/componente/footer.jsp" %>
 </body>
 
 </html>
