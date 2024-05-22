@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/criar-conta.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/criar-conta2.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <title>Criar Conta</title>
 </head>
@@ -36,11 +36,29 @@
                  <span class="error-message">${requestScope.errorMessage3}</span>
             </div>
 
-            <label for="estilo_festa">Estilo da Festa</label>
-            <input type="text" id="estilo_festa" name="estilo_festa" class="campo-grande" required>
+            <section>
+                <label for="estilo_festa">Estilo da Festa</label>
+                <select id="estilo_festa" name="estilo_festa" class="campo-grande" required>
+                    <option value="">Selecione o estilo</option>
+                    <option value="classico">Clássico</option>
+                    <option value="rustico">Rústico</option>
+                    <option value="praia">Praia</option>
+                    <option value="moderno">Moderno</option>
+                    <option value="vintage">Vintage</option>
+                </select>
+            </section>
 
-            <label for="localizacao">Localização</label>
-            <input type="text" id="localizacao" name="localizacao" required>
+            <section>
+                <label for="localizacao">Localização</label>
+                <select id="localizacao" name="localizacao" required>
+                    <option value="">Selecione a localização</option>
+                    <option value="igreja">Igreja</option>
+                    <option value="salao_festas">Salão de festas</option>
+                    <option value="campo">Campo</option>
+                    <option value="hotel">Hotel</option>
+                </select>
+            </section>
+
 
             <label for="num_convidados">Número de Convidados</label>
             <input type="number" id="num_convidados" name="num_convidados" required maxlength="40">

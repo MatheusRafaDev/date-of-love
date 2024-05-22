@@ -1,6 +1,6 @@
 package br.com.dateoflove.dao;
 
-
+import java.util.Date;
 import br.com.dateoflove.config.PoolConfig;
 import br.com.dateoflove.model.Casamento;
 import org.apache.commons.pool2.impl.BaseObjectPoolConfig;
@@ -76,48 +76,53 @@ public class CasamentoDao {
             return null;
         }
 
-        public void atualizarCasamento(Casamento casamento) {
-            try {
-                Casamento casamentoAntigo =  encontrarCasamentoPorIdUsuario(casamento.getIdUsuario());
-                if (casamentoAntigo == null) {
-                    System.out.println("Casamento não encontrado para atualização.");
-                    return;
+    public void atualizarCasamentoParcial(Casamento casamentoAtual, Casamento casamentoNovo) throws SQLException {
+        StringBuilder sql = new StringBuilder("UPDATE tb_casamentos SET ");
+        boolean needsUpdate = false;
+
+        if (casamentoNovo.getDataCasamento() != null && !casamentoNovo.getDataCasamento().equals(casamentoAtual.getDataCasamento())) {
+            sql.append("dt_casamento = ?, ");
+            needsUpdate = true;
+        }
+        if (casamentoNovo.getLocalidade() != null && !casamentoNovo.getLocalidade().equals(casamentoAtual.getLocalidade())) {
+            sql.append("ds_localidade = ?, ");
+            needsUpdate = true;
+        }
+        if (casamentoNovo.getNumeroConvidados() != 0 && casamentoNovo.getNumeroConvidados() != casamentoAtual.getNumeroConvidados()) {
+            sql.append("nr_convidados = ?, ");
+            needsUpdate = true;
+        }
+        if (casamentoNovo.getEstiloFesta() != null && !casamentoNovo.getEstiloFesta().equals(casamentoAtual.getEstiloFesta())) {
+            sql.append("ds_estilo_festa = ?, ");
+            needsUpdate = true;
+        }
+
+        if (needsUpdate) {
+            sql.setLength(sql.length() - 2);
+            sql.append(" WHERE id_casamento = " + casamentoAtual.getIdCasamento());
+
+            try (Connection conn = PoolConfig.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
+
+                int index = 1;
+
+                if (casamentoNovo.getDataCasamento() != null && !casamentoNovo.getDataCasamento().equals(casamentoAtual.getDataCasamento())) {
+                    stmt.setDate(index++, (java.sql.Date) casamentoNovo.getDataCasamento());
+                }
+                if (casamentoNovo.getLocalidade() != null && !casamentoNovo.getLocalidade().equals(casamentoAtual.getLocalidade())) {
+                    stmt.setString(index++, casamentoNovo.getLocalidade());
+                }
+                if (casamentoNovo.getNumeroConvidados() != 0 && casamentoNovo.getNumeroConvidados() != casamentoAtual.getNumeroConvidados()) {
+                    stmt.setInt(index++, casamentoNovo.getNumeroConvidados());
+                }
+                if (casamentoNovo.getEstiloFesta() != null && !casamentoNovo.getEstiloFesta().equals(casamentoAtual.getEstiloFesta())) {
+                    stmt.setString(index++, casamentoNovo.getEstiloFesta());
                 }
 
-                if (!casamento.getDataCasamento().equals(casamentoAntigo.getDataCasamento())) {
-                    casamentoAntigo.setDataCasamento(casamento.getDataCasamento());
-                }
-                if (!casamento.getLocalidade().equals(casamentoAntigo.getLocalidade())) {
-                    casamentoAntigo.setLocalidade(casamento.getLocalidade());
-                }
-                if (casamento.getNumeroConvidados() != casamentoAntigo.getNumeroConvidados()) {
-                    casamentoAntigo.setNumeroConvidados(casamento.getNumeroConvidados());
-                }
-                if (!casamento.getEstiloFesta().equals(casamentoAntigo.getEstiloFesta())) {
-                    casamentoAntigo.setEstiloFesta(casamento.getEstiloFesta());
-                }
-
-                String SQL = "UPDATE tb_casamento SET dt_casamento = ?, ds_localidade = ?, nr_convidados = ?, ds_estilo_festa = ? WHERE id_casamento = ?";
-                Connection connection = PoolConfig.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-                preparedStatement.setDate(1, new java.sql.Date(casamentoAntigo.getDataCasamento().getTime()));
-                preparedStatement.setString(2, casamentoAntigo.getLocalidade());
-                preparedStatement.setInt(3, casamentoAntigo.getNumeroConvidados());
-                preparedStatement.setString(4, casamentoAntigo.getEstiloFesta());
-                preparedStatement.setInt(5, casamentoAntigo.getIdCasamento());
-
-                int linhasAfetadas = preparedStatement.executeUpdate();
-
-                if (linhasAfetadas == 1) {
-                    System.out.println("Casamento atualizado com sucesso!");
-                } else {
-                    System.out.println("Falha ao atualizar o casamento.");
-                }
-
-                connection.close();
-            } catch (SQLException e) {
-                System.out.println("Erro ao atualizar o casamento: " + e.getMessage());
+                stmt.executeUpdate();
             }
         }
+    }
+
 }
 

@@ -83,3 +83,26 @@ form {
      width: 500px;
      padding: 5px;
 }
+
+select {
+    width: 70%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-family: 'Quicksand', sans-serif;
+    background-color: white;
+    color: black;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14l-4.796-5.481C1.766 5.35 2.141 4.5 2.748 4.5h10.504c.607 0 .982.85.497 1.159l-4.796 5.481a1 1 0 0 1-1.41 0z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px 12px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #94CBFF;
+    box-shadow: 0 0 5px rgba(148, 203, 255, 0.5);
+}

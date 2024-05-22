@@ -46,71 +46,85 @@
 
 <%@ include file="/componente/header.jsp" %>
 
-    <div class="perfil-casal">
-        <div class="row">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="profile-info">
-                            <div class="img-container">
-                                <img src="<%= finalImagePath2 %>" alt="Imagem do Casal" class="img-cabecalho">
-                                <div class="nomeCasal2" ><%= usuario.getNomesConcatenados() %></div>
+            <div class="perfil-casal">
+                <div class="row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="profile-info">
+                                    <div class="img-container">
+                                        <img src="<%= finalImagePath2 %>" alt="Imagem do Casal" class="img-cabecalho">
+                                        <div class="nomeCasal2"><%= usuario.getNomesConcatenados() %></div>
+                                        <div class="id">Id: <%= usuario.getIdUsuario() %></div>
 
-                                <div class="id">Id: <%= usuario.getIdUsuario() %></div>
+                                        <form action="${pageContext.request.contextPath}/mandar-imagem" method="post" enctype="multipart/form-data">
+                                            <div class="form-container2">
+                                                <input style="display: none;" name="id" id="id" value="<%= usuario.getIdUsuario() %>">
+                                                <label for="image">Escolha uma imagem</label>
+                                                <input type="file" name="image" id="image">
+                                                <button type="submit" id="btnSalvar" class="btn-salvar2">Salvar</button>
+                                            </div>
+                                        </form>
 
-                                <form action="${pageContext.request.contextPath}/mandar-imagem" method="post" enctype="multipart/form-data">
-                                       <div class="form-container2">
-                                           <input style="display: none;" name="id" id="id" value="<%= usuario.getIdUsuario() %>">
-                                           <label for="image">Escolha uma imagem</label>
-                                           <input type="file"name="image" id="image">
-                                           <button type="submit" id="btnSalvar" class="btn-salvar2">Salvar</button>
-                                       </div>
-                                </form>
+                                    </div>
 
-                            </div>
+                                    <div class="details">
+                                        <form action="${pageContext.request.contextPath}/atualizar-usuario" method="post">
+                                            <input style="display: none;" name="id" id="id" value="<%= usuario.getIdUsuario() %>">
 
-                            <div class="details">
-                                <form action="${pageContext.request.contextPath}/criar-usuario" method="PUT">
+                                            <div class="form-group">
+                                                <label for="nomeNoivo">Nome do Noivo:</label>
+                                                <input type="text" id="nomeNoivo" name="nomeNoivo" class="form-control" value="<%= usuario.getNomeNoivo() %>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nomeNoiva">Nome da Noiva:</label>
+                                                <input type="text" id="nomeNoiva" name="nomeNoiva" class="form-control" value="<%= usuario.getNomeNoiva() %>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Email:</label>
+                                                <input type="email" id="email" name="email" class="form-control" value="<%= usuario.getEmail() %>" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dataCasamento">Data do Casamento:</label>
+                                                <input type="date" id="dataCasamento" name="dataCasamento" class="form-control" value="<%= new SimpleDateFormat("yyyy-MM-dd").format(casamento.getDataCasamento()) %>">
+                                            </div>
 
-                                        <div class="form-group">
-                                            <label for="nomeNoivo">Nome do Noivo:</label>
-                                            <input type="text" id="nomeNoivo" class="form-control" value="<%= usuario.getNomeNoivo() %>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="nomeNoiva">Nome da Noiva:</label>
-                                            <input type="text" id="nomeNoiva" class="form-control" value="<%= usuario.getNomeNoiva() %>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Email:</label>
-                                            <input type="email" id="email" class="form-control" value="<%= usuario.getEmail() %>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="dataCasamento">Data do Casamento:</label>
-                                            <input type="date" id="dataCasamento" class="form-control" value="<%= new SimpleDateFormat("yyyy-MM-dd").format(casamento.getDataCasamento()) %>">
-                                        </div>
+                                            <div class="form-group">
+                                                <label for="num_convidados">Número de Convidados</label>
+                                                <input type="number" id="num_convidados" name="num_convidados" class="form-control" value="<%= casamento.getNumeroConvidados() %>" readonly>
+                                            </div>
 
-                                         <div class="form-group">
+
+                                            <section>
+                                                 <label for="estilo_festa">Estilo da Festa</label>
+                                                <select id="estilo_festa" name="estilo_festa" class="form-control" required>
+                                                    <option value="classico" <%= "classico".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Clássico</option>
+                                                    <option value="rustico" <%= "rustico".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Rústico</option>
+                                                    <option value="praia" <%= "praia".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Praia</option>
+                                                    <option value="moderno" <%= "moderno".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Moderno</option>
+                                                    <option value="vintage" <%= "vintage".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Vintage</option>
+                                                </select>
+                                                <br>
                                                <label for="localizacao">Localização</label>
-                                               <input type="text" id="localizacao" name="localizacao" class="form-control" value="<%= casamento.getLocalidade() %>">
-                                         </div>
+                                               <select id="localizacao" name="localizacao" class="form-control" required>
+                                                   <option value="igreja" <%= "igreja".equals(casamento.getLocalidade()) ? "selected" : "" %>>Igreja</option>
+                                                   <option value="salao_festas" <%= "salao_festas".equals(casamento.getLocalidade()) ? "selected" : "" %>>Salão de festas</option>
+                                                   <option value="campo" <%= "campo".equals(casamento.getLocalidade()) ? "selected" : "" %>>Campo</option>
+                                                   <option value="praia" <%= "praia".equals(casamento.getLocalidade()) ? "selected" : "" %>>Praia</option>
+                                                   <option value="hotel" <%= "hotel".equals(casamento.getLocalidade()) ? "selected" : "" %>>Hotel</option>
+                                               </select>
+                                            </section>
 
-                                         <div class="form-group">
-                                              <label for="num_convidados">Número de Convidados</label>
-                                              <input type="number" id="num_convidados" name="num_convidados" class="form-control" value="<%= casamento.getNumeroConvidados() %>">
-                                         </div>
-
-                                         <div class="form-group">
-                                               <label for="num_convidados">Estilo festa</label>
-                                               <input type="text" id="estilo_festa" name="estilo_festa" class="form-control" value="<%= casamento.getEstiloFesta() %>">
-                                         </div>
-
-                                    <button type="submit" id="btnSalvar" class="btn-salvar" style="display: none;">Salvar</button>
-                                </form>
+                                            <button type="submit" id="btnSalvar" class="btn-salvar">Salvar</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <div class="col-sm-6">
                 <div class="card orcamento">

@@ -114,55 +114,6 @@ public class UsuarioDao {
         return false;
     }
 
-    public void atualizarUsuario(Usuario usuario) {
-        try {
-            Usuario usuarioAntigo = buscarUsuarioPorId(usuario.getIdUsuario());
-            if (usuarioAntigo == null) {
-                System.out.println("Usuário não encontrado para atualização.");
-                return;
-            }
-
-            if (!usuario.getNomeNoivo().equals(usuarioAntigo.getNomeNoivo())) {
-                usuarioAntigo.setNomeNoivo(usuario.getNomeNoivo());
-            }
-            if (!usuario.getNomeNoiva().equals(usuarioAntigo.getNomeNoiva())) {
-                usuarioAntigo.setNomeNoiva(usuario.getNomeNoiva());
-            }
-            if (!usuario.getEmail().equals(usuarioAntigo.getEmail())) {
-                usuarioAntigo.setEmail(usuario.getEmail());
-            }
-            if (!usuario.getSenha().equals(usuarioAntigo.getSenha())) {
-                usuarioAntigo.setSenha(usuario.getSenha());
-            }
-            if (!usuario.getNomesConcatenados().equals(usuarioAntigo.getNomesConcatenados())) {
-                usuarioAntigo.setNomesConcatenados(usuario.getNomesConcatenados());
-            }
-
-            // Agora atualizamos os campos no banco de dados
-            String SQL = "UPDATE tb_usuarios SET nm_noivo = ?, nm_noiva = ?, ds_email = ?, ds_senha = ?, nm_noivos_concatenado = ? WHERE id_usuario = ?";
-            Connection connection = PoolConfig.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setString(1, usuarioAntigo.getNomeNoivo());
-            preparedStatement.setString(2, usuarioAntigo.getNomeNoiva());
-            preparedStatement.setString(3, usuarioAntigo.getEmail());
-            preparedStatement.setString(4, usuarioAntigo.getSenha());
-            preparedStatement.setString(5, usuarioAntigo.getNomesConcatenados());
-            preparedStatement.setInt(6, usuarioAntigo.getIdUsuario());
-
-            int linhasAfetadas = preparedStatement.executeUpdate();
-
-            if (linhasAfetadas == 1) {
-                System.out.println("Usuário atualizado com sucesso!");
-            } else {
-                System.out.println("Falha ao atualizar o usuário.");
-            }
-
-            connection.close();
-        } catch (SQLException e) {
-            System.out.println("Erro ao atualizar o usuário: " + e.getMessage());
-        }
-    }
-
     public Usuario buscarUsuarioPorId(int idUsuario) {
         Usuario usuario = null;
 
@@ -273,4 +224,60 @@ public class UsuarioDao {
             System.out.println("Erro ao atualizar a senha do usuário: " + e.getMessage());
         }
     }
+
+    public void atualizarUsuarioParcial(Usuario usuarioAtual, Usuario usuarioNovo) throws SQLException {
+        StringBuilder sql = new StringBuilder("UPDATE tb_usuarios SET ");
+        boolean needsUpdate = false;
+
+        if (usuarioNovo.getNomeNoivo() != null && !usuarioNovo.getNomeNoivo().equals(usuarioAtual.getNomeNoivo())) {
+            sql.append("nm_noivo = ?, ");
+            needsUpdate = true;
+        }
+        if (usuarioNovo.getNomeNoiva() != null && !usuarioNovo.getNomeNoiva().equals(usuarioAtual.getNomeNoiva())) {
+            sql.append("nm_noiva = ?, ");
+            needsUpdate = true;
+        }
+        if (usuarioNovo.getEmail() != null && !usuarioNovo.getEmail().equals(usuarioAtual.getEmail())) {
+            sql.append("ds_email = ?, ");
+            needsUpdate = true;
+        }
+        if (usuarioNovo.getSenha() != null && !usuarioNovo.getSenha().equals(usuarioAtual.getSenha())) {
+            sql.append("ds_senha = ?, ");
+            needsUpdate = true;
+        }
+        if (usuarioNovo.getNomesConcatenados() != null && !usuarioNovo.getNomesConcatenados().equals(usuarioAtual.getNomesConcatenados())) {
+            sql.append("nm_noivos_concatenado = ?, ");
+            needsUpdate = true;
+        }
+
+        if (needsUpdate) {
+            sql.setLength(sql.length() - 2);
+            sql.append(" WHERE id_usuario = " + usuarioAtual.getIdUsuario());
+
+            try (Connection conn = PoolConfig.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
+
+                int index = 1;
+
+                if (usuarioNovo.getNomeNoivo() != null && !usuarioNovo.getNomeNoivo().equals(usuarioAtual.getNomeNoivo())) {
+                    stmt.setString(index++, usuarioNovo.getNomeNoivo());
+                }
+                if (usuarioNovo.getNomeNoiva() != null && !usuarioNovo.getNomeNoiva().equals(usuarioAtual.getNomeNoiva())) {
+                    stmt.setString(index++, usuarioNovo.getNomeNoiva());
+                }
+                if (usuarioNovo.getEmail() != null && !usuarioNovo.getEmail().equals(usuarioAtual.getEmail())) {
+                    stmt.setString(index++, usuarioNovo.getEmail());
+                }
+                if (usuarioNovo.getSenha() != null && !usuarioNovo.getSenha().equals(usuarioAtual.getSenha())) {
+                    stmt.setString(index++, usuarioNovo.getSenha());
+                }
+                if (usuarioNovo.getNomesConcatenados() != null && !usuarioNovo.getNomesConcatenados().equals(usuarioAtual.getNomesConcatenados())) {
+                    stmt.setString(index++, usuarioNovo.getNomesConcatenados());
+                }
+
+                stmt.executeUpdate();
+            }
+        }
+    }
+
 }
