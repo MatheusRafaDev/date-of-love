@@ -21,7 +21,7 @@
             <th>Pacote Completo</th>
             <th>Observações</th>
             <th>Valor</th>
-            <th>Novo Valor</th> <!-- Adicionando coluna para o novo valor -->
+            <th>Novo Valor</th>
         </tr>
 
         <tr>
@@ -30,9 +30,9 @@
             <td><input type="radio" name="servico1" value="completo"></td>
             <td><input type="text" value=""></td>
             <td>R$ 800</td>
-            <td><input type="text" id="novoValor1"></td> <!-- Campo para novo valor -->
+            <td><input type="text" id="novoValor1"></td>
         </tr>
-        <!-- Adicione campos semelhantes para outros serviços -->
+
         <tr>
             <td>Flores e Decoração</td>
             <td><input type="radio" name="servico2" value="simples"></td>
@@ -67,7 +67,7 @@
         </tr>
     </table>
 
-    <!-- Outros serviços aqui -->
+
 
     <div class="container">
         <label for="convidados">Nº Convidados:</label>
@@ -82,77 +82,55 @@
 
     <h3>Observações Gerais</h3>
     <textarea id="observacoesGerais" rows="7" cols="50"></textarea>
-    <button id="verDetalhesBtn1">Salvar</button>
+    <button id="verDetalhesBtn1" onclick="window.location.href='/perfil.jsp' ">Salvar</button>
 </div>
 
 <script>
-    // Função para calcular e atualizar o valor total
-    function calcularValorTotal() {
-        // Obter todos os elementos de input para os novos valores dos serviços
-        var inputsNovoValor = document.querySelectorAll('input[id^="novoValor"]');
-        var total = 0;
+<c:forEach var="orcamento" items="${listaOrcamentos}">
 
-        // Iterar sobre os inputs e adicionar os valores aos totais
-        inputsNovoValor.forEach(function(input) {
-            total += parseFloat(input.value || 0);
-        });
+    document.getElementById("verDetalhesBtn1").addEventListener("click", function() {
+    var idOrcamento =${orcamento.getIdOrcamento()}; // Obtenha o ID do orçamento de maneira adequada
+    var responsavel = document.getElementById("responsavel").value;
+    var novosValores = [];
+    var valorTotal = 0;
 
-        // Atualizar o campo de valor total
-        document.getElementById("valorTotal").value = total.toFixed(2);
-    }
-
-    // Adicionar listeners de evento para os inputs de novo valor
-    var inputsNovoValor = document.querySelectorAll('input[id^="novoValor"]');
-    inputsNovoValor.forEach(function(input) {
-        input.addEventListener('input', calcularValorTotal);
+    document.querySelectorAll('input[id^="novoValor"]').forEach(function(input) {
+    var novoValor = parseFloat(input.value.replace(/[^\d.-]/g, '')) || 0;
+    novosValores.push({
+    id: input.id,
+    valor: novoValor
+    });
+    valorTotal += novoValor;
     });
 
+    document.getElementById("valorTotal").value = valorTotal.toFixed(2);
 
+    var data = JSON.stringify({
+    idOrcamento: idOrcamento,
+    responsavel: responsavel,
+    novosValores: novosValores
+    });
 
-    // Calcular o valor total inicial
-    calcularValorTotal();
-
-    // -------------------------------------------------------------------------
-    // Coletar os dados do orçamento (incluindo novos valores dos serviços)
-    // Exemplo: suponha que os novos valores dos serviços estejam armazenados em variáveis service1, service2, etc.
-    var idOrcamento = 1; // Suponha que você tenha o ID do orçamento
-    var novoValorService1 = document.getElementById("novoValor1").value;
-    // Coletar outros dados relevantes, se necessário
-
-    // Enviar os dados para o backend
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/atualizar-orcamento", true);
     xhr.setRequestHeader("Content-Type", "application/json");
-
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            // Resposta recebida do backend
-            console.log(xhr.responseText);
-        }
+    if (xhr.readyState === 4) {
+    if (xhr.status === 200) {
+    console.log(xhr.responseText);
+    window.location.href = "/perfil.jsp?valorTotal=" + valorTotal.toFixed(2);
+    } else {
+    console.error('Erro ao atualizar o orçamento:', xhr.status);
+    }
+    }
     };
-
-    var data = JSON.stringify({
-        idOrcamento: idOrcamento,
-        novoValorService1: novoValorService1
-        // Enviar outros dados relevantes, se necessário
-    });
-
-    // Enviar os dados para o backend
     xhr.send(data);
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                // Resposta recebida do backend
-                console.log(xhr.responseText);
-                // Redirecionar de volta à página de orçamento
-                window.location.href = "/orcamento-admin.jsp";
-            } else {
-                // Se houver um erro, você pode lidar com isso aqui
-                console.error('Erro ao atualizar o orçamento:', xhr.status);
-            }
-        }
-    };
+    });
+
+</c:forEach>
+
 </script>
-</body>
-</html>
+
+    </body>
+    </html>

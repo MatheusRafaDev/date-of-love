@@ -28,9 +28,11 @@ public class AtualizarOrcamentoServlet extends HttpServlet {
 
             JSONObject requestData = new JSONObject(stringBuilder.toString());
             int idOrcamento = requestData.optInt("idOrcamento");
-            double novoValorService1 = requestData.optDouble("novoValorService1");
+            double novoValorService1 = requestData.optDouble("novoValor1");
+            double novoValorService2 = requestData.optDouble("novoValor2");
+            // Adicione os outros novos valores conforme necessário
 
-            if (idOrcamento <= 0 || Double.isNaN(novoValorService1)) {
+            if (idOrcamento <= 0 || Double.isNaN(novoValorService1) || Double.isNaN(novoValorService2)) {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 return;
             }
@@ -41,10 +43,15 @@ public class AtualizarOrcamentoServlet extends HttpServlet {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 return;
             }
+
+            // Atualize os valores do orçamento conforme necessário
             orcamento.setValorTotal(novoValorService1);
+            // Atualize outros valores, se necessário
+
+            // Persista as alterações no banco de dados
             orcamentosDao.atualizarOrcamento(orcamento);
 
-
+            // Retorna uma mensagem de sucesso
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("{\"message\": \"Orçamento atualizado com sucesso!\"}");

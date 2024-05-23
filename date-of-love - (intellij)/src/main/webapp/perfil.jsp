@@ -13,6 +13,7 @@
         return;
     }
 
+
     Casamento casamento = (Casamento) session.getAttribute("casamento");
 
     String imagemPath2 = usuario.getImagem();
@@ -161,12 +162,22 @@
                                                         <td>
                                                             <input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}">
                                                             <input type="hidden" id="idUsuario" name="idUsuario" value="${usuario.getIdUsuario()}">
+                                                            <input type="hidden" id="valorTotalAtualizado" name="valorTotalAtualizado" value="${valorTotal}">
                                                             <button type="submit" class="btn-visualizar">Cancelar</button>
                                                         </td>
                                                     </form>
                                                 </c:if>
                                             </tr>
                                         </c:forEach>
+
+                                        <%
+
+                                            String valorTotal = request.getParameter("valorTotal");
+                                            if (valorTotal == null) {
+
+                                                valorTotal = "0.00";
+                                            }
+                                        %>
 
                                         <tr>
                                             <td colspan="5">

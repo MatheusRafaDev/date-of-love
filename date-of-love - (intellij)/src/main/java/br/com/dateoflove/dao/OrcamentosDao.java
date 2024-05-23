@@ -73,7 +73,7 @@ public class OrcamentosDao {
 
     public void atualizarOrcamento(Orcamentos orcamento) {
         try {
-            String SQL = "UPDATE tb_orcamentos SET id_usuario = ?, id_casamento = ?, dt_orcamento = ?, ds_status = ?, ds_observacao = ?, nm_orcador = ? WHERE id_orcamento = ?";
+            String SQL = "UPDATE tb_orcamentos SET id_usuario = ?, id_casamento = ?, dt_orcamento = ?, ds_status = ?, ds_observacao = ?, nm_orcador = ?, vl_total = ?, valor_service1 = ?, valor_service2 = ?, valor_service3 = ?, valor_service4 = ?, valor_service5 = ? WHERE id_orcamento = ?";
             Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
@@ -83,7 +83,13 @@ public class OrcamentosDao {
             preparedStatement.setString(4, orcamento.getStatus());
             preparedStatement.setString(5, orcamento.getObservacao());
             preparedStatement.setString(6, orcamento.getNomeOrcador());
-            preparedStatement.setInt(7, orcamento.getIdOrcamento());
+            preparedStatement.setDouble(7, orcamento.getValorTotal());
+            preparedStatement.setDouble(8, orcamento.getValorService1());
+            preparedStatement.setDouble(9, orcamento.getValorService2());
+            preparedStatement.setDouble(10, orcamento.getValorService3());
+            preparedStatement.setDouble(11, orcamento.getValorService4());
+            preparedStatement.setDouble(12, orcamento.getValorService5());
+            preparedStatement.setInt(13, orcamento.getIdOrcamento());
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -94,7 +100,7 @@ public class OrcamentosDao {
             }
 
             connection.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Erro ao atualizar o orçamento: " + e.getMessage());
         }
     }

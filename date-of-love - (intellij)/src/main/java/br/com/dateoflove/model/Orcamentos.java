@@ -16,6 +16,12 @@ public class Orcamentos {
     private Double valorOrcado;
     private boolean cancelado;
 
+    private double valorService1;
+    private double valorService2;
+    private double valorService3;
+    private double valorService4;
+    private double valorService5;
+
     public Orcamentos() {
         super();
     }
@@ -129,5 +135,45 @@ public class Orcamentos {
 
     public void setCancelado(boolean cancelado) {
         this.cancelado = cancelado;
+    }
+
+    public double getValorService1() {
+        return valorService1;
+    }
+
+    public void setValorService1(double valorService1) {
+        this.valorService1 = valorService1;
+    }
+
+    public double getValorService2() {
+        return valorService2;
+    }
+
+    public void setValorService2(double valorService2) {
+        this.valorService2 = valorService2;
+    }
+
+    public double getValorService3() {
+        return valorService3;
+    }
+
+    public void setValorService3(double valorService3) {
+        this.valorService3 = valorService3;
+    }
+
+    public double getValorService4() {
+        return valorService4;
+    }
+
+    public void setValorService4(double valorService4) {
+        this.valorService4 = valorService4;
+    }
+
+    public double getValorService5() {
+        return valorService5;
+    }
+
+    public void setValorService5(double valorService5) {
+        this.valorService5 = valorService5;
     }
 }
