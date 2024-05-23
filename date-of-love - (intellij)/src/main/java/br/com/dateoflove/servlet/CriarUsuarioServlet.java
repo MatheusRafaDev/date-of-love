@@ -51,29 +51,36 @@ public class CriarUsuarioServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        Date dataAtual = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(dataAtual);
-        cal.add(Calendar.MONTH, 9);
-        Date dataNoveMesesDepois = cal.getTime();
-
         if (usuarioDao.existeUsuarioPorEmail(email)) {
             req.setAttribute("errorMessage1", "Este email já está em uso.");
+
+            req.setAttribute("nomeNoivo", nomeNoivo);
+            req.setAttribute("nomeNoiva", nomeNoiva);
+            req.setAttribute("email", email);
+            req.setAttribute("numConvidados", Convidados);
+            req.setAttribute("dataCasamento", dataCasamentoStr);
+            req.setAttribute("local", local);
+            req.setAttribute("estilo", estilo);
+
             req.getRequestDispatcher("criar-conta.jsp").forward(req, resp);
             return;
         }
 
         if (!senha.equals(confirmarSenha)) {
-            req.setAttribute("errorMessage2", "As senhas não coincidemo");
+            req.setAttribute("errorMessage2", "As senhas não coincidem");
+
+            req.setAttribute("nomeNoivo", nomeNoivo);
+            req.setAttribute("nomeNoiva", nomeNoiva);
+            req.setAttribute("email", email);
+            req.setAttribute("numConvidados", Convidados);
+            req.setAttribute("dataCasamento", dataCasamentoStr);
+            req.setAttribute("local", local);
+            req.setAttribute("estilo", estilo);
+
             req.getRequestDispatcher("criar-conta.jsp").forward(req, resp);
             return;
         }
 
-        if (!dataCasamento.after(dataNoveMesesDepois)) {
-            req.setAttribute("errorMessage3", "A data do casamento deve ser 9 meses à frente");
-            req.getRequestDispatcher("criar-conta.jsp").forward(req, resp);
-            return;
-        }
 
         Usuario usuario = new Usuario(0, nomeNoivo, nomeNoiva, email, senha, new Date(),  nomeNoivo + " & " + nomeNoiva,imagem);
         usuario = usuarioDao.criarUsuario(usuario);
@@ -92,9 +99,7 @@ public class CriarUsuarioServlet extends HttpServlet {
 
         Email email2 = new Email("","",usuario.getEmail(),"","","");
 
-
-        //resp.sendRedirect(req.getContextPath() + "/home.jsp");
-        req.getRequestDispatcher("/home.jsp").forward(req, resp);
+        req.getRequestDispatcher("/").forward(req, resp);
         email2.enviarBoasVindas(usuario);
     }
 }

@@ -8,6 +8,7 @@
 .img-container {
     flex: 1;
     margin-right: 20px;
+    text-align: center;
 }
 
 .details {
@@ -19,14 +20,10 @@
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
+    margin-bottom: 10px;
 }
 
-
-.id,
-.nomeCasal2
-.dataCasamento,
-.card-body h2,
-.titulo-tabela {
+.nomeCasal2, .id, .dataCasamento, .card-body h2, .titulo-tabela {
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -35,7 +32,7 @@
     font-family: 'Quicksand', sans-serif;
 }
 
-.estilo,.localizacao {
+.estilo, .localizacao {
     font-size: 14px;
     font-family: 'Quicksand', sans-serif;
 }
@@ -61,11 +58,10 @@
     margin-bottom: 5px;
 }
 
-
-
 #email {
     width: 70%;
 }
+
 .form-control {
     width: 50%;
     padding: 5px;
@@ -75,10 +71,10 @@
     font-family: 'Quicksand', sans-serif;
 }
 
-
 .nomeCasal2 {
     font-family: 'Quicksand', sans-serif;
 }
+
 .card.orcamento {
     border-radius: 5px;
     margin-top: 30px;
@@ -99,8 +95,7 @@
     border-collapse: collapse;
 }
 
-.card.orcamento th,
-.card.orcamento td {
+.card.orcamento th, .card.orcamento td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
@@ -129,39 +124,28 @@
     background-color: #75a0c3;
 }
 
-.btn-salvar {
+.btn-salvar, .btn-criar, .btn-salvar2, .btn-remover-foto, .btn-deletar-perfil {
     background-color: #94CBFF;
     color: #fff;
-    padding: 10px 20px;
     border: none;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Quicksand', sans-serif;
     transition: background-color 0.3s;
 }
 
-
-.btn-criar {
-    background-color: #94CBFF;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Quicksand', sans-serif;
-    transition: background-color 0.3s;
-}
-
-
-.btn-salvar:hover {
+.btn-salvar:hover, .btn-criar:hover, .btn-salvar2:hover {
     background-color: #0056b3;
 }
 
-
-.btn-criar:hover {
-    background-color: #0056b3;
+.btn-remover-foto, .btn-deletar-perfil {
+    background-color: #8B0000;
 }
 
+.btn-remover-foto:hover, .btn-deletar-perfil:hover {
+    background-color: #FF0000;
+}
 
 .img-container {
     margin-right: 20px;
@@ -176,8 +160,6 @@
     overflow-x: auto;
 }
 
-
-
 .form-container2 {
     max-width: 400px;
     margin: 0 auto;
@@ -186,8 +168,16 @@
     border-radius: 5px;
     background-color: #f9f9f9;
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
+.form-container2 .form-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
 .form-container2 label {
     display: block;
@@ -204,29 +194,16 @@
     transition: background-color 0.3s ease;
 }
 
-
 .custom-file-upload:hover {
     background-color: #0056b3;
 }
 
-.btn-salvar2 {
-    background-color: #94CBFF;
-    color: #fff;
-    border: none;
-    padding: 8px 18px;
+.input-file {
+    padding: 5px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-family: 'Quicksand', sans-serif;
 }
-
-.btn-salvar:hover {
-     background-color: #0056b3;
-}
-
-.custom-file-upload:hover {
-    background-color: #0056b3;
-}
-
 
 select {
     width: 70%;
@@ -243,7 +220,6 @@ select {
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 12px 12px;
-
 }
 
 select:focus {
@@ -251,3 +227,11 @@ select:focus {
     border-color: #94CBFF;
     box-shadow: 0 0 5px rgba(148, 203, 255, 0.5);
 }
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+

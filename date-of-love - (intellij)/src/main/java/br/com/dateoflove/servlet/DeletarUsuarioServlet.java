@@ -9,20 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/delete-usuario")
+@WebServlet("/deletar-perfil")
 public class DeletarUsuarioServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+        UsuarioDao usuarioDAO = new UsuarioDao();
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UsuarioDao.deletarUsuarioPorId(idUsuario);
 
-        int UsuarioID = Integer.parseInt(req.getParameter("id"));
+        request.getSession().invalidate();
 
-        UsuarioDao UsuarioDao = new UsuarioDao();
-
-        UsuarioDao.deletarUsuarioPorId(UsuarioID);
-
-        resp.sendRedirect("/find-all-usuario");
-
+        response.sendRedirect("/login");
     }
-
 }

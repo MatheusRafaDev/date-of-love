@@ -4,11 +4,13 @@ import br.com.dateoflove.config.PoolConfig;
 import br.com.dateoflove.funcao.Email;
 import br.com.dateoflove.model.Usuario;
 
+import javax.servlet.ServletContext;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.io.File;
 
 public class UsuarioDao {
 
@@ -51,7 +53,7 @@ public class UsuarioDao {
         return usuario;
     }
 
-    public void deletarUsuarioPorId(int idUsuario) {
+    public static void deletarUsuarioPorId(int idUsuario) {
         try {
             String SQL = "DELETE FROM tb_usuarios WHERE id_usuario = ?";
             Connection connection = PoolConfig.getConnection();
@@ -277,6 +279,22 @@ public class UsuarioDao {
 
                 stmt.executeUpdate();
             }
+        }
+    }
+
+    public void deletarImagem(int idUsuario) {
+        try {
+            String SQL = "UPDATE tb_usuarios SET imagem_path = NULL WHERE id_usuario = ?";
+            Connection connection = PoolConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setInt(1, idUsuario);
+
+            int linhasAfetadas = preparedStatement.executeUpdate();
+
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Erro ao remover a imagem: " + e.getMessage());
         }
     }
 
