@@ -44,7 +44,7 @@
         <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
         <div class="logo-navigation">
             <nav>
-                <a href="<%=request.getContextPath()%>/home.jsp">Home</a>
+                <a href="<%=request.getContextPath()%>/">Home</a>
                 <a href="<%=request.getContextPath()%>/servicos.jsp">Serviços</a>
                 <a href="<%=request.getContextPath()%>/ajuda.jsp">Ajuda</a>
                 <a href="<%=request.getContextPath()%>/sobre-nos.jsp">Sobre nós</a>
@@ -68,7 +68,7 @@
         <img src="<%=request.getContextPath()%>/src/assets/images/logo.png" alt="logo" class="logo"/>
         <div class="logo-navigation">
             <nav>
-                <a href="<%=request.getContextPath()%>/home.jsp">Home</a>
+                <a href="<%=request.getContextPath()%>/">Home</a>
                 <a href="<%=request.getContextPath()%>/servicos.jsp">Serviços</a>
                 <a href="<%=request.getContextPath()%>/ajuda.jsp">Ajuda</a>
                 <a href="<%=request.getContextPath()%>/sobre-nos.jsp">Sobre nós</a>

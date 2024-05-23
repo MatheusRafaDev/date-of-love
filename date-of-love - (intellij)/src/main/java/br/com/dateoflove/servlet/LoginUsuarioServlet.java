@@ -61,7 +61,7 @@ public class LoginUsuarioServlet extends HttpServlet {
                 req.getSession().setAttribute("casamento", casamento);
                 req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
 
-                resp.sendRedirect(req.getContextPath() + "/home.jsp");
+                resp.sendRedirect(req.getContextPath() + "/");
                 return;
             } else {
                 req.setAttribute("errorMessage", "Usuário ou Senha inválidos!");

@@ -77,7 +77,7 @@ public class CasamentoDao {
         }
 
     public void atualizarCasamentoParcial(Casamento casamentoAtual, Casamento casamentoNovo) throws SQLException {
-        StringBuilder sql = new StringBuilder("UPDATE tb_casamentos SET ");
+        StringBuilder sql = new StringBuilder("UPDATE tb_casamento SET ");
         boolean needsUpdate = false;
 
         if (casamentoNovo.getDataCasamento() != null && !casamentoNovo.getDataCasamento().equals(casamentoAtual.getDataCasamento())) {

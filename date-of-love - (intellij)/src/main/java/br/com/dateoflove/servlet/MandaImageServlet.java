@@ -34,7 +34,7 @@ public class MandaImageServlet extends HttpServlet {
 
         new UsuarioDao().atualizarImagePath(usuario);
 
-
+        req.getSession().setAttribute("usuario", usuario);
 
         resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
     }

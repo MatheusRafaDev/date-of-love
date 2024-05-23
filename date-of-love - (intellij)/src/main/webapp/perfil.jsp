@@ -40,7 +40,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil2.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
 </head>
 <body>
@@ -97,7 +97,7 @@
 
 
                                             <section>
-                                                 <label for="estilo_festa">Estilo da Festa</label>
+                                                <label for="estilo_festa" class="estilo">Estilo da Festa</label>
                                                 <select id="estilo_festa" name="estilo_festa" class="form-control" required>
                                                     <option value="classico" <%= "classico".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Clássico</option>
                                                     <option value="rustico" <%= "rustico".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Rústico</option>
@@ -106,7 +106,7 @@
                                                     <option value="vintage" <%= "vintage".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Vintage</option>
                                                 </select>
                                                 <br>
-                                               <label for="localizacao">Localização</label>
+                                               <label for="localizacao"  class="localizacao">Localização</label>
                                                <select id="localizacao" name="localizacao" class="form-control" required>
                                                    <option value="igreja" <%= "igreja".equals(casamento.getLocalidade()) ? "selected" : "" %>>Igreja</option>
                                                    <option value="salao_festas" <%= "salao_festas".equals(casamento.getLocalidade()) ? "selected" : "" %>>Salão de festas</option>

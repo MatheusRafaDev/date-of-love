@@ -21,12 +21,15 @@ public class AtualizarUsuarioServlet extends HttpServlet {
             String nomeNoiva = request.getParameter("nomeNoiva");
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
-            String nomesConcatenados = request.getParameter("nomesConcatenados");
             String imagem = request.getParameter("imagem");
             String dataCasamentoStr = request.getParameter("dataCasamento");
             String localidade = request.getParameter("localizacao");
             String numConvidadosStr = request.getParameter("num_convidados");
             String estiloFesta = request.getParameter("estilo_festa");
+
+            String primeiroNomeNoivo = nomeNoivo.split(" ")[0];
+            String primeiroNomeNoiva = nomeNoiva.split(" ")[0];
+            String nomesConcatenados = primeiroNomeNoivo + " & " + primeiroNomeNoiva;
 
             if (idUsuarioStr == null || idUsuarioStr.isEmpty()) {
                 throw new IllegalArgumentException("ID do usuário não pode ser nulo ou vazio.");
@@ -73,7 +76,7 @@ public class AtualizarUsuarioServlet extends HttpServlet {
             request.getSession().setAttribute("usuario", usuarioNovo);
             request.getSession().setAttribute("casamento", casamentoNovo);
 
-            response.sendRedirect("perfil.jsp");
+            response.sendRedirect("/perfil.jsp");
         } catch (NumberFormatException e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato de número inválido: " + e.getMessage());

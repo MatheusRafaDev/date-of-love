@@ -32,6 +32,7 @@ public class CriarUsuarioServlet extends HttpServlet {
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
         String confirmarSenha = req.getParameter("confirmar_senha");
+
         UsuarioDao usuarioDao = new UsuarioDao();
         CasamentoDao casamentoDao = new CasamentoDao();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
