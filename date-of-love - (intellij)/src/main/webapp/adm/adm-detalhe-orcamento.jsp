@@ -11,6 +11,9 @@
     <title>Visualizar Orçamento ADM</title>
 </head>
 <body>
+
+<%@ include file="/componente/adm-header.jsp" %>
+
 <div class="budget-container">
     <h3>Orçamento</h3>
     <h3>Serviços</h3>
@@ -84,53 +87,5 @@
     <textarea id="observacoesGerais" rows="7" cols="50"></textarea>
     <button id="verDetalhesBtn1" onclick="window.location.href='/perfil.jsp' ">Salvar</button>
 </div>
-
-<script>
-<c:forEach var="orcamento" items="${listaOrcamentos}">
-
-    document.getElementById("verDetalhesBtn1").addEventListener("click", function() {
-    var idOrcamento =${orcamento.getIdOrcamento()}; // Obtenha o ID do orçamento de maneira adequada
-    var responsavel = document.getElementById("responsavel").value;
-    var novosValores = [];
-    var valorTotal = 0;
-
-    document.querySelectorAll('input[id^="novoValor"]').forEach(function(input) {
-    var novoValor = parseFloat(input.value.replace(/[^\d.-]/g, '')) || 0;
-    novosValores.push({
-    id: input.id,
-    valor: novoValor
-    });
-    valorTotal += novoValor;
-    });
-
-    document.getElementById("valorTotal").value = valorTotal.toFixed(2);
-
-    var data = JSON.stringify({
-    idOrcamento: idOrcamento,
-    responsavel: responsavel,
-    novosValores: novosValores
-    });
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/atualizar-orcamento", true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-    if (xhr.status === 200) {
-    console.log(xhr.responseText);
-    window.location.href = "/perfil.jsp?valorTotal=" + valorTotal.toFixed(2);
-    } else {
-    console.error('Erro ao atualizar o orçamento:', xhr.status);
-    }
-    }
-    };
-    xhr.send(data);
-
-    });
-
-</c:forEach>
-
-</script>
-
-    </body>
-    </html>
+</body>
+</html>

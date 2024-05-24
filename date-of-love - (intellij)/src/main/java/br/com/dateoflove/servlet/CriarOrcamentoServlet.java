@@ -34,9 +34,12 @@ public class CriarOrcamentoServlet extends HttpServlet {
         String servico4 = req.getParameter("servico4");
         String servico5 = req.getParameter("servico5");
 
-        String servico6 = req.getParameter("servico6");
-        String servico7 = req.getParameter("servico7");
-        String servico8 = req.getParameter("servico8");
+        String valorMedio = req.getParameter("orcamentoMedio");
+        String valorSemPontos = valorMedio.replaceAll("\\.", "");
+        String valorFormatado = valorSemPontos.replace(",", ".");
+        double ValorOrcamentoMedio = Double.parseDouble(valorFormatado);
+
+        System.out.println(ValorOrcamentoMedio);
 
         boolean cardapio = servico1 != null && servico1.equals("simples");
         boolean flores = servico2 != null && servico2.equals("simples");
@@ -50,6 +53,7 @@ public class CriarOrcamentoServlet extends HttpServlet {
         Orcamentos orcamento = new Orcamentos();
         OrcamentosDao orcamentosDao = new OrcamentosDao();
 
+        orcamento.setValorMedio(ValorOrcamentoMedio);
         orcamento.setIdCasamento(casamento.getIdCasamento());
         orcamento.setIdUsuario(usuario.getIdUsuario());
         orcamento.setDataOrcamento(new Date());

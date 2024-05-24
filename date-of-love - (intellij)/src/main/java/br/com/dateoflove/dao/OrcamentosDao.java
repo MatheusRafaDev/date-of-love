@@ -17,8 +17,9 @@ public class OrcamentosDao {
 
     public Orcamentos criarOrcamento(Orcamentos orcamento) {
         try {
-            String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, vl_total, tg_aprovado, ds_observacao_orcador,tg_cancelado ) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            String SQL = "INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, nm_orcador, vl_total, tg_aprovado, ds_observacao_orcador,vl_totalmedio,tg_cancelado) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
@@ -31,7 +32,8 @@ public class OrcamentosDao {
             preparedStatement.setDouble(7, orcamento.getValorTotal());
             preparedStatement.setBoolean(8, false);
             preparedStatement.setString(9, orcamento.getObservacaoOrcador());
-            preparedStatement.setBoolean(10, false);
+            preparedStatement.setDouble(10, orcamento.getValorMedio());
+            preparedStatement.setBoolean(11, false);
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -73,7 +75,7 @@ public class OrcamentosDao {
 
     public void atualizarOrcamento(Orcamentos orcamento) {
         try {
-            String SQL = "UPDATE tb_orcamentos SET id_usuario = ?, id_casamento = ?, dt_orcamento = ?, ds_status = ?, ds_observacao = ?, nm_orcador = ?, vl_total = ?, valor_service1 = ?, valor_service2 = ?, valor_service3 = ?, valor_service4 = ?, valor_service5 = ? WHERE id_orcamento = ?";
+            String SQL = "UPDATE tb_orcamentos SET id_usuario = ?, id_casamento = ?, dt_orcamento = ?, ds_status = ?, ds_observacao = ?, nm_orcador = ?, vl_total = ?  WHERE id_orcamento = ?";
             Connection connection = PoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
@@ -84,12 +86,8 @@ public class OrcamentosDao {
             preparedStatement.setString(5, orcamento.getObservacao());
             preparedStatement.setString(6, orcamento.getNomeOrcador());
             preparedStatement.setDouble(7, orcamento.getValorTotal());
-            preparedStatement.setDouble(8, orcamento.getValorService1());
-            preparedStatement.setDouble(9, orcamento.getValorService2());
-            preparedStatement.setDouble(10, orcamento.getValorService3());
-            preparedStatement.setDouble(11, orcamento.getValorService4());
-            preparedStatement.setDouble(12, orcamento.getValorService5());
-            preparedStatement.setInt(13, orcamento.getIdOrcamento());
+            preparedStatement.setDouble(8, orcamento.getValorMedio());
+            preparedStatement.setInt(9, orcamento.getIdOrcamento());
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 
@@ -128,6 +126,7 @@ public class OrcamentosDao {
                 orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
+                orcamento.setValorMedio(rs.getDouble("vl_totalmedio"));
                 orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
                 orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
                 listaOrcamentos.add(orcamento);
@@ -187,6 +186,7 @@ public class OrcamentosDao {
                 orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
+                orcamento.setValorMedio(rs.getDouble("vl_totalmedio"));
                 orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
                 orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
 
@@ -244,4 +244,85 @@ public class OrcamentosDao {
             System.out.println("Erro ao cancelar o orçamento: " + e.getMessage());
         }
     }
+
+    public List<Orcamentos> selecionarTodosOrcamentos() {
+        List<Orcamentos> listaOrcamentos = new ArrayList<>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            Connection connection = PoolConfig.getConnection();
+            String query = "SELECT * FROM tb_orcamentos";
+            stmt = connection.prepareStatement(query);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Orcamentos orcamento = new Orcamentos();
+                orcamento.setIdOrcamento(rs.getInt("id_orcamento"));
+                orcamento.setIdUsuario(rs.getInt("id_usuario"));
+                orcamento.setIdCasamento(rs.getInt("id_casamento"));
+                orcamento.setDataOrcamento(rs.getDate("dt_orcamento"));
+                orcamento.setStatus(rs.getString("ds_status"));
+                orcamento.setObservacao(rs.getString("ds_observacao"));
+                orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
+                orcamento.setNomeOrcador(rs.getString("nm_orcador"));
+                orcamento.setValorTotal(rs.getDouble("vl_total"));
+                orcamento.setValorMedio(rs.getDouble("vl_totalmedio"));
+                orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
+                orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
+                listaOrcamentos.add(orcamento);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao selecionar todos os orçamentos: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+            } catch (SQLException e) {
+                System.out.println("Erro ao fechar os recursos de banco de dados: " + e.getMessage());
+            }
+        }
+        return listaOrcamentos;
+    }
+
+    public Orcamentos selecionarOrcamentoPorId(int idOrcamento) {
+        Orcamentos orcamento = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            Connection connection = PoolConfig.getConnection();
+            String query = "SELECT * FROM tb_orcamentos WHERE id_orcamento = ?";
+            stmt = connection.prepareStatement(query);
+            stmt.setInt(1, idOrcamento);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                orcamento = new Orcamentos();
+                orcamento.setIdOrcamento(rs.getInt("id_orcamento"));
+                orcamento.setIdUsuario(rs.getInt("id_usuario"));
+                orcamento.setIdCasamento(rs.getInt("id_casamento"));
+                orcamento.setDataOrcamento(rs.getDate("dt_orcamento"));
+                orcamento.setStatus(rs.getString("ds_status"));
+                orcamento.setObservacao(rs.getString("ds_observacao"));
+                orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
+                orcamento.setNomeOrcador(rs.getString("nm_orcador"));
+                orcamento.setValorTotal(rs.getDouble("vl_total"));
+                orcamento.setValorMedio(rs.getDouble("vl_totalmedio"));
+                orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
+                orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao selecionar o orçamento por ID: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+            } catch (SQLException e) {
+                System.out.println("Erro ao fechar os recursos de banco de dados: " + e.getMessage());
+            }
+        }
+        return orcamento;
+    }
+
 }

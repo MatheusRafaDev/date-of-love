@@ -15,18 +15,13 @@ public class Orcamentos {
     private boolean aprovado;
     private Double valorOrcado;
     private boolean cancelado;
-
-    private double valorService1;
-    private double valorService2;
-    private double valorService3;
-    private double valorService4;
-    private double valorService5;
+    private Double ValorMedio;
 
     public Orcamentos() {
         super();
     }
 
-    public Orcamentos(int idOrcamento, int idUsuario, int idCasamento, Date dataOrcamento, String status, String observacao, String nomeOrcador, double valorTotal, boolean aprovado, String observacaoOrcador, boolean cancelado) {
+    public Orcamentos(int idOrcamento, int idUsuario, int idCasamento, Date dataOrcamento, String status, String observacao, String nomeOrcador, double valorTotal, boolean aprovado, String observacaoOrcador, boolean cancelado,Double ValorTotalMedio) {
         this.idOrcamento = idOrcamento;
         this.idUsuario = idUsuario;
         this.idCasamento = idCasamento;
@@ -35,9 +30,9 @@ public class Orcamentos {
         this.observacao = observacao;
         this.observacaoOrcador = observacaoOrcador;
         this.nomeOrcador = nomeOrcador;
-        this.valorTotal = valorTotal;
+        this.ValorMedio = ValorMedio;
         this.aprovado = aprovado;
-        this.valorOrcado = 0.0; // Inicializando valorOrcado
+        this.valorOrcado = 0.0; 
         this.cancelado = cancelado;
     }
 
@@ -137,43 +132,11 @@ public class Orcamentos {
         this.cancelado = cancelado;
     }
 
-    public double getValorService1() {
-        return valorService1;
+    public Double getValorMedio() {
+        return ValorMedio;
     }
 
-    public void setValorService1(double valorService1) {
-        this.valorService1 = valorService1;
-    }
-
-    public double getValorService2() {
-        return valorService2;
-    }
-
-    public void setValorService2(double valorService2) {
-        this.valorService2 = valorService2;
-    }
-
-    public double getValorService3() {
-        return valorService3;
-    }
-
-    public void setValorService3(double valorService3) {
-        this.valorService3 = valorService3;
-    }
-
-    public double getValorService4() {
-        return valorService4;
-    }
-
-    public void setValorService4(double valorService4) {
-        this.valorService4 = valorService4;
-    }
-
-    public double getValorService5() {
-        return valorService5;
-    }
-
-    public void setValorService5(double valorService5) {
-        this.valorService5 = valorService5;
+    public void setValorMedio(Double valorTotalMedio) {
+        ValorMedio = valorTotalMedio;
     }
 }

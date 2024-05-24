@@ -112,6 +112,7 @@
                                         <tr>
                                             <th scope="col">Id.Orçamento</th>
                                             <th scope="col">Orçado por</th>
+                                            <th scope="col">Valor Estimado</th>
                                             <th scope="col">Valor total</th>
                                             <th scope="col">Status</th>
                                         </tr>
@@ -122,6 +123,7 @@
                                                 <form action="${pageContext.request.contextPath}/orcamento" method="GET">
                                                     <td>${orcamento.getIdOrcamento()}</td>
                                                     <td>${orcamento.getNomeOrcador()}</td>
+                                                    <td>R$ ${orcamento.getValorMedio()}</td>
                                                     <td>R$ ${orcamento.getValorTotal()}</td>
                                                     <td>${orcamento.getStatus()}</td>
                                                 </form>

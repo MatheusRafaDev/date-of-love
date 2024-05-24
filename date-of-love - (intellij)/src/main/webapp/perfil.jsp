@@ -38,7 +38,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil3.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
 </head>
 <body>
@@ -149,6 +149,7 @@
                             <tr>
                                 <th scope="col">Id.Orçamento</th>
                                 <th scope="col">Orçado por</th>
+                                <th scope="col">Valor Estimado</th>
                                 <th scope="col">Valor total</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Ação</th>
@@ -161,7 +162,8 @@
                                     <form action="${pageContext.request.contextPath}/orcamento" method="GET">
                                         <td><input type="text" id="id" name="id" value="${orcamento.getIdOrcamento()}"></td>
                                         <td>${orcamento.getNomeOrcador()}</td>
-                                        <td>${orcamento.getValorTotal()}</td>
+                                        <td>R$ ${orcamento.getValorMedio()}</td>
+                                        <td>R$ ${orcamento.getValorTotal()}</td>
                                         <td>${orcamento.getStatus()}</td>
                                         <td>
                                             <button type="submit" class="btn-visualizar">Visualizar</button>

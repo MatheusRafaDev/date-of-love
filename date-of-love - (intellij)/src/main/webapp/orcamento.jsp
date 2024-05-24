@@ -39,6 +39,7 @@
         <div class="budget-container2">
             <h4>Orçamento - ${orcamento.getIdOrcamento()}</h4>
             <h4>Valor Total: R$ ${orcamento.getValorTotal()}</h4>
+            <h4>Valor Estimado: R$ ${orcamento.getValorMedio()}</h4>
             <h4>Orçador: ${orcamento.getNomeOrcador()}</h4>
             <h4>Status: ${orcamento.getStatus()}</h4>
         </div>
