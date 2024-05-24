@@ -29,7 +29,7 @@ CREATE TABLE tb_casamento (
 
 -- Tabela de Serviços
 CREATE TABLE tb_servicos (
-    id_servico INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_servico PRIMARY KEY,
     nm_servico VARCHAR(100) DEFAULT '',
     ds_servico VARCHAR(250) DEFAULT '',
     vl_preco DECIMAL(10, 2)
@@ -65,12 +65,12 @@ CREATE TABLE tb_detalhes_orcamento (
 
 
 -- Inserindo os Serviços
-INSERT INTO tb_servicos (nm_servico, ds_servico, vl_preco) VALUES 
-('Cardápio', 'Serviço de cardápio personalizado de acordo com as preferências do casal.', 1000.00),
-('Flores e Decoração', 'Decoração floral para cerimônia e recepção do casamento.', 1500.00),
-('Bebidas', 'Fornecimento de bebidas alcoólicas e não alcoólicas para a festa.', 3000.00),
-('Doces e Bem Casados', 'Fornecimento de doces e bem casados para a mesa de sobremesas.', 1000.00),
-('Bolos', 'Confecção de bolo de casamento personalizado.', 500.00),
-('DJ', 'Serviço de DJ para animar a festa de casamento.', 800.00),
-('Coordenação do Dia', 'Coordenação do dia do casamento para garantir que tudo ocorra conforme o planejado.', 500.00),
-('Espaço', 'Locação de espaço para realização da cerimônia e festa de casamento.', 2500.00);
+INSERT INTO tb_servicos (id_servico,nm_servico, ds_servico, vl_preco) VALUES 
+(1,'Cardápio', 'Serviço de cardápio personalizado de acordo com as preferências do casal.', 1000.00),
+(2,'Flores e Decoração', 'Decoração floral para cerimônia e recepção do casamento.', 1500.00),
+(3,'Bebidas', 'Fornecimento de bebidas alcoólicas e não alcoólicas para a festa.', 3000.00),
+(4,'Doces e Bem Casados', 'Fornecimento de doces e bem casados para a mesa de sobremesas.', 1000.00),
+(5,'Bolos', 'Confecção de bolo de casamento personalizado.', 500.00),
+(6,'DJ', 'Serviço de DJ para animar a festa de casamento.', 800.00),
+(7,'Coordenação do Dia', 'Coordenação do dia do casamento para garantir que tudo ocorra conforme o planejado.', 500.00),
+(8,'Espaço', 'Locação de espaço para realização da cerimônia e festa de casamento.', 2500.00);
