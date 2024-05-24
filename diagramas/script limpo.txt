@@ -1,0 +1,76 @@
+-- Drop das tabelas
+DROP TABLE IF EXISTS tb_detalhes_orcamento;
+DROP TABLE IF EXISTS tb_orcamentos;
+DROP TABLE IF EXISTS tb_servicos;
+DROP TABLE IF EXISTS tb_casamento;
+DROP TABLE IF EXISTS tb_usuarios;
+
+-- Tabela de Usuários
+CREATE TABLE tb_usuarios (
+    id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nm_noivo VARCHAR(100) DEFAULT '',
+    nm_noiva VARCHAR(100) DEFAULT '',
+    ds_email VARCHAR(255) DEFAULT '',
+    ds_senha VARCHAR(255) DEFAULT '',
+    dt_cadastro DATE DEFAULT NULL,
+    nm_noivos_concatenado VARCHAR(200) DEFAULT '',
+    imagem_path VARCHAR(255) DEFAULT ''
+);
+
+-- Tabela de Informações do Casamento
+CREATE TABLE tb_casamento (
+    id_casamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT DEFAULT NULL,
+    dt_casamento DATE DEFAULT NULL,
+    ds_localidade VARCHAR(100) DEFAULT '',
+    nr_convidados INT DEFAULT NULL,
+    ds_estilo_festa VARCHAR(50) DEFAULT ''
+);
+
+-- Tabela de Serviços
+CREATE TABLE tb_servicos (
+    id_servico INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nm_servico VARCHAR(100) DEFAULT '',
+    ds_servico VARCHAR(250) DEFAULT '',
+    vl_preco DECIMAL(10, 2)
+);
+
+-- Tabela de Orçamentos
+CREATE TABLE tb_orcamentos (
+    id_orcamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT DEFAULT NULL,
+    id_casamento INT DEFAULT NULL,
+    dt_orcamento DATE DEFAULT NULL,
+    ds_status VARCHAR(20) DEFAULT '',
+    ds_observacao TEXT DEFAULT '',
+    ds_observacao_orcador TEXT DEFAULT '',
+    nm_orcador VARCHAR(100) DEFAULT '',
+    vl_total DECIMAL(10, 2),
+    tg_aprovado BOOLEAN DEFAULT NULL,
+    tg_cancelado BOOLEAN DEFAULT NULL,
+    vl_totalmedio DECIMAL(10, 2) DEFAULT NULL
+);
+
+-- Tabela de Detalhes do Orçamento
+CREATE TABLE tb_detalhes_orcamento (
+    id_detalhe_orcamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_orcamento INT DEFAULT NULL,
+    id_servico INT DEFAULT NULL,
+    nr_quantidade INT DEFAULT NULL,
+    vl_preco_editavel DECIMAL(10, 2) DEFAULT NULL,
+    ds_observacao_servico TEXT DEFAULT '',
+    tg_completo BOOLEAN DEFAULT NULL,
+    tg_incluso BOOLEAN DEFAULT NULL
+);
+
+
+-- Inserindo os Serviços
+INSERT INTO tb_servicos (nm_servico, ds_servico, vl_preco) VALUES 
+('Cardápio', 'Serviço de cardápio personalizado de acordo com as preferências do casal.', 1000.00),
+('Flores e Decoração', 'Decoração floral para cerimônia e recepção do casamento.', 1500.00),
+('Bebidas', 'Fornecimento de bebidas alcoólicas e não alcoólicas para a festa.', 3000.00),
+('Doces e Bem Casados', 'Fornecimento de doces e bem casados para a mesa de sobremesas.', 1000.00),
+('Bolos', 'Confecção de bolo de casamento personalizado.', 500.00),
+('DJ', 'Serviço de DJ para animar a festa de casamento.', 800.00),
+('Coordenação do Dia', 'Coordenação do dia do casamento para garantir que tudo ocorra conforme o planejado.', 500.00),
+('Espaço', 'Locação de espaço para realização da cerimônia e festa de casamento.', 2500.00);
