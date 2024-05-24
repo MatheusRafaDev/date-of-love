@@ -52,7 +52,7 @@ public class AtualizarUsuarioServlet extends HttpServlet {
             usuarioNovo.setEmail(email);
             usuarioNovo.setSenha(senha);
             usuarioNovo.setNomesConcatenados(nomesConcatenados);
-            usuarioNovo.setImagem(imagem);
+            usuarioNovo.setImagem(usuarioAtual.getImagem());
 
             usuarioDao.atualizarUsuarioParcial(usuarioAtual, usuarioNovo);
 

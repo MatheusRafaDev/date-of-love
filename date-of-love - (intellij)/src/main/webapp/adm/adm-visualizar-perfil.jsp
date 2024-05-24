@@ -20,21 +20,6 @@
 
     Casamento casamento = (Casamento) session.getAttribute("casamento");
 
-    String imagemPath2 = usuario.getImagem();
-    String defaultImagePath2 = request.getContextPath() + "/src/assets/images/casal.png";
-    String finalImagePath2;
-
-    if (imagemPath2 != null && !imagemPath2.isEmpty()) {
-        java.io.File file = new java.io.File(getServletContext().getRealPath(imagemPath2));
-        if (file.exists()) {
-            finalImagePath2 = request.getContextPath() + imagemPath2;
-        } else {
-            finalImagePath2 = defaultImagePath2;
-        }
-    } else {
-        finalImagePath2 = defaultImagePath2;
-    }
-
 %>
 
 <!DOCTYPE html>
@@ -58,11 +43,8 @@
                     <div class="card-body">
                         <div class="profile-info">
                             <div class="img-container">
-                                <img src="<%= finalImagePath2 %>" alt="Imagem do Casal" class="img-cabecalho">
                                 <div class="nomeCasal2" ><%= usuario.getNomesConcatenados() %></div>
-
                                 <div class="id">Id: <%= usuario.getIdUsuario() %></div>
-
                             </div>
 
                             <div class="details">

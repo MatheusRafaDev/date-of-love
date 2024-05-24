@@ -13,46 +13,82 @@
    }
 %>
 
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-servicos.css">
+    <title>Editar Serviço</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-orcamento2.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <title>Editar Serviço</title>
-
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-    <script>
-       $(document).ready(function(){
-           $('#vl_preco').mask('###.###.###,00', {reverse: true});
-       });
-    </script>
-
 </head>
-
 <body>
-    <%@ include file="/componente/adm-header.jsp" %>
 
-    <h2 class="texto">Editar Serviço</h2>
-    <form action="${pageContext.request.contextPath}/editar-servico" method="post" class="servicos-container">
-        <c:forEach var="servico" items="${servico}">
-            <div class="servico-item">
-                <input type="hidden" name="id_servico" value="${servico.getIdServico()}">
-                <label for="nm_servico">Nome do Serviço:</label><br>
-                <input type="text" id="nm_servico" name="nm_servico" value="${servico.getNomeServico()}"><br>
-                <label for="ds_servico">Descrição do Serviço:</label><br>
-                <textarea id="ds_servico" name="ds_servico">${servico.getObservacao()}</textarea><br>
-                <label for="ds_valor">Valor:</label><br>
+<%@ include file="/componente/adm-header.jsp" %>
 
-                <input type="text" id="vl_preco" name="vl_preco" value="${servico.getPreco()}" class="vl_preco"><br>
-                <input type="submit" value="Salvar">
-            </div>
-        </c:forEach>
-    </form>
+<div class="perfil-casal">
+    <div class="card orcamento">
+        <div class="card-body">
+            <h3>Orçamentos</h3>
+            <table class="table-orcamentos">
+                <thead>
+                    <tr>
+                        <th>Nome do Serviço</th>
+                        <th>Descrição do Serviço</th>
+                        <th>Valor</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="servico" items="${servico}">
+                        <tr>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/editar-servico" method="post">
+                                    <input type="hidden" name="id_servico" value="${servico.getIdServico()}">
+                                    <input type="text" name="nm_servico" value="${servico.getNomeServico()}">
+                            </td>
+                            <td>
+                                    <textarea name="ds_servico">${servico.getObservacao()}</textarea>
+                            </td>
+                            <td>
+                                    <input type="text" name="vl_preco" value="${servico.getPreco()}" class="vl_preco">
+                            </td>
+                            <td>
+                                    <button type="submit" value="Salvar" class="btn-visualizar">Salvar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        function formatInitialValue(value) {
+            var number = parseFloat(value.replace(',', '.'));
+            return number.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',');
+        }
+
+        $('.vl_preco').each(function() {
+            var precoElement = $(this);
+            var initialValue = precoElement.val();
+
+            if (initialValue) {
+                var formattedValue = formatInitialValue(initialValue);
+                precoElement.val(formattedValue);
+            }
+
+            precoElement.mask('000.000.000,00', { reverse: true });
+        });
+    });
+</script>
+
 </body>
 </html>

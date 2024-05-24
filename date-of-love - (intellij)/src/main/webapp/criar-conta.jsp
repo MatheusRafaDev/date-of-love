@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/criar-conta.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <title>Criar Conta</title>
+
+    <script>
+        $(document).ready(function() {
+            $('#num_convidados').mask('0000', { // Define a máscara como 4 dígitos
+                max: 1000 // Define o valor máximo como 1000
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="container">
@@ -59,7 +67,12 @@
             </section>
 
             <label for="num_convidados">Número de Convidados</label>
-            <input type="number" id="num_convidados" name="num_convidados" required maxlength="4" max="1000" value="${requestScope.numConvidados}">
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+
+            <input type="text" id="num_convidados" name="num_convidados" required maxlength="4" value="${requestScope.numConvidados}">
 
             <label for="senha">Sua senha</label>
             <input type="password" id="senha" name="senha" required maxlength="25">

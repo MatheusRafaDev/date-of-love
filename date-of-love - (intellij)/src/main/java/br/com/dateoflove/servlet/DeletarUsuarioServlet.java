@@ -16,7 +16,6 @@ public class DeletarUsuarioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int idUsuario = Integer.parseInt(req.getParameter("id"));
-        System.out.println("teste");
 
         UsuarioDao UsuarioDao = new UsuarioDao();
         UsuarioDao.deletarUsuarioPorId(idUsuario);

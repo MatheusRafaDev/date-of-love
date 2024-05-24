@@ -27,36 +27,45 @@
     <link rel="icon" type="image/x-icon" href="/src/assets/images/favicon.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-detalhe-orcamento.css">
     <title>Visualizar Orçamento ADM</title>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script>
 
-            $(document).ready(function() {
-                let orcamentoValorTotal = <%= orcamento.getValorTotal() %>;
-                let formattedValorTotal = orcamentoValorTotal.toFixed(2).replace('.', ',').replace(/\d(?=(\d{3})+,)/g, '$&.');
-                $("#valorTotal").val(formattedValorTotal);
-                $('#valorTotal').mask('000.000.000,00', {reverse: true});
+    <script>
+        $(document).ready(function(){
+
+            function formatInitialValue(value) {
+                    var number = parseFloat(value.replace(',', '.'));
+                    return number.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',');
+            }
+
+
+             $('.valor').each(function() {
+                var precoElement = $(this);
+                var initialValue = precoElement.val();
+
+                if (initialValue) {
+                    var formattedValue = formatInitialValue(initialValue);
+                    precoElement.val(formattedValue);
+                }
+
+                precoElement.mask('000.000.000,00', { reverse: true });
             });
 
-            $(document).ready(function(){
-                $('.valor').mask('000.000.000,00', {reverse: true});
-                $('#valorTotal').mask('000.000.000,00', {reverse: true});
-
-                $("#calcularBtn").click(function() {
-                    let total = 0;
-                    $("input.valor").each(function() {
-                        let value = $(this).val().replace(/\./g, '').replace(',', '.');
-                        total += parseFloat(value) || 0;
-                    });
-
-                    let formattedTotal = total.toFixed(2).replace('.', ',').replace(/\d(?=(\d{3})+,)/g, '$&.');
-                    $("#valorTotal").val(formattedTotal);
-                    $('#valorTotal').mask('000.000.000,00', {reverse: true});
+            $('#calcularBtn').click(function() {
+                var total = 0;
+                $('input.valor').each(function() {
+                    var value = parseFloat($(this).val().replace(/\./g, '').replace(',', '.')) || 0;
+                    total += value;
                 });
 
+                var formattedTotal = total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                $('#valorTotal').val(formattedTotal);
             });
+        });
+    </script>
 
-        </script>
+
 
 
 </head>
@@ -67,39 +76,43 @@
 <form action="${pageContext.request.contextPath}/atualizarOrcamento" method="post">
 <div class="budget-container">
     <h3>Orçamento</h3>
+
     <div class="budget-container2">
-        <h5>Orçamento - ${orcamento.getIdOrcamento()}</h5>
-        <td><input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}"></td>
-        <h5>Valor Estimado: R$ ${orcamento.getValorMedio()}</h5>
+            <h4>Orçamento - ${orcamento.getIdOrcamento()}</h4>
+            <td><input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}"></td>
+            <h4>Valor Estimado: R$ ${orcamento.getValorMedio()}</h4>
+            <h4>Valor Total: R$ ${orcamento.getValorTotal()}</h4>
 
-        <%
-            if (!orcamento.getStatus().equals("Cancelado") && !orcamento.getStatus().equals("Aprovado")) {
-        %>
-            <h5>Status:
-                <select name="status" id="status">
-                    <option value="Pendente" ${orcamento.getStatus().equals('Pendente') ? 'selected' : ''}>Pendente</option>
-                    <option value="Andamento" ${orcamento.getStatus().equals('Andamento') ? 'selected' : ''}>Andamento</option>
-                    <option value="Esperando Aprovação" ${orcamento.getStatus().equals('Esperando Aprovação') ? 'selected' : ''}>Esperando Aprovação</option>
-                </select>
-            </h5>
-        <%
-            } else {
-        %>
-            <h5>Status:
-                <select name="status" id="status">
-                    <option value="Aprovado" ${orcamento.getStatus().equals('Aprovado') ? 'selected' : ''}>Aprovado</option>
-                    <option value="Cancelado" ${orcamento.getStatus().equals('Cancelado') ? 'selected' : ''}>Cancelado</option>
-                </select>
-            </h5>
-        <%
-            }
-        %>
+            <%
+                if (orcamento.getStatus().equals("Cancelado")) {
+            %>
+                <h5>Status:
+                    <select name="status" id="status">
+                        <option value="Cancelado" selected>Cancelado</option>
+                    </select>
+                </h5>
+            <%
+                } else {
+            %>
+                <h5>Status:
+                    <select name="status" id="status">
+                        <option value="Pendente" ${orcamento.getStatus().equals('Pendente') ? 'selected' : ''}>Pendente</option>
+                        <option value="Andamento" ${orcamento.getStatus().equals('Andamento') ? 'selected' : ''}>Andamento</option>
+                        <option value="Esperando Aprovação" ${orcamento.getStatus().equals('Esperando Aprovação') ? 'selected' : ''}>Esperando Aprovação</option>
+                        <option value="Aprovado" ${orcamento.getStatus().equals('Aprovado') ? 'selected' : ''}>Aprovado</option>
+                        <option value="Cancelado" ${orcamento.getStatus().equals('Cancelado') ? 'selected' : ''}>Cancelado</option>
+                    </select>
+                </h5>
+            <%
+                }
+            %>
+        </div>
 
-
-        <h5>Nome casal: ${usuario.getNomesConcatenados()}</h5>
-        <h5>Convidados: ${casamento.getNumeroConvidados()}</h5>
-        <h5>Estilo Festa: ${casamento.getEstiloFesta()}</h5>
-        <h5>Localidade: ${casamento.getLocalidade()}</h5>
+    <div class="budget-container2">
+        <h4>Nome casal: ${usuario.getNomesConcatenados()}</h4>
+        <h4>Convidados: ${casamento.getNumeroConvidados()}</h4>
+        <h4>Estilo Festa: ${casamento.getEstiloFesta()}</h4>
+        <h4>Localidade: ${casamento.getLocalidade()}</h4>
     </div>
 
     <h3>Observações do casal</h3>
@@ -128,7 +141,7 @@
             </tr>
         </c:forEach>
 
-         <td>Valor de serviço</td>
+         <td>Acrescimo</td>
          <td></td>
          <td></td>
          <td></td>

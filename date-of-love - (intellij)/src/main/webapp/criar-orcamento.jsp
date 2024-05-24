@@ -137,8 +137,8 @@
 
             <a class="detalhes" href="/servicos.jsp" >Detalhes</a>
 
-            <h3>Orçamento Médio</h3>
-            <input type="text" name="orcamentoMedio" id="orcamentoMedio">
+            <h3>Valor Estimado</h3>
+            <input type="text" name="orcamentoMedio" id="orcamentoMedio" placeholder="Informe o orçamento estimado">
 
             <h3>Observações Gerais</h3>
             <textarea rows="7" cols="50" name="observacao"></textarea>
