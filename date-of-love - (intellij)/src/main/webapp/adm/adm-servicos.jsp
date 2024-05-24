@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="br.com.dateoflove.dao.ServicoDao" %>
 <%@ page import="br.com.dateoflove.model.Servico" %>
+<%@ page import="java.text.DecimalFormat" %>
 
 <%
    Usuario usuario2 = (Usuario) session.getAttribute("usuario2");
@@ -22,6 +23,16 @@
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <title>Editar Serviço</title>
+
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <script>
+       $(document).ready(function(){
+           $('#vl_preco').mask('###.###.###,00', {reverse: true});
+       });
+    </script>
+
 </head>
 
 <body>
@@ -37,7 +48,8 @@
                 <label for="ds_servico">Descrição do Serviço:</label><br>
                 <textarea id="ds_servico" name="ds_servico">${servico.getObservacao()}</textarea><br>
                 <label for="ds_valor">Valor:</label><br>
-                <input type="number" id="vl_preco" name="vl_preco" value="${servico.getPreco()}" step="0.01"><br>
+
+                <input type="text" id="vl_preco" name="vl_preco" value="${servico.getPreco()}" class="vl_preco"><br>
                 <input type="submit" value="Salvar">
             </div>
         </c:forEach>

@@ -28,10 +28,10 @@ public class OrcamentosDao {
             preparedStatement.setDate(3, new java.sql.Date(orcamento.getDataOrcamento().getTime()));
             preparedStatement.setString(4, orcamento.getStatus());
             preparedStatement.setString(5, orcamento.getObservacao());
-            preparedStatement.setString(6, orcamento.getNomeOrcador());
+            preparedStatement.setString(6, "");
             preparedStatement.setDouble(7, orcamento.getValorTotal());
             preparedStatement.setBoolean(8, false);
-            preparedStatement.setString(9, orcamento.getObservacaoOrcador());
+            preparedStatement.setString(9, "");
             preparedStatement.setDouble(10, orcamento.getValorMedio());
             preparedStatement.setBoolean(11, false);
 

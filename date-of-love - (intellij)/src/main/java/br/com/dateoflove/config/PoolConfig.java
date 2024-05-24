@@ -16,10 +16,10 @@ public class PoolConfig {
 
         if (dataSource == null) {
             dataSource = new BasicDataSource();
-            dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-            dataSource.setUrl("jdbc:mysql://date-of-love.mysql.database.azure.com:3306/dateoflove");
-            dataSource.setUsername("dateoflove");
-            dataSource.setPassword("matheus123@");
+            dataSource.setDriverClassName("org.h2.Driver");
+            dataSource.setUrl("jdbc:h2:~/test");
+            dataSource.setUsername("sa");
+            dataSource.setPassword("sa");
             dataSource.setMinIdle(5);
             dataSource.setMaxIdle(10);
             dataSource.setMaxTotal(50);

@@ -1,7 +1,10 @@
 package br.com.dateoflove.servlet;
 
-import br.com.dateoflove.dao.DetalheOrcamentoDao;
+import br.com.dateoflove.dao.*;
+import br.com.dateoflove.model.Casamento;
 import br.com.dateoflove.model.DetalheOrcamento;
+import br.com.dateoflove.model.Orcamentos;
+import br.com.dateoflove.model.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/detalheOrcamento")
+@WebServlet("/detalhe-orcamento")
 public class DetalheOrcamentoServlet extends HttpServlet {
 
     @Override
@@ -19,25 +22,28 @@ public class DetalheOrcamentoServlet extends HttpServlet {
         String idString = req.getParameter("id");
         int id = Integer.parseInt(idString);
 
+        UsuarioDao usuarioDao = new UsuarioDao();
+        ServicoDao servicoDao = new ServicoDao();
         DetalheOrcamentoDao detalheOrcamentoDao = new DetalheOrcamentoDao();
+        OrcamentosDao orcamentoDao = new OrcamentosDao();
+        CasamentoDao casamentoDao = new CasamentoDao();
+
+
+        Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId(id);
+        Usuario usuario = usuarioDao.buscarUsuarioPorId(orcamento.getIdUsuario());
+        Casamento casamento = casamentoDao.encontrarCasamentoPorIdUsuario(usuario.getIdUsuario());
         List<DetalheOrcamento> detalheOrcamento = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento(id);
+        List<DetalheOrcamento> detalheOrcamento2 = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento2(id);
 
-        req.setAttribute("detalheOrcamento", detalheOrcamento);
-        req.getRequestDispatcher("detalheOrcamento.jsp").forward(req, resp);
+        req.getSession().setAttribute("orcamento", orcamento);
+        req.getSession().setAttribute("detalheorcamento", detalheOrcamento);
+        req.getSession().setAttribute("detalheorcamento2", detalheOrcamento2);
+        req.getSession().setAttribute("servicoDao", servicoDao);
+
+        req.getSession().setAttribute("usuario", usuario);
+        req.getSession().setAttribute("casamento", casamento);
+
+        resp.sendRedirect(req.getContextPath() + "/adm/adm-detalhe-orcamento.jsp");
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Falta a lógica para criar um novo DetalheOrcamento
-    }
-
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Falta a lógica para atualizar um DetalheOrcamento existente
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Falta a lógica para deletar um DetalheOrcamento
-    }
 }

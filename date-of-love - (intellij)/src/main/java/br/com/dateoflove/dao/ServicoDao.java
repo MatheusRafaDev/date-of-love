@@ -66,6 +66,7 @@ public class ServicoDao {
 
         try (Connection connection = PoolConfig.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
+
             ps.setString(1, servico.getNomeServico());
             ps.setString(2, servico.getObservacao());
             ps.setDouble(3, servico.getPreco());

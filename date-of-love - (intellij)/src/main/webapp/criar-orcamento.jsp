@@ -28,7 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script>
       $(document).ready(function(){
-        $('#orcamentoMedio').mask('000.000.000,00', {reverse: true});
+         $('#orcamentoMedio').mask('###.###.###,00', {reverse: true});
       });
     </script>
 
@@ -138,7 +138,7 @@
             <a class="detalhes" href="/servicos.jsp" >Detalhes</a>
 
             <h3>Orçamento Médio</h3>
-            <input type="text" name="orcamentoMedio" id="orcamentoMedio" placeholder="Informe o orçamento médio">
+            <input type="text" name="orcamentoMedio" id="orcamentoMedio">
 
             <h3>Observações Gerais</h3>
             <textarea rows="7" cols="50" name="observacao"></textarea>

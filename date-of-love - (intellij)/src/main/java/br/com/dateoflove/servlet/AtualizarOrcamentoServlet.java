@@ -1,63 +1,71 @@
 package br.com.dateoflove.servlet;
 
-import br.com.dateoflove.dao.OrcamentosDao;
+import br.com.dateoflove.dao.UpdateOrcamentoDao;
+import br.com.dateoflove.model.DetalheOrcamento;
 import br.com.dateoflove.model.Orcamentos;
-import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.http.HttpSession;
 
-@WebServlet("/atualizar-orcamento")
+@WebServlet("/atualizarOrcamento")
 public class AtualizarOrcamentoServlet extends HttpServlet {
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            StringBuilder stringBuilder = new StringBuilder();
-            try (BufferedReader reader = request.getReader()) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    stringBuilder.append(line);
-                }
-            }
+        request.setCharacterEncoding("UTF-8");
 
-            JSONObject requestData = new JSONObject(stringBuilder.toString());
-            int idOrcamento = requestData.optInt("idOrcamento");
-            double novoValorService1 = requestData.optDouble("novoValor1");
-            double novoValorService2 = requestData.optDouble("novoValor2");
-            // Adicione os outros novos valores conforme necessário
+        int idOrcamento = Integer.parseInt(request.getParameter("idOrcamento"));
 
-            if (idOrcamento <= 0 || Double.isNaN(novoValorService1) || Double.isNaN(novoValorService2)) {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                return;
-            }
+        String valorMedio = request.getParameter("valorTotal");
+        String valorSemPontos = valorMedio.replaceAll("\\.", "");
+        String valorFormatado = valorSemPontos.replace(",", ".");
+        valorFormatado = valorFormatado.replace("R$", "");
+        valorFormatado = valorFormatado.replaceAll(" ", "");
+        valorFormatado = valorFormatado.trim();
+        double valorTotal = Double.parseDouble(valorFormatado);
 
-            OrcamentosDao orcamentosDao = new OrcamentosDao();
-            Orcamentos orcamento = orcamentosDao.buscarOrcamentoPorId(idOrcamento);
-            if (orcamento == null) {
-                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                return;
-            }
 
-            // Atualize os valores do orçamento conforme necessário
-            orcamento.setValorTotal(novoValorService1);
-            // Atualize outros valores, se necessário
 
-            // Persista as alterações no banco de dados
-            orcamentosDao.atualizarOrcamento(orcamento);
+        String observacao = request.getParameter("observacoesGerais");
+        String status = request.getParameter("status");
+        String responsavel = request.getParameter("responsavel");
 
-            // Retorna uma mensagem de sucesso
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{\"message\": \"Orçamento atualizado com sucesso!\"}");
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        Orcamentos orcamento = new Orcamentos();
+        orcamento.setNomeOrcador(responsavel);
+        orcamento.setIdOrcamento(idOrcamento);
+        orcamento.setValorTotal(valorTotal);
+        orcamento.setObservacaoOrcador(observacao);
+        orcamento.setStatus(status);
+
+
+        List<DetalheOrcamento> detalheorcamento = null;
+
+        HttpSession session = request.getSession();
+        List<DetalheOrcamento> detalhes = (List<DetalheOrcamento>) session.getAttribute("detalheorcamento");
+        UpdateOrcamentoDao dao = new UpdateOrcamentoDao();
+
+        for (DetalheOrcamento Detalhes : detalhes) {
+
+            String valor = request.getParameter("valor-" + Detalhes.getIdServico());
+            valor = valor.replace(".", "").replace(",", ".");
+            double precoEditavel = Double.parseDouble(valor);
+
+            DetalheOrcamento detalhe = new DetalheOrcamento();
+            detalhe.setIdDetalheOrcamento( Detalhes.getIdDetalheOrcamento());
+            detalhe.setPrecoEditavel(precoEditavel);
+
+            dao.atualizarDetalheOrcamento(detalhe);
         }
+
+
+
+        dao.atualizarOrcamento(orcamento);
+        response.sendRedirect(request.getContextPath() + "/carregar-orcamento");
     }
+
 }
