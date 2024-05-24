@@ -53,15 +53,19 @@ public class UsuarioDao {
         return usuario;
     }
 
-    public static void deletarUsuarioPorId(int idUsuario) {
-        try {
-            String SQL = "DELETE FROM tb_usuarios WHERE id_usuario = ?";
-            Connection connection = PoolConfig.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+    public void deletarUsuarioPorId(int idUsuario) {
+        String SQL = "DELETE FROM tb_usuarios WHERE id_usuario = ?";
+        try (Connection connection = PoolConfig.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
             preparedStatement.setInt(1, idUsuario);
-            preparedStatement.execute();
-            System.out.println("Usuário deletado com sucesso!");
-            connection.close();
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Usuário deletado com sucesso!");
+            } else {
+                System.out.println("Nenhum usuário encontrado com o ID fornecido.");
+            }
         } catch (Exception e) {
             System.out.println("Falha ao deletar o usuário: " + e.getMessage());
         }

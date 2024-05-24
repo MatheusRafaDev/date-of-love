@@ -124,8 +124,8 @@
 
                                 <button type="submit" id="btnSalvar" class="btn-salvar">Salvar</button>
 
-                                <form action="${pageContext.request.contextPath}/deletar-perfil" method="post">
-                                    <input type="hidden" name="idUsuario" value="<%= usuario.getIdUsuario() %>">
+                                <form action="${pageContext.request.contextPath}/deletar-usuario" method="post">
+                                    <input type="hidden" name="id" value="<%= usuario.getIdUsuario() %>">
                                     <button type="submit" class="btn-deletar-perfil">Deletar Perfil</button>
                                 </form>
 
@@ -173,7 +173,6 @@
                                             <td>
                                                 <input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}">
                                                 <input type="hidden" id="idUsuario" name="idUsuario" value="${usuario.getIdUsuario()}">
-                                                <input type="hidden" id="valorTotalAtualizado" name="valorTotalAtualizado" value="${valorTotal}">
                                                 <button type="submit" class="btn-visualizar">Cancelar</button>
                                             </td>
                                         </form>
@@ -181,12 +180,6 @@
                                 </tr>
                             </c:forEach>
 
-                            <%
-                                String valorTotal = request.getParameter("valorTotal");
-                                if (valorTotal == null) {
-                                    valorTotal = "0.00";
-                                }
-                            %>
 
                             <tr>
                                 <td colspan="5">
@@ -205,14 +198,3 @@
 </body>
 </html>
 
-<script>
-    function confirmarExclusao() {
-        if (confirm("Tem certeza de que deseja excluir o perfil? Essa ação não pode ser desfeita.")) {
-            // Se confirmado, enviar o formulário
-            document.getElementById("deleteForm").submit();
-        } else {
-            // Se cancelado, não fazer nada
-            return false;
-        }
-    }
-</script>
