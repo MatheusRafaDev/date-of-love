@@ -1,153 +1,236 @@
-* {
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Titillium Web', sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
+h1, h2, h3 {
+    font-weight: 700;
+    color: #333;
 }
 
-.container {
-    max-width: 1080px;
-    margin: 0 auto;
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+button {
+    background-color: #ff6f61;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e75a4e;
+}
+
+.Estrutura {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-left: 250px;
+    padding-right: 250px;
+}
+
+.Estrutura {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+
+.boxestru {
+    text-align: center;
+}
+
+.boxestru img {
+    width: 50%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.boxestru h1 {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.boxestru p {
+    font-size: 1em;
+    color: #666;
+    margin-top: 10px;
+}
+
+#base .fotos .row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-left: 250px;
+    padding-right: 250px;
+}
+
+.box {
+    text-align: center;
+}
+
+.box img {
+    width: 30%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.box span {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+
+#base h1 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 40px;
+    color: #333;
+    padding: 0 20px;
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+.container21, .container3 {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin: 0 auto 40px;
+    max-width: 800px;
+}
+
+.titulo {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.descricao {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #555;
+    max-width: 700px;
+}
+
+.botaoquem {
+    background-color: #94CBFF;
+    color: black;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.botaoquem:hover {
+    background-color: #0056b3;
+}
+
+.container3 p {
+    margin-top: 20px;
+}
+
+.container3 button {
+    margin-top: 20px;
+}
+
+
+
+
+
+
+
+.partecasal {
+    padding: 50px 20px;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.textoemo {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.textoemo p {
+    margin: 10px 0;
+}
+
+.fundopretocominfo {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.fundopretocominfo h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.fundopretocominfo p {
+    font-size: 18px;
+     color: #fff;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.fundopretocominfo p1 {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #ddd;
+    display: block;
+    margin-top: 20px;
+}
+
+.fundopretocominfo2 {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.container1 { 
-    max-width: 1080px;
+.fimpagina {
+    padding: 30px;
+    text-align: center;
+    max-width: 800px;
     margin: 0 auto;
 }
 
-.logo {
-    width: 25%;
+.fimpag h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 15px;
 }
 
-.logo img {
-    width: 200px;
-    cursor: pointer;
-}
-
-.menu,
-.social {
-    width: 25%;
-}
-
-.menu nav a {
-    color: #c4c4c4;
-    text-decoration: none;
+.fimpag p {
     font-size: 18px;
-    padding-right: 30px;
-    padding-bottom: 8px;
-    position: relative;
-    transition: color 0.5s; /* Adiciona transição para a cor do texto */
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
 }
 
-.menu nav a::after {
-    content: " ";
-    width: 0px;
-    height: 4px;
-    background-image: linear-gradient(45deg, #FF2500, #FF7100);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    transition: width 0.5s;
-}
-
-.menu nav a:hover::after {
-    width: 30px;
-}
-
-.menu nav a:hover {
-    color: #ffffff; /* Altera a cor do texto ao passar o mouse */
-}
-
-.social button {
-    width: 40px;
-    height: 40px;
-    margin-right: 20px;
-    border: 0;
-    cursor: pointer;
-    background-image: linear-gradient(45deg, #FF2500, #FF7100);
-    border-radius: 5px;
-    transition: transform 0.5s;
-}
-
-.social button i {
-    font-size: 20px;
-    text-align: center;
-    color: #ffffff;
-}
-
-.social button:hover {
-    transform: scale(0.9);
-}
-
-/* estilização do conteúdo */
-
-section {
-    padding: 90px 4%;
-    border-bottom: 1px solid #ccc;
-}
-
-section h2 {
-    font-size: 2em;
-    margin-bottom: 25px;
-}
-
-section p {
-    font-size: 20px;
-}
-
-#menu-mobile {
-    background-color: #1111119f;
-    backdrop-filter: blur(10px);
-    position: absolute;
-    top: 77px;
-    right: 0;
-    width: 100%;
-    height: 0;
-    visibility: hidden;
-    z-index: 1000;
-    transition: 0.5s;
-    overflow: hidden;
-}
-
-#menu-mobile nav a {
-    display: block;
-    color: #ffffff;
-    padding: 20px 30px;
-    font-size: 20px;
-    text-decoration: none;
-}
-
-#btn-menu,
-#btn-menu-close {
-    color: #ffffff;
-    font-size: 30px;
-    cursor: pointer;
-    display: none;
-}
-
-@media screen and (max-width: 1110px) {
-    .menu,
-    .social {
-        display: none;
-    }
-
-    .logo {
-        width: 100%;
-    }
-
-    #btn-menu,
-    #menu-mobile {
-        display: block;
-    }
-
-    #menu-mobile.active {
-        height: calc(100vh - 77px);
-        visibility: visible;
-    }
-}

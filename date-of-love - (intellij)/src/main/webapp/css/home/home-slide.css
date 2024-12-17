@@ -1,85 +1,241 @@
+/* Geral */
+body {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
 
-section.slider{
+h1, h2, h3 {
+    font-weight: 700;
+    text-align: center;
+}
+
+p, span {
+    font-size: 16px;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+    display: block;
     margin: 0 auto;
-    width: 100%;
-    height: auto;
-    padding: 0 !important;
+    width: 120px;
+}
+
+header nav {
+    text-align: center;
+    margin-top: 20px;
+}
+
+header nav a {
+    padding: 10px 20px;
+    color: #333;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+header nav a:hover {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+/* Slider */
+.slider {
+    position: relative;
     overflow: hidden;
 }
 
-.slider-content{
-    width: 400%;
-    height: auto;
+.slider-content {
     display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
-.slider-content input, .img-mobile{
-    display: none;
+.slide-box {
+    min-width: 100%;
 }
 
-.slide-box{
-    width: 25%;
-    height: auto;
-    position: relative;
-    text-align: center;
-    transition: 1s;
-}
-
-.slide-box img{
+.slide-box img {
     width: 100%;
+    display: block;
 }
 
-.nav-manual, .nav-auto{
+.nav-manual {
     position: absolute;
-    width: 100%;
-    margin-top: 35%;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
 }
 
-.nav-manual .manual-btn, .nav-auto div{
-    border: 1px solid #ff0054;
-    padding: 10px;
+.manual-btn {
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
+    background-color: #fff;
+    margin: 0 5px;
     cursor: pointer;
-    transition: 0.2s;
 }
 
-.nav-manual .manual-btn:not(:last-child), .nav-auto div:not(:last-child){
-    margin-right: 10px;
+/* Base Section */
+#base {
+    padding: 50px 20px;
+    background-color: #fff;
 }
 
-.nav-manual .manual-btn:hover{
-    background-color: #ff0054;
+.container2, .container21, .container3 {
+    text-align: center;
 }
 
-#radio1:checked ~ .nav-auto .auto-btn1, #radio2:checked ~ .nav-auto .auto-btn2, #radio3:checked ~ .nav-auto .auto-btn3{
-    background-color: #ff0054;
+.container2 img {
+    width: 80%;
+    margin-bottom: 30px;
 }
 
-#radio1:checked ~ .primeiro{
-    margin-left: 0%;
+.container21 h2, .container3 h2 {
+    color: #007BFF;
 }
 
-#radio2:checked ~ .primeiro{
-    margin-left: -25%;
+.container21 p {
+    font-size: 18px;
+    margin: 15px 0;
 }
 
-#radio3:checked ~ .primeiro{
-    margin-left: -50%;
+.botaoquem {
+    background-color: #007BFF;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-@media screen and (max-width: 900px) {
-    .img-desktop{
-        display: none;
+.botaoquem:hover {
+    background-color: #0056b3;
+}
+
+/* Fotos Section */
+.fotos, .fotos1 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.box, .box1 {
+    text-align: center;
+    width: 22%;
+}
+
+.box img, .box1 img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.box span, .box1 span {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Estrutura */
+.Estrutura {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.boxestru {
+    width: 23%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.boxestru img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.Estrutura1 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.Gastroimagens {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pola1, .pola2 {
+    width: 48%;
+}
+
+.pola1 img, .pola2 img {
+    width: 100%;
+    height: auto;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .slider-content {
+        flex-direction: column;
     }
 
-    .img-mobile{
-        display: block;
+    .container2 img {
+        width: 100%;
     }
 
-    .nav-auto, .nav-manual{
-        margin-top: 60%;
+    .fotos, .fotos1 {
+        flex-direction: column;
+        align-items: center;
     }
 
+    .box, .box1 {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .Estrutura, .Estrutura1 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .boxestru {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .Gastroimagens {
+        flex-direction: column;
+    }
+
+    .pola1, .pola2 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
