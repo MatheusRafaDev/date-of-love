@@ -49,6 +49,7 @@ CREATE TABLE tb_orcamentos (
     ds_observacao_orcador TEXT,
     nm_orcador VARCHAR(100),
     vl_total DECIMAL(10, 2),
+    vl_totalmedio DECIMAL(10, 2),
     tg_aprovado BOOLEAN,
     tg_cancelado BOOLEAN
 );
