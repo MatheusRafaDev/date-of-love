@@ -1,12 +1,30 @@
-
-* {
-    border: 0;
-    border: none;
+html, body {
+    height: 100%;
     margin: 0;
-    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin-top: 12px;
 }
 
 
+* {
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
 
 main {
     padding: 20px;
@@ -16,12 +34,10 @@ section {
     margin-bottom: 20px;
 }
 
-
 .back {
     width: auto;
     height: 65px;
     position: absolute;
-    top: auto;
     left: 25px;
     top: -10px;
 }
@@ -33,7 +49,6 @@ section {
     left: 540px;
 }
 
-
 .container, h2 {
     width: 50%;
     margin: 0 auto;
@@ -41,13 +56,11 @@ section {
 
 .texto {
     text-align: justify;
-    font-family: 'Quicksand', sans-serif;
 }
 
 h2 {
     margin-bottom: 1em;
 }
-
 
 footer {
     background-color: #333;
@@ -73,6 +86,3 @@ footer p {
     width: 150px;
     height: auto;
 }
-
-
-

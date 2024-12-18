@@ -9,13 +9,13 @@
 %>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home/home-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
 
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <title>Date Of Love</title>
@@ -28,30 +28,36 @@
 <body>
     <%@ include file="/componente/header.jsp" %>
 
-   <div class="header">
 
-       <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-           <div class="carousel-inner">
-               <div class="carousel-item active">
-                   <img src="<%=request.getContextPath()%>/src/assets/images-home/slide-1.jpg" class="d-block w-100" alt="slide 1">
+       <div class="container-fluid p-0">
+           <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+               <div class="carousel-inner">
+                   <div class="carousel-item active">
+                       <img src="<%=request.getContextPath()%>/src/assets/images-home/casal.jpg" class="d-block w-100 carousel-image" alt="slide 1">
+                   </div>
+                   <div class="carousel-item">
+                       <img src="<%=request.getContextPath()%>/src/assets/images-home/casal2.jpg" class="d-block w-100 carousel-image" alt="slide 2">
+                   </div>
+                   <div class="carousel-item">
+                       <img src="<%=request.getContextPath()%>/src/assets/images-home/casal3.jpg" class="d-block w-100 carousel-image" alt="slide 3">
+                   </div>
                </div>
-               <div class="carousel-item">
-                   <img src="<%=request.getContextPath()%>/src/assets/images-home/slide-2.jpg" class="d-block w-100" alt="slide 2">
-               </div>
-               <div class="carousel-item">
-                   <img src="<%=request.getContextPath()%>/src/assets/images-home/slide-3.jpg" class="d-block w-100" alt="slide 3">
-               </div>
+               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                   <span class="visually-hidden">Previous</span>
+               </button>
+               <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                   <span class="visually-hidden">Next</span>
+               </button>
            </div>
-           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-               <span class="visually-hidden">Previous</span>
-           </button>
-           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-               <span class="visually-hidden">Next</span>
-           </button>
        </div>
-   </div>
+
+
+
+
+
+
 
         <div class="container21">
             <h2 class="titulo">Quem somos</h2>
@@ -204,31 +210,22 @@
                 impecável e a qualidade dos ingredientes.<br><br>
                 Oferecemos também menus especiais para diabéticos,<br>
                 celíacos, vegetarianos e crianças.</p>
-            <h3>Menus</h3>
-            <p1>Qual o melhor serviço para o seu casamento?<br><br>
-                Isso vai depender do estilo que vocês desejam imprimir no evento, ou<br>
-                seja, formal ou informal. Para que a escolha seja bem-feita,<br>
-                será necessário definir a quantidade de<br>
-                pessoas na sua lista, conhecer os aspectos de cada serviço e se adequar ao melhor<br>
-                formato, considerando a quantidade e o perfil dos convidados. Conheça os gostos e<br>
-                costumes dos seus familiares e amigos e sua escolha será assertiva.<br><br>
-                Conheça as duas opções de menus do Espaço!</p1>
+
         </div>
 
         <div class="fundopretocominfo2">
 
             <div class="fimpagina">
                 <div class="fimpag">
-                    <h1>Festa <br>Completa</h1>
-                    <p>
-                        Planejar o casamento dos<br>
-                        sonhos envolve muitas etapas<br>
-                        importantes. São diversos<br>
-                        detalhes que precisam ser<br>
-                        bem alinhados e definidos para<br>
-                        que tudo saia do jeito que você<br>
-                        gostaria.
-                    </p>
+                    <h3>Menus</h3>
+                    <p1>Qual o melhor serviço para o seu casamento?<br><br>
+                        Isso vai depender do estilo que vocês desejam imprimir no evento, ou<br>
+                        seja, formal ou informal. Para que a escolha seja bem-feita,<br>
+                        será necessário definir a quantidade de<br>
+                        pessoas na sua lista, conhecer os aspectos de cada serviço e se adequar ao melhor<br>
+                        formato, considerando a quantidade e o perfil dos convidados. Conheça os gostos e<br>
+                        costumes dos seus familiares e amigos e sua escolha será assertiva.<br><br>
+                        Conheça as duas opções de menus do Espaço!</p1>
                 </div>
             </div>
         </div>
