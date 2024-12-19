@@ -38,7 +38,6 @@ CREATE TABLE tb_servicos (
     vl_preco DECIMAL(10, 2)
 );
 
--- Tabela de Orçamentos
 CREATE TABLE tb_orcamentos (
     id_orcamento INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT,
@@ -52,12 +51,13 @@ CREATE TABLE tb_orcamentos (
     vl_totalmedio DECIMAL(10, 2),
     tg_aprovado BOOLEAN,
     tg_cancelado BOOLEAN,
-    ds_local VARCHAR(255) NOT NULL,
-    ds_tipo_cerimonia VARCHAR(255) NOT NULL,
-    ds_forma_pagamento VARCHAR(100) NOT NULL,
-    ds_valor_estimado DECIMAL(10, 2) NOT NULL,
+    ds_local VARCHAR(255),
+    ds_tipo_cerimonia VARCHAR(255),
+    ds_forma_pagamento VARCHAR(255),
+    ds_valor_estimado DECIMAL(10, 2),
     ds_observacao_geral TEXT,
-    ds_comentario_adicional TEXT
+    ds_comentario_adicional TEXT,
+    qtd_convidados INT -- Nova coluna para quantidade de convidados
 );
 
 
