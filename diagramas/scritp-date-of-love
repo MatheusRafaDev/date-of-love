@@ -51,8 +51,16 @@ CREATE TABLE tb_orcamentos (
     vl_total DECIMAL(10, 2),
     vl_totalmedio DECIMAL(10, 2),
     tg_aprovado BOOLEAN,
-    tg_cancelado BOOLEAN
+    tg_cancelado BOOLEAN,
+    ds_local VARCHAR(255) NOT NULL,
+    ds_tipo_cerimonia VARCHAR(255) NOT NULL,
+    ds_forma_pagamento VARCHAR(100) NOT NULL,
+    ds_valor_estimado DECIMAL(10, 2) NOT NULL,
+    ds_observacao_geral TEXT,
+    ds_comentario_adicional TEXT
 );
+
+
 
 -- Tabela de Detalhes do Orçamento
 CREATE TABLE tb_detalhes_orcamento (
