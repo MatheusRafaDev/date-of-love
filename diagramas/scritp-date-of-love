@@ -34,14 +34,12 @@ CREATE TABLE tb_orcamentos (
     ds_observacao_orcador TEXT,
     nm_orcador VARCHAR(100),
     vl_total DECIMAL(10, 2),
-    vl_totalmedio DECIMAL(10, 2),
     tg_aprovado BOOLEAN,
     tg_cancelado BOOLEAN,
     ds_local VARCHAR(255),
     ds_tipo_cerimonia VARCHAR(255),
     ds_forma_pagamento VARCHAR(255),
-    vl_estimado DECIMAL(10, 2),
-    ds_observacao_geral TEXT,
+    vl_estimado DECIMAL(10, 2), 
     ds_comentario_adicional TEXT,
     qtd_convidados INT
 );
@@ -95,10 +93,10 @@ INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_p
 (1, 7, 1, 500.00, 'Coordenação do dia.', FALSE, TRUE),
 (1, 8, 1, 2500.00, 'Locação do espaço.', FALSE, TRUE);
 
--- Atualizando Orcamentos
+-- Atualizando Orcamentos com proteção contra valores nulos
 UPDATE tb_orcamentos
 SET vl_total = (
-    SELECT SUM(vl_preco_editavel * nr_quantidade)
+    SELECT SUM(COALESCE(vl_preco_editavel, 0) * COALESCE(nr_quantidade, 0))
     FROM tb_detalhes_orcamento
     WHERE id_orcamento = 1
 )
@@ -106,7 +104,7 @@ WHERE id_orcamento = 1;
 
 UPDATE tb_orcamentos
 SET vl_total = (
-    SELECT SUM(vl_preco_editavel * nr_quantidade)
+    SELECT SUM(COALESCE(vl_preco_editavel, 0) * COALESCE(nr_quantidade, 0))
     FROM tb_detalhes_orcamento
     WHERE id_orcamento = 2
 )
@@ -114,7 +112,7 @@ WHERE id_orcamento = 2;
 
 UPDATE tb_orcamentos
 SET vl_total = (
-    SELECT SUM(vl_preco_editavel * nr_quantidade)
+    SELECT SUM(COALESCE(vl_preco_editavel, 0) * COALESCE(nr_quantidade, 0))
     FROM tb_detalhes_orcamento
     WHERE id_orcamento = 3
 )
@@ -122,7 +120,7 @@ WHERE id_orcamento = 3;
 
 UPDATE tb_orcamentos
 SET vl_total = (
-    SELECT SUM(vl_preco_editavel * nr_quantidade)
+    SELECT SUM(COALESCE(vl_preco_editavel, 0) * COALESCE(nr_quantidade, 0))
     FROM tb_detalhes_orcamento
     WHERE id_orcamento = 4
 )
