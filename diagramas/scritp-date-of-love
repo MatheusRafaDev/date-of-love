@@ -1,11 +1,8 @@
-
 -- Drop das tabelas
 DROP TABLE IF EXISTS tb_detalhes_orcamento;
 DROP TABLE IF EXISTS tb_orcamentos;
 DROP TABLE IF EXISTS tb_servicos;
-DROP TABLE IF EXISTS tb_casamento;
 DROP TABLE IF EXISTS tb_usuarios;
-
 
 -- Tabela de Usuários
 CREATE TABLE tb_usuarios (
@@ -19,17 +16,6 @@ CREATE TABLE tb_usuarios (
     imagem_path VARCHAR(255)
 );
 
-
--- Tabela de Informações do Casamento
-CREATE TABLE tb_casamento (
-    id_casamento INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT,
-    dt_casamento DATE,
-    ds_localidade VARCHAR(100),
-    nr_convidados INT,
-    ds_estilo_festa VARCHAR(50)
-);
-
 -- Tabela de Serviços
 CREATE TABLE tb_servicos (
     id_servico INT AUTO_INCREMENT PRIMARY KEY,
@@ -38,19 +24,26 @@ CREATE TABLE tb_servicos (
     vl_preco DECIMAL(10, 2)
 );
 
--- Tabela de Orçamentos
+-- Tabela de Orcamentos
 CREATE TABLE tb_orcamentos (
     id_orcamento INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT,
-    id_casamento INT,
     dt_orcamento DATE,
     ds_status VARCHAR(20),
     ds_observacao TEXT,
     ds_observacao_orcador TEXT,
     nm_orcador VARCHAR(100),
     vl_total DECIMAL(10, 2),
+    vl_totalmedio DECIMAL(10, 2),
     tg_aprovado BOOLEAN,
-    tg_cancelado BOOLEAN
+    tg_cancelado BOOLEAN,
+    ds_local VARCHAR(255),
+    ds_tipo_cerimonia VARCHAR(255),
+    ds_forma_pagamento VARCHAR(255),
+    vl_estimado DECIMAL(10, 2),
+    ds_observacao_geral TEXT,
+    ds_comentario_adicional TEXT,
+    qtd_convidados INT
 );
 
 -- Tabela de Detalhes do Orçamento
@@ -76,32 +69,22 @@ INSERT INTO tb_servicos (nm_servico, ds_servico, vl_preco) VALUES
 ('Coordenação do Dia', 'Coordenação do dia do casamento para garantir que tudo ocorra conforme o planejado.', 500.00),
 ('Espaço', 'Locação de espaço para realização da cerimônia e festa de casamento.', 2500.00);
 
-
-
-
 -- Inserindo os Usuarios
-
 INSERT INTO tb_usuarios (nm_noivo, nm_noiva, ds_email, ds_senha, dt_cadastro, nm_noivos_concatenado, imagem_path) VALUES
 ('Igor Santos', 'Camila Almeida', 'igor.camila@example.com', 'senha789', '2024-03-15', 'Igor e Camila', '/images/igor_camila.jpg'),
 ('Matheus', 'Nayssa', 'matheus.nayssa@example.com', 'senha012', '2024-04-18', 'Matheus e Nayssa', '/images/matheus_juliana.jpg'),
 ('Thiago Ribeiro', 'Patrícia Silva', 'thiago.patricia@example.com', 'senha345', '2024-05-20', 'Thiago e Patrícia', '/images/thiago_patricia.jpg'),
 ('Alexandre Souza', 'Fernanda Lima', 'alexandre.fernanda@example.com', 'senha678', '2024-06-22', 'Alexandre e Fernanda', '/images/alexandre_fernanda.jpg');
 
+-- Inserindo Orcamentos
+INSERT INTO tb_orcamentos (id_usuario, dt_orcamento, ds_status, ds_observacao, ds_observacao_orcador, nm_orcador, vl_total, tg_aprovado, tg_cancelado, qtd_convidados) 
+VALUES
+(1, '2024-07-01', 'Pendente', 'Primeiro orçamento.', 'Observação do orçador 1', 'Carlos', 0.00, FALSE, FALSE, 120),
+(2, '2024-07-10', 'Aprovado', 'Orçamento aprovado sem alterações.', 'Observação do orçador 2', 'Roberto', 0.00, TRUE, FALSE, 180),
+(3, '2024-07-20', 'Esperando Aprovação', 'Cliente solicitou ajustes.', 'Observação do orçador 3', 'Italo', 0.00, FALSE, FALSE, 200),
+(4, '2024-07-30', 'Cancelado', 'Orçamento cancelado pelo cliente.', 'Observação do orçador 4', 'Guilherme', 0.00, FALSE, TRUE, 150);
 
-INSERT INTO tb_casamento (id_usuario, dt_casamento, ds_localidade, nr_convidados, ds_estilo_festa) VALUES
-(1, '2024-09-05', 'Belo Horizonte', 120, 'Moderno'),
-(2, '2024-10-10', 'Curitiba', 180, 'Tradicional'),
-(3, '2024-11-15', 'Florianópolis', 200, 'Praia'),
-(4, '2024-12-20', 'Porto Alegre', 150, 'Boho');
-
-
-INSERT INTO tb_orcamentos (id_usuario, id_casamento, dt_orcamento, ds_status, ds_observacao, ds_observacao_orcador, nm_orcador, vl_total, tg_aprovado, tg_cancelado) VALUES
-(1, 1, '2024-07-01', 'Pendente', 'Primeiro orçamento.', 'Observação do orçador 1', 'Carlos', 0.00, FALSE, FALSE),
-(2, 2, '2024-07-10', 'Aprovado', 'Orçamento aprovado sem alterações.', 'Observação do orçador 2', 'Roberto', 0.00, TRUE, FALSE),
-(3, 3, '2024-07-20', 'Esperando Aprovação', 'Cliente solicitou ajustes.', 'Observação do orçador 3', 'Italo', 0.00, FALSE, FALSE),
-(4, 4, '2024-07-30', 'Cancelado', 'Orçamento cancelado pelo cliente.', 'Observação do orçador 4', 'Guilherme', 0.00, FALSE, TRUE);
-
-
+-- Inserindo Detalhes de Orcamento
 INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso) VALUES
 (1, 1, 1, 1000.00, 'Cardápio básico.', FALSE, FALSE),
 (1, 2, 1, 1500.00, 'Decoração moderna.', FALSE, FALSE),
@@ -112,42 +95,7 @@ INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_p
 (1, 7, 1, 500.00, 'Coordenação do dia.', FALSE, TRUE),
 (1, 8, 1, 2500.00, 'Locação do espaço.', FALSE, TRUE);
 
-
-INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso) VALUES
-(2, 1, 1, 1000.00, 'Cardápio tradicional.', FALSE, FALSE),
-(2, 2, 1, 1500.00, 'Decoração clássica.', FALSE, FALSE),
-(2, 3, 1, 3000.00, 'Bebidas selecionadas.', FALSE, FALSE),
-(2, 4, 1, 1000.00, 'Doces gourmet.', FALSE, FALSE),
-(2, 5, 1, 500.00, 'Bolo de 3 andares.', FALSE, FALSE),
-(2, 6, 1, 800.00, 'DJ especializado.', FALSE, TRUE),
-(2, 7, 1, 500.00, 'Coordenação completa.', FALSE, TRUE),
-(2, 8, 1, 2500.00, 'Espaço tradicional.', FALSE, TRUE);
-
-
-
-INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso) VALUES
-(3, 1, 1, 1000.00, 'Cardápio praiano.', FALSE, FALSE),
-(3, 2, 1, 1500.00, 'Decoração temática.', FALSE, FALSE),
-(3, 3, 1, 3000.00, 'Bebidas tropicais.', FALSE, FALSE),
-(3, 4, 1, 1000.00, 'Doces exóticos.', FALSE, FALSE),
-(3, 5, 1, 500.00, 'Bolo tropical.', FALSE, FALSE),
-(3, 6, 1, 800.00, 'DJ com música praiana.', FALSE, TRUE),
-(3, 7, 1, 500.00, 'Coordenação específica.', FALSE, TRUE),
-(3, 8, 1, 2500.00, 'Locação à beira-mar.', FALSE, TRUE);
-
-
-INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_completo, tg_incluso) VALUES
-(4, 1, 1, 1000.00, 'Cardápio boho.', FALSE, FALSE),
-(4, 2, 1, 1500.00, 'Decoração boho.', FALSE, FALSE),
-(4, 3, 1, 3000.00, 'Bebidas variadas.', FALSE, FALSE),
-(4, 4, 1, 1000.00, 'Doces artesanais.', FALSE, FALSE),
-(4, 5, 1, 500.00, 'Bolo rústico.', FALSE, FALSE),
-(4, 6, 1, 800.00, 'DJ com música boho.', FALSE, TRUE),
-(4, 7, 1, 500.00, 'Coordenação boho.', FALSE, TRUE),
-(4, 8, 1, 2500.00, 'Locação boho.', FALSE, TRUE);
-
-
-
+-- Atualizando Orcamentos
 UPDATE tb_orcamentos
 SET vl_total = (
     SELECT SUM(vl_preco_editavel * nr_quantidade)
@@ -164,7 +112,6 @@ SET vl_total = (
 )
 WHERE id_orcamento = 2;
 
-
 UPDATE tb_orcamentos
 SET vl_total = (
     SELECT SUM(vl_preco_editavel * nr_quantidade)
@@ -173,8 +120,6 @@ SET vl_total = (
 )
 WHERE id_orcamento = 3;
 
-
-
 UPDATE tb_orcamentos
 SET vl_total = (
     SELECT SUM(vl_preco_editavel * nr_quantidade)
@@ -182,8 +127,3 @@ SET vl_total = (
     WHERE id_orcamento = 4
 )
 WHERE id_orcamento = 4;
-
-
-
-
-
