@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -27,18 +29,35 @@ public class CriarOrcamentoServlet extends HttpServlet {
         HttpSession session = req.getSession();
         Usuario usuario = (Usuario) session.getAttribute("usuario");
 
+        DetalheOrcamentoDao detalheOrcamentoDAO = new DetalheOrcamentoDao();
+        OrcamentosDao orcamentosDao = new OrcamentosDao();
+        ServicoDao servicoDao = new ServicoDao();
 
-        String observacao = req.getParameter("observacao");
-
-        // Extraindo e formatando o valor médio do orçamento com tratamento de exceção
-        double valorOrcamentoMedio = parseValor(req.getParameter("orcamentoMedio"));
-
-        String local = req.getParameter("local");
+        double valorEstimado = parseValor(req.getParameter("orcamentoMedio"));
+        String local = req.getParameter("localCasamento");
         String tipoCerimonia = req.getParameter("tipoCerimonia");
         String formaPagamento = req.getParameter("formaPagamento");
-        double valorEstimado = parseValor(req.getParameter("valorEstimado"));
-        String observacaoGeral = req.getParameter("observacaoGeral");
-        String comentarioAdicional = req.getParameter("comentarioAdicional");
+        String observacao = req.getParameter("observacao");
+        String comentarioAdicional = req.getParameter("comentarios");
+
+        String dataCasamentoStr = req.getParameter("dataCasamento");
+        Date dataCasamento = null;
+
+        // Se a data já vem no formato 'yyyy-MM-dd', apenas converta diretamente
+        if (dataCasamentoStr != null && !dataCasamentoStr.isEmpty()) {
+            try {
+                dataCasamento = java.sql.Date.valueOf(dataCasamentoStr);  // Converte para o tipo Date
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        String quantidadePessoasStr = req.getParameter("quantidadePessoas");
+        int convidados = 0;
+
+        if (quantidadePessoasStr != null && !quantidadePessoasStr.isEmpty()) {
+            convidados = Integer.parseInt(quantidadePessoasStr);
+        }
 
         boolean cardapio = isServicoSimples(req, "servico1");
         boolean flores = isServicoSimples(req, "servico2");
@@ -46,28 +65,30 @@ public class CriarOrcamentoServlet extends HttpServlet {
         boolean doces = isServicoSimples(req, "servico4");
         boolean bolos = isServicoSimples(req, "servico5");
 
-        DetalheOrcamentoDao detalheOrcamentoDAO = new DetalheOrcamentoDao();
-        OrcamentosDao orcamentosDao = new OrcamentosDao();
-        ServicoDao servicoDao = new ServicoDao();
-
         Orcamentos orcamento = new Orcamentos();
-        orcamento.setValorMedio(valorOrcamentoMedio);
+
+        orcamento.setQtdConvidados(convidados);
         orcamento.setIdUsuario((int) usuario.getIdUsuario());
         orcamento.setDataOrcamento(new Date());
         orcamento.setObservacao(observacao);
         orcamento.setStatus("Pendente");
         orcamento.setValorTotal(VALOR_INICIAL);
-
         orcamento.setLocal(local);
         orcamento.setTipoCerimonia(tipoCerimonia);
         orcamento.setFormaPagamento(formaPagamento);
         orcamento.setValorEstimado(valorEstimado);
-        orcamento.setObservacaoGeral(observacaoGeral);
+
+        // Verifique se a data de casamento foi convertida corretamente
+        if (dataCasamento != null) {
+            orcamento.setDataCasamento(dataCasamento);
+        }
+
         orcamento.setComentarioAdicional(comentarioAdicional);
+        orcamento.setAprovado(false);
+        orcamento.setCancelado(false);
 
         orcamento = orcamentosDao.criarOrcamento(orcamento);
 
-        // IDs e serviços
         String[] servicosIds = {"1", "2", "3", "4", "5", "6", "7", "8"};
         boolean[] servicosSimples = {cardapio, flores, bebidas, doces, bolos, true, true, true};
         boolean[] servicosInclusos = {false, false, false, false, false, true, true, true};
@@ -96,13 +117,11 @@ public class CriarOrcamentoServlet extends HttpServlet {
         List<Orcamentos> listaOrcamentos = orcamentosDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
         req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
 
-
         Email email = new Email("", "", usuario.getEmail(), "", "", "");
         email.enviarOrcamentoPendente(orcamento, usuario);
 
         resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
     }
-
 
     private boolean isServicoSimples(HttpServletRequest req, String parametro) {
         return req.getParameter(parametro) != null && req.getParameter(parametro).equals("simples");
@@ -122,5 +141,3 @@ public class CriarOrcamentoServlet extends HttpServlet {
         }
     }
 }
-
-

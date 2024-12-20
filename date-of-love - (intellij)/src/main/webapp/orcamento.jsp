@@ -40,7 +40,7 @@
             <h5>Orçamento - ${orcamento.getIdOrcamento()}</h5
             >
             <h5>Valor Total: R$ ${orcamento.getValorTotal()}</h5>
-            <h5>Valor Estimado: R$ ${orcamento.getValorMedio()}</h5>
+            <h5>Valor Estimado: R$ ${orcamento.getValorEstimado()}</h5>
             <h5>Orçador: ${orcamento.getNomeOrcador()}</h5>
             <h5>Status: ${orcamento.getStatus()}</h5>
         </div>

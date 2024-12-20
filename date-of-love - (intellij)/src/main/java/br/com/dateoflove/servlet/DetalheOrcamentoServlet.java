@@ -29,7 +29,7 @@ public class DetalheOrcamentoServlet extends HttpServlet {
         CasamentoDao casamentoDao = new CasamentoDao();
 
 
-        Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId((long) id);
+        Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId( id);
         Usuario usuario = usuarioDao.buscarUsuarioPorId(orcamento.getIdUsuario());
 
         List<DetalheOrcamento> detalheOrcamento = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento(id);

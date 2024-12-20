@@ -58,7 +58,7 @@
                             <td><%= orcamento.getIdOrcamento() %></td>
                             <td><%= usuario != null ? usuario.getNomesConcatenados() : "Nome do usuário não encontrado" %></td>
                             <td><%= orcamento.getNomeOrcador() %></td>
-                            <td>R$ <%= orcamento.getValorMedio() %></td>
+                            <td>R$ <%= orcamento.getValorEstimado() %></td>
                             <td>R$ <%= orcamento.getValorTotal() %></td>
                             <td><%= orcamento.getStatus() %></td>
                             <td>

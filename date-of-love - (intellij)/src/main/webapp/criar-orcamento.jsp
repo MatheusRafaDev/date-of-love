@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/criar-orcamento2.css">
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
     <script src="${pageContext.request.contextPath}/js/criar-orcamento.js"></script>
 
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
@@ -143,35 +143,49 @@
 
             <div class="input-container">
               <label for="quantidadePessoas">Quantidade de Convidados (máx. 700):</label>
-              <input type="number" id="quantidadePessoas" min="100" max="700" placeholder="Digite o número de convidados" required />
+              <input type="number" name="quantidadePessoas" id="quantidadePessoas" min="100" max="700" placeholder="Digite o número de convidados" required />
 
               <small id="quantidadeFeedback" style="color: red; display: none;">A quantidade deve ser entre 100 e 700.</small>
             </div>
 
             <h3>Data do casamento</h3>
-            <input type="text" id="dataCasamento" placeholder="Data do casamento (dd/mm/aaaa)" required />
+            <input type="date" id="dataCasamento" name="dataCasamento" />
+
             <div id="dataFeedback" style="display: none;">Data inválida!</div>
 
             <h3>Local do Casamento</h3>
             <div class="local-casamento">
                 <label for="localFazenda">
                     <input type="radio" name="localCasamento" value="fazenda" id="localFazenda" required>
-                    <img src="<%=request.getContextPath()%>/img/fazenda.jpeg" alt="fazenda" alt="slide 3" />
+                    <img src="<%=request.getContextPath()%>/img/fazenda.jpeg" alt="fazenda" />
                     <span>Fazenda</span>
                 </label>
                 <label for="localPraia">
                     <input type="radio" name="localCasamento" value="praia" id="localPraia" required>
-                    <img src="<%=request.getContextPath()%>/img/praia.png" alt="praia" alt="slide 3" />
+                    <img src="<%=request.getContextPath()%>/img/praia.png" alt="praia" />
                     <span>Praia</span>
                 </label>
                 <label for="localIgreja">
                     <input type="radio" name="localCasamento" value="igreja" id="localIgreja" required>
-
-                    <img src="<%=request.getContextPath()%>/img/igreja.jpg" alt="igreja" alt="slide 3" />
-
+                    <img src="<%=request.getContextPath()%>/img/igreja.jpg" alt="igreja" />
                     <span>Igreja</span>
                 </label>
             </div>
+
+
+            <script>
+                document.querySelector('form').addEventListener('submit', function(event) {
+                    const selectedValue = document.querySelector('input[name="localCasamento"]:checked');
+
+                    if (selectedValue) {
+                        console.log('Local selecionado: ', selectedValue.value);  // Exibe o valor no console
+                    } else {
+                        console.log('Nenhum local selecionado.');
+                    }
+                });
+            </script>
+
+
 
 
             <h3>Tipo de Cerimônia</h3>

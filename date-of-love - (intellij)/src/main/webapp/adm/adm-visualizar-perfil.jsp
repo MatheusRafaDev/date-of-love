@@ -105,7 +105,7 @@
                                                 <form action="${pageContext.request.contextPath}/orcamento" method="GET">
                                                     <td>${orcamento.getIdOrcamento()}</td>
                                                     <td>${orcamento.getNomeOrcador()}</td>
-                                                    <td>R$ ${orcamento.getValorMedio()}</td>
+                                                    <td>R$ ${orcamento.getValorEstimado()}</td>
                                                     <td>R$ ${orcamento.getValorTotal()}</td>
                                                     <td>${orcamento.getStatus()}</td>
                                                 </form>

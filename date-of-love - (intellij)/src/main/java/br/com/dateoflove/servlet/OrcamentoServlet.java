@@ -30,7 +30,7 @@ public class OrcamentoServlet extends HttpServlet {
         DetalheOrcamentoDao detalheOrcamentoDao = new DetalheOrcamentoDao();
         OrcamentosDao orcamentoDao = new OrcamentosDao();
 
-        Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId((long) id);
+        Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId(id);
 
         List<DetalheOrcamento> detalheOrcamento = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento(id);
         List<DetalheOrcamento> detalheOrcamento2 = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento2(id);
@@ -40,7 +40,6 @@ public class OrcamentoServlet extends HttpServlet {
         req.getSession().setAttribute("detalheorcamento2", detalheOrcamento2);
         req.getSession().setAttribute("servicoDao", servicoDao);
 
-        //req.getRequestDispatcher("orcamento.jsp").forward(req, resp);
 
         resp.sendRedirect(req.getContextPath() + "/orcamento.jsp");
     }

@@ -32,7 +32,7 @@ public class AprovarOrcamentoServlet extends HttpServlet {
             UsuarioDao usuarioDao = new UsuarioDao();
 
             Usuario usuario =  usuarioDao.buscarUsuarioPorId(idUsuario);
-            Orcamentos orcamentos = orcamentosDao.buscarOrcamentoPorId((long) idOrcamento);
+            Orcamentos orcamentos = orcamentosDao.buscarOrcamentoPorId(idOrcamento);
 
 
             Email email = new Email("","",usuario.getEmail(),"","","");

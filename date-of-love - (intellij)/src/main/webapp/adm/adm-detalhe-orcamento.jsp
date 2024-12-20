@@ -80,7 +80,7 @@
     <div class="budget-container2">
             <h4>Orçamento - ${orcamento.getIdOrcamento()}</h4>
             <td><input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}"></td>
-            <h4>Valor Estimado: R$ ${orcamento.getValorMedio()}</h4>
+            <h4>Valor Estimado: R$ ${orcamento.getValorEstimado()}</h4>
             <h4>Valor Total: R$ ${orcamento.getValorTotal()}</h4>
 
             <%

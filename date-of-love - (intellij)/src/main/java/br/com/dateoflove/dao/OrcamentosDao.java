@@ -18,27 +18,26 @@ public class OrcamentosDao {
     public OrcamentosDao() {}
 
     public Orcamentos criarOrcamento(Orcamentos orcamento) {
-        String SQL = "INSERT INTO orcamentos (valor_medio, id_usuario, data_orcamento, observacao, " +
-                "status, valor_total, local, tipo_cerimonia, forma_pagamento, vl_estimado, " +
-                "observacao_geral, comentario_adicional, qtd_convidados) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO tb_orcamentos (id_usuario, dt_orcamento, ds_observacao, " +
+                "ds_status, vl_total, ds_local, ds_tipo_cerimonia, ds_forma_pagamento, vl_estimado, " +
+                "ds_comentario_adicional, qtd_convidados) " +
+                "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = PoolConfig.getConnection();
              PreparedStatement stmt = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setDouble(1, orcamento.getValorMedio());
-            stmt.setLong(2, orcamento.getIdUsuario());
-            stmt.setDate(3, new java.sql.Date(orcamento.getDataOrcamento().getTime()));
-            stmt.setString(4, orcamento.getObservacao());
-            stmt.setString(5, orcamento.getStatus());
-            stmt.setDouble(6, orcamento.getValorTotal());
-            stmt.setString(7, orcamento.getLocal());
-            stmt.setString(8, orcamento.getTipoCerimonia());
-            stmt.setString(9, orcamento.getFormaPagamento());
-            stmt.setDouble(10, orcamento.getValorEstimado());
-            stmt.setString(11, orcamento.getObservacaoGeral());
-            stmt.setString(12, orcamento.getComentarioAdicional());
-            stmt.setInt(13, orcamento.getQtdConvidados());
+
+            stmt.setInt(1, orcamento.getIdUsuario());
+            stmt.setDate(2, new java.sql.Date(orcamento.getDataOrcamento().getTime()));
+            stmt.setString(3, orcamento.getObservacao());
+            stmt.setString(4, orcamento.getStatus());
+            stmt.setDouble(5, orcamento.getValorTotal());
+            stmt.setString(6, orcamento.getLocal());
+            stmt.setString(7, orcamento.getTipoCerimonia());
+            stmt.setString(8, orcamento.getFormaPagamento());
+            stmt.setDouble(9, orcamento.getValorEstimado());
+            stmt.setString(10, orcamento.getComentarioAdicional());
+            stmt.setInt(11, orcamento.getQtdConvidados());
 
             int linhasAfetadas = stmt.executeUpdate();
 
@@ -61,8 +60,9 @@ public class OrcamentosDao {
         return orcamento;
     }
 
-    public Orcamentos buscarOrcamentoPorId(Long idOrcamento) {
-        String sql = "SELECT * FROM orcamentos WHERE id_orcamento = ?";
+    public Orcamentos buscarOrcamentoPorId(int idOrcamento) {
+        String sql = "SELECT * FROM tb_orcamentos WHERE id_orcamento = ?";
+
         try (Connection connection = PoolConfig.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
@@ -78,7 +78,7 @@ public class OrcamentosDao {
                     orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
                     orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                     orcamento.setValorTotal(rs.getDouble("vl_total"));
-                    orcamento.setValorMedio(rs.getDouble("vl_totalmedio"));
+
                     orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
                     orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
 
@@ -87,7 +87,7 @@ public class OrcamentosDao {
                     orcamento.setTipoCerimonia(rs.getString("ds_tipo_cerimonia"));
                     orcamento.setFormaPagamento(rs.getString("ds_forma_pagamento"));
                     orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
-                    orcamento.setObservacaoGeral(rs.getString("ds_observacao_geral"));
+
                     orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
                     orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
 
@@ -101,27 +101,26 @@ public class OrcamentosDao {
     }
 
     public boolean atualizarOrcamento(Orcamentos orcamento) {
-        String sql = "UPDATE orcamentos SET valor_medio = ?, id_usuario = ?, data_orcamento = ?, observacao = ?, " +
+        String sql = "UPDATE tb_orcamentos SET valor_medio = ?, id_usuario = ?, data_orcamento = ?, observacao = ?, " +
                 "status = ?, valor_total = ?, local = ?, tipo_cerimonia = ?, forma_pagamento = ?, " +
-                "vl_estimado = ?, observacao_geral = ?, comentario_adicional = ?, qtd_convidados = ? " +
+                "vl_estimado = ?, comentario_adicional = ?, qtd_convidados = ? " +
                 "WHERE id_orcamento = ?";
         try (Connection connection = PoolConfig.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-            stmt.setDouble(1, orcamento.getValorMedio());
-            stmt.setLong(2, orcamento.getIdUsuario());
-            stmt.setDate(3, new java.sql.Date(orcamento.getDataOrcamento().getTime()));
-            stmt.setString(4, orcamento.getObservacao());
-            stmt.setString(5, orcamento.getStatus());
-            stmt.setDouble(6, orcamento.getValorTotal());
-            stmt.setString(7, orcamento.getLocal());
-            stmt.setString(8, orcamento.getTipoCerimonia());
-            stmt.setString(9, orcamento.getFormaPagamento());
-            stmt.setDouble(10, orcamento.getValorEstimado());
-            stmt.setString(11, orcamento.getObservacaoGeral());
-            stmt.setString(12, orcamento.getComentarioAdicional());
-            stmt.setInt(13, orcamento.getQtdConvidados());
-            stmt.setLong(14, orcamento.getIdOrcamento());
+
+            stmt.setLong(1, orcamento.getIdUsuario());
+            stmt.setDate(2, new java.sql.Date(orcamento.getDataOrcamento().getTime()));
+            stmt.setString(3, orcamento.getObservacao());
+            stmt.setString(4, orcamento.getStatus());
+            stmt.setDouble(5, orcamento.getValorTotal());
+            stmt.setString(6, orcamento.getLocal());
+            stmt.setString(7, orcamento.getTipoCerimonia());
+            stmt.setString(8, orcamento.getFormaPagamento());
+            stmt.setDouble(9, orcamento.getValorEstimado());
+            stmt.setString(10, orcamento.getComentarioAdicional());
+            stmt.setInt(11, orcamento.getQtdConvidados());
+            stmt.setLong(12, orcamento.getIdOrcamento());
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
@@ -132,7 +131,7 @@ public class OrcamentosDao {
     }
 
     public boolean excluirOrcamento(Long idOrcamento) {
-        String sql = "DELETE FROM orcamentos WHERE id_orcamento = ?";
+        String sql = "DELETE FROM tb_orcamentos WHERE id_orcamento = ?";
         try (Connection connection = PoolConfig.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
@@ -147,7 +146,7 @@ public class OrcamentosDao {
 
     public List<Orcamentos> listarOrcamentos() {
         List<Orcamentos> orcamentosList = new ArrayList<>();
-        String sql = "SELECT * FROM orcamentos";
+        String sql = "SELECT * FROM tb_orcamentos";
         try (Connection connection = PoolConfig.getConnection();
              Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -162,7 +161,6 @@ public class OrcamentosDao {
                 orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
-                orcamento.setValorMedio(rs.getDouble("vl_totalmedio"));
                 orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
                 orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
 
@@ -171,7 +169,6 @@ public class OrcamentosDao {
                 orcamento.setTipoCerimonia(rs.getString("ds_tipo_cerimonia"));
                 orcamento.setFormaPagamento(rs.getString("ds_forma_pagamento"));
                 orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
-                orcamento.setObservacaoGeral(rs.getString("ds_observacao_geral"));
                 orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
                 orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
 
@@ -205,11 +202,9 @@ public class OrcamentosDao {
                 orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
-                orcamento.setValorMedio(rs.getDouble("vl_totalmedio"));
                 orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
                 orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
                 orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
-                orcamento.setObservacaoGeral(rs.getString("ds_observacao_geral"));
                 orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
                 orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
                 listaOrcamentos.add(orcamento);
@@ -291,7 +286,6 @@ public class OrcamentosDao {
                 orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
-                orcamento.setValorMedio(rs.getDouble("vl_totalmedio"));
                 orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
                 orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
 
@@ -300,7 +294,6 @@ public class OrcamentosDao {
                 orcamento.setTipoCerimonia(rs.getString("ds_tipo_cerimonia"));
                 orcamento.setFormaPagamento(rs.getString("ds_forma_pagamento"));
                 orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
-                orcamento.setObservacaoGeral(rs.getString("ds_observacao_geral"));
                 orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
                 orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
 
@@ -341,7 +334,7 @@ public class OrcamentosDao {
     }
 
     public Orcamentos selecionarOrcamentoPorId(int idOrcamento) {
-        Orcamentos orcamento = null;
+        Orcamentos orcamento = new Orcamentos();
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
@@ -353,7 +346,7 @@ public class OrcamentosDao {
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                orcamento = new Orcamentos();
+
                 orcamento.setIdOrcamento(rs.getInt("id_orcamento"));
                 orcamento.setIdUsuario(rs.getInt("id_usuario"));
                 orcamento.setDataOrcamento(rs.getDate("dt_orcamento"));
@@ -362,7 +355,7 @@ public class OrcamentosDao {
                 orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
                 orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                 orcamento.setValorTotal(rs.getDouble("vl_total"));
-                orcamento.setValorMedio(rs.getDouble("vl_totalmedio"));
+
                 orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
                 orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
 
@@ -371,7 +364,6 @@ public class OrcamentosDao {
                 orcamento.setTipoCerimonia(rs.getString("ds_tipo_cerimonia"));
                 orcamento.setFormaPagamento(rs.getString("ds_forma_pagamento"));
                 orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
-                orcamento.setObservacaoGeral(rs.getString("ds_observacao_geral"));
                 orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
                 orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
             }

@@ -11,16 +11,17 @@ public class Orcamentos {
     private String observacaoOrcador;
     private String nomeOrcador;
     private double valorTotal;
-    private Double valorMedio;
     private boolean aprovado;
     private boolean cancelado;
     private String local;
     private String tipoCerimonia;
     private String formaPagamento;
     private Double valorEstimado;
-    private String observacaoGeral;
     private String comentarioAdicional;
     private int qtdConvidados;
+
+
+    private Date dataCasamento;
 
     public Orcamentos() {
         super();
@@ -30,7 +31,7 @@ public class Orcamentos {
                       String observacaoOrcador, String nomeOrcador, double valorTotal, Double valorMedio,
                       boolean aprovado, boolean cancelado, String local, String tipoCerimonia,
                       String formaPagamento, Double valorEstimado, String observacaoGeral,
-                      String comentarioAdicional, int qtdConvidados) {
+                      String comentarioAdicional, int qtdConvidados, Date dataCasamento) {
         this.idOrcamento = idOrcamento;
         this.idUsuario = idUsuario;
         this.dataOrcamento = dataOrcamento;
@@ -39,18 +40,27 @@ public class Orcamentos {
         this.observacaoOrcador = observacaoOrcador;
         this.nomeOrcador = nomeOrcador;
         this.valorTotal = valorTotal;
-        this.valorMedio = valorMedio;
         this.aprovado = aprovado;
         this.cancelado = cancelado;
         this.local = local;
         this.tipoCerimonia = tipoCerimonia;
         this.formaPagamento = formaPagamento;
         this.valorEstimado = valorEstimado;
-        this.observacaoGeral = observacaoGeral;
         this.comentarioAdicional = comentarioAdicional;
         this.qtdConvidados = qtdConvidados;
+        this.dataCasamento = dataCasamento;
     }
 
+    // Getters e setters para o campo dataCasamento
+    public Date getDataCasamento() {
+        return dataCasamento;
+    }
+
+    public void setDataCasamento(Date dataCasamento) {
+        this.dataCasamento = dataCasamento;
+    }
+
+    // Outros getters e setters
     public int getIdOrcamento() {
         return idOrcamento;
     }
@@ -115,14 +125,6 @@ public class Orcamentos {
         this.valorTotal = valorTotal;
     }
 
-    public Double getValorMedio() {
-        return valorMedio;
-    }
-
-    public void setValorMedio(Double valorMedio) {
-        this.valorMedio = valorMedio;
-    }
-
     public boolean isAprovado() {
         return aprovado;
     }
@@ -169,14 +171,6 @@ public class Orcamentos {
 
     public void setValorEstimado(Double valorEstimado) {
         this.valorEstimado = valorEstimado;
-    }
-
-    public String getObservacaoGeral() {
-        return observacaoGeral;
-    }
-
-    public void setObservacaoGeral(String observacaoGeral) {
-        this.observacaoGeral = observacaoGeral;
     }
 
     public String getComentarioAdicional() {
