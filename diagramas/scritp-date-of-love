@@ -29,6 +29,7 @@ CREATE TABLE tb_orcamentos (
     id_orcamento INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT,
     dt_orcamento DATE,
+    dt_casamento,
     ds_status VARCHAR(20),
     ds_observacao TEXT,
     ds_observacao_orcador TEXT,
