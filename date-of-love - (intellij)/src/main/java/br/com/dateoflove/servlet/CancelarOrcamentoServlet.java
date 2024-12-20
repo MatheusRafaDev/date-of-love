@@ -33,7 +33,7 @@ public class CancelarOrcamentoServlet extends HttpServlet {
             UsuarioDao usuarioDao = new UsuarioDao();
 
             Usuario usuario =  usuarioDao.buscarUsuarioPorId(idUsuario);
-            Orcamentos orcamentos = orcamentosDao.buscarOrcamentoPorId(idOrcamento);
+            Orcamentos orcamentos = orcamentosDao.buscarOrcamentoPorId((long) idOrcamento);
 
             Email email = new Email("","",usuario.getEmail(),"","","");
 

@@ -23,7 +23,7 @@ public class VisualizarOrcamentoServlet extends HttpServlet {
             return;
         }
 
-        int id = usuario.getIdUsuario();
+        int id = (int) usuario.getIdUsuario();
 
 
         OrcamentosDao orcamentoDao = new OrcamentosDao();

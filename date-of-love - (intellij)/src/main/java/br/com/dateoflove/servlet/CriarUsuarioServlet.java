@@ -1,12 +1,8 @@
 package br.com.dateoflove.servlet;
 
-import br.com.dateoflove.dao.OrcamentosDao;
-import br.com.dateoflove.dao.UsuarioDao;
-import br.com.dateoflove.dao.CasamentoDao;
-import br.com.dateoflove.funcao.Email;
-import br.com.dateoflove.model.Casamento;
-import br.com.dateoflove.model.Orcamentos;
-import br.com.dateoflove.model.Usuario;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,12 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import br.com.dateoflove.dao.OrcamentosDao;
+import br.com.dateoflove.dao.UsuarioDao;
+import br.com.dateoflove.funcao.Email;
+import br.com.dateoflove.model.Casamento;
+import br.com.dateoflove.model.Orcamentos;
+import br.com.dateoflove.model.Usuario;
 
 @WebServlet("/criar-usuario")
 public class CriarUsuarioServlet extends HttpServlet {
@@ -34,22 +30,10 @@ public class CriarUsuarioServlet extends HttpServlet {
         String confirmarSenha = req.getParameter("confirmar_senha");
 
         UsuarioDao usuarioDao = new UsuarioDao();
-        CasamentoDao casamentoDao = new CasamentoDao();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+       
+       
         String imagem = req.getParameter("");
 
-        int Convidados = Integer.parseInt(req.getParameter("num_convidados"));
-        String dataCasamentoStr = req.getParameter("data_casamento");
-        String local = req.getParameter("localizacao");
-        String estilo = req.getParameter("estilo_festa");
-
-
-        Date dataCasamento = null;
-        try {
-            dataCasamento = formatter.parse(dataCasamentoStr);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
 
         if (usuarioDao.existeUsuarioPorEmail(email)) {
             req.setAttribute("errorMessage1", "Este email já está em uso.");
@@ -57,10 +41,7 @@ public class CriarUsuarioServlet extends HttpServlet {
             req.setAttribute("nomeNoivo", nomeNoivo);
             req.setAttribute("nomeNoiva", nomeNoiva);
             req.setAttribute("email", email);
-            req.setAttribute("numConvidados", Convidados);
-            req.setAttribute("dataCasamento", dataCasamentoStr);
-            req.setAttribute("local", local);
-            req.setAttribute("estilo", estilo);
+
 
             req.getRequestDispatcher("criar-conta.jsp").forward(req, resp);
             return;
@@ -72,10 +53,7 @@ public class CriarUsuarioServlet extends HttpServlet {
             req.setAttribute("nomeNoivo", nomeNoivo);
             req.setAttribute("nomeNoiva", nomeNoiva);
             req.setAttribute("email", email);
-            req.setAttribute("numConvidados", Convidados);
-            req.setAttribute("dataCasamento", dataCasamentoStr);
-            req.setAttribute("local", local);
-            req.setAttribute("estilo", estilo);
+
 
             req.getRequestDispatcher("criar-conta.jsp").forward(req, resp);
             return;
@@ -89,7 +67,7 @@ public class CriarUsuarioServlet extends HttpServlet {
 
         Casamento casamento = new Casamento();
         OrcamentosDao orcamentoDao = new OrcamentosDao();
-        casamento = casamentoDao.criarCasamento(new Casamento(0, usuario.getIdUsuario(), dataCasamento, local, Convidados, estilo));
+        
         List<Orcamentos> listaOrcamentos = orcamentoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
 
         req.getSession().setAttribute("usuario", usuario);

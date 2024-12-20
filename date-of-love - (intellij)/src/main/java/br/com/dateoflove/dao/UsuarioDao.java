@@ -157,7 +157,7 @@ public class UsuarioDao {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
             preparedStatement.setString(1, usuario.getImagem());
-            preparedStatement.setInt(2, usuario.getIdUsuario());
+            preparedStatement.setInt(2, (int) usuario.getIdUsuario());
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 

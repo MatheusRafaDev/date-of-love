@@ -30,7 +30,7 @@ public class OrcamentoServlet extends HttpServlet {
         DetalheOrcamentoDao detalheOrcamentoDao = new DetalheOrcamentoDao();
         OrcamentosDao orcamentoDao = new OrcamentosDao();
 
-        Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId(id);
+        Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId((long) id);
 
         List<DetalheOrcamento> detalheOrcamento = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento(id);
         List<DetalheOrcamento> detalheOrcamento2 = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento2(id);

@@ -38,7 +38,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil2.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
 
     <script>
@@ -98,39 +98,11 @@
                                     <label for="nomeNoiva">Nome da Noiva:</label>
                                     <input type="text" id="nomeNoiva" name="nomeNoiva" class="form-control" value="<%= usuario.getNomeNoiva() %>">
                                 </div>
+
                                 <div class="form-group">
                                     <label for="email">Email:</label>
-                                    <input type="email" id="email" name="email" class="form-control" value="<%= usuario.getEmail() %>" readonly>
+                                    <input type="email" id="email" name="email" class="form-control" value="<%= usuario.getEmail() %>" readonly style="background-color: #e0e0e0; color: #555;">
                                 </div>
-                                <div class="form-group">
-                                    <label for="dataCasamento">Data do Casamento:</label>
-                                    <input type="date" id="dataCasamento" name="dataCasamento" class="form-control" value="<%= new SimpleDateFormat("yyyy-MM-dd").format(casamento.getDataCasamento()) %>">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="num_convidados">Número de Convidados</label>
-                                    <input type="number" id="num_convidados" name="num_convidados" class="form-control" value="<%= casamento.getNumeroConvidados() %>" readonly>
-                                </div>
-
-                                <section>
-                                    <label for="estilo_festa" class="estilo">Estilo da Festa</label>
-                                    <select id="estilo_festa" name="estilo_festa" class="form-control" required>
-                                        <option value="classico" <%= "classico".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Clássico</option>
-                                        <option value="rustico" <%= "rustico".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Rústico</option>
-                                        <option value="praia" <%= "praia".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Praia</option>
-                                        <option value="moderno" <%= "moderno".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Moderno</option>
-                                        <option value="vintage" <%= "vintage".equals(casamento.getEstiloFesta()) ? "selected" : "" %>>Vintage</option>
-                                    </select>
-                                    <br>
-                                    <label for="localizacao" class="localizacao">Localização</label>
-                                    <select id="localizacao" name="localizacao" class="form-control" required>
-                                        <option value="igreja" <%= "igreja".equals(casamento.getLocalidade()) ? "selected" : "" %>>Igreja</option>
-                                        <option value="salao_festas" <%= "salao_festas".equals(casamento.getLocalidade()) ? "selected" : "" %>>Salão de festas</option>
-                                        <option value="campo" <%= "campo".equals(casamento.getLocalidade()) ? "selected" : "" %>>Campo</option>
-                                        <option value="praia" <%= "praia".equals(casamento.getLocalidade()) ? "selected" : "" %>>Praia</option>
-                                        <option value="hotel" <%= "hotel".equals(casamento.getLocalidade()) ? "selected" : "" %>>Hotel</option>
-                                    </select>
-                                </section>
 
                                 <button type="submit" id="btnSalvar" class="btn-salvar">Salvar</button>
 

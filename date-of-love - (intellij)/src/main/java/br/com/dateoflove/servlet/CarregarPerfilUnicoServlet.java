@@ -30,11 +30,9 @@ public class CarregarPerfilUnicoServlet extends HttpServlet {
 
         Usuario usuario = usuarioDao.buscarUsuarioPorEmail(email);
         List<Orcamentos> listaOrcamentos = orcamentoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
-        Casamento casamento = casamentoDao.encontrarCasamentoPorIdUsuario(usuario.getIdUsuario());
 
 
         req.getSession().setAttribute("usuario", usuario);
-        req.getSession().setAttribute("casamento", casamento);
         req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
 
         resp.sendRedirect(req.getContextPath() + "/adm/adm-visualizar-perfil.jsp");

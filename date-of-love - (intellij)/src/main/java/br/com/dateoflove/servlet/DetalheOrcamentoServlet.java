@@ -29,9 +29,9 @@ public class DetalheOrcamentoServlet extends HttpServlet {
         CasamentoDao casamentoDao = new CasamentoDao();
 
 
-        Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId(id);
+        Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId((long) id);
         Usuario usuario = usuarioDao.buscarUsuarioPorId(orcamento.getIdUsuario());
-        Casamento casamento = casamentoDao.encontrarCasamentoPorIdUsuario(usuario.getIdUsuario());
+
         List<DetalheOrcamento> detalheOrcamento = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento(id);
         List<DetalheOrcamento> detalheOrcamento2 = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento2(id);
 
@@ -41,7 +41,7 @@ public class DetalheOrcamentoServlet extends HttpServlet {
         req.getSession().setAttribute("servicoDao", servicoDao);
 
         req.getSession().setAttribute("usuario", usuario);
-        req.getSession().setAttribute("casamento", casamento);
+
 
         resp.sendRedirect(req.getContextPath() + "/adm/adm-detalhe-orcamento.jsp");
     }

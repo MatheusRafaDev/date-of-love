@@ -34,7 +34,6 @@ public class LoginUsuarioServlet extends HttpServlet {
 
         UsuarioDao usuarioDao = new UsuarioDao();
         OrcamentosDao orcamentoDao = new OrcamentosDao();
-        CasamentoDao casamentoDao = new CasamentoDao();
 
         try {
             if ("admin@email.com".equals(email) && "1234".equals(senha)) {
@@ -55,10 +54,8 @@ public class LoginUsuarioServlet extends HttpServlet {
 
             if (usuario != null && usuario.getSenha().equals(senha)) {
                 List<Orcamentos> listaOrcamentos = orcamentoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
-                Casamento casamento = casamentoDao.encontrarCasamentoPorIdUsuario(usuario.getIdUsuario());
 
                 req.getSession().setAttribute("usuario", usuario);
-                req.getSession().setAttribute("casamento", casamento);
                 req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
 
                 resp.sendRedirect(req.getContextPath() + "/");

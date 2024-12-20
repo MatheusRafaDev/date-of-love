@@ -1,16 +1,20 @@
 
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-* {
-    border: 0;
-    border: none;
+
+body {
+    font-family: 'Quicksand', sans-serif;
     margin: 0;
 }
 
+
 header {
+    all: unset;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,83 +22,68 @@ header {
     margin-bottom: 20px;
 }
 
-.logo-navigation {
+header .logo-navigation {
     display: flex;
     align-items: center;
     background-color: #D4EAFF;
     padding-left: 3em;
     padding-right: 3em;
-
     padding-top: 5px;
-    padding-bottom:5px;
-
+    padding-bottom: 5px;
     border-radius: 2em;
 }
 
-nav {
+header nav {
     display: flex;
 }
 
-nav a {
+header nav a {
     margin-right: 15px;
     text-decoration: none;
     color: black;
-    font-family: 'Quicksand', sans-serif;
 }
 
-.user-items {
+header .user-items {
     display: flex;
     align-items: center;
     margin-left: 10em;
-
     color: black;
-    text-decoration: none;
-    font-family: 'Quicksand', sans-serif;
 }
 
-.user-items img {
+header .user-items img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;
-
-    margin-left: 5px;
-    margin-right: 5px;
 }
 
-.logo {
-  width: 200px;
-  height: auto;
-  margin-bottom: 4px;
+header .logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 4px;
 }
 
-.user-items a {
+header .user-items a {
     color: black;
     text-decoration: none;
-    font-family: 'Quicksand', sans-serif;
 }
 
-.nomeCasal button {
+header .nomeCasal button {
     color: black;
-    text-decoration: none;
-    font-family: 'Quicksand', sans-serif;
-    background-color: #D4EAFF;
-    font-size: 16px;
-}
-
-.nomeCasal{
-    color: black;
-    text-decoration: none;
-    font-family: 'Quicksand', sans-serif;
     background-color: #D4EAFF;
     font-size: 16px;
     cursor: pointer;
 }
 
-.login {
+header .nomeCasal {
     color: black;
-    text-decoration: none;
-    font-family: 'Quicksand', sans-serif;
+    background-color: #D4EAFF;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+header .login {
+    color: black;
     background-color: #94CBFF;
     font-size: 16px;
     cursor: pointer;
@@ -106,7 +95,6 @@ nav a {
     margin-bottom: 5px;
 }
 
-.login:hover {
+header .login:hover {
     background-color: #75b0e0;
 }
-

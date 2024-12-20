@@ -1,18 +1,15 @@
 body {
     font-family: 'Quicksand', sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
 }
 
-h1, h2, h3 {
+h2, h3 {
     font-weight: 700;
     color: #333;
 }
 
 p {
     font-size: 16px;
-    line-height: 1.6;
 }
 
 button {
@@ -59,15 +56,13 @@ button:hover {
     margin-top: 0;
 }
 
-#base .fotos  {
+#base .fotos {
     display: grid;
-
     gap: 20px;
     padding-left: 300px;
     padding-right: 300px;
     margin-top: 50px;
 }
-
 
 .fotos .row {
     display: grid;
@@ -96,7 +91,7 @@ button:hover {
     text-align: center;
     font-size: 1.5em;
     margin-top: 2em;
-    margin-bottom:  2em;
+    margin-bottom: 2em;
     color: #333;
     padding: 0 20px;
     line-height: 1.4;
@@ -119,7 +114,6 @@ button:hover {
     color: #333;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-
 }
 
 .descricao {
@@ -138,7 +132,7 @@ button:hover {
     border: none;
     border-radius: 5px;
     margin-top: 2em;
-    margin-bottom:  2em;
+    margin-bottom: 2em;
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-transform: uppercase;

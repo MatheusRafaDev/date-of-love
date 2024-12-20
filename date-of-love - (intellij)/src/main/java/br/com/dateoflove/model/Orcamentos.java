@@ -5,43 +5,50 @@ import java.util.Date;
 public class Orcamentos {
     private int idOrcamento;
     private int idUsuario;
-    private int idCasamento;
     private Date dataOrcamento;
     private String status;
     private String observacao;
     private String observacaoOrcador;
     private String nomeOrcador;
     private double valorTotal;
+    private Double valorMedio;
     private boolean aprovado;
-    private Double valorOrcado;
     private boolean cancelado;
-    private Double ValorMedio;
+    private String local;
+    private String tipoCerimonia;
+    private String formaPagamento;
+    private Double valorEstimado;
+    private String observacaoGeral;
+    private String comentarioAdicional;
+    private int qtdConvidados;
 
     public Orcamentos() {
         super();
     }
 
-    public Orcamentos(int idOrcamento, int idUsuario, int idCasamento, Date dataOrcamento, String status, String observacao, String nomeOrcador, double valorTotal, boolean aprovado, String observacaoOrcador, boolean cancelado,Double ValorTotalMedio) {
+    public Orcamentos(int idOrcamento, int idUsuario, Date dataOrcamento, String status, String observacao,
+                      String observacaoOrcador, String nomeOrcador, double valorTotal, Double valorMedio,
+                      boolean aprovado, boolean cancelado, String local, String tipoCerimonia,
+                      String formaPagamento, Double valorEstimado, String observacaoGeral,
+                      String comentarioAdicional, int qtdConvidados) {
         this.idOrcamento = idOrcamento;
         this.idUsuario = idUsuario;
-        this.idCasamento = idCasamento;
         this.dataOrcamento = dataOrcamento;
         this.status = status;
         this.observacao = observacao;
         this.observacaoOrcador = observacaoOrcador;
         this.nomeOrcador = nomeOrcador;
-        this.ValorMedio = ValorMedio;
+        this.valorTotal = valorTotal;
+        this.valorMedio = valorMedio;
         this.aprovado = aprovado;
-        this.valorOrcado = 0.0; 
         this.cancelado = cancelado;
-    }
-
-    public Double getValorOrcado() {
-        return valorOrcado;
-    }
-
-    public void setValorOrcado(Double valorOrcado) {
-        this.valorOrcado = valorOrcado;
+        this.local = local;
+        this.tipoCerimonia = tipoCerimonia;
+        this.formaPagamento = formaPagamento;
+        this.valorEstimado = valorEstimado;
+        this.observacaoGeral = observacaoGeral;
+        this.comentarioAdicional = comentarioAdicional;
+        this.qtdConvidados = qtdConvidados;
     }
 
     public int getIdOrcamento() {
@@ -58,14 +65,6 @@ public class Orcamentos {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public int getIdCasamento() {
-        return idCasamento;
-    }
-
-    public void setIdCasamento(int idCasamento) {
-        this.idCasamento = idCasamento;
     }
 
     public Date getDataOrcamento() {
@@ -92,6 +91,14 @@ public class Orcamentos {
         this.observacao = observacao;
     }
 
+    public String getObservacaoOrcador() {
+        return observacaoOrcador;
+    }
+
+    public void setObservacaoOrcador(String observacaoOrcador) {
+        this.observacaoOrcador = observacaoOrcador;
+    }
+
     public String getNomeOrcador() {
         return nomeOrcador;
     }
@@ -108,20 +115,20 @@ public class Orcamentos {
         this.valorTotal = valorTotal;
     }
 
+    public Double getValorMedio() {
+        return valorMedio;
+    }
+
+    public void setValorMedio(Double valorMedio) {
+        this.valorMedio = valorMedio;
+    }
+
     public boolean isAprovado() {
         return aprovado;
     }
 
     public void setAprovado(boolean aprovado) {
         this.aprovado = aprovado;
-    }
-
-    public String getObservacaoOrcador() {
-        return observacaoOrcador;
-    }
-
-    public void setObservacaoOrcador(String observacaoOrcador) {
-        this.observacaoOrcador = observacaoOrcador;
     }
 
     public boolean isCancelado() {
@@ -132,11 +139,59 @@ public class Orcamentos {
         this.cancelado = cancelado;
     }
 
-    public Double getValorMedio() {
-        return ValorMedio;
+    public String getLocal() {
+        return local;
     }
 
-    public void setValorMedio(Double valorTotalMedio) {
-        ValorMedio = valorTotalMedio;
+    public void setLocal(String local) {
+        this.local = local;
+    }
+
+    public String getTipoCerimonia() {
+        return tipoCerimonia;
+    }
+
+    public void setTipoCerimonia(String tipoCerimonia) {
+        this.tipoCerimonia = tipoCerimonia;
+    }
+
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
+
+    public Double getValorEstimado() {
+        return valorEstimado;
+    }
+
+    public void setValorEstimado(Double valorEstimado) {
+        this.valorEstimado = valorEstimado;
+    }
+
+    public String getObservacaoGeral() {
+        return observacaoGeral;
+    }
+
+    public void setObservacaoGeral(String observacaoGeral) {
+        this.observacaoGeral = observacaoGeral;
+    }
+
+    public String getComentarioAdicional() {
+        return comentarioAdicional;
+    }
+
+    public void setComentarioAdicional(String comentarioAdicional) {
+        this.comentarioAdicional = comentarioAdicional;
+    }
+
+    public int getQtdConvidados() {
+        return qtdConvidados;
+    }
+
+    public void setQtdConvidados(int qtdConvidados) {
+        this.qtdConvidados = qtdConvidados;
     }
 }

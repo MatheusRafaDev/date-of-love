@@ -9,13 +9,6 @@
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <title>Criar Conta</title>
 
-    <script>
-        $(document).ready(function() {
-            $('#num_convidados').mask('0000', { // Define a máscara como 4 dígitos
-                max: 1000 // Define o valor máximo como 1000
-            });
-        });
-    </script>
 </head>
 <body>
 <div class="container">
@@ -37,42 +30,9 @@
                 <span class="error-message">${requestScope.errorMessage1}</span>
             </div>
 
-            <h5 class="data">*Data do casamento deve ser 9 meses a frente para o planejamento.</h5>
-            <label for="data_casamento">Data do Casamento</label>
-            <div class="container2">
-                 <input type="date" id="data_casamento" name="data_casamento" class="form-control" required value="${requestScope.dataCasamento}">
-                 <br>
-                 <span class="errorMessage1">${requestScope.errorMessage1}</span>
-            </div>
-
-            <section>
-                <label for="estilo_festa">Estilo da Festa</label>
-                <select id="estilo_festa" name="estilo_festa" class="campo-grande" required>
-                    <option value="classico" ${requestScope.estilo == 'classico' ? 'selected' : ''}>Clássico</option>
-                    <option value="rustico" ${requestScope.estilo == 'rustico' ? 'selected' : ''}>Rústico</option>
-                    <option value="praia" ${requestScope.estilo == 'praia' ? 'selected' : ''}>Praia</option>
-                    <option value="moderno" ${requestScope.estilo == 'moderno' ? 'selected' : ''}>Moderno</option>
-                    <option value="vintage" ${requestScope.estilo == 'vintage' ? 'selected' : ''}>Vintage</option>
-                </select>
-            </section>
-
-            <section>
-                <label for="localizacao">Localização</label>
-                <select id="localizacao" name="localizacao" required>
-                    <option value="igreja" ${requestScope.localizacao == 'igreja' ? 'selected' : ''}>Igreja</option>
-                    <option value="salao_festas" ${requestScope.localizacao == 'salao_festas' ? 'selected' : ''}>Salão de festas</option>
-                    <option value="campo" ${requestScope.localizacao == 'campo' ? 'selected' : ''}>Campo</option>
-                    <option value="hotel" ${requestScope.localizacao == 'hotel' ? 'selected' : ''}>Hotel</option>
-                </select>
-            </section>
-
-            <label for="num_convidados">Número de Convidados</label>
-
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-
-            <input type="text" id="num_convidados" name="num_convidados" required maxlength="4" value="${requestScope.numConvidados}">
 
             <label for="senha">Sua senha</label>
             <input type="password" id="senha" name="senha" required maxlength="25">
@@ -93,10 +53,3 @@
 </body>
 </html>
 
-<script>
-    var dataAtual = new Date();
-    var dataMaxima = new Date(dataAtual.getFullYear(), dataAtual.getMonth() + 9, dataAtual.getDate());
-    var dataFormatada = dataMaxima.toISOString().slice(0, 10);
-
-    document.getElementById("data_casamento").setAttribute("min", dataFormatada);
-</script>
