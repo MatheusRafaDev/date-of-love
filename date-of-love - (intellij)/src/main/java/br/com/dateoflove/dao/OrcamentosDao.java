@@ -18,26 +18,31 @@ public class OrcamentosDao {
     public OrcamentosDao() {}
 
     public Orcamentos criarOrcamento(Orcamentos orcamento) {
-        String SQL = "INSERT INTO tb_orcamentos (id_usuario, dt_orcamento, ds_observacao, " +
-                "ds_status, vl_total, ds_local, ds_tipo_cerimonia, ds_forma_pagamento, vl_estimado, " +
-                "ds_comentario_adicional, qtd_convidados) " +
-                "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO tb_orcamentos (id_usuario, dt_orcamento, ds_status, ds_observacao, " +
+                "ds_observacao_orcador, nm_orcador, vl_total, tg_aprovado, tg_cancelado, ds_local, " +
+                "ds_tipo_cerimonia, ds_forma_pagamento, vl_estimado, ds_comentario_adicional, qtd_convidados, dt_casamento) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = PoolConfig.getConnection();
              PreparedStatement stmt = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
 
-
             stmt.setInt(1, orcamento.getIdUsuario());
             stmt.setDate(2, new java.sql.Date(orcamento.getDataOrcamento().getTime()));
-            stmt.setString(3, orcamento.getObservacao());
-            stmt.setString(4, orcamento.getStatus());
-            stmt.setDouble(5, orcamento.getValorTotal());
-            stmt.setString(6, orcamento.getLocal());
-            stmt.setString(7, orcamento.getTipoCerimonia());
-            stmt.setString(8, orcamento.getFormaPagamento());
-            stmt.setDouble(9, orcamento.getValorEstimado());
-            stmt.setString(10, orcamento.getComentarioAdicional());
-            stmt.setInt(11, orcamento.getQtdConvidados());
+            stmt.setString(3, orcamento.getStatus());
+            stmt.setString(4, orcamento.getObservacao());
+            stmt.setString(5, orcamento.getObservacaoOrcador());
+            stmt.setString(6, orcamento.getNomeOrcador());
+            stmt.setDouble(7, orcamento.getValorTotal());
+            stmt.setBoolean(8, orcamento.isAprovado());
+            stmt.setBoolean(9, orcamento.isCancelado());
+            stmt.setString(10, orcamento.getLocal());
+            stmt.setString(11, orcamento.getTipoCerimonia());
+            stmt.setString(12, orcamento.getFormaPagamento());
+            stmt.setDouble(13, orcamento.getValorEstimado());
+            stmt.setString(14, orcamento.getComentarioAdicional());
+            stmt.setInt(15, orcamento.getQtdConvidados());
+            stmt.setDate(16, orcamento.getDataCasamento());
+
 
             int linhasAfetadas = stmt.executeUpdate();
 
@@ -82,11 +87,13 @@ public class OrcamentosDao {
                     orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
                     orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
 
+
                     // Campos adicionais
                     orcamento.setLocal(rs.getString("ds_local"));
                     orcamento.setTipoCerimonia(rs.getString("ds_tipo_cerimonia"));
                     orcamento.setFormaPagamento(rs.getString("ds_forma_pagamento"));
                     orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
+                    orcamento.setDataCasamento(rs.getDate("dt_casamento"));
 
                     orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
                     orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
@@ -121,6 +128,7 @@ public class OrcamentosDao {
             stmt.setString(10, orcamento.getComentarioAdicional());
             stmt.setInt(11, orcamento.getQtdConvidados());
             stmt.setLong(12, orcamento.getIdOrcamento());
+
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;

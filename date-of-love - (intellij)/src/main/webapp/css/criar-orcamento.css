@@ -102,12 +102,7 @@ textarea {
     resize: vertical;
 }
 
-.local-casamento {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
+
 
 .local-casamento label {
     display: flex;
@@ -140,12 +135,6 @@ textarea {
     font-size: 16px;
     font-weight: 500;
     color: #333;
-}
-
-.local-casamento {
-    display: flex;
-    gap: 20px;
-    justify-content: space-around;
 }
 
 .local-casamento label {
@@ -282,4 +271,46 @@ span {
 .styled-select:focus {
     background-color: #ffffff;
     outline: none;
+}
+
+
+.local-casamento {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+
+
+.local-option {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.local-option input[type="radio"] {
+    display: none;
+}
+
+.local-option img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.local-option input[type="radio"]:checked + img {
+    transform: scale(1.1);
+}
+
+.local-option input[type="radio"]:checked + img + span {
+    font-weight: bold;
+    color: #94CBFF;
+}
+
+.local-option span {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
 }

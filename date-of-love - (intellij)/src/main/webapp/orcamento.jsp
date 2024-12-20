@@ -4,31 +4,28 @@
 <%@ page import="br.com.dateoflove.model.Casamento" %>
 <%@ page import="br.com.dateoflove.model.DetalheOrcamento" %>
 <%@ page import="br.com.dateoflove.model.Orcamentos" %>
-
 <%@ page import="br.com.dateoflove.dao.ServicoDao" %>
 <%@ page import="br.com.dateoflove.model.Servico" %>
 <% ServicoDao servicoDao = new ServicoDao();%>
 
 <%
     Orcamentos orcamento = (Orcamentos) session.getAttribute("orcamento");
-
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if (usuario == null) {
         response.sendRedirect("/login");
         return;
     }
-
     Casamento casamento = (Casamento) session.getAttribute("casamento");
 %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href=,"https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/orcamento.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/orcamento2.css">
     <title>Visualizar Orçamento</title>
 </head>
 
@@ -36,67 +33,55 @@
     <%@ include file="/componente/header.jsp" %>
 
     <div class="budget-container">
-        <div class="budget-container2">
-            <h5>Orçamento - ${orcamento.getIdOrcamento()}</h5
-            >
-            <h5>Valor Total: R$ ${orcamento.getValorTotal()}</h5>
-            <h5>Valor Estimado: R$ ${orcamento.getValorEstimado()}</h5>
-            <h5>Orçador: ${orcamento.getNomeOrcador()}</h5>
-            <h5>Status: ${orcamento.getStatus()}</h5>
+        <div class="orcamento-header">
+            <h1>Orçamento #${orcamento.getIdOrcamento()}</h1>
+            <p><strong>Orçador:</strong> ${orcamento.getNomeOrcador()}</p>
+            <p><strong>Status:</strong> ${orcamento.getStatus()}</p>
         </div>
 
-        <h3>Observações do orçador</h3>
-        <p><%= orcamento.getObservacaoOrcador() %></p>
+        <div class="orcamento-details">
+            <h3>Detalhes do Orçamento</h3>
+            <div class="orcamento-summary">
+                <div><strong>Valor Total:</strong> R$ ${orcamento.getValorTotal()}</div>
+                <div><strong>Valor Estimado:</strong> R$ ${orcamento.getValorEstimado()}</div>
+                <div><strong>Data de Criação:</strong> ${orcamento.getDataOrcamento()}</div>
+                <div><strong>Observações do Orçador:</strong> ${orcamento.getObservacaoOrcador()}</div>
+                <div><strong>Observações Gerais:</strong> ${orcamento.getObservacao()}</div>
+            </div>
+        </div>
 
-        <h3>Serviços</h3>
-        <table>
-            <tr>
-                <th>Serviço</th>
-                <th>Pacote Simples</th>
-                <th>Pacote Completo</th>
-                <th>Observações</th>
-                <th>Valor</th>
-            </tr>
-            <c:forEach var="detalhe" items="${detalheorcamento}">
-                <c:set var="servico" value="${servicoDao.encontrarServicoPorId(detalhe.idServico)}" />
+        <h3>Detalhes dos Serviços</h3>
+        <table class="orcamento-table">
+            <thead>
                 <tr>
-                    <td><c:out value="${servico.getNomeServico()}" /></td>
-                    <td><input type="radio" name="" value="simples" ${!detalhe.isCompleto() ? "checked" : ""} disabled></td>
-                    <td><input type="radio" name="" value="completo" ${detalhe.isCompleto() ? "checked" : ""} disabled></td>
-                    <td>${detalhe.getObservacaoServico()}</td>
-                    <td>R$ ${detalhe.getPrecoEditavel()}</td>
+                    <th>Serviço</th>
+                    <th>Pacote Simples</th>
+                    <th>Pacote Completo</th>
+                    <th>Observações</th>
+                    <th>Valor</th>
                 </tr>
-            </c:forEach>
+            </thead>
+            <tbody>
+                <c:forEach var="detalhe" items="${detalheorcamento}">
+                    <c:set var="servico" value="${servicoDao.encontrarServicoPorId(detalhe.idServico)}" />
+                    <tr>
+                        <td><c:out value="${servico.getNomeServico()}" /></td>
+                        <td><input type="radio" name="pacote-${detalhe.idServico}" value="simples" ${!detalhe.isCompleto() ? "checked" : ""} disabled></td>
+                        <td><input type="radio" name="pacote-${detalhe.idServico}" value="completo" ${detalhe.isCompleto() ? "checked" : ""} disabled></td>
+                        <td>${detalhe.getObservacaoServico()}</td>
+                        <td>R$ ${detalhe.getPrecoEditavel()}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
         </table>
-
-        <h3>Outros Serviços Já Inclusos</h3>
-        <table>
-            <tr>
-                <th>Serviço</th>
-                <th>Observações</th>
-
-            </tr>
-            <c:forEach var="detalhe2" items="${detalheorcamento2}">
-                <c:set var="servico" value="${servicoDao.encontrarServicoPorId(detalhe2.idServico)}" />
-                <tr>
-                    <td><c:out value="${servico.getNomeServico()}" /></td>
-                    <td>${detalhe2.getObservacaoServico()}</td>
-
-                </tr>
-            </c:forEach>
-        </table>
-
-        <h3>Observações Gerais</h3>
-        <p><%= orcamento.getObservacao() %></p>
 
         <c:if test="${!orcamento.isAprovado() && orcamento.getStatus().equals('Esperando Aprovação')}">
-           <form action="aprovar-orcamento" method="POST">
-              <input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}">
-              <input type="hidden" id="idUsuario" name="idUsuario" value="${usuario.getIdUsuario()}">
-              <button type="submit" class="aprovar">Aprovar Orçamento</button>
-           </form>
-       </c:if>
-
+            <form action="aprovar-orcamento" method="POST" class="aprovar-form">
+                <input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}">
+                <input type="hidden" id="idUsuario" name="idUsuario" value="${usuario.getIdUsuario()}">
+                <button type="submit" class="aprovar-btn">Aprovar Orçamento</button>
+            </form>
+        </c:if>
     </div>
 </body>
 </html>

@@ -52,8 +52,8 @@ public class Orcamentos {
     }
 
     // Getters e setters para o campo dataCasamento
-    public Date getDataCasamento() {
-        return dataCasamento;
+    public java.sql.Date getDataCasamento() {
+        return (java.sql.Date) dataCasamento;
     }
 
     public void setDataCasamento(Date dataCasamento) {

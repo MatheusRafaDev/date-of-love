@@ -41,12 +41,13 @@ public class CriarOrcamentoServlet extends HttpServlet {
         String comentarioAdicional = req.getParameter("comentarios");
 
         String dataCasamentoStr = req.getParameter("dataCasamento");
+
+        System.out.println(dataCasamentoStr);
         Date dataCasamento = null;
 
-        // Se a data já vem no formato 'yyyy-MM-dd', apenas converta diretamente
         if (dataCasamentoStr != null && !dataCasamentoStr.isEmpty()) {
             try {
-                dataCasamento = java.sql.Date.valueOf(dataCasamentoStr);  // Converte para o tipo Date
+                dataCasamento = java.sql.Date.valueOf(dataCasamentoStr);
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
@@ -77,15 +78,16 @@ public class CriarOrcamentoServlet extends HttpServlet {
         orcamento.setTipoCerimonia(tipoCerimonia);
         orcamento.setFormaPagamento(formaPagamento);
         orcamento.setValorEstimado(valorEstimado);
+        orcamento.setNomeOrcador("");
+        orcamento.setObservacaoOrcador("");
+        orcamento.setComentarioAdicional(comentarioAdicional);
+        orcamento.setAprovado(false);
+        orcamento.setCancelado(false);
 
-        // Verifique se a data de casamento foi convertida corretamente
         if (dataCasamento != null) {
             orcamento.setDataCasamento(dataCasamento);
         }
 
-        orcamento.setComentarioAdicional(comentarioAdicional);
-        orcamento.setAprovado(false);
-        orcamento.setCancelado(false);
 
         orcamento = orcamentosDao.criarOrcamento(orcamento);
 

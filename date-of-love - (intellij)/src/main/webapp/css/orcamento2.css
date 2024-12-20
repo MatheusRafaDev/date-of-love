@@ -1,0 +1,91 @@
+/* geral */
+body {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+.budget-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* header */
+.orcamento-header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.orcamento-header p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* detalhes */
+.orcamento-details h3 {
+    margin-top: 30px;
+    font-size: 22px;
+    color: #333;
+}
+
+.orcamento-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.orcamento-summary div {
+    font-size: 16px;
+    color: #666;
+}
+
+.orcamento-summary strong {
+    font-weight: bold;
+}
+
+/* Tabela de detalhes */
+.orcamento-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.orcamento-table th,
+.orcamento-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.orcamento-table th {
+    background-color: #f7f7f7;
+}
+
+.orcamento-table td input[type="radio"] {
+    cursor: not-allowed;
+}
+
+/* Formulário de Aprovação */
+.aprovar-form {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.aprovar-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.aprovar-btn:hover {
+    background-color: #218838;
+}

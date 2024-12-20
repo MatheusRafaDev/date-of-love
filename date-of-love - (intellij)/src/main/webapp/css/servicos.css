@@ -1,0 +1,40 @@
+/* Estilos gerais para as imagens dentro das seções */
+.card-img-top {
+    width: 100%;  /* Garante que a imagem ocupe toda a largura disponível */
+    height: 200px; /* Definindo a altura fixa para todas as imagens */
+    object-fit: cover; /* Faz com que a imagem cubra o espaço sem distorção */
+    border-radius: 0; /* Remove bordas arredondadas */
+    border: none; /* Remove qualquer borda */
+}
+
+/* Estilos para as cards */
+.card {
+    border: none;  /* Remove a borda das cards */
+    box-shadow: none;  /* Remove sombra da card */
+}
+
+/* Estilos para o título das seções */
+h6, .card-title {
+    font-weight: 500;
+    font-size: 1rem;  /* Tamanho reduzido para o título das categorias */
+    text-align: center; /* Centraliza os títulos das seções */
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center; /* Centraliza o texto dentro de cada card */
+}
+
+/* Estilos para a container e título principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
