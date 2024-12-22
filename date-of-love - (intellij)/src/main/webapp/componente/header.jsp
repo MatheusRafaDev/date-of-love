@@ -2,7 +2,6 @@
 
 <%@ page import="br.com.dateoflove.model.Usuario" %>
 <%@ page import="br.com.dateoflove.model.Orcamentos" %>
-<%@ page import="br.com.dateoflove.model.Casamento" %>
 
 <%
     Usuario usuario2 = (Usuario) session.getAttribute("usuario");

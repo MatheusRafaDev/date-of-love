@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="br.com.dateoflove.model.Usuario" %>
-<%@ page import="br.com.dateoflove.model.Casamento" %>
+
 
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
-    Casamento casamento = (Casamento) session.getAttribute("casamento");
+  
 %>
 
 <!DOCTYPE html>

@@ -1,7 +1,6 @@
 package br.com.dateoflove.funcao;
 
 import br.com.dateoflove.model.Usuario;
-import br.com.dateoflove.model.Casamento;
 import br.com.dateoflove.model.Orcamentos;
 
 

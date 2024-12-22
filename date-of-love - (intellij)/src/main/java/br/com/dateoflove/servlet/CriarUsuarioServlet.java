@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.dateoflove.dao.OrcamentosDao;
 import br.com.dateoflove.dao.UsuarioDao;
 import br.com.dateoflove.funcao.Email;
-import br.com.dateoflove.model.Casamento;
 import br.com.dateoflove.model.Orcamentos;
 import br.com.dateoflove.model.Usuario;
 
@@ -65,13 +64,12 @@ public class CriarUsuarioServlet extends HttpServlet {
 
         usuario = usuarioDao.buscarUsuarioPorEmail(email);
 
-        Casamento casamento = new Casamento();
+
         OrcamentosDao orcamentoDao = new OrcamentosDao();
         
         List<Orcamentos> listaOrcamentos = orcamentoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());
 
         req.getSession().setAttribute("usuario", usuario);
-        req.getSession().setAttribute("casamento", casamento);
         req.getSession().setAttribute("listaOrcamentos", listaOrcamentos);
 
 

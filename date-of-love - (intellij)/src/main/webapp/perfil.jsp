@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="br.com.dateoflove.model.Usuario" %>
 <%@ page import="br.com.dateoflove.model.Orcamentos" %>
-<%@ page import="br.com.dateoflove.model.Casamento" %>
 <%@ page import="java.util.List" %>
 
 <%
@@ -13,7 +12,7 @@
         return;
     }
 
-    Casamento casamento = (Casamento) session.getAttribute("casamento");
+
 
     String imagemPath2 = usuario.getImagem();
     String defaultImagePath2 = request.getContextPath() + "/src/assets/images/casal.png";
@@ -141,7 +140,7 @@
                         <tbody>
                             <c:forEach var="orcamento" items="${listaOrcamentos}">
                                 <tr>
-                                    <form action="${pageContext.request.contextPath}/orcamento" method="GET">
+                                    <form action="${pageContext.request.contextPath}/visualizar-orcamento" method="GET">
                                         <td><input type="text" id="id" name="id" value="${orcamento.getIdOrcamento()}"></td>
                                         <td>${orcamento.getNomeOrcador()}</td>
                                         <td>R$ ${orcamento.getValorEstimado()}</td>
@@ -165,11 +164,11 @@
                             </c:forEach>
 
 
-                            <tr>
-                                <td colspan="5">
-                                    <button type="button" class="btn-criar" onclick="window.location.href='/criar-orcamento.jsp'">Criar Novo Orçamento</button>
-                                </td>
-                            </tr>
+                           <tr>
+                               <td colspan="5">
+                                   <button type="button" class="btn-criar" onclick="window.location.href='<%=request.getContextPath()%>/carregar-criar-orcamento'">Criar Novo Orçamento</button>
+                               </td>
+                           </tr>
 
                         </tbody>
                     </table>

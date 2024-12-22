@@ -1,169 +1,105 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="br.com.dateoflove.model.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page import="br.com.dateoflove.model.Usuario" %>
+<%@ page import="br.com.dateoflove.model.DetalheOrcamento" %>
+<%@ page import="br.com.dateoflove.model.Orcamentos" %>
 <%@ page import="br.com.dateoflove.dao.ServicoDao" %>
+<%@ page import="br.com.dateoflove.model.Servico" %>
 <%@ page import="java.util.List" %>
 
 <%
     ServicoDao servicoDao = new ServicoDao();
-    Usuario usuario2 = (Usuario) session.getAttribute("usuario2");
-    if (usuario2 == null || !"adm".equals(usuario2.getEmail())) {
-        response.sendRedirect("/login");
-        return;
-    }
-
-    Usuario usuario = (Usuario) session.getAttribute("usuario");
     Orcamentos orcamento = (Orcamentos) session.getAttribute("orcamento");
-    Casamento casamento = (Casamento) session.getAttribute("casamento");
+
+    Usuario usuario2 = (Usuario) session.getAttribute("usuario2");
+       if (usuario2 == null || !usuario2.getEmail().equals("adm")) {
+          response.sendRedirect("/login");
+          return;
+       }
+
     List<DetalheOrcamento> detalheorcamento = (List<DetalheOrcamento>) session.getAttribute("detalheorcamento");
 %>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="icon" type="image/x-icon" href="/src/assets/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-detalhe-orcamento.css">
-    <title>Visualizar Orçamento ADM</title>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-    <script>
-        $(document).ready(function(){
-
-            function formatInitialValue(value) {
-                    var number = parseFloat(value.replace(',', '.'));
-                    return number.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',');
-            }
-
-
-             $('.valor').each(function() {
-                var precoElement = $(this);
-                var initialValue = precoElement.val();
-
-                if (initialValue) {
-                    var formattedValue = formatInitialValue(initialValue);
-                    precoElement.val(formattedValue);
-                }
-
-                precoElement.mask('000.000.000,00', { reverse: true });
-            });
-
-            $('#calcularBtn').click(function() {
-                var total = 0;
-                $('input.valor').each(function() {
-                    var value = parseFloat($(this).val().replace(/\./g, '').replace(',', '.')) || 0;
-                    total += value;
-                });
-
-                var formattedTotal = total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                $('#valorTotal').val(formattedTotal);
-            });
-        });
-    </script>
-
-
-
-
+    <title>Visualizar Orçamento</title>
 </head>
 <body>
+    <%@ include file="/componente/adm-header.jsp" %>
 
-<%@ include file="/componente/adm-header.jsp" %>
-
-<form action="${pageContext.request.contextPath}/atualizarOrcamento" method="post">
-<div class="budget-container">
-    <h3>Orçamento</h3>
-
-    <div class="budget-container2">
-            <h4>Orçamento - ${orcamento.getIdOrcamento()}</h4>
-            <td><input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}"></td>
-            <h4>Valor Estimado: R$ ${orcamento.getValorEstimado()}</h4>
-            <h4>Valor Total: R$ ${orcamento.getValorTotal()}</h4>
-
-            <%
-                if (orcamento.getStatus().equals("Cancelado")) {
-            %>
-                <h5>Status:
-                    <select name="status" id="status">
-                        <option value="Cancelado" selected>Cancelado</option>
-                    </select>
-                </h5>
-            <%
-                } else {
-            %>
-                <h5>Status:
-                    <select name="status" id="status">
-                        <option value="Pendente" ${orcamento.getStatus().equals('Pendente') ? 'selected' : ''}>Pendente</option>
-                        <option value="Andamento" ${orcamento.getStatus().equals('Andamento') ? 'selected' : ''}>Andamento</option>
-                        <option value="Esperando Aprovação" ${orcamento.getStatus().equals('Esperando Aprovação') ? 'selected' : ''}>Esperando Aprovação</option>
-                        <option value="Aprovado" ${orcamento.getStatus().equals('Aprovado') ? 'selected' : ''}>Aprovado</option>
-                        <option value="Cancelado" ${orcamento.getStatus().equals('Cancelado') ? 'selected' : ''}>Cancelado</option>
-                    </select>
-                </h5>
-            <%
-                }
-            %>
+    <div class="card">
+        <div class="orcamento-header">
+            <h1>Orçamento #${orcamento.getIdOrcamento()}</h1>
+            <p><strong>Orçador:</strong> ${orcamento.getNomeOrcador()}</p>
+            <p><strong>Status:</strong> ${orcamento.getStatus()}</p>
         </div>
 
-    <div class="budget-container2">
-        <h4>Nome casal: ${usuario.getNomesConcatenados()}</h4>
-        <h4>Convidados: ${casamento.getNumeroConvidados()}</h4>
-        <h4>Estilo Festa: ${casamento.getEstiloFesta()}</h4>
-        <h4>Localidade: ${casamento.getLocalidade()}</h4>
+        <div class="orcamento-details">
+            <h3>Detalhes do Orçamento</h3>
+            <div class="orcamento-summary">
+                <div><strong>Valor Total:</strong> R$ ${orcamento.getValorTotal()}</div>
+                <div><strong>Valor Estimado:</strong> R$ ${orcamento.getValorEstimado()}</div>
+                <div><strong>Data de Criação:</strong> ${orcamento.getDataOrcamento()}</div>
+            </div>
+        </div>
+
+        <h3>Detalhes dos Serviços</h3>
+        <table class="checklist-table">
+            <thead>
+                <tr>
+                    <th>Serviço</th>
+                    <th>Opções</th>
+                    <th>Observações</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="detalhe" items="${detalheorcamento}">
+                    <c:set var="servico" value="${servicoDao.encontrarServicoPorId(detalhe.idServico)}" />
+                    <tr>
+                        <td>${servico.nomeServico}</td>
+                        <td>
+                            <select name="servico${detalhe.idServico}" class="styled-select" disabled>
+                                <option value="simples" ${fn:escapeXml(detalhe.tipo) == 'S' ? "selected" : ""}>
+                                    Simples - ${servico.descricaoSimples}
+                                </option>
+                                <option value="comum" ${fn:escapeXml(detalhe.tipo) == 'C' ? "selected" : ""}>
+                                    Comum - ${servico.descricaoComum}
+                                </option>
+                                <option value="premium" ${fn:escapeXml(detalhe.tipo) == 'P' ? "selected" : ""}>
+                                    Premium - ${servico.descricaoPremium}
+                                </option>
+                                <option value="exclusivo" ${fn:escapeXml(detalhe.tipo) == 'E' ? "selected" : ""}>
+                                    Exclusivo - ${servico.descricaoExclusivo}
+                                </option>
+                            </select>
+                        </td>
+                        <td><textarea readonly rows="3" cols="30">${detalhe.observacaoServico}</textarea></td>
+                        <td>R$ ${detalhe.precoEditavel}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+
+        <div class="orcamento-observacoes">
+            <div><strong>Observações Gerais:</strong> <textarea readonly rows="3" cols="50">${orcamento.getObservacao()}</textarea></div>
+            <div><strong>Observações do Orçador:</strong> <textarea readonly rows="3" cols="50">${orcamento.getObservacaoOrcador()}</textarea></div>
+        </div>
+
+        <c:if test="${!orcamento.isAprovado() && 'Esperando Aprovação'.equals(orcamento.getStatus())}">
+            <form action="${pageContext.request.contextPath}/aprovar-orcamento" method="POST" class="aprovar-form">
+                <input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}">
+                <input type="hidden" id="idUsuario" name="idUsuario" value="${usuario.getIdUsuario()}">
+                <button type="submit" class="aprovar-btn">Aprovar Orçamento</button>
+            </form>
+        </c:if>
     </div>
-
-    <h3>Observações do casal</h3>
-    <p><%= orcamento.getObservacao() %></p>
-
-    <h3>Serviços</h3>
-    <table>
-        <tr>
-            <th>Orcamentos</th>
-            <th>Serviço</th>
-            <th>Pacote Simples</th>
-            <th>Pacote Completo</th>
-            <th>Observações</th>
-            <th>Valor</th>
-        </tr>
-
-        <c:forEach var="detalhe" items="${detalheorcamento}">
-            <c:set var="servico" value="${servicoDao.encontrarServicoPorId(detalhe.idServico)}" />
-            <tr>
-                <td><c:out value="${detalhe.getIdDetalheOrcamento()}" /></td>
-                <td><c:out value="${servico.nomeServico}" /></td>
-                <td><input type="radio" name="pacote-${detalhe.idServico}" value="simples" ${!detalhe.completo ? "checked" : ""} disabled></td>
-                <td><input type="radio" name="pacote-${detalhe.idServico}" value="completo" ${detalhe.completo ? "checked" : ""} disabled></td>
-                <td><c:out value="${detalhe.observacaoServico}" /></td>
-                <td><input type="text" name="valor-${detalhe.idServico}" class="valor" value="${detalhe.precoEditavel}"></td>
-            </tr>
-        </c:forEach>
-
-         <td>Acrescimo</td>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td><input type="text" class="valor"></td>
-    </table>
-
-    <button type="button" id="calcularBtn" class="botao">Calcular</button>
-
-    <div class="container">
-        <label for="valorTotal">Valor total:</label>
-        <input type="text" id="valorTotal" name="valorTotal" value="<%= orcamento.getValorTotal() %>" required readonly>
-
-        <label for="responsavel">Nome do responsável pelo orçamento:</label>
-        <input type="text" id="responsavel" name="responsavel" value="<%= orcamento.getNomeOrcador() %>">
-    </div>
-
-    <h3>Observações Gerais do Orçados</h3>
-
-    <textarea id="observacoesGerais" name="observacoesGerais" rows="7" cols="50"><%= orcamento.getObservacaoOrcador() %></textarea>
-    <button type="submit" id="salvarBtn" class="botao">Salvar</button>
-</div>
-</form>
 </body>
 </html>

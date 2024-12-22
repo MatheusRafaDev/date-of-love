@@ -1,18 +1,21 @@
 package br.com.dateoflove.servlet;
 
-import br.com.dateoflove.dao.*;
-import br.com.dateoflove.model.Casamento;
-import br.com.dateoflove.model.DetalheOrcamento;
-import br.com.dateoflove.model.Orcamentos;
-import br.com.dateoflove.model.Usuario;
+import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
+
+import br.com.dateoflove.dao.DetalheOrcamentoDao;
+import br.com.dateoflove.dao.OrcamentosDao;
+import br.com.dateoflove.dao.ServicoDao;
+import br.com.dateoflove.dao.UsuarioDao;
+import br.com.dateoflove.model.DetalheOrcamento;
+import br.com.dateoflove.model.Orcamentos;
+import br.com.dateoflove.model.Usuario;
 
 @WebServlet("/detalhe-orcamento")
 public class DetalheOrcamentoServlet extends HttpServlet {
@@ -26,18 +29,16 @@ public class DetalheOrcamentoServlet extends HttpServlet {
         ServicoDao servicoDao = new ServicoDao();
         DetalheOrcamentoDao detalheOrcamentoDao = new DetalheOrcamentoDao();
         OrcamentosDao orcamentoDao = new OrcamentosDao();
-        CasamentoDao casamentoDao = new CasamentoDao();
 
 
         Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId( id);
         Usuario usuario = usuarioDao.buscarUsuarioPorId(orcamento.getIdUsuario());
 
         List<DetalheOrcamento> detalheOrcamento = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento(id);
-        List<DetalheOrcamento> detalheOrcamento2 = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento2(id);
+
 
         req.getSession().setAttribute("orcamento", orcamento);
         req.getSession().setAttribute("detalheorcamento", detalheOrcamento);
-        req.getSession().setAttribute("detalheorcamento2", detalheOrcamento2);
         req.getSession().setAttribute("servicoDao", servicoDao);
 
         req.getSession().setAttribute("usuario", usuario);

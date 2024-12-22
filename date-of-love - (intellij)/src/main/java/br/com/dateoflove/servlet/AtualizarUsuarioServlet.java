@@ -1,9 +1,7 @@
 package br.com.dateoflove.servlet;
 
-import br.com.dateoflove.dao.CasamentoDao;
 import br.com.dateoflove.dao.UsuarioDao;
 import br.com.dateoflove.model.Usuario;
-import br.com.dateoflove.model.Casamento;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

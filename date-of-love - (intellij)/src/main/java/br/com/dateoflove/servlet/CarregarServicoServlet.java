@@ -21,7 +21,7 @@ public class CarregarServicoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         ServicoDao servicoDao = new ServicoDao();
-        List<Servico> servico = servicoDao.listarServicos();
+        List<Servico> servico = servicoDao.buscarTodosServicos();
         req.getSession().setAttribute("servico", servico);
 
         req.getRequestDispatcher( "/adm/adm-servicos.jsp").forward(req, resp);

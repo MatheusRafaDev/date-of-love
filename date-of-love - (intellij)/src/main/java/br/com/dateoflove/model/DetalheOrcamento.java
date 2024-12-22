@@ -1,29 +1,32 @@
 package br.com.dateoflove.model;
 
-public class DetalheOrcamento {
+import java.io.Serializable;
+
+public class DetalheOrcamento implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private int idDetalheOrcamento;
     private int idOrcamento;
     private int idServico;
     private int quantidade;
     private double precoEditavel;
     private String observacaoServico;
-    private boolean completo;
-    private boolean incluso;
+    private char tipo; // 'S' = Simples, 'C' = Comum, 'P' = Premium, 'E' = Exclusivo
 
     public DetalheOrcamento() {
     }
 
-    public DetalheOrcamento(int idDetalheOrcamento, int idOrcamento, int idServico, int quantidade, double precoEditavel, String observacaoServico, boolean completo,boolean incluso) {
+    public DetalheOrcamento(int idDetalheOrcamento, int idOrcamento, int idServico, int quantidade, double precoEditavel, String observacaoServico, char tipo) {
         this.idDetalheOrcamento = idDetalheOrcamento;
         this.idOrcamento = idOrcamento;
         this.idServico = idServico;
         this.quantidade = quantidade;
         this.precoEditavel = precoEditavel;
         this.observacaoServico = observacaoServico;
-        this.completo = completo;
-        this.incluso = incluso;
+        this.tipo = tipo;
     }
 
+    // Getters and setters for all fields
     public int getIdDetalheOrcamento() {
         return idDetalheOrcamento;
     }
@@ -72,23 +75,11 @@ public class DetalheOrcamento {
         this.observacaoServico = observacaoServico;
     }
 
-    public boolean isCompleto() {
-        return completo;
+    public char getTipo() {
+        return tipo;
     }
 
-    public void setCompleto(boolean completo) {
-        this.completo = completo;
-    }
-
-    public boolean isIncluso() {
-        return incluso;
-    }
-
-    public void setIncluso(boolean incluso) {
-        this.incluso = incluso;
-    }
-
-    public boolean isEditavel() {
-        return !completo;
+    public void setTipo(char tipo) {
+        this.tipo = tipo;
     }
 }

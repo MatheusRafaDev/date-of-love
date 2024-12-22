@@ -19,7 +19,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Serviço</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-orcamento2.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/adm-servicos.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
 </head>
@@ -28,42 +28,71 @@
 <%@ include file="/componente/adm-header.jsp" %>
 
 <div class="perfil-casal">
-    <div class="card orcamento">
-        <div class="card-body">
-            <h3>Orçamentos</h3>
-            <table class="table-orcamentos">
-                <thead>
-                    <tr>
-                        <th>Nome do Serviço</th>
-                        <th>Descrição do Serviço</th>
-                        <th>Valor</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="servico" items="${servico}">
-                        <tr>
-                            <td>
-                                <form action="${pageContext.request.contextPath}/editar-servico" method="post">
-                                    <input type="hidden" name="id_servico" value="${servico.getIdServico()}">
-                                    <input type="text" name="nm_servico" value="${servico.getNomeServico()}">
-                            </td>
-                            <td>
-                                    <textarea name="ds_servico">${servico.getObservacao()}</textarea>
-                            </td>
-                            <td>
-                                    <input type="text" name="vl_preco" value="${servico.getPreco()}" class="vl_preco">
-                            </td>
-                            <td>
-                                    <button type="submit" value="Salvar" class="btn-visualizar">Salvar</button>
-                                </form>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+    <h3>Orçamentos</h3>
+    <c:forEach var="servico" items="${servico}">
+        <div class="service-card">
+            <form action="${pageContext.request.contextPath}/editar-servico" method="post">
+                <input type="hidden" name="id_servico" value="${servico.idServico}">
+
+                <div class="form-group">
+                    <label for="nm_servico_${servico.idServico}">Nome do Serviço</label>
+                    <input type="text" id="nm_servico_${servico.idServico}" name="nm_servico" value="${servico.nomeServico}">
+                </div>
+
+                <div class="card-container">
+                    <div class="service-sub-card">
+                        <h4>Simples</h4>
+                        <div class="form-group">
+                            <label for="vl_preco_simples_${servico.idServico}">Preço Simples</label>
+                            <input type="text" id="vl_preco_simples_${servico.idServico}" name="vl_preco_simples" value="${servico.precoSimples}" class="vl_preco">
+                        </div>
+                        <div class="form-group">
+                            <label for="ds_simples_${servico.idServico}">Descrição Simples</label>
+                            <textarea id="ds_simples_${servico.idServico}" name="ds_simples">${servico.descricaoSimples}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="service-sub-card">
+                        <h4>Comum</h4>
+                        <div class="form-group">
+                            <label for="vl_preco_comum_${servico.idServico}">Preço Comum</label>
+                            <input type="text" id="vl_preco_comum_${servico.idServico}" name="vl_preco_comum" value="${servico.precoComum}" class="vl_preco">
+                        </div>
+                        <div class="form-group">
+                            <label for="ds_comum_${servico.idServico}">Descrição Comum</label>
+                            <textarea id="ds_comum_${servico.idServico}" name="ds_comum">${servico.descricaoComum}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="service-sub-card">
+                        <h4>Premium</h4>
+                        <div class="form-group">
+                            <label for="vl_preco_premium_${servico.idServico}">Preço Premium</label>
+                            <input type="text" id="vl_preco_premium_${servico.idServico}" name="vl_preco_premium" value="${servico.precoPremium}" class="vl_preco">
+                        </div>
+                        <div class="form-group">
+                            <label for="ds_premium_${servico.idServico}">Descrição Premium</label>
+                            <textarea id="ds_premium_${servico.idServico}" name="ds_premium">${servico.descricaoPremium}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="service-sub-card">
+                        <h4>Exclusivo</h4>
+                        <div class="form-group">
+                            <label for="vl_preco_exclusivo_${servico.idServico}">Preço Exclusivo</label>
+                            <input type="text" id="vl_preco_exclusivo_${servico.idServico}" name="vl_preco_exclusivo" value="${servico.precoExclusivo}" class="vl_preco">
+                        </div>
+                        <div class="form-group">
+                            <label for="ds_exclusivo_${servico.idServico}">Descrição Exclusivo</label>
+                            <textarea id="ds_exclusivo_${servico.idServico}" name="ds_exclusivo">${servico.descricaoExclusivo}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" value="Salvar" class="btn-visualizar">Salvar</button>
+            </form>
         </div>
-    </div>
+    </c:forEach>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

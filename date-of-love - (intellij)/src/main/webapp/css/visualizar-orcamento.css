@@ -70,6 +70,38 @@ body {
     cursor: not-allowed;
 }
 
+.orcamento-table textarea {
+    width: 100%;
+    resize: none;
+    border: none;
+    background-color: transparent;
+}
+
+/* Observações */
+.orcamento-observacoes {
+    margin-top: 30px;
+}
+
+.orcamento-observacoes h3 {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #333;
+}
+
+.orcamento-observacoes div {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.orcamento-observacoes textarea {
+    width: 100%;
+    resize: none;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 /* Formulário de Aprovação */
 .aprovar-form {
     margin-top: 30px;

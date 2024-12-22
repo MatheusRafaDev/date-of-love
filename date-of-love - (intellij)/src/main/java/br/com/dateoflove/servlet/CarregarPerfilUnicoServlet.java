@@ -1,12 +1,8 @@
 package br.com.dateoflove.servlet;
 
-import br.com.dateoflove.dao.CasamentoDao;
 import br.com.dateoflove.dao.OrcamentosDao;
-import br.com.dateoflove.dao.ServicoDao;
 import br.com.dateoflove.dao.UsuarioDao;
-import br.com.dateoflove.model.Casamento;
 import br.com.dateoflove.model.Orcamentos;
-import br.com.dateoflove.model.Servico;
 import br.com.dateoflove.model.Usuario;
 
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +22,6 @@ public class CarregarPerfilUnicoServlet extends HttpServlet {
 
         UsuarioDao usuarioDao = new UsuarioDao();
         OrcamentosDao orcamentoDao = new OrcamentosDao();
-        CasamentoDao casamentoDao = new CasamentoDao();
 
         Usuario usuario = usuarioDao.buscarUsuarioPorEmail(email);
         List<Orcamentos> listaOrcamentos = orcamentoDao.buscarOrcamentoPorUsuario(usuario.getIdUsuario());

@@ -22,23 +22,51 @@ public class EditarServicoServlet extends HttpServlet {
 
         String idServicoStr = request.getParameter("id_servico");
         String nomeServico = request.getParameter("nm_servico");
-        String descricaoServico = request.getParameter("ds_servico");
+        String descricaoComum = request.getParameter("ds_comum");
+        String descricaoSimples = request.getParameter("ds_simples");
+        String descricaoPremium = request.getParameter("ds_premium");
+        String descricaoExclusivo = request.getParameter("ds_exclusivo");
 
-        String valor= request.getParameter("vl_preco");
-        valor = valor.replace(".", "").replace(",", ".");
-        double preco = Double.parseDouble(valor);
+        String valorComum = request.getParameter("vl_preco_comum");
+        String valorSimples = request.getParameter("vl_preco_simples");
+        String valorPremium = request.getParameter("vl_preco_premium");
+        String valorExclusivo = request.getParameter("vl_preco_exclusivo");
+
+        double precoComum = parseDoubleFromString(valorComum);
+        double precoSimples = parseDoubleFromString(valorSimples);
+        double precoPremium = parseDoubleFromString(valorPremium);
+        double precoExclusivo = parseDoubleFromString(valorExclusivo);
 
         int idServico = Integer.parseInt(idServicoStr);
 
         Servico servico = new Servico();
         servico.setIdServico(idServico);
         servico.setNomeServico(nomeServico);
-        servico.setObservacao(descricaoServico);
-        servico.setPreco(preco);
+        servico.setDescricaoComum(descricaoComum);
+        servico.setDescricaoSimples(descricaoSimples);
+        servico.setDescricaoPremium(descricaoPremium);
+        servico.setDescricaoExclusivo(descricaoExclusivo);
+        servico.setPrecoComum(precoComum);
+        servico.setPrecoSimples(precoSimples);
+        servico.setPrecoPremium(precoPremium);
+        servico.setPrecoExclusivo(precoExclusivo);
 
         ServicoDao servicoDao = new ServicoDao();
         servicoDao.atualizarServico(servico);
 
         response.sendRedirect(request.getContextPath() + "/carregar-servico");
+    }
+
+    private double parseDoubleFromString(String value) {
+        if (value == null || value.isEmpty()) {
+            return 0.0;
+        }
+        value = value.replace(".", "").replace(",", ".");
+        try {
+            return Double.parseDouble(value);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return 0.0;
+        }
     }
 }
