@@ -13,6 +13,8 @@
    }
 %>
 
+ <%= usuario2.getEmail() %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

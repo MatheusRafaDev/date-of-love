@@ -14,7 +14,7 @@
         <nav class="logo-navigation">
             <a href="${pageContext.request.contextPath}/carregar-servico">Serviços</a>
             <a href="${pageContext.request.contextPath}/carregar-orcamento">Orçamentos</a>
-            <a href="${pageContext.request.contextPath}/carregar-perfils">Usuários</a>
+            <a href="${pageContext.request.contextPath}/carregar-usuarios">Usuários</a>
             <a href="${pageContext.request.contextPath}/sair">Sair</a>
         </nav>
     </header>

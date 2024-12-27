@@ -1,0 +1,108 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.orcamento-header, .orcamento-details {
+    margin-bottom: 20px;
+}
+
+.orcamento-header h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.orcamento-header p, .orcamento-details p {
+    font-size: 14px;
+    color: #555;
+}
+
+.orcamento-header input, .orcamento-details input, .orcamento-details textarea, .orcamento-details select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.orcamento-header select {
+    width: auto;
+}
+
+.orcamento-details h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.checklist-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.checklist-table th, .checklist-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.checklist-table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+}
+
+.styled-select {
+    width: 100%;
+}
+
+.form-actions {
+    text-align: right;
+}
+
+.form-actions .botao {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.form-actions .botao:hover {
+    background-color: #0056b3;
+}
+
+.aprovar-form {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.aprovar-btn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.aprovar-btn:hover {
+    background-color: #218838;
+}

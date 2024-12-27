@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/carregar-perfils")
-public class CarregarUsuarioServlet extends HttpServlet {
+@WebServlet("/carregar-usuarios")
+public class CarregarUsuariosServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

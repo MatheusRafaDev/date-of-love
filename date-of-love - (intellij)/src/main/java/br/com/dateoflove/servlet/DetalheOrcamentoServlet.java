@@ -40,11 +40,10 @@ public class DetalheOrcamentoServlet extends HttpServlet {
         req.getSession().setAttribute("orcamento", orcamento);
         req.getSession().setAttribute("detalheorcamento", detalheOrcamento);
         req.getSession().setAttribute("servicoDao", servicoDao);
-
         req.getSession().setAttribute("usuario", usuario);
 
 
-        resp.sendRedirect(req.getContextPath() + "/adm/adm-detalhe-orcamento.jsp");
+        req.getRequestDispatcher("/adm/adm-detalhe-orcamento.jsp").forward(req, resp);
     }
 
 }

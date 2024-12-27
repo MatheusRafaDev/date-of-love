@@ -1,5 +1,6 @@
 package br.com.dateoflove.dao;
 
+import br.com.dateoflove.model.DetalheOrcamento;
 import br.com.dateoflove.model.Orcamentos;
 import br.com.dateoflove.config.PoolConfig;
 
@@ -105,37 +106,6 @@ public class OrcamentosDao {
             System.out.println("Erro ao buscar orçamento: " + e.getMessage());
         }
         return null;
-    }
-
-    public boolean atualizarOrcamento(Orcamentos orcamento) {
-        String sql = "UPDATE tb_orcamentos SET valor_medio = ?, id_usuario = ?, data_orcamento = ?, observacao = ?, " +
-                "status = ?, valor_total = ?, local = ?, tipo_cerimonia = ?, forma_pagamento = ?, " +
-                "vl_estimado = ?, comentario_adicional = ?, qtd_convidados = ? " +
-                "WHERE id_orcamento = ?";
-        try (Connection connection = PoolConfig.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
-
-
-            stmt.setLong(1, orcamento.getIdUsuario());
-            stmt.setDate(2, new java.sql.Date(orcamento.getDataOrcamento().getTime()));
-            stmt.setString(3, orcamento.getObservacao());
-            stmt.setString(4, orcamento.getStatus());
-            stmt.setDouble(5, orcamento.getValorTotal());
-            stmt.setString(6, orcamento.getLocal());
-            stmt.setString(7, orcamento.getTipoCerimonia());
-            stmt.setString(8, orcamento.getFormaPagamento());
-            stmt.setDouble(9, orcamento.getValorEstimado());
-            stmt.setString(10, orcamento.getComentarioAdicional());
-            stmt.setInt(11, orcamento.getQtdConvidados());
-            stmt.setLong(12, orcamento.getIdOrcamento());
-
-
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
-        } catch (SQLException e) {
-            System.out.println("Erro ao atualizar orçamento: " + e.getMessage());
-        }
-        return false;
     }
 
     public boolean excluirOrcamento(Long idOrcamento) {
@@ -388,4 +358,45 @@ public class OrcamentosDao {
         return orcamento;
     }
 
+
+
+
+    public void atualizarDetalheOrcamento(DetalheOrcamento detalhe) {
+        String sql = "UPDATE tb_detalhes_orcamento SET vl_preco_editavel = ?, ds_observacao_servico = ?, tg_tipo = ? WHERE id_detalhe_orcamento = ?";
+
+        try (Connection connection = PoolConfig.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setDouble(1, detalhe.getPrecoEditavel());
+            stmt.setString(2, detalhe.getObservacaoServico());
+            stmt.setString(3, String.valueOf(detalhe.getTipo()));
+            stmt.setInt(4, detalhe.getIdDetalheOrcamento());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar detalhe do orçamento", e);
+        }
+    }
+
+    public void atualizarOrcamento(Orcamentos orcamento) {
+        String sql = "UPDATE tb_orcamentos SET nm_orcador = ?, ds_status = ?, vl_total = ?, vl_estimado = ?, ds_observacao = ?, ds_observacao_orcador = ? WHERE id_orcamento = ?";
+
+        try (Connection connection = PoolConfig.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            // Definindo os parâmetros da consulta
+            stmt.setString(1, orcamento.getNomeOrcador());
+            stmt.setString(2, orcamento.getStatus());
+            stmt.setDouble(3, orcamento.getValorTotal());
+            stmt.setDouble(4, orcamento.getValorEstimado());
+            stmt.setString(5, orcamento.getObservacao());
+            stmt.setString(6, orcamento.getObservacaoOrcador());
+            stmt.setInt(7, orcamento.getIdOrcamento());
+
+            // Executando a atualização
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar orçamento", e);
+        }
+    }
 }

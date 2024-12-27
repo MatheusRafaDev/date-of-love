@@ -9,14 +9,11 @@
 <%
 
   Usuario usuario2 = (Usuario) session.getAttribute("usuario2");
+  Usuario usuarioperfil = (Usuario) session.getAttribute("usuarioperfil");
   if (usuario2 == null || !usuario2.getEmail().equals("adm")) {
      response.sendRedirect("/login");
      return;
   }
-
-
-
-    Usuario usuario = (Usuario) session.getAttribute("usuario");
 
 %>
 
@@ -41,40 +38,25 @@
                     <div class="card-body">
                         <div class="profile-info">
                             <div class="img-container">
-                                <div class="nomeCasal2" ><%= usuario.getNomesConcatenados() %></div>
-                                <div class="id">Id: <%= usuario.getIdUsuario() %></div>
+                                <div class="nomeCasal2" ><%= usuarioperfil.getNomesConcatenados() %></div>
+                                <div class="id">Id: <%= usuarioperfil.getIdUsuario() %></div>
                             </div>
 
                             <div class="details">
 
                                 <div class="form-group">
                                     <label for="nomeNoivo">Nome do Noivo:</label>
-                                    <input type="text" id="nomeNoivo" class="form-control" value="<%= usuario.getNomeNoivo() %>" readonly>
+                                    <input type="text" id="nomeNoivo" class="form-control" value="<%= usuarioperfil.getNomeNoivo() %>" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="nomeNoiva">Nome da Noiva:</label>
-                                    <input type="text" id="nomeNoiva" class="form-control" value="<%= usuario.getNomeNoiva() %>" readonly>
+                                    <input type="text" id="nomeNoiva" class="form-control" value="<%= usuarioperfil.getNomeNoiva() %>" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email:</label>
-                                    <input type="email" id="email" class="form-control" value="<%= usuario.getEmail() %>" readonly>
+                                    <input type="email" id="email" class="form-control" value="<%= usuarioperfil.getEmail() %>" readonly>
                                 </div>
-                                <div class="form-group">
-                                    <label for="dataCasamento">Data do Casamento:</label>
-                                    <input type="date" id="dataCasamento" class="form-control" value="<%= new SimpleDateFormat("yyyy-MM-dd").format(casamento.getDataCasamento()) %>" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="localizacao">Localização</label>
-                                    <input type="text" id="localizacao" name="localizacao" class="form-control" value="<%= casamento.getLocalidade() %>" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="num_convidados">Número de Convidados</label>
-                                    <input type="number" id="num_convidados" name="num_convidados" class="form-control" value="<%= casamento.getNumeroConvidados() %>" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="estilo_festa">Estilo festa</label>
-                                    <input type="text" id="estilo_festa" name="estilo_festa" class="form-control" value="<%= casamento.getEstiloFesta() %>" readonly>
-                                </div>
+
                             </div>
                         </div>
                     </div>
