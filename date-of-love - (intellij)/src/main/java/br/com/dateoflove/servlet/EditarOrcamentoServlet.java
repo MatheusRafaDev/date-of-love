@@ -27,19 +27,13 @@ public class EditarOrcamentoServlet extends HttpServlet {
         String observacao = request.getParameter("observacao");
         String observacaoOrcador = request.getParameter("observacaoOrcador");
 
-        // Remover formatações e converter os valores para double
+
         String valorTotalFormatado = valorTotal.replace(".", "").replace(",", ".").replace("R$", "").trim();
         String valorEstimadoFormatado = valorEstimado.replace(".", "").replace(",", ".").replace("R$", "").trim();
 
         try {
             double valorTotalDouble = Double.parseDouble(valorTotalFormatado);
             double valorEstimadoDouble = Double.parseDouble(valorEstimadoFormatado);
-
-            // Validação no lado do servidor
-            if (valorTotalDouble > 1000000 || valorEstimadoDouble > 1000000) {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "O valor máximo permitido é 1.000.000,00");
-                return;
-            }
 
             Orcamentos orcamento = new Orcamentos();
             orcamento.setIdOrcamento(idOrcamento);
@@ -50,7 +44,6 @@ public class EditarOrcamentoServlet extends HttpServlet {
             orcamento.setObservacao(observacao);
             orcamento.setObservacaoOrcador(observacaoOrcador);
 
-            // Atualizar o orçamento no banco de dados
             OrcamentosDao orcamentoDao = new OrcamentosDao();
             orcamentoDao.atualizarOrcamento(orcamento);
 
@@ -62,13 +55,11 @@ public class EditarOrcamentoServlet extends HttpServlet {
                 valor = valor.replace(".", "").replace(",", ".");
                 double precoEditavel = Double.parseDouble(valor);
 
-                // Validação no lado do servidor para cada detalhe
-                if (precoEditavel > 1000000) {
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "O valor máximo permitido é 1.000.000,00");
-                    return;
-                }
+                String observacaoServico = request.getParameter("observacaoServico" + detalhe.getIdServico());
+
 
                 detalhe.setPrecoEditavel(precoEditavel);
+                detalhe.setObservacaoServico(observacaoServico);
                 orcamentoDao.atualizarDetalheOrcamento(detalhe);
             }
 

@@ -8,10 +8,31 @@ body {
 .card {
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
     margin: 40px auto;
     padding: 20px;
+}
+
+.input-text[readonly], select[disabled] {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.botao-calculo {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #75b0e0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botao-calculo:hover {
+    background-color: #6098d8;
 }
 
 .orcamento-header, .orcamento-details {
@@ -28,7 +49,7 @@ body {
     color: #555;
 }
 
-.orcamento-header input, .orcamento-details input, .orcamento-details textarea, .orcamento-details select {
+.input-text, .select-status, .styled-select {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -38,10 +59,6 @@ body {
     font-size: 14px;
 }
 
-.orcamento-header select {
-    width: auto;
-}
-
 .orcamento-details h3 {
     font-size: 18px;
     color: #333;
@@ -49,25 +66,28 @@ body {
 }
 
 .checklist-table {
-    width: 100%;
+    margin: 0 auto;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .checklist-table th, .checklist-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
+    padding: 12px 15px;
     text-align: left;
-    font-size: 14px;
+    border-bottom: 1px solid #ddd;
 }
 
 .checklist-table th {
-    background-color: #f8f8f8;
+    background-color: #f2f2f2;
     font-weight: bold;
+    color: #333;
 }
 
-.styled-select {
-    width: 100%;
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
 .form-actions {
@@ -75,17 +95,18 @@ body {
 }
 
 .form-actions .botao {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #D4EAFF;
+    font-family: 'Quicksand', sans-serif;
+    color: black;
+    padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
 }
 
 .form-actions .botao:hover {
-    background-color: #0056b3;
+    background-color: #75b0e0;
+    color: white;
 }
 
 .aprovar-form {
@@ -101,6 +122,7 @@ body {
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.3s;
 }
 
 .aprovar-btn:hover {

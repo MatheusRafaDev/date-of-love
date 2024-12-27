@@ -13,7 +13,6 @@
    }
 %>
 
- <%= usuario2.getEmail() %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +29,7 @@
 <%@ include file="/componente/adm-header.jsp" %>
 
 <div class="perfil-casal">
-    <h3>Orçamentos</h3>
+    <h3>Serviços</h3>
     <c:forEach var="servico" items="${servico}">
         <div class="service-card">
             <form action="${pageContext.request.contextPath}/editar-servico" method="post">

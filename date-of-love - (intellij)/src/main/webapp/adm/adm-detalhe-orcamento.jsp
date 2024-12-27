@@ -29,13 +29,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-detalhe-orcamento2.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-detalhe-orcamento.css">
     <title>Visualizar Orçamento</title>
 
-    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Inputmask -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.7/jquery.inputmask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/adm-detalhe-orcamento.js"></script>
+
 </head>
 <body>
     <%@ include file="/componente/adm-header.jsp" %>
@@ -45,9 +45,9 @@
 
             <div class="orcamento-header">
                 <h1>Orçamento - ${orcamento.getIdOrcamento()}</h1>
-                <p><strong>Orçador:</strong> <input type="text" name="nomeOrcador" value="${orcamento.getNomeOrcador()}" /></p>
+                <p><strong>Orçador:</strong> <input type="text" name="nomeOrcador" value="${orcamento.getNomeOrcador()}" class="input-text"/></p>
                 <p><strong>Status:</strong>
-                    <select name="status">
+                    <select name="status" class="select-status">
                         <option value="Pendente" ${orcamento.getStatus() == 'Pendente' ? 'selected' : ''}>Pendente</option>
                         <option value="Andamento" ${orcamento.getStatus() == 'Andamento' ? 'selected' : ''}>Andamento</option>
                         <option value="Esperando Aprovação" ${orcamento.getStatus() == 'Esperando Aprovação' ? 'selected' : ''}>Esperando Aprovação</option>
@@ -60,8 +60,12 @@
             <div class="orcamento-details">
                 <h3>Detalhes do Orçamento</h3>
                 <div class="orcamento-summary">
-                    <div><strong>Valor Total:</strong> R$ <input type="text" name="valorTotal" class="money" value="${orcamento.getValorTotal()}" /></div>
-                    <div><strong>Valor Estimado:</strong> R$ <input type="text" name="valorEstimado" class="money" value="${orcamento.getValorEstimado()}" /></div>
+                    <div>
+                        <strong>Valor Total:</strong>
+                        R$ <input type="text" name="valorTotal" class="input-text vl_preco1" value="${orcamento.getValorTotal()}" />
+                        <span>Exemplo de valor base: </span><input type="text" id="valorMinimoExemplo" class="input-text" readonly>
+                    </div>
+                    <div><strong>Valor Estimado:</strong> R$ <input type="text" name="valorEstimado" class="input-text vl_preco" value="${orcamento.getValorEstimado()}" readonly/></div>
                     <div><strong>Data de Criação:</strong> ${orcamento.getDataOrcamento()}</div>
                 </div>
             </div>
@@ -82,7 +86,7 @@
                         <tr>
                             <td>${servico.nomeServico}</td>
                             <td>
-                                <select name="servico${detalhe.idServico}" class="styled-select">
+                                <select name="servico${detalhe.idServico}" class="styled-select" disabled>
                                     <option value="simples" ${fn:escapeXml(detalhe.tipo) == 'S' ? "selected" : ""}>
                                         Simples - ${servico.descricaoSimples}
                                     </option>
@@ -97,16 +101,19 @@
                                     </option>
                                 </select>
                             </td>
-                            <td><textarea name="observacaoServico${detalhe.idServico}" rows="3" cols="30">${detalhe.observacaoServico}</textarea></td>
-                            <td>R$ <input type="text" name="precoEditavel${detalhe.idServico}" class="money" value="${detalhe.precoEditavel}" /></td>
+
+                            <td><textarea name="observacaoServico${detalhe.idServico}" rows="3" cols="30" class="input-text">${detalhe.observacaoServico}</textarea></td>
+                            <td>R$ <input type="text" name="precoEditavel${detalhe.idServico}" class="input-text vl_preco" value="${detalhe.precoEditavel}" /></td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
 
+            <button type="button" class="botao-calculo" onclick="updateMinExample()">Calcular Valor base</button>
+
             <div class="orcamento-observacoes">
-                <div><strong>Observações Gerais:</strong> <textarea name="observacao" rows="3" cols="50">${orcamento.getObservacao()}</textarea></div>
-                <div><strong>Observações do Orçador:</strong> <textarea name="observacaoOrcador" rows="3" cols="50">${orcamento.getObservacaoOrcador()}</textarea></div>
+                <div><strong>Observações Gerais:</strong> <textarea name="observacao" rows="3" cols="50" class="input-text">${orcamento.getObservacao()}</textarea></div>
+                <div><strong>Observações do Orçador:</strong> <textarea name="observacaoOrcador" rows="3" cols="50" class="input-text">${orcamento.getObservacaoOrcador()}</textarea></div>
             </div>
 
             <div class="form-actions">

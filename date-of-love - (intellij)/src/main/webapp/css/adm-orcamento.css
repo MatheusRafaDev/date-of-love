@@ -1,3 +1,4 @@
+/* Reset padrão */
 * {
     margin: 0;
     padding: 0;
@@ -8,40 +9,52 @@ body {
     font-family: 'Quicksand', sans-serif;
 }
 
+/* Estilo do perfil do casal */
 .perfil-casal {
     width: 80%;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Estilo dos títulos */
 h3 {
     margin-top: 20px;
     margin-bottom: 10px;
     font-size: 20px;
     font-family: 'Quicksand', sans-serif;
+    color: #333;
 }
 
+/* Estilo da tabela */
 table {
     width: 100%;
     margin-bottom: 20px;
     border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 table th,
 table td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    padding: 12px 15px;
     text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
 table th {
-    background-color: #82B6E6;
-    color: #fff;
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
 }
 
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo dos inputs */
 input[type="checkbox"] {
     width: 20px;
     height: 20px;
@@ -60,6 +73,7 @@ textarea {
     resize: vertical;
 }
 
+/* Estilo dos botões */
 .btn-visualizar {
     background-color: #D4EAFF;
     color: black;
@@ -68,9 +82,26 @@ textarea {
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s;
 }
 
 .btn-visualizar:hover {
     background-color: #82B6E6;
+    color: white;
+}
+
+.botao {
+    background-color: #D4EAFF;
+    font-family: 'Quicksand', sans-serif;
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botao:hover {
+    background-color: #75b0e0;
     color: white;
 }
