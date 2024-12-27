@@ -104,4 +104,29 @@ public class ServicoDao {
         }
     }
 
+    public void salvarServico(Servico servico) {
+        String query = "INSERT INTO tb_servicos (nm_servico, ds_comum, ds_simples, ds_premium, ds_exclusivo, " +
+                "vl_preco_comum, vl_preco_simples, vl_preco_premium, vl_preco_exclusivo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = PoolConfig.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+
+            ps.setString(1, servico.getNomeServico());
+            ps.setString(2, servico.getDescricaoComum());
+            ps.setString(3, servico.getDescricaoSimples());
+            ps.setString(4, servico.getDescricaoPremium());
+            ps.setString(5, servico.getDescricaoExclusivo());
+
+            ps.setDouble(6, servico.getPrecoComum());
+            ps.setDouble(7, servico.getPrecoSimples());
+            ps.setDouble(8, servico.getPrecoPremium());
+            ps.setDouble(9, servico.getPrecoExclusivo());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

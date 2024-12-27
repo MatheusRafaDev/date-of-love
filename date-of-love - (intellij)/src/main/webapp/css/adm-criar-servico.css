@@ -1,0 +1,74 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+h3 {
+    font-size: 24px;
+    margin: 25px 0;
+    color: #333;
+    text-align: center;
+}
+
+.perfil-casal {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card-container .form-group {
+    flex: 1 1 calc(50% - 10px);
+    margin: 10px;
+}
+
+.btn-visualizar {
+    background-color: #D4EAFF;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 20px auto;
+}
+
+.btn-visualizar:hover {
+    background-color: #75b0e0;
+    color: white;
+}
