@@ -26,6 +26,7 @@ public class EditarOrcamentoServlet extends HttpServlet {
         String valorEstimado = request.getParameter("valorEstimado");
         String observacao = request.getParameter("observacao");
         String observacaoOrcador = request.getParameter("observacaoOrcador");
+        String desconto = request.getParameter("desconto");
 
 
         String valorTotalFormatado = valorTotal.replace(".", "").replace(",", ".").replace("R$", "").trim();
@@ -43,6 +44,7 @@ public class EditarOrcamentoServlet extends HttpServlet {
             orcamento.setValorEstimado(valorEstimadoDouble);
             orcamento.setObservacao(observacao);
             orcamento.setObservacaoOrcador(observacaoOrcador);
+            orcamento.setPorcentagemDesconto(Integer.parseInt(desconto));
 
             OrcamentosDao orcamentoDao = new OrcamentosDao();
             orcamentoDao.atualizarOrcamento(orcamento);

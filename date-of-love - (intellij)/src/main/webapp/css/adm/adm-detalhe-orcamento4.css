@@ -59,6 +59,16 @@ body {
     font-size: 14px;
 }
 
+
+.input-text2  {
+    width: 5%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+
 .orcamento-details h3 {
     font-size: 18px;
     color: #333;
@@ -127,4 +137,31 @@ tbody tr:nth-child(even) {
 
 .aprovar-btn:hover {
     background-color: #218838;
+}
+
+.desconto-row {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento horizontal entre os itens */
+    margin-bottom: 10px; /* Espaçamento entre a linha de desconto e outros elementos */
+}
+
+.desconto-row strong {
+    margin-right: 5px; /* Espaçamento à direita do texto */
+}
+
+.desconto-row .input-text, .desconto-row label {
+    margin: 0; /* Remove margens para alinhamento */
+}
+
+.desconto-row .btn {
+    margin-left: 10px; /* Espaçamento à esquerda do botão */
+}
+
+.orcamento-summary > div {
+    margin-bottom: 10px; /* Espaçamento entre os elementos do resumo */
+}
+
+.orcamento-details, .orcamento-observacoes, .orcamento-header {
+    margin-bottom: 20px; /* Espaçamento entre as seções */
 }

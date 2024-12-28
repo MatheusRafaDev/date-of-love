@@ -95,7 +95,7 @@ public class OrcamentosDao {
                     orcamento.setDataCasamento(rs.getDate("dt_casamento"));
                     orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
                     orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
-                    orcamento.setPorcentagemDesconto(rs.getDouble("vl_porcentagem_desconto")); // Novo campo
+                    orcamento.setPorcentagemDesconto(rs.getInt("vl_porcentagem_desconto"));
 
                     return orcamento;
                 }
@@ -133,7 +133,7 @@ public class OrcamentosDao {
                 orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
                 orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
                 orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
-                orcamento.setPorcentagemDesconto(rs.getDouble("vl_porcentagem_desconto")); // Novo campo
+                orcamento.setPorcentagemDesconto(rs.getInt("vl_porcentagem_desconto")); // Novo campo
                 listaOrcamentos.add(orcamento);
             }
         } catch (SQLException e) {
@@ -192,7 +192,7 @@ public class OrcamentosDao {
                 orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
                 orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
                 orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
-                orcamento.setPorcentagemDesconto(rs.getDouble("vl_porcentagem_desconto")); // Novo campo
+                orcamento.setPorcentagemDesconto(rs.getInt("vl_porcentagem_desconto")); // Novo campo
 
                 listaOrcamentos.add(orcamento);
             }

@@ -7,6 +7,7 @@
 <%@ page import="br.com.dateoflove.dao.ServicoDao" %>
 <%@ page import="br.com.dateoflove.model.Servico" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
 
 <%
     ServicoDao servicoDao = new ServicoDao();
@@ -20,6 +21,10 @@
     }
 
     List<DetalheOrcamento> detalheorcamento = (List<DetalheOrcamento>) session.getAttribute("detalheorcamento");
+    List<String> statusList = Arrays.asList("Pendente", "Andamento", "Esperando Aprovação", "Aprovado", "Cancelado");
+    List<String> tipoList = Arrays.asList("simples", "comum", "premium", "exclusivo");
+    request.setAttribute("statusList", statusList);
+    request.setAttribute("tipoList", tipoList);
 %>
 
 <!DOCTYPE html>
@@ -29,7 +34,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm/adm-detalhe-orcamento.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm/adm-detalhe-orcamento4.css">
     <title>Visualizar Orçamento</title>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -37,6 +42,7 @@
     <script src="${pageContext.request.contextPath}/js/adm-detalhe-orcamento.js"></script>
 
 </head>
+
 <body>
     <%@ include file="/componente/adm-header.jsp" %>
 
@@ -48,11 +54,9 @@
                 <p><strong>Orçador:</strong> <input type="text" name="nomeOrcador" value="${orcamento.getNomeOrcador()}" class="input-text"/></p>
                 <p><strong>Status:</strong>
                     <select name="status" class="select-status">
-                        <option value="Pendente" ${orcamento.getStatus() == 'Pendente' ? 'selected' : ''}>Pendente</option>
-                        <option value="Andamento" ${orcamento.getStatus() == 'Andamento' ? 'selected' : ''}>Andamento</option>
-                        <option value="Esperando Aprovação" ${orcamento.getStatus() == 'Esperando Aprovação' ? 'selected' : ''}>Esperando Aprovação</option>
-                        <option value="Aprovado" ${orcamento.getStatus() == 'Aprovado' ? 'selected' : ''}>Aprovado</option>
-                        <option value="Cancelado" ${orcamento.getStatus() == 'Cancelado' ? 'selected' : ''}>Cancelado</option>
+                        <c:forEach var="status" items="${statusList}">
+                            <option value="${status}" ${status == orcamento.getStatus() ? 'selected' : ''}>${status}</option>
+                        </c:forEach>
                     </select>
                 </p>
             </div>
@@ -62,11 +66,28 @@
                 <div class="orcamento-summary">
                     <div>
                         <strong>Valor Total:</strong>
-                        R$ <input type="text" name="valorTotal" class="input-text vl_preco1" value="${orcamento.getValorTotal()}" />
-                        <span>Exemplo de valor base: </span><input type="text" id="valorMinimoExemplo" class="input-text" readonly>
+                        R$ <input type="text" id="valorTotal" name="valorTotal" class="input-text vl_preco1" value="${orcamento.getValorTotal()}"/>
+
+                       <input type="text" id="valorTotal2" name="valorTotal2" class="input-text vl_preco2" value="${orcamento.getValorTotal()}" style="display: none;"/>
                     </div>
-                    <div><strong>Valor Estimado:</strong> R$ <input type="text" name="valorEstimado" class="input-text vl_preco" value="${orcamento.getValorEstimado()}" readonly/></div>
-                    <div><strong>Data de Criação:</strong> ${orcamento.getDataOrcamento()}</div>
+
+
+                    <div>
+                        <strong>Valor Estimado:</strong>
+                        R$ <input type="text" id="valorEstimado" name="valorEstimado" class="input-text vl_preco" value="${orcamento.getValorEstimado()}" readonly/>
+                    </div>
+
+                    <div class="desconto-row">
+                        <strong>Desconto (%):</strong>
+                        <input type="number" id="desconto" name="desconto" max="20" min="0" value="${orcamento.getPorcentagemDesconto()}" step="1"  class="input-text2 vl_desc"/>
+                        <strong>Valor do Desconto:</strong>
+                        <label id="valorDescontoLabel">R$ 0,00</label>
+                        <button type="button" id="applyDiscount" class="btn">Aplicar Desconto</button>
+                    </div>
+
+                    <div>
+                        <strong>Data de Criação:</strong> ${orcamento.getDataOrcamento()}
+                    </div>
                 </div>
             </div>
 
