@@ -19,8 +19,7 @@ public class Orcamentos {
     private Double valorEstimado;
     private String comentarioAdicional;
     private int qtdConvidados;
-
-
+    private double porcentagemDesconto;
     private Date dataCasamento;
 
     public Orcamentos() {
@@ -31,7 +30,7 @@ public class Orcamentos {
                       String observacaoOrcador, String nomeOrcador, double valorTotal, Double valorMedio,
                       boolean aprovado, boolean cancelado, String local, String tipoCerimonia,
                       String formaPagamento, Double valorEstimado, String observacaoGeral,
-                      String comentarioAdicional, int qtdConvidados, Date dataCasamento) {
+                      String comentarioAdicional, int qtdConvidados, Date dataCasamento, double porcentagemDesconto) {
         this.idOrcamento = idOrcamento;
         this.idUsuario = idUsuario;
         this.dataOrcamento = dataOrcamento;
@@ -49,9 +48,17 @@ public class Orcamentos {
         this.comentarioAdicional = comentarioAdicional;
         this.qtdConvidados = qtdConvidados;
         this.dataCasamento = dataCasamento;
+        this.porcentagemDesconto = porcentagemDesconto;
     }
 
-    // Getters e setters para o campo dataCasamento
+    public double getPorcentagemDesconto() {
+        return porcentagemDesconto;
+    }
+
+    public void setPorcentagemDesconto(double porcentagemDesconto) {
+        this.porcentagemDesconto = porcentagemDesconto;
+    }
+
     public java.sql.Date getDataCasamento() {
         return (java.sql.Date) dataCasamento;
     }

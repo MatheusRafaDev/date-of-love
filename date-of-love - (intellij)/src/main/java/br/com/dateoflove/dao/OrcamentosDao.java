@@ -21,8 +21,8 @@ public class OrcamentosDao {
     public Orcamentos criarOrcamento(Orcamentos orcamento) {
         String SQL = "INSERT INTO tb_orcamentos (id_usuario, dt_orcamento, ds_status, ds_observacao, " +
                 "ds_observacao_orcador, nm_orcador, vl_total, tg_aprovado, tg_cancelado, ds_local, " +
-                "ds_tipo_cerimonia, ds_forma_pagamento, vl_estimado, ds_comentario_adicional, qtd_convidados, dt_casamento) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "ds_tipo_cerimonia, ds_forma_pagamento, vl_estimado, ds_comentario_adicional, qtd_convidados, dt_casamento, vl_porcentagem_desconto) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = PoolConfig.getConnection();
              PreparedStatement stmt = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
@@ -43,7 +43,7 @@ public class OrcamentosDao {
             stmt.setString(14, orcamento.getComentarioAdicional());
             stmt.setInt(15, orcamento.getQtdConvidados());
             stmt.setDate(16, orcamento.getDataCasamento());
-
+            stmt.setDouble(17, orcamento.getPorcentagemDesconto()); // Novo campo
 
             int linhasAfetadas = stmt.executeUpdate();
 
@@ -84,10 +84,8 @@ public class OrcamentosDao {
                     orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
                     orcamento.setNomeOrcador(rs.getString("nm_orcador"));
                     orcamento.setValorTotal(rs.getDouble("vl_total"));
-
                     orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
                     orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
-
 
                     // Campos adicionais
                     orcamento.setLocal(rs.getString("ds_local"));
@@ -95,9 +93,9 @@ public class OrcamentosDao {
                     orcamento.setFormaPagamento(rs.getString("ds_forma_pagamento"));
                     orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
                     orcamento.setDataCasamento(rs.getDate("dt_casamento"));
-
                     orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
                     orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
+                    orcamento.setPorcentagemDesconto(rs.getDouble("vl_porcentagem_desconto")); // Novo campo
 
                     return orcamento;
                 }
@@ -106,56 +104,6 @@ public class OrcamentosDao {
             System.out.println("Erro ao buscar orçamento: " + e.getMessage());
         }
         return null;
-    }
-
-    public boolean excluirOrcamento(Long idOrcamento) {
-        String sql = "DELETE FROM tb_orcamentos WHERE id_orcamento = ?";
-        try (Connection connection = PoolConfig.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
-
-            stmt.setLong(1, idOrcamento);
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
-        } catch (SQLException e) {
-            System.out.println("Erro ao excluir orçamento: " + e.getMessage());
-        }
-        return false;
-    }
-
-    public List<Orcamentos> listarOrcamentos() {
-        List<Orcamentos> orcamentosList = new ArrayList<>();
-        String sql = "SELECT * FROM tb_orcamentos";
-        try (Connection connection = PoolConfig.getConnection();
-             Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {
-                Orcamentos orcamento = new Orcamentos();
-                orcamento.setIdOrcamento(rs.getInt("id_orcamento"));
-                orcamento.setIdUsuario(rs.getInt("id_usuario"));
-                orcamento.setDataOrcamento(rs.getDate("dt_orcamento"));
-                orcamento.setStatus(rs.getString("ds_status"));
-                orcamento.setObservacao(rs.getString("ds_observacao"));
-                orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
-                orcamento.setNomeOrcador(rs.getString("nm_orcador"));
-                orcamento.setValorTotal(rs.getDouble("vl_total"));
-                orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
-                orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
-
-                // Campos adicionais
-                orcamento.setLocal(rs.getString("ds_local"));
-                orcamento.setTipoCerimonia(rs.getString("ds_tipo_cerimonia"));
-                orcamento.setFormaPagamento(rs.getString("ds_forma_pagamento"));
-                orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
-                orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
-                orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
-
-                orcamentosList.add(orcamento);
-            }
-        } catch (SQLException e) {
-            System.out.println("Erro ao listar orçamentos: " + e.getMessage());
-        }
-        return orcamentosList;
     }
 
     public List<Orcamentos> buscarOrcamentoPorUsuario(int idUsuario) {
@@ -185,6 +133,7 @@ public class OrcamentosDao {
                 orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
                 orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
                 orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
+                orcamento.setPorcentagemDesconto(rs.getDouble("vl_porcentagem_desconto")); // Novo campo
                 listaOrcamentos.add(orcamento);
             }
         } catch (SQLException e) {
@@ -200,25 +149,6 @@ public class OrcamentosDao {
         return listaOrcamentos;
     }
 
-    public boolean existeOrcamentoPorUsuario(int idUsuario) {
-        String sql = "SELECT COUNT(*) FROM tb_orcamentos WHERE id_usuario = ?";
-        PreparedStatement stmt = null;
-
-        try {
-            Connection connection = PoolConfig.getConnection();
-            stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, idUsuario);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                int count = rs.getInt(1);
-                return count > 0;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao verificar a existência do orçamento por usuário", e);
-        }
-        return false;
-    }
-
     public void aprovarOrcamento(int idOrcamento, int idUsuario) {
         try {
             String SQL = "UPDATE tb_orcamentos SET tg_aprovado = true, ds_status ='Aprovado' WHERE id_orcamento = ?";
@@ -228,18 +158,6 @@ public class OrcamentosDao {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Erro ao aprovar orçamento: " + e.getMessage());
-        }
-    }
-
-    public void cancelarOrcamento(int idOrcamento) {
-        try {
-            String SQL = "UPDATE tb_orcamentos SET tg_cancelado = true, ds_status ='Cancelado' WHERE id_orcamento = ?";
-            Connection connection = PoolConfig.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setInt(1, idOrcamento);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Erro ao cancelar orçamento: " + e.getMessage());
         }
     }
 
@@ -274,6 +192,7 @@ public class OrcamentosDao {
                 orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
                 orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
                 orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
+                orcamento.setPorcentagemDesconto(rs.getDouble("vl_porcentagem_desconto")); // Novo campo
 
                 listaOrcamentos.add(orcamento);
             }
@@ -311,56 +230,6 @@ public class OrcamentosDao {
         }
     }
 
-    public Orcamentos selecionarOrcamentoPorId(int idOrcamento) {
-        Orcamentos orcamento = new Orcamentos();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        try {
-            Connection connection = PoolConfig.getConnection();
-            String query = "SELECT * FROM tb_orcamentos WHERE id_orcamento = ?";
-            stmt = connection.prepareStatement(query);
-            stmt.setInt(1, idOrcamento);
-            rs = stmt.executeQuery();
-
-            if (rs.next()) {
-
-                orcamento.setIdOrcamento(rs.getInt("id_orcamento"));
-                orcamento.setIdUsuario(rs.getInt("id_usuario"));
-                orcamento.setDataOrcamento(rs.getDate("dt_orcamento"));
-                orcamento.setStatus(rs.getString("ds_status"));
-                orcamento.setObservacao(rs.getString("ds_observacao"));
-                orcamento.setObservacaoOrcador(rs.getString("ds_observacao_orcador"));
-                orcamento.setNomeOrcador(rs.getString("nm_orcador"));
-                orcamento.setValorTotal(rs.getDouble("vl_total"));
-
-                orcamento.setAprovado(rs.getBoolean("tg_aprovado"));
-                orcamento.setCancelado(rs.getBoolean("tg_cancelado"));
-
-                // Campos adicionais
-                orcamento.setLocal(rs.getString("ds_local"));
-                orcamento.setTipoCerimonia(rs.getString("ds_tipo_cerimonia"));
-                orcamento.setFormaPagamento(rs.getString("ds_forma_pagamento"));
-                orcamento.setValorEstimado(rs.getDouble("vl_estimado"));
-                orcamento.setComentarioAdicional(rs.getString("ds_comentario_adicional"));
-                orcamento.setQtdConvidados(rs.getInt("qtd_convidados"));
-            }
-        } catch (SQLException e) {
-            System.out.println("Erro ao selecionar o orçamento por ID: " + e.getMessage());
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-            } catch (SQLException e) {
-                System.out.println("Erro ao fechar os recursos de banco de dados: " + e.getMessage());
-            }
-        }
-        return orcamento;
-    }
-
-
-
-
     public void atualizarDetalheOrcamento(DetalheOrcamento detalhe) {
         String sql = "UPDATE tb_detalhes_orcamento SET vl_preco_editavel = ?, ds_observacao_servico = ?, tg_tipo = ? WHERE id_detalhe_orcamento = ?";
 
@@ -379,7 +248,7 @@ public class OrcamentosDao {
     }
 
     public void atualizarOrcamento(Orcamentos orcamento) {
-        String sql = "UPDATE tb_orcamentos SET nm_orcador = ?, ds_status = ?, vl_total = ?, vl_estimado = ?, ds_observacao = ?, ds_observacao_orcador = ? WHERE id_orcamento = ?";
+        String sql = "UPDATE tb_orcamentos SET nm_orcador = ?, ds_status = ?, vl_total = ?, vl_estimado = ?, ds_observacao = ?, ds_observacao_orcador = ?, vl_porcentagem_desconto = ? WHERE id_orcamento = ?";
 
         try (Connection connection = PoolConfig.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -391,7 +260,8 @@ public class OrcamentosDao {
             stmt.setDouble(4, orcamento.getValorEstimado());
             stmt.setString(5, orcamento.getObservacao());
             stmt.setString(6, orcamento.getObservacaoOrcador());
-            stmt.setInt(7, orcamento.getIdOrcamento());
+            stmt.setDouble(7, orcamento.getPorcentagemDesconto()); // Novo campo
+            stmt.setInt(8, orcamento.getIdOrcamento());
 
             // Executando a atualização
             stmt.executeUpdate();

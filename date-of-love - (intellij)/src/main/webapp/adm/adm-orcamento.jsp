@@ -4,6 +4,8 @@
 <%@ page import="br.com.dateoflove.dao.OrcamentosDao" %>
 <%@ page import="br.com.dateoflove.dao.UsuarioDao" %>
 <%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
    Usuario usuario2 = (Usuario) session.getAttribute("usuario2");
@@ -20,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-orcamento.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm/adm-orcamento1.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
 </head>
 <body>
@@ -28,9 +30,9 @@
 <%@ include file="/componente/adm-header.jsp" %>
 
 <div class="perfil-casal">
+    <h3>Orçamentos</h3>
     <div class="card orcamento">
         <div class="card-body">
-            <h3>Orçamentos</h3>
             <table class="table-orcamentos">
                 <thead>
                     <tr>
@@ -38,7 +40,7 @@
                         <th>Casal</th>
                         <th>Orçado por</th>
                         <th>Valor Estimado</th>
-                        <th>Valor total</th>
+                        <th>Valor Total</th>
                         <th>Status</th>
                         <th>Ação</th>
                     </tr>
@@ -46,9 +48,7 @@
                 <tbody>
                     <%
                         OrcamentosDao orcamentosDao = new OrcamentosDao();
-
                         List<Orcamentos> listaOrcamentos = orcamentosDao.selecionarTodosOrcamentos();
-
                         for (Orcamentos orcamento : listaOrcamentos) {
                             int idUsuario = orcamento.getIdUsuario();
                             UsuarioDao usuarioDao = new UsuarioDao();
@@ -58,8 +58,8 @@
                             <td><%= orcamento.getIdOrcamento() %></td>
                             <td><%= usuario != null ? usuario.getNomesConcatenados() : "Nome do usuário não encontrado" %></td>
                             <td><%= orcamento.getNomeOrcador() %></td>
-                            <td>R$ <%= orcamento.getValorEstimado() %></td>
-                            <td>R$ <%= orcamento.getValorTotal() %></td>
+                            <td>R$ <fmt:formatNumber value="<%= orcamento.getValorEstimado() %>" type="currency" currencySymbol=""/></td>
+                            <td>R$ <fmt:formatNumber value="<%= orcamento.getValorTotal() %>" type="currency" currencySymbol=""/></td>
                             <td><%= orcamento.getStatus() %></td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/detalhe-orcamento" method="GET">

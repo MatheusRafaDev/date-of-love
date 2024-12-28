@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Serviço</title>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/adm-editar-servico.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/adm/adm-editar-servico.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
 </head>

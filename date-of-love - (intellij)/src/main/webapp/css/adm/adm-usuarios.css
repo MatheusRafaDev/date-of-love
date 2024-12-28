@@ -9,7 +9,7 @@ h3 {
     margin-top: 25px;
     margin-bottom: 25px;
     color: #333;
-    text-align: left;
+    text-align: center;
 }
 
 .perfil-casal {
@@ -20,29 +20,9 @@ h3 {
     border-radius: 8px;
 }
 
-.actions {
-    text-align: left; /* Alinhar o conteúdo à esquerda */
-    margin-bottom: 20px; /* Espaço entre o botão e a tabela */
-}
-
-.btn-visualizar {
-    background-color: #D4EAFF;
-    color: black;
-    border: none;
-    border-radius: 4px;
-    padding: 12px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.btn-visualizar:hover {
-    background-color: #75b0e0;
-    color: white;
-}
-
 table {
     width: 100%;
+    margin: 0 auto;
     border-collapse: collapse;
     background-color: #fff;
     border-radius: 5px;
@@ -78,4 +58,20 @@ tbody tr:nth-child(even) {
 
 .action-button:hover {
     background-color: #6098d8;
+}
+
+.botao {
+    background-color: #D4EAFF;
+    font-family: 'Quicksand', sans-serif;
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.botao:hover {
+    background-color: #75b0e0;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
 }

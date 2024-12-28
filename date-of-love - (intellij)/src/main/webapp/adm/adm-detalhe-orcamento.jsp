@@ -29,7 +29,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm-detalhe-orcamento.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm/adm-detalhe-orcamento.css">
     <title>Visualizar Orçamento</title>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

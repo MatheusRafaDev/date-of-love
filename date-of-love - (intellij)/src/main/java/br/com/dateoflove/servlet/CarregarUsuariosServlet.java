@@ -21,6 +21,6 @@ public class CarregarUsuariosServlet extends HttpServlet {
         List<Usuario> usuarios = usuarioDao.encontrarTodosUsuarios();
 
         req.setAttribute("usuarios", usuarios);
-        req.getRequestDispatcher("/adm/adm-perfils.jsp").forward(req, resp);
+        req.getRequestDispatcher("/adm/adm-usuarios.jsp").forward(req, resp);
     }
 }
