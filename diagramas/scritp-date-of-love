@@ -49,6 +49,7 @@ CREATE TABLE tb_orcamentos (
     vl_estimado DECIMAL(10, 2),
     ds_comentario_adicional TEXT,
     qtd_convidados INT,
+    vl_porcentagem_desconto DECIMAL(5, 2) DEFAULT 0.00, -- Novo campo de desconto
     FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario)
 );
 
@@ -84,11 +85,11 @@ INSERT INTO tb_usuarios (nm_noivo, nm_noiva, ds_email, ds_senha, dt_cadastro, nm
 ('Alexandre Souza', 'Fernanda Lima', 'alexandre.fernanda@example.com', 'senha678', '2024-06-22', 'Alexandre e Fernanda', '/images/alexandre_fernanda.jpg');
 
 -- Inserindo Orcamentos
-INSERT INTO tb_orcamentos (id_usuario, dt_orcamento, ds_status, ds_observacao, ds_observacao_orcador, nm_orcador, vl_total, tg_aprovado, tg_cancelado, ds_local, ds_tipo_cerimonia, ds_forma_pagamento, vl_estimado, ds_comentario_adicional, qtd_convidados, dt_casamento) VALUES
-(1, '2024-07-01', 'Pendente', 'Primeiro orçamento.', 'Observação do orçador 1', 'Carlos', 0.00, FALSE, FALSE, 'Local 1', 'Cerimônia tradicional', 'Cartão de crédito', 5000.00, 'Nenhum comentário adicional', 120, '2024-12-01'),
-(2, '2024-07-10', 'Aprovado', 'Orçamento aprovado sem alterações.', 'Observação do orçador 2', 'Roberto', 0.00, TRUE, FALSE, 'Local 2', 'Cerimônia ao ar livre', 'Boleto', 7000.00, 'Cliente satisfeito com o orçamento.', 180, '2024-11-15'),
-(3, '2024-07-20', 'Esperando Aprovação', 'Cliente solicitou ajustes.', 'Observação do orçador 3', 'Italo', 0.00, FALSE, FALSE, 'Local 3', 'Casamento na praia', 'Pix', 8000.00, 'Aguardando retorno do cliente.', 200, '2025-01-10'),
-(4, '2024-07-30', 'Cancelado', 'Orçamento cancelado pelo cliente.', 'Observação do orçador 4', 'Guilherme', 0.00, FALSE, TRUE, 'Local 4', 'Cerimônia clássica', 'Dinheiro', 3000.00, 'Cliente desistiu do evento.', 150, '2024-10-05');
+INSERT INTO tb_orcamentos (id_usuario, dt_orcamento, ds_status, ds_observacao, ds_observacao_orcador, nm_orcador, vl_total, tg_aprovado, tg_cancelado, ds_local, ds_tipo_cerimonia, ds_forma_pagamento, vl_estimado, ds_comentario_adicional, qtd_convidados, dt_casamento, vl_porcentagem_desconto) VALUES
+(1, '2024-07-01', 'Pendente', 'Primeiro orçamento.', 'Observação do orçador 1', 'Carlos', 0.00, FALSE, FALSE, 'Local 1', 'Cerimônia tradicional', 'Cartão de crédito', 5000.00, 'Nenhum comentário adicional', 120, '2024-12-01', 5.00),
+(2, '2024-07-10', 'Aprovado', 'Orçamento aprovado sem alterações.', 'Observação do orçador 2', 'Roberto', 0.00, TRUE, FALSE, 'Local 2', 'Cerimônia ao ar livre', 'Boleto', 7000.00, 'Cliente satisfeito com o orçamento.', 180, '2024-11-15', 10.00),
+(3, '2024-07-20', 'Esperando Aprovação', 'Cliente solicitou ajustes.', 'Observação do orçador 3', 'Italo', 0.00, FALSE, FALSE, 'Local 3', 'Casamento na praia', 'Pix', 8000.00, 'Aguardando retorno do cliente.', 200, '2025-01-10', 15.00),
+(4, '2024-07-30', 'Cancelado', 'Orçamento cancelado pelo cliente.', 'Observação do orçador 4', 'Guilherme', 0.00, FALSE, TRUE, 'Local 4', 'Cerimônia clássica', 'Dinheiro', 3000.00, 'Cliente desistiu do evento.', 150, '2024-10-05', 0.00);
 
 -- Inserindo Detalhes de Orcamento
 INSERT INTO tb_detalhes_orcamento (id_orcamento, id_servico, nr_quantidade, vl_preco_editavel, ds_observacao_servico, tg_tipo) VALUES
