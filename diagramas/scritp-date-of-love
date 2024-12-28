@@ -49,9 +49,10 @@ CREATE TABLE tb_orcamentos (
     vl_estimado DECIMAL(10, 2),
     ds_comentario_adicional TEXT,
     qtd_convidados INT,
-    vl_porcentagem_desconto DECIMAL(5, 2) DEFAULT 0.00, -- Novo campo de desconto
+    vl_porcentagem_desconto INT DEFAULT 0, -- Alterado para INT
     FOREIGN KEY (id_usuario) REFERENCES tb_usuarios(id_usuario)
 );
+
 
 -- Tabela de Detalhes do Orçamento
 CREATE TABLE tb_detalhes_orcamento (
