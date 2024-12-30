@@ -20,11 +20,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/criar-orcamento.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/criar-orcamento1.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/criar-orcamento.js"></script>
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
+    <script src="${pageContext.request.contextPath}/js/criar-orcamento.js"></script>
     <title>Criar Orçamento</title>
 </head>
 <body>
@@ -85,7 +85,6 @@
 
                 <h3>Tipo de Cerimônia</h3>
                 <select name="tipoCerimonia" required class="styled-select">
-                    <option value="civil">Civil</option>
                     <option value="religiosa">Religiosa</option>
                     <option value="ambas">Civil e Religiosa</option>
                 </select>
@@ -98,7 +97,7 @@
                 </select>
 
                 <h3>Valor Estimado</h3>
-                <input type="text" name="orcamentoMedio" id="orcamentoMedio" placeholder="Informe o orçamento estimado">
+                <input type="text" name="orcamentoMedio" id="orcamentoMedio" placeholder="Informe o orçamento estimado" class="input-text vl_total">
                 <div id="valorEstimadoFeedback" style="color: red; display: none;"></div>
 
                 <h3>Observações Gerais</h3>

@@ -102,8 +102,6 @@ textarea {
     resize: vertical;
 }
 
-
-
 .local-casamento label {
     display: flex;
     flex-direction: column;
@@ -273,14 +271,11 @@ span {
     outline: none;
 }
 
-
 .local-casamento {
     display: flex;
     justify-content: space-around;
     gap: 20px;
 }
-
-
 
 .local-option {
     text-align: center;
@@ -313,4 +308,16 @@ span {
     display: block;
     margin-top: 5px;
     font-size: 14px;
+}
+
+.local-option input[type="radio"]:checked + img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #94CBFF;
+    border: 2px solid white;
 }

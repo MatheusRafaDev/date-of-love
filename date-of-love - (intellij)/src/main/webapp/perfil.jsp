@@ -37,10 +37,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfil1.css">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
 
-    <script>
+  <script>
         var dataAtual = new Date();
         var dataMaxima = new Date(dataAtual.getFullYear(), dataAtual.getMonth() + 9, dataAtual.getDate());
         var dataFormatada = dataMaxima.toISOString().slice(0, 10);
@@ -48,14 +48,13 @@
         document.getElementById("data_casamento").setAttribute("min", dataFormatada);
     </script>
 
-
 </head>
 <body>
 
-<%@ include file="/componente/header.jsp" %>
+    <%@ include file="/componente/header.jsp" %>
 
-<div class="perfil-casal">
-    <div class="row">
+    <div class="perfil-casal">
+        <div class="row">
         <div class="col-sm-6 mb-3 mb-sm-0">
             <div class="card">
                 <div class="card-body">
@@ -70,7 +69,7 @@
                                 <form action="${pageContext.request.contextPath}/mandar-imagem" method="post" enctype="multipart/form-data">
                                     <input style="display: none;" name="id" id="id" value="<%= usuario.getIdUsuario() %>">
                                     <label for="image">Escolha uma imagem</label>
-                                    <input type="file" name="image" id="image">
+                                    <input type="file" name="image" id="image" class="file-upload-buttom">
                                     <button type="submit" id="btnSalvar" class="btn-salvar2">Salvar</button>
                                 </form>
 

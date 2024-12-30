@@ -12,6 +12,12 @@ body {
     margin: 0;
 }
 
+.nomeCasal {
+    all: unset;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+}
 
 header {
     all: unset;

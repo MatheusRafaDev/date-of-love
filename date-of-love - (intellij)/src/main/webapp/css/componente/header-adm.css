@@ -12,6 +12,14 @@ header {
     margin-bottom: 20px;
 }
 
+.nomeCasal {
+    all: unset;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
 .logo-navigation {
     display: flex;
     align-items: center;

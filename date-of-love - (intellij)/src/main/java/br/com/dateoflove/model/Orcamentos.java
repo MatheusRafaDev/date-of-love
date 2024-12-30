@@ -1,8 +1,12 @@
 package br.com.dateoflove.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Orcamentos {
+public class Orcamentos implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private int idOrcamento;
     private int idUsuario;
     private Date dataOrcamento;
@@ -66,7 +70,6 @@ public class Orcamentos {
     public void setDataCasamento(Date dataCasamento) {
         this.dataCasamento = dataCasamento;
     }
-
 
     public int getIdOrcamento() {
         return idOrcamento;

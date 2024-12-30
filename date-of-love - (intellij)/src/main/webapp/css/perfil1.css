@@ -233,4 +233,8 @@ select:focus {
     flex-direction: row;
 }
 
-
+#id {
+    all: unset;
+    padding: 5px;
+    font-size: 14px;
+}
