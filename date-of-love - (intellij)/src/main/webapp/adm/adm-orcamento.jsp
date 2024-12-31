@@ -64,7 +64,6 @@
                             <td>
                                 <form action="${pageContext.request.contextPath}/detalhe-orcamento" method="GET">
                                     <input type="hidden" name="id" value="<%= orcamento.getIdOrcamento() %>">
-                                     <input type="hidden" name="idusuario" value="<%= usuario3.getIdUsuario() %>">
                                     <button type="submit" class="btn-visualizar">Editar</button>
                                 </form>
                             </td>

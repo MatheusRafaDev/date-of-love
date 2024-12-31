@@ -45,7 +45,8 @@
                         <td>${servico.nomeServico}</td>
                         <td>
                             <select name="servico${servico.idServico}" class="styled-select">
-                                <option value="s">Simples - ${servico.descricaoSimples}</option>
+                                <option value="n">Não selecionar</option>
+                                <option value="s" selected >Simples - ${servico.descricaoSimples}</option>
                                 <option value="c">Comum - ${servico.descricaoComum}</option>
                                 <option value="p">Premium - ${servico.descricaoPremium}</option>
                                 <option value="e">Exclusivo - ${servico.descricaoExclusivo}</option>

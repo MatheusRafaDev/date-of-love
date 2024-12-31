@@ -23,9 +23,9 @@ public class DetalheOrcamentoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idString = req.getParameter("id");
-        String idUsuario = req.getParameter("idusuario");
+
         int id = Integer.parseInt(idString);
-        int idusu = Integer.parseInt(idUsuario);
+
 
         UsuarioDao usuarioDao = new UsuarioDao();
         ServicoDao servicoDao = new ServicoDao();
@@ -34,7 +34,7 @@ public class DetalheOrcamentoServlet extends HttpServlet {
 
 
         Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId( id);
-        Usuario usuario = usuarioDao.buscarUsuarioPorId(idusu);
+        Usuario usuario = usuarioDao.buscarUsuarioPorId(orcamento.getIdUsuario());
 
         List<DetalheOrcamento> detalheOrcamento = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento(id);
 

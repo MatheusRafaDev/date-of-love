@@ -28,55 +28,6 @@
     request.setAttribute("tipoList", tipoList);
 %>
 
-<script>
-
-    function formatInitialValue(value) {
-        var valueStr = value ? value.toString() : '';
-
-        if (valueStr) {
-            var number = parseFloat(valueStr.replace(',', '.'));
-            return number.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',');
-        } else {
-            return '0,00';
-        }
-    }
-
-     function formatAndLimitValue(selector) {
-            $(selector).each(function() {
-                var precoElement = $(this);
-                var initialValue = precoElement.val();
-                if (initialValue) {
-                    var formattedValue = formatInitialValue(initialValue);
-                    precoElement.val(formattedValue);
-                }
-                precoElement.mask('000.000.000,00', { reverse: true });
-            });
-
-            $(selector).on('input', function() {
-                var val = parseFloat($(this).val().replace(/\./g, '').replace(',', '.'));
-                if (val > maxVal) {
-                    $(this).val(formatInitialValue(maxVal));
-                }
-            });
-        }
-
-     function calcularValorBase() {
-           const camposPrecos = document.querySelectorAll('.vl_preco');
-           let valorTotal = 0;
-
-           camposPrecos.forEach(campo => {
-               const valor = campo.value.replace(/[^\d,]/g, '').replace(',', '.');
-               const numero = parseFloat(valor) || 0;
-               valorTotal += numero;
-           });
-
-           document.getElementById('valorTotal').value = valorTotal.toFixed(2).replace('.', ',');
-           formatAndLimitValue('.vl_preco1');
-     }
-
-</script>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -89,9 +40,16 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/adm-detalhe-orcamento.js"></script>
-
+    <script src="${pageContext.request.contextPath}/js/adm-detalhe-orcamento1.js"></script>
 </head>
+
+<script>
+    function atualizarValor() {
+        var valor = document.getElementById('valorTotal').value;
+        document.getElementById('valorTotal2').value = valor;
+    }
+</script>
+
 
 <body>
     <%@ include file="/componente/adm-header.jsp" %>
@@ -102,11 +60,10 @@
             <div class="orcamento-header">
                 <h1>Orçamento - ${orcamento.getIdOrcamento()}</h1>
 
-                 <div class="informacoes">
-                    <p><strong>Data de criação:</strong> ${usuario3.getNomesConcatenados()}  </p>
-                    <p><strong>Data de criação:</strong> ${orcamento.getDataOrcamento()}  </p>
-
-                    <p><strong>Data do casamento:</strong> ${orcamento.getDataCasamento()}  </p>
+                <div class="informacoes">
+                    <p><strong>Nome do Usuário:</strong> ${usuario3.getNomesConcatenados()}</p>
+                    <p><strong>Data de Criação:</strong> ${orcamento.getDataOrcamento()}</p>
+                    <p><strong>Data do Casamento:</strong> ${orcamento.getDataCasamento()}</p>
                 </div>
 
                 <p><strong>Orçador:</strong> <input type="text" name="nomeOrcador" value="${orcamento.getNomeOrcador()}" class="input-text"/></p>
@@ -123,29 +80,27 @@
                 <h3>Detalhes do Orçamento</h3>
                 <div class="orcamento-summary">
                     <div>
-                        <strong>Valor Total:</strong>
-                        R$ <input type="text" id="valorTotal" name="valorTotal" class="input-text vl_preco1" value="${orcamento.getValorTotal()}"/>
-
-                       <input type="text" id="valorTotal2" name="valorTotal2" class="input-text vl_preco2" value="${orcamento.getValorTotal()}" style="display: none;"/>
+                            <strong>Valor Total:</strong>
+                           R$ <input type="text" id="valorTotal" name="valorTotal" class="input-text vl_preco1" value="${orcamento.getValorTotal()}" oninput="atualizarValor()"/>
+                           <input type="text" id="valorTotal2" name="valorTotal2" class="input-text vl_preco2" value="${orcamento.getValorTotal()}" style="display: none;"/>
                     </div>
-
 
                     <div>
                         <strong>Valor Estimado:</strong>
-                        R$ <input type="text" id="valorEstimado" name="valorEstimado" class="input-text vl_preco2" value="${orcamento.getValorEstimado()}" readonly/>
+                        R$ <input type="text" id="valorEstimado" name="valorEstimado" class="input-text vl_preco3" value="${orcamento.getValorEstimado()}" readonly/>
                     </div>
 
                     <div class="desconto-row">
                         <strong>Desconto (%):</strong>
-                        <input type="number" id="desconto" name="desconto" max="20" min="0" value="${orcamento.getPorcentagemDesconto()}" step="1"  class="input-text2 vl_desc"/>
+                        <input type="number" id="desconto" name="desconto" max="20" min="0" value="${orcamento.getPorcentagemDesconto()}" step="1" class="input-text2 vl_desc"/>
                         <strong>Valor do Desconto:</strong>
                         <label id="valorDescontoLabel">R$ 0,00</label>
-                        <button type="button" id="applyDiscount" class="btn">Aplicar Desconto</button>
+                        <button type="button" id="applyDiscount" class="btn" onclick="AplicarDesconto()">Aplicar Desconto</button>
                     </div>
-
-
                 </div>
             </div>
+
+            <button type="button" class="btn2" onclick="calcularValorBase()">Calcular Valor Base</button>
 
             <h3>Detalhes dos Serviços</h3>
             <table class="checklist-table">
@@ -186,12 +141,10 @@
                 </tbody>
             </table>
 
-            <button type="button" class="btn" onclick="calcularValorBase()">Calcular Valor Base</button>
 
             <div class="orcamento-observacoes">
                 <div><strong>Observações Gerais:</strong> <textarea name="observacao" rows="3" cols="50" class="input-text" readonly>${orcamento.getObservacao()}</textarea></div>
-                <div><strong>Comentários Adicionais:</strong> <textarea name="observacao" rows="3" cols="50" class="input-text" readonly >${orcamento.getComentarioAdicional()} </textarea></div>
-
+                <div><strong>Comentários Adicionais:</strong> <textarea name="observacaoAdicional" rows="3" cols="50" class="input-text" readonly>${orcamento.getComentarioAdicional()}</textarea></div>
                 <div><strong>Observações do Orçador:</strong> <textarea name="observacaoOrcador" rows="3" cols="50" class="input-text">${orcamento.getObservacaoOrcador()}</textarea></div>
             </div>
 
@@ -204,11 +157,12 @@
         <c:if test="${!orcamento.isAprovado() && 'Esperando Aprovação'.equals(orcamento.getStatus())}">
             <form action="${pageContext.request.contextPath}/aprovar-orcamento" method="POST" class="aprovar-form">
                 <input type="hidden" id="idOrcamento" name="idOrcamento" value="${orcamento.getIdOrcamento()}">
-                <input type="hidden" id="idUsuario" name="idUsuario" value="${usuario.getIdUsuario()}">
                 <button type="submit" class="aprovar-btn">Aprovar Orçamento</button>
             </form>
         </c:if>
     </div>
+
+
 
 </body>
 </html>

@@ -85,7 +85,7 @@ public class CriarOrcamentoServlet extends HttpServlet {
             int servicoId = servico.getIdServico();
             String tipoServico = req.getParameter("servico" + servicoId);
 
-            if (tipoServico != null && !tipoServico.isEmpty()) {
+            if (tipoServico != null && !tipoServico.equals("n") && !tipoServico.isEmpty()) {
                 double preco = 0.0;
                 String observacaoServico = "";
                 char tipo = 'S';
