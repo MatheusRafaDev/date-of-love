@@ -15,6 +15,23 @@ $(document).ready(function() {
     }
 
 
+     function calcularValorBase() {
+
+        const camposPrecos = document.querySelectorAll('.vl_preco');
+        let valorTotal = 0;
+
+        camposPrecos.forEach(campo => {
+            const valor = campo.value.replace(/[^\d,]/g, '').replace(',', '.');
+            const numero = parseFloat(valor) || 0;
+            valorTotal += numero;
+        });
+
+
+        console.log( valorTotal)
+        document.getElementById('valorTotal').value = valorTotal.toFixed(2).replace('.', ',');
+        formatAndLimitValue('.vl_preco1');
+        formatAndLimitValue('.vl_preco2');
+     }
 
     function calculateMinValue() {
         let minValue = 0;
@@ -52,6 +69,7 @@ $(document).ready(function() {
     formatAndLimitValue('.vl_preco');
     formatAndLimitValue('.vl_preco1');
     formatAndLimitValue('.vl_preco2');
+
 
 
     function calculateDiscount(value, percentage) {

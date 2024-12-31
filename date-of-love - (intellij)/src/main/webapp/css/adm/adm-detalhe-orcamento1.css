@@ -19,7 +19,12 @@ body {
     color: #333;
 }
 
-.botao-calculo {
+.informacoes {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn {
     display: inline-block;
     margin-top: 10px;
     padding: 8px 16px;

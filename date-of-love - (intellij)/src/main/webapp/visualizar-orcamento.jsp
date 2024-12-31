@@ -26,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/visualizar-orcamento.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/visualizar-orcamento1.css">
     <title>Visualizar Orçamento</title>
 </head>
 <body>
@@ -35,8 +35,10 @@
     <div class="budget-container">
         <div class="orcamento-header">
             <h1>Orçamento #${orcamento.getIdOrcamento()}</h1>
-            <p><strong>Orçador:</strong> ${orcamento.getNomeOrcador()}</p>
+            <p><strong>Orçado por:</strong> ${orcamento.getNomeOrcador()}</p>
             <p><strong>Status:</strong> ${orcamento.getStatus()}</p>
+            <p><strong>Data do casamento :</strong> ${orcamento.getDataCasamento()}</p>
+            <p><strong>Data do orçamento:</strong> ${orcamento.getDataOrcamento()}</p>
         </div>
 
         <div class="orcamento-details">
@@ -44,7 +46,6 @@
             <div class="orcamento-summary">
                 <div><strong>Valor Total:</strong> R$ ${orcamento.getValorTotal()}</div>
                 <div><strong>Valor Estimado:</strong> R$ ${orcamento.getValorEstimado()}</div>
-                <div><strong>Data de Criação:</strong> ${orcamento.getDataOrcamento()}</div>
             </div>
         </div>
 

@@ -23,7 +23,9 @@ public class DetalheOrcamentoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idString = req.getParameter("id");
+        String idUsuario = req.getParameter("idusuario");
         int id = Integer.parseInt(idString);
+        int idusu = Integer.parseInt(idUsuario);
 
         UsuarioDao usuarioDao = new UsuarioDao();
         ServicoDao servicoDao = new ServicoDao();
@@ -32,15 +34,15 @@ public class DetalheOrcamentoServlet extends HttpServlet {
 
 
         Orcamentos orcamento = orcamentoDao.buscarOrcamentoPorId( id);
-        Usuario usuario = usuarioDao.buscarUsuarioPorId(orcamento.getIdUsuario());
+        Usuario usuario = usuarioDao.buscarUsuarioPorId(idusu);
 
         List<DetalheOrcamento> detalheOrcamento = detalheOrcamentoDao.encontrarDetalhesOrcamentoPorIdOrcamento(id);
-
 
         req.getSession().setAttribute("orcamento", orcamento);
         req.getSession().setAttribute("detalheorcamento", detalheOrcamento);
         req.getSession().setAttribute("servicoDao", servicoDao);
-        req.getSession().setAttribute("usuario", usuario);
+        req.getSession().setAttribute("usuario3", usuario);
+
 
 
         req.getRequestDispatcher("/adm/adm-detalhe-orcamento.jsp").forward(req, resp);

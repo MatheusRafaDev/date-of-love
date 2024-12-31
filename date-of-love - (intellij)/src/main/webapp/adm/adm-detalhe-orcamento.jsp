@@ -14,6 +14,7 @@
     Orcamentos orcamento = (Orcamentos) session.getAttribute("orcamento");
 
     Usuario usuario2 = (Usuario) session.getAttribute("usuario2");
+    Usuario usuario3 = (Usuario) session.getAttribute("usuario3");
 
     if (usuario2 == null || !usuario2.getEmail().equals("adm")) {
         response.sendRedirect("/login");
@@ -27,6 +28,55 @@
     request.setAttribute("tipoList", tipoList);
 %>
 
+<script>
+
+    function formatInitialValue(value) {
+        var valueStr = value ? value.toString() : '';
+
+        if (valueStr) {
+            var number = parseFloat(valueStr.replace(',', '.'));
+            return number.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace('.', ',');
+        } else {
+            return '0,00';
+        }
+    }
+
+     function formatAndLimitValue(selector) {
+            $(selector).each(function() {
+                var precoElement = $(this);
+                var initialValue = precoElement.val();
+                if (initialValue) {
+                    var formattedValue = formatInitialValue(initialValue);
+                    precoElement.val(formattedValue);
+                }
+                precoElement.mask('000.000.000,00', { reverse: true });
+            });
+
+            $(selector).on('input', function() {
+                var val = parseFloat($(this).val().replace(/\./g, '').replace(',', '.'));
+                if (val > maxVal) {
+                    $(this).val(formatInitialValue(maxVal));
+                }
+            });
+        }
+
+     function calcularValorBase() {
+           const camposPrecos = document.querySelectorAll('.vl_preco');
+           let valorTotal = 0;
+
+           camposPrecos.forEach(campo => {
+               const valor = campo.value.replace(/[^\d,]/g, '').replace(',', '.');
+               const numero = parseFloat(valor) || 0;
+               valorTotal += numero;
+           });
+
+           document.getElementById('valorTotal').value = valorTotal.toFixed(2).replace('.', ',');
+           formatAndLimitValue('.vl_preco1');
+     }
+
+</script>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -34,7 +84,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/src/assets/images/favicon.ico">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm/adm-detalhe-orcamento4.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adm/adm-detalhe-orcamento1.css">
     <title>Visualizar Orçamento</title>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -51,6 +101,14 @@
 
             <div class="orcamento-header">
                 <h1>Orçamento - ${orcamento.getIdOrcamento()}</h1>
+
+                 <div class="informacoes">
+                    <p><strong>Data de criação:</strong> ${usuario3.getNomesConcatenados()}  </p>
+                    <p><strong>Data de criação:</strong> ${orcamento.getDataOrcamento()}  </p>
+
+                    <p><strong>Data do casamento:</strong> ${orcamento.getDataCasamento()}  </p>
+                </div>
+
                 <p><strong>Orçador:</strong> <input type="text" name="nomeOrcador" value="${orcamento.getNomeOrcador()}" class="input-text"/></p>
                 <p><strong>Status:</strong>
                     <select name="status" class="select-status">
@@ -74,7 +132,7 @@
 
                     <div>
                         <strong>Valor Estimado:</strong>
-                        R$ <input type="text" id="valorEstimado" name="valorEstimado" class="input-text vl_preco" value="${orcamento.getValorEstimado()}" readonly/>
+                        R$ <input type="text" id="valorEstimado" name="valorEstimado" class="input-text vl_preco2" value="${orcamento.getValorEstimado()}" readonly/>
                     </div>
 
                     <div class="desconto-row">
@@ -85,9 +143,7 @@
                         <button type="button" id="applyDiscount" class="btn">Aplicar Desconto</button>
                     </div>
 
-                    <div>
-                        <strong>Data de Criação:</strong> ${orcamento.getDataOrcamento()}
-                    </div>
+
                 </div>
             </div>
 
@@ -130,10 +186,12 @@
                 </tbody>
             </table>
 
-            <button type="button" class="botao-calculo" onclick="updateMinExample()">Calcular Valor base</button>
+            <button type="button" class="btn" onclick="calcularValorBase()">Calcular Valor Base</button>
 
             <div class="orcamento-observacoes">
-                <div><strong>Observações Gerais:</strong> <textarea name="observacao" rows="3" cols="50" class="input-text">${orcamento.getObservacao()}</textarea></div>
+                <div><strong>Observações Gerais:</strong> <textarea name="observacao" rows="3" cols="50" class="input-text" readonly>${orcamento.getObservacao()}</textarea></div>
+                <div><strong>Comentários Adicionais:</strong> <textarea name="observacao" rows="3" cols="50" class="input-text" readonly >${orcamento.getComentarioAdicional()} </textarea></div>
+
                 <div><strong>Observações do Orçador:</strong> <textarea name="observacaoOrcador" rows="3" cols="50" class="input-text">${orcamento.getObservacaoOrcador()}</textarea></div>
             </div>
 

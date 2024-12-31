@@ -52,11 +52,11 @@
                         for (Orcamentos orcamento : listaOrcamentos) {
                             int idUsuario = orcamento.getIdUsuario();
                             UsuarioDao usuarioDao = new UsuarioDao();
-                            Usuario usuario = usuarioDao.buscarUsuarioPorId(idUsuario);
+                            Usuario usuario3 = usuarioDao.buscarUsuarioPorId(idUsuario);
                     %>
                         <tr>
                             <td><%= orcamento.getIdOrcamento() %></td>
-                            <td><%= usuario != null ? usuario.getNomesConcatenados() : "Nome do usuário não encontrado" %></td>
+                            <td><%= usuario3 != null ? usuario3.getNomesConcatenados() : "Nome do usuário não encontrado" %></td>
                             <td><%= orcamento.getNomeOrcador() %></td>
                             <td>R$ <fmt:formatNumber value="<%= orcamento.getValorEstimado() %>" type="currency" currencySymbol=""/></td>
                             <td>R$ <fmt:formatNumber value="<%= orcamento.getValorTotal() %>" type="currency" currencySymbol=""/></td>
@@ -64,6 +64,7 @@
                             <td>
                                 <form action="${pageContext.request.contextPath}/detalhe-orcamento" method="GET">
                                     <input type="hidden" name="id" value="<%= orcamento.getIdOrcamento() %>">
+                                     <input type="hidden" name="idusuario" value="<%= usuario3.getIdUsuario() %>">
                                     <button type="submit" class="btn-visualizar">Editar</button>
                                 </form>
                             </td>
