@@ -45,10 +45,10 @@
                         <td>${servico.nomeServico}</td>
                         <td>
                             <select name="servico${servico.idServico}" class="styled-select">
-                                <option value="simples">Simples - ${servico.descricaoSimples}</option>
-                                <option value="cumum">Comum - ${servico.descricaoComum}</option>
-                                <option value="premium">Premium - ${servico.descricaoPremium}</option>
-                                <option value="exclusivo">Exclusivo - ${servico.descricaoExclusivo}</option>
+                                <option value="s">Simples - ${servico.descricaoSimples}</option>
+                                <option value="c">Comum - ${servico.descricaoComum}</option>
+                                <option value="p">Premium - ${servico.descricaoPremium}</option>
+                                <option value="e">Exclusivo - ${servico.descricaoExclusivo}</option>
                             </select>
                         </td>
                     </tr>
@@ -57,7 +57,8 @@
 
             <div class="input-container">
                 <label for="quantidadePessoas">Quantidade de Convidados (máx. 700):</label>
-                <input type="number" name="quantidadePessoas" id="quantidadePessoas" min="100" max="700" placeholder="Digite o número de convidados" required />
+
+                <input type="number" name="quantidadePessoas" id="quantidadePessoas" min="100" max="700" placeholder="Digite o número de convidados" required oninput="if(this.value.length > 3) this.value = this.value.slice(0, 3);" />
                 <label id="quantidadeFeedback" style="color: red; display: none;">A quantidade deve ser entre 100 e 700.</label>
 
                 <h3>Data do casamento</h3>

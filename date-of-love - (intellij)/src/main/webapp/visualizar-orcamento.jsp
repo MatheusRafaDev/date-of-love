@@ -87,6 +87,7 @@
 
         <div class="orcamento-observacoes">
             <div><strong>Observações Gerais:</strong> <textarea readonly rows="3" cols="50">${orcamento.getObservacao()}</textarea></div>
+             <div><strong>Comentarios:</strong> <textarea readonly rows="3" cols="50">${orcamento.getComentarioAdicional()}</textarea></div>
             <div><strong>Observações do Orçador:</strong> <textarea readonly rows="3" cols="50">${orcamento.getObservacaoOrcador()}</textarea></div>
         </div>
 

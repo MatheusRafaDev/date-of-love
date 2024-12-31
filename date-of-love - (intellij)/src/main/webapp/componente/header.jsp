@@ -33,7 +33,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/componente/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/componente/header1.css">
 </head>
 
 <%
@@ -52,7 +52,7 @@
                 <div class="user-items">
                     <input type="text" id="id" name="id" value="${usuario2.getIdUsuario()}" style="display: none;">
                     <button type="submit" class="nomeCasal"><%= usuario2.getNomesConcatenados() %></button>
-                    <img src="<%= finalImagePath %>" alt="Foto do Usuário">
+                    <img src="<%= finalImagePath %>" alt="Foto do Usuário" />
                 </div>
             </form>
             <form action="${pageContext.request.contextPath}/sair" method="GET">

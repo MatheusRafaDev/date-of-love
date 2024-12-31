@@ -79,34 +79,33 @@ public class CriarOrcamentoServlet extends HttpServlet {
 
         orcamento = orcamentosDao.criarOrcamento(orcamento);
 
-        String[] servicosIds = {"1", "2", "3", "4", "5"};
+        List<Servico> servicos = servicoDao.buscarTodosServicos();
 
-        for (String servicoIdStr : servicosIds) {
-            int servicoId = Integer.parseInt(servicoIdStr);
+        for (Servico servico : servicos) {
+            int servicoId = servico.getIdServico();
             String tipoServico = req.getParameter("servico" + servicoId);
 
-            Servico servico = servicoDao.encontrarServicoPorId(servicoId);
-            if (servico != null) {
+            if (tipoServico != null && !tipoServico.isEmpty()) {
                 double preco = 0.0;
                 String observacaoServico = "";
-                char tipo = 'S'; // Default to 'S' for Simples
+                char tipo = 'S';
                 switch (tipoServico) {
-                    case "simples":
+                    case "s":
                         preco = servico.getPrecoSimples();
                         observacaoServico = servico.getDescricaoSimples();
                         tipo = 'S';
                         break;
-                    case "comum":
+                    case "c":
                         preco = servico.getPrecoComum();
                         observacaoServico = servico.getDescricaoComum();
                         tipo = 'C';
                         break;
-                    case "premium":
+                    case "p":
                         preco = servico.getPrecoPremium();
                         observacaoServico = servico.getDescricaoPremium();
                         tipo = 'P';
                         break;
-                    case "exclusivo":
+                    case "e":
                         preco = servico.getPrecoExclusivo();
                         observacaoServico = servico.getDescricaoExclusivo();
                         tipo = 'E';
@@ -132,6 +131,7 @@ public class CriarOrcamentoServlet extends HttpServlet {
 
         resp.sendRedirect(req.getContextPath() + "/perfil.jsp");
     }
+
 
     private boolean isServicoSimples(HttpServletRequest req, String parametro) {
         return req.getParameter(parametro) != null && req.getParameter(parametro).equals("simples");
