@@ -59,7 +59,6 @@
                     <th>Pacote Premium</th>
                     <th>Pacote Exclusivo</th>
                     <th>Observações</th>
-                    <th>Valor</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,7 +79,6 @@
                             <input type="radio" name="pacote-${detalhe.idServico}" value="exclusivo" ${fn:escapeXml(detalhe.tipo) == 'E' ? "checked" : ""} disabled>
                         </td>
                         <td><textarea readonly rows="3" cols="30">${detalhe.getObservacaoServico()}</textarea></td>
-                        <td>R$ ${detalhe.getPrecoEditavel()}</td>
                     </tr>
                 </c:forEach>
             </tbody>

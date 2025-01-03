@@ -101,4 +101,14 @@ public class Email {
         Email email = new Email(fromEmail, password, toEmail, emailSubject, emailBody, emailType);
         email.enviarEmail();
     }
+
+    public void enviarDuvida(String nome, String email, String mensagem) {
+        String subject = "Nova dúvida enviada por " + nome;
+        String body = ConstrutorHTML.criarConteudoHTMLDuvidaEnviada(nome, email, mensagem);
+
+        Email emailObj = new Email(fromEmail, password, email, subject, body, emailType);
+        emailObj.enviarEmail();
+
+    }
+
 }

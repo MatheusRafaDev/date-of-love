@@ -1,0 +1,124 @@
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
+.ajuda {
+    text-align: center;
+    color: #343a40;
+    margin: 20px 0;
+    font-size: 2rem;
+}
+
+
+.duvida-box {
+    background-color: white;
+    max-width: 800px;
+    margin: 20px auto;
+    border-radius: 8px;
+}
+
+.duvida-box h2 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.duvida-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.duvida-box input.email,
+.duvida-box textarea.texto {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.duvida-box textarea.texto {
+    resize: vertical;
+    height: 100px;
+}
+
+.duvida-box button {
+    background-color: #D4EAFF;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.duvida-box button:hover {
+    background-color: #0056b3;
+}
+
+.perguntas {
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.perguntas h2 {
+    color: #343a40;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: background-color 0.3s;
+}
+
+.faq-item:hover {
+    background-color: #e9ecef;
+}
+
+.question {
+    padding: 10px;
+    background-color: #D4EAFF;
+    color: black;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.answer {
+    padding: 10px;
+    display: none;
+    background-color: white;
+    color: #495057;
+}
+
+.answer.show {
+    display: block;
+}
+
+

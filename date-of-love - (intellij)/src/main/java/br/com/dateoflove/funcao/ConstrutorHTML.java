@@ -144,4 +144,41 @@ public class ConstrutorHTML {
         return emailBody;
     }
 
+    public static String criarConteudoHTMLDuvidaEnviada( String nome, String email, String mensagem) {
+
+        String emailBody = "<!DOCTYPE html>\n"
+                + "<html lang=\"pt-br\">\n"
+                + "<head>\n"
+                + "    <meta charset=\"UTF-8\">\n"
+                + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                + "    <title>Dúvida Enviada - DateOfLove</title>\n"
+                + "</head>\n"
+                + "<body style=\"margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 600px; width: 600px; background-color: #f4f4f4; color: #333; font-family: Arial, sans-serif;\">\n"
+                + "<div style=\"text-align: center; padding: 20px;\">\n"
+                + "    <h2>Dúvida Enviada com Sucesso - DateOfLove</h2>\n"
+                + "\n"
+                + "    <p>Olá Cliente,</p>\n"
+                + "\n"
+                + "    <p>Recebemos a sua dúvida, e nossa equipe entrará em contato em breve para fornecer as informações que você solicitou.</p>\n"
+                + "\n"
+                + "    <h3>Detalhes da Dúvida</h3>\n"
+                + "    <ul style=\"text-align: left;\">\n"
+                + "        <li><strong>Nome:</strong> " + nome + "</li>\n"
+                + "        <li><strong>E-mail:</strong> " + email + "</li>\n"
+                + "        <li><strong>Mensagem:</strong> " + mensagem + "</li>\n"
+                + "    </ul>\n"
+                + "\n"
+                + "    <p>Fique tranquilo(a), nossa equipe está pronta para ajudar com qualquer dúvida que possa surgir.</p>\n"
+                + "\n"
+                + "    <p>Atenciosamente,<br>\n"
+                + "    DateOfLove<br>\n"
+                + "\n"
+                + "    <p style=\"color: #333; font-size: 12px;\">&copy; 2024 DateOfLove. Todos os direitos reservados.</p>\n"
+                + "</div>\n"
+                + "</body>\n"
+                + "</html>";
+
+        return emailBody;
+    }
+
 }

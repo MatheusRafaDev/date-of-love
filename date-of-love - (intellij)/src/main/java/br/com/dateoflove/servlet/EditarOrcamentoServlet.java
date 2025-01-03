@@ -28,46 +28,56 @@ public class EditarOrcamentoServlet extends HttpServlet {
         String observacaoOrcador = request.getParameter("observacaoOrcador");
         String desconto = request.getParameter("desconto");
 
+        double valorTotalDouble = formatarValorParaDouble(valorTotal);
+        double valorEstimadoDouble = formatarValorParaDouble(valorEstimado);
 
-        String valorTotalFormatado = valorTotal.replace(".", "").replace(",", ".").replace("R$", "").trim();
-        String valorEstimadoFormatado = valorEstimado.replace(".", "").replace(",", ".").replace("R$", "").trim();
+        Orcamentos orcamento = new Orcamentos();
+        orcamento.setIdOrcamento(idOrcamento);
+        orcamento.setNomeOrcador(nomeOrcador);
+        orcamento.setStatus(status);
+        orcamento.setValorTotal(valorTotalDouble);
+        orcamento.setValorEstimado(valorEstimadoDouble);
+        orcamento.setObservacao(observacao);
+        orcamento.setObservacaoOrcador(observacaoOrcador);
+        orcamento.setPorcentagemDesconto(Integer.parseInt(desconto));
+
+        OrcamentosDao orcamentoDao = new OrcamentosDao();
+        orcamentoDao.atualizarOrcamento(orcamento);
+
+        HttpSession session = request.getSession();
+        List<DetalheOrcamento> detalhes = (List<DetalheOrcamento>) session.getAttribute("detalheorcamento");
+
+        for (DetalheOrcamento detalhe : detalhes) {
+            String valor = request.getParameter("precoEditavel" + detalhe.getIdServico());
+            valor = valor.replace(".", "").replace(",", ".");
+            double precoEditavel = formatarValorParaDouble(valor);
+            String observacaoServico = request.getParameter("observacaoServico" + detalhe.getIdServico());
+
+            detalhe.setPrecoEditavel(precoEditavel);
+            detalhe.setObservacaoServico(observacaoServico);
+            orcamentoDao.atualizarDetalheOrcamento(detalhe);
+        }
+
+        response.sendRedirect(request.getContextPath() + "/carregar-orcamento");
+    }
+
+
+    private double formatarValorParaDouble(String valor) {
+        if (valor == null || valor.isEmpty()) {
+            return 0.0;
+        }
+
+        String valorFormatado = valor.replace(".", "").replace(",", ".").replace("R$", "").trim();
+
+        if (valorFormatado.indexOf('.') != valorFormatado.lastIndexOf('.')) {
+
+            valorFormatado = valorFormatado.replaceAll("\\.(?=.*\\.)", "");
+        }
 
         try {
-            double valorTotalDouble = Double.parseDouble(valorTotalFormatado);
-            double valorEstimadoDouble = Double.parseDouble(valorEstimadoFormatado);
-
-            Orcamentos orcamento = new Orcamentos();
-            orcamento.setIdOrcamento(idOrcamento);
-            orcamento.setNomeOrcador(nomeOrcador);
-            orcamento.setStatus(status);
-            orcamento.setValorTotal(valorTotalDouble);
-            orcamento.setValorEstimado(valorEstimadoDouble);
-            orcamento.setObservacao(observacao);
-            orcamento.setObservacaoOrcador(observacaoOrcador);
-            orcamento.setPorcentagemDesconto(Integer.parseInt(desconto));
-
-            OrcamentosDao orcamentoDao = new OrcamentosDao();
-            orcamentoDao.atualizarOrcamento(orcamento);
-
-            HttpSession session = request.getSession();
-            List<DetalheOrcamento> detalhes = (List<DetalheOrcamento>) session.getAttribute("detalheorcamento");
-
-            for (DetalheOrcamento detalhe : detalhes) {
-                String valor = request.getParameter("precoEditavel" + detalhe.getIdServico());
-                valor = valor.replace(".", "").replace(",", ".");
-                double precoEditavel = Double.parseDouble(valor);
-
-                String observacaoServico = request.getParameter("observacaoServico" + detalhe.getIdServico());
-
-
-                detalhe.setPrecoEditavel(precoEditavel);
-                detalhe.setObservacaoServico(observacaoServico);
-                orcamentoDao.atualizarDetalheOrcamento(detalhe);
-            }
-
-            response.sendRedirect(request.getContextPath() + "/carregar-orcamento");
+            return Double.parseDouble(valorFormatado);
         } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Erro na formatação dos valores.");
+            return 0.0;
         }
     }
 }

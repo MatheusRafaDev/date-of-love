@@ -92,7 +92,7 @@
                             <div class="img-container">
                                 <img src="<%= finalImagePath2 %>" alt="Imagem do Casal" class="img-cabecalho">
                                 <div class="nomeCasal2"><%= usuario.getNomesConcatenados() %></div>
-                                <div class="id">Id: <%= usuario.getIdUsuario() %></div>
+                                <div style="display: none;" class="id">Id: <%= usuario.getIdUsuario() %></div>
 
                                 <div class="form-container2">
                                     <form action="${pageContext.request.contextPath}/mandar-imagem" method="post" enctype="multipart/form-data">
