@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ page import="br.com.dateoflove.model.Usuario" %>
 <%@ page import="br.com.dateoflove.model.Orcamentos" %>
 
@@ -33,7 +32,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/componente/header1.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/componente/header3.css">
 </head>
 
 <%
@@ -53,6 +52,9 @@
                     <input type="text" id="id" name="id" value="${usuario2.getIdUsuario()}" style="display: none;">
                     <button type="submit" class="nomeCasal"><%= usuario2.getNomesConcatenados() %></button>
                     <img src="<%= finalImagePath %>" alt="Foto do Usuário" />
+                    <strong>
+                        <a href="<%=request.getContextPath()%>/chat" class="chat-button">Chat</a>
+                    </strong>
                 </div>
             </form>
             <form action="${pageContext.request.contextPath}/sair" method="GET">

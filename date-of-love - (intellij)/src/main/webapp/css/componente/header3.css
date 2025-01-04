@@ -1,4 +1,4 @@
-
+/* Reset and box-sizing for all elements */
 *,
 *::before,
 *::after {
@@ -17,6 +17,7 @@ body {
     color: #000;
     font-size: 16px;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 header {
@@ -32,10 +33,7 @@ header .logo-navigation {
     display: flex;
     align-items: center;
     background-color: #D4EAFF;
-    padding-left: 3em;
-    padding-right: 3em;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px 3em;
     border-radius: 2em;
 }
 
@@ -61,8 +59,7 @@ header .user-items img {
     height: 50px;
     object-fit: cover;
     border-radius: 50%;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin: 0 10px;
 }
 
 header .logo {
@@ -72,7 +69,7 @@ header .logo {
 }
 
 header .user-items a {
-    color: black;
+
     text-decoration: none;
 }
 
@@ -82,7 +79,6 @@ header .nomeCasal button {
     font-size: 16px;
     cursor: pointer;
 }
-
 
 header .nomeCasal {
     color: black;
@@ -106,4 +102,20 @@ header .login {
 
 header .login:hover {
     background-color: #75b0e0;
+}
+
+header .chat-button {
+    color: white;
+    background-color:#666666;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: none;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+header .chat-button:hover {
+    background-color: #696969; /* Cinza escuro */
 }
