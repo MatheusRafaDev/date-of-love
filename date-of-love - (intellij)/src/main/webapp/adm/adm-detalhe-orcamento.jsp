@@ -40,15 +40,9 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/adm-detalhe-orcamento1.js"></script>
+    <script src="${pageContext.request.contextPath}/js/adm-detalhe-orcamento.js"></script>
 </head>
 
-<script>
-    function atualizarValor() {
-        var valor = document.getElementById('valorTotal').value;
-        document.getElementById('valorTotal2').value = valor;
-    }
-</script>
 
 
 <body>
@@ -80,10 +74,11 @@
                 <h3>Detalhes do Orçamento</h3>
                 <div class="orcamento-summary">
                     <div>
-                            <strong>Valor Total:</strong>
-                           R$ <input type="text" id="valorTotal" name="valorTotal" class="input-text vl_preco1" value="${orcamento.getValorTotal()}" oninput="atualizarValor()"/>
-                           <input type="text" id="valorTotal2" name="valorTotal2" class="input-text vl_preco2" value="${orcamento.getValorTotal()}" style="display: none;"/>
+                        <strong>Valor Total:</strong>
+                        R$ <input type="text" id="valorTotal" name="valorTotal" class="input-text vl_preco1" value="${orcamento.getValorTotal()}" />
+                        <input type="text" id="valorTotal2" name="valorTotal2" class="input-text vl_preco2" value="${orcamento.getValorTotal()}"  style="display: none;" />
                     </div>
+
 
                     <div>
                         <strong>Valor Estimado:</strong>
@@ -91,10 +86,10 @@
                     </div>
 
                     <div class="desconto-row">
-                        <strong>Desconto (%):</strong>
-                        <input type="number" id="desconto" name="desconto" max="20" min="0" value="${orcamento.getPorcentagemDesconto()}" step="1" class="input-text2 vl_desc"/>
-                        <strong>Valor do Desconto:</strong>
-                        <label id="valorDescontoLabel">R$ 0,00</label>
+                       <strong>Desconto (%):</strong>
+                       <input type="number" id="desconto" name="desconto" max="20" min="0" value="${orcamento.getPorcentagemDesconto()}" step="1" class="input-text2 vl_desc" />
+                       <strong>Valor do Desconto:</strong>
+                       <label id="valorDescontoLabel">R$ 0,00</label>
                         <button type="button" id="applyDiscount" class="btn" onclick="AplicarDesconto()">Aplicar Desconto</button>
                     </div>
                 </div>

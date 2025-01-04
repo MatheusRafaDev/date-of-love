@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajuda</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ajuda1.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ajuda3.css">
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/src/assets/images/favicon.ico">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-cuKkm2YlNU7mF5z3ZyD5G9fR9PpKcoZX3WqcxE8Tt1ZzQW1ytTmS0POsb3qzYWQf" crossorigin="anonymous"></script>
@@ -33,7 +33,7 @@
                 <input class="email" type="text" name="nome" placeholder="Digite seu nome aqui...">
                 <input class="email" type="text" name="email" placeholder="Digite seu email aqui...">
                 <textarea class="texto" name="mensagem" placeholder="Digite sua dúvida aqui..."></textarea>
-                <button type="submit" class="btn-primary">Enviar</button>
+                <button type="submit" class="-">Enviar</button>
             </form>
         </section>
 

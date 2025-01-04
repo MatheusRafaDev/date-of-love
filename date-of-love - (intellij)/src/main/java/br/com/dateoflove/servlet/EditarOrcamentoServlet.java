@@ -15,6 +15,9 @@ import java.util.List;
 
 @WebServlet("/editar-orcamento")
 public class EditarOrcamentoServlet extends HttpServlet {
+    private static final double MAX_TOTAL_VAL = 500000.00; // Limite de R$ 500.000,00 para o valor total
+    private static final double MAX_SERVICE_VAL = 50000.00; // Limite de R$ 50.000,00 para cada serviço
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -30,6 +33,11 @@ public class EditarOrcamentoServlet extends HttpServlet {
 
         double valorTotalDouble = formatarValorParaDouble(valorTotal);
         double valorEstimadoDouble = formatarValorParaDouble(valorEstimado);
+
+        // Verificação de limite para valor total
+        if (valorTotalDouble > MAX_TOTAL_VAL) {
+            valorTotalDouble = MAX_TOTAL_VAL;
+        }
 
         Orcamentos orcamento = new Orcamentos();
         orcamento.setIdOrcamento(idOrcamento);
@@ -49,8 +57,13 @@ public class EditarOrcamentoServlet extends HttpServlet {
 
         for (DetalheOrcamento detalhe : detalhes) {
             String valor = request.getParameter("precoEditavel" + detalhe.getIdServico());
-            valor = valor.replace(".", "").replace(",", ".");
             double precoEditavel = formatarValorParaDouble(valor);
+
+
+            if (precoEditavel > MAX_SERVICE_VAL) {
+                precoEditavel = MAX_SERVICE_VAL;
+            }
+
             String observacaoServico = request.getParameter("observacaoServico" + detalhe.getIdServico());
 
             detalhe.setPrecoEditavel(precoEditavel);
@@ -61,7 +74,6 @@ public class EditarOrcamentoServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/carregar-orcamento");
     }
 
-
     private double formatarValorParaDouble(String valor) {
         if (valor == null || valor.isEmpty()) {
             return 0.0;
@@ -70,7 +82,6 @@ public class EditarOrcamentoServlet extends HttpServlet {
         String valorFormatado = valor.replace(".", "").replace(",", ".").replace("R$", "").trim();
 
         if (valorFormatado.indexOf('.') != valorFormatado.lastIndexOf('.')) {
-
             valorFormatado = valorFormatado.replaceAll("\\.(?=.*\\.)", "");
         }
 

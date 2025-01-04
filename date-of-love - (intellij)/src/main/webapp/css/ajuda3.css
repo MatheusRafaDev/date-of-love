@@ -56,14 +56,12 @@ header {
 }
 
 .duvida-box button {
-    background-color: #D4EAFF;
     color: black;
     padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s;
 }
 
 .duvida-box button:hover {
@@ -104,7 +102,6 @@ header {
 
 .question {
     padding: 10px;
-    background-color: #D4EAFF;
     color: black;
     cursor: pointer;
     font-weight: 500;
